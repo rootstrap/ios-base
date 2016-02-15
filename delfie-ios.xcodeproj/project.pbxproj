@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6ABD64B2BAE7DF1AF5A4B634 /* Pods_delfie_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */; };
+		9B22F55B1C721129003DDCD8 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */; };
+		9B22F55E1C721406003DDCD8 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22F55D1C721406003DDCD8 /* UserDataManager.swift */; };
+		9B5AFADE1C7205EC002347D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */; };
+		9B5AFAE01C7205EC002347D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5AFADF1C7205EC002347D6 /* ViewController.swift */; };
+		9B5AFAE31C7205EC002347D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE11C7205EC002347D6 /* Main.storyboard */; };
+		9B5AFAE51C7205EC002347D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE41C7205EC002347D6 /* Assets.xcassets */; };
+		9B5AFAE81C7205EC002347D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.release.xcconfig"; sourceTree = "<group>"; };
+		9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
+		9B22F55D1C721406003DDCD8 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		9B5AFADA1C7205EC002347D6 /* delfie-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delfie-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B5AFADF1C7205EC002347D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9B5AFAE21C7205EC002347D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9B5AFAE41C7205EC002347D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B5AFAE71C7205EC002347D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9B5AFAE91C7205EC002347D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delfie_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9B5AFAD71C7205EB002347D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ABD64B2BAE7DF1AF5A4B634 /* Pods_delfie_ios.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26C39DA83574700C9BE09E3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */,
+				51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		79E2A25B5BE2D225781CCC5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B22F5591C7210FB003DDCD8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		9B22F55C1C7213BB003DDCD8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9B22F55D1C721406003DDCD8 /* UserDataManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		9B5AFAD11C7205EB002347D6 = {
+			isa = PBXGroup;
+			children = (
+				9B5AFADC1C7205EC002347D6 /* delfie-ios */,
+				9B5AFADB1C7205EC002347D6 /* Products */,
+				26C39DA83574700C9BE09E3F /* Pods */,
+				79E2A25B5BE2D225781CCC5B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9B5AFADB1C7205EC002347D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B5AFADA1C7205EC002347D6 /* delfie-ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B5AFADC1C7205EC002347D6 /* delfie-ios */ = {
+			isa = PBXGroup;
+			children = (
+				9B22F5591C7210FB003DDCD8 /* Networking */,
+				9B22F55C1C7213BB003DDCD8 /* Managers */,
+				9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */,
+				9B5AFADF1C7205EC002347D6 /* ViewController.swift */,
+				9B5AFAE11C7205EC002347D6 /* Main.storyboard */,
+				9B5AFAE41C7205EC002347D6 /* Assets.xcassets */,
+				9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */,
+				9B5AFAE91C7205EC002347D6 /* Info.plist */,
+			);
+			path = "delfie-ios";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9B5AFAD91C7205EB002347D6 /* delfie-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "delfie-ios" */;
+			buildPhases = (
+				D1DBFE1566EAB7A482A53EF6 /* Check Pods Manifest.lock */,
+				9B5AFAD61C7205EB002347D6 /* Sources */,
+				9B5AFAD71C7205EB002347D6 /* Frameworks */,
+				9B5AFAD81C7205EB002347D6 /* Resources */,
+				EB8ED404FB8A47EB1D478C2E /* Embed Pods Frameworks */,
+				507F2CFAA3597EAD1770927A /* Copy Pods Resources */,
+				9B22F5581C720E7D003DDCD8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "delfie-ios";
+			productName = "delfie-ios";
+			productReference = 9B5AFADA1C7205EC002347D6 /* delfie-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B5AFAD21C7205EB002347D6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "TopTier labs";
+				TargetAttributes = {
+					9B5AFAD91C7205EB002347D6 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "delfie-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9B5AFAD11C7205EB002347D6;
+			productRefGroup = 9B5AFADB1C7205EC002347D6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B5AFAD91C7205EB002347D6 /* delfie-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9B5AFAD81C7205EB002347D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B5AFAE81C7205EC002347D6 /* LaunchScreen.storyboard in Resources */,
+				9B5AFAE51C7205EC002347D6 /* Assets.xcassets in Resources */,
+				9B5AFAE31C7205EC002347D6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		507F2CFAA3597EAD1770927A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B22F5581C720E7D003DDCD8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D1DBFE1566EAB7A482A53EF6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB8ED404FB8A47EB1D478C2E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9B5AFAD61C7205EB002347D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B22F55E1C721406003DDCD8 /* UserDataManager.swift in Sources */,
+				9B5AFAE01C7205EC002347D6 /* ViewController.swift in Sources */,
+				9B22F55B1C721129003DDCD8 /* CommunicationManager.swift in Sources */,
+				9B5AFADE1C7205EC002347D6 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9B5AFAE11C7205EC002347D6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B5AFAE21C7205EC002347D6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B5AFAE71C7205EC002347D6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9B5AFAEA1C7205EC002347D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9B5AFAEB1C7205EC002347D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9B5AFAED1C7205EC002347D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "delfie-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.delfie-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9B5AFAEE1C7205EC002347D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "delfie-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.delfie-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "delfie-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B5AFAEA1C7205EC002347D6 /* Debug */,
+				9B5AFAEB1C7205EC002347D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "delfie-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B5AFAED1C7205EC002347D6 /* Debug */,
+				9B5AFAEE1C7205EC002347D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B5AFAD21C7205EB002347D6 /* Project object */;
+}
