@@ -1,5 +1,5 @@
 //
-//  SignInUpServiceManager.swift
+//  UserServiceManager.swift
 //  swift-base
 //
 //  Created by TopTier labs on 16/2/16.
@@ -9,10 +9,14 @@
 import Foundation
 import SwiftyJSON
 
-class SignInUpServiceManager {
+class UserServiceManager {
+    
+    private class func getUsersUrl() -> String {
+        return "/users/"
+    }
 
-    class func loginUser(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
-        let url = "/users/sign_in"
+    class func login(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
+        let url = getUsersUrl() + "sign_in"
         let parameters = [
             "user": [
                 "email": email,
@@ -27,8 +31,8 @@ class SignInUpServiceManager {
         }
     }
 
-    class func signupUser(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
-        let url = "/users/"
+    class func signup(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
+        let url = getUsersUrl()
         let parameters = [
             "user": [
                 "email": email,

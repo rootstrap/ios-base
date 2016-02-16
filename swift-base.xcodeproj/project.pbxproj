@@ -13,7 +13,7 @@
 		9B0C72731C738D3400BAF3B1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726B1C738D3400BAF3B1 /* Base.lproj */; };
 		9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */; };
 		9B0C72751C738D3400BAF3B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726D1C738D3400BAF3B1 /* Info.plist */; };
-		9B0C72761C738D3400BAF3B1 /* SignInUpServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */; };
+		9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */; };
 		9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */; };
 		9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72701C738D3400BAF3B1 /* ViewController.swift */; };
 		9B0C727C1C738D4700BAF3B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C727A1C738D4700BAF3B1 /* LaunchScreen.storyboard */; };
@@ -32,7 +32,7 @@
 		9B0C726B1C738D3400BAF3B1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = "swift-base/Base.lproj"; sourceTree = "<group>"; };
 		9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommunicationManager.swift; path = "swift-base/CommunicationManager.swift"; sourceTree = "<group>"; };
 		9B0C726D1C738D3400BAF3B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "swift-base/Info.plist"; sourceTree = "<group>"; };
-		9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInUpServiceManager.swift; path = "swift-base/SignInUpServiceManager.swift"; sourceTree = "<group>"; };
+		9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserServiceManager.swift; path = "swift-base/UserServiceManager.swift"; sourceTree = "<group>"; };
 		9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDataManager.swift; path = "swift-base/UserDataManager.swift"; sourceTree = "<group>"; };
 		9B0C72701C738D3400BAF3B1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "swift-base/ViewController.swift"; sourceTree = "<group>"; };
 		9B0C727B1C738D4700BAF3B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "swift-base/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */,
-				9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */,
+				9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */,
 				9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */,
 				9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */,
-				9B0C72761C738D3400BAF3B1 /* SignInUpServiceManager.swift in Sources */,
+				9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

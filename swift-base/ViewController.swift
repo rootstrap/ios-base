@@ -12,13 +12,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SignInUpServiceManager.signupUser(email: "hello@hello.com", password: "123456789",
+        UserServiceManager.signup(email: "hello@hello.com", password: "123456789",
             success: { (responseObject) -> Void in
                 print("Success")
             }) { (error) -> Void in
                 print("Error")
         }
-        SignInUpServiceManager.loginUser(email: "hello@hello.com", password: "123456789",
+        UserServiceManager.login(email: "hello@hello.com", password: "123456789",
             success: { (responseObject) -> Void in
                 print("Success")
             }) { (error) -> Void in
