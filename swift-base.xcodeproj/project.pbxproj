@@ -79,15 +79,14 @@
 		9B0C72511C738C3100BAF3B1 /* swift-base */ = {
 			isa = PBXGroup;
 			children = (
+				9BDA91E01C7390D30003877D /* Manager */,
+				9BDA91DF1C7390C10003877D /* Networking */,
 				9B0C72791C738D3D00BAF3B1 /* Base.lproj */,
 				9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */,
+				9B0C72701C738D3400BAF3B1 /* ViewController.swift */,
 				9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */,
 				9B0C726B1C738D3400BAF3B1 /* Base.lproj */,
-				9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */,
 				9B0C726D1C738D3400BAF3B1 /* Info.plist */,
-				9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */,
-				9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */,
-				9B0C72701C738D3400BAF3B1 /* ViewController.swift */,
 			);
 			name = "swift-base";
 			sourceTree = "<group>";
@@ -117,6 +116,23 @@
 				9B5AFADA1C7205EC002347D6 /* swift-base.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9BDA91DF1C7390C10003877D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */,
+				9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		9BDA91E01C7390D30003877D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
