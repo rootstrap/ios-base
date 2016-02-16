@@ -23,7 +23,6 @@ class CommunicationManager {
     class func sendPostRequest(url url: String, params: [String: AnyObject]?, success:(responseObject: [String : AnyObject]) -> Void, failure:(error: NSError) -> Void) {
         let header = CommunicationManager.getHeader()
         let requestUrl = getBaseUrl() + url
-        print(requestUrl)
         Alamofire.request(.POST, requestUrl, parameters: params, headers: header)
             .responseJSON { response in
                 guard let JSONDictionary = response.result.value as? [String : AnyObject] else {
