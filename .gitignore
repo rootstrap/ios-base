@@ -59,4 +59,4 @@ fastlane/report.xml
 fastlane/screenshots
 
 #swiftlint
-.swiftlint.yml
+#.swiftlint.yml

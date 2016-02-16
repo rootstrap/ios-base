@@ -7,31 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6ABD64B2BAE7DF1AF5A4B634 /* Pods_delfie_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */; };
-		9B22F55B1C721129003DDCD8 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */; };
-		9B22F55E1C721406003DDCD8 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22F55D1C721406003DDCD8 /* UserDataManager.swift */; };
-		9B5AFADE1C7205EC002347D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */; };
-		9B5AFAE01C7205EC002347D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5AFADF1C7205EC002347D6 /* ViewController.swift */; };
-		9B5AFAE31C7205EC002347D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE11C7205EC002347D6 /* Main.storyboard */; };
-		9B5AFAE51C7205EC002347D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE41C7205EC002347D6 /* Assets.xcassets */; };
-		9B5AFAE81C7205EC002347D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */; };
-		9BEE614E1C7364AD002E43B2 /* SignInUpServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE614D1C7364AD002E43B2 /* SignInUpServiceManager.swift */; };
+		2FCE2F910F976A45C098E49E /* Pods_swift_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */; };
+		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
+		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
+		9B0C72731C738D3400BAF3B1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726B1C738D3400BAF3B1 /* Base.lproj */; };
+		9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */; };
+		9B0C72751C738D3400BAF3B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726D1C738D3400BAF3B1 /* Info.plist */; };
+		9B0C72761C738D3400BAF3B1 /* SignInUpServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */; };
+		9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */; };
+		9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72701C738D3400BAF3B1 /* ViewController.swift */; };
+		9B0C727C1C738D4700BAF3B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C727A1C738D4700BAF3B1 /* LaunchScreen.storyboard */; };
+		9B0C727F1C738D4B00BAF3B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C727D1C738D4B00BAF3B1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_base.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		4C698F53039E2D3E1F61D6E7 /* Pods-delfie-ios.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.staging.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.staging.xcconfig"; sourceTree = "<group>"; };
 		51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.release.xcconfig"; sourceTree = "<group>"; };
-		9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
-		9B22F55D1C721406003DDCD8 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
-		9B5AFADA1C7205EC002347D6 /* delfie-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "delfie-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B5AFADF1C7205EC002347D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9B5AFAE21C7205EC002347D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9B5AFAE41C7205EC002347D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9B5AFAE71C7205EC002347D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9B5AFAE91C7205EC002347D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BEE614D1C7364AD002E43B2 /* SignInUpServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUpServiceManager.swift; sourceTree = "<group>"; };
+		719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.release.xcconfig"; sourceTree = "<group>"; };
+		8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.debug.xcconfig"; sourceTree = "<group>"; };
+		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "swift-base/AppDelegate.swift"; sourceTree = "<group>"; };
+		9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "swift-base/Assets.xcassets"; sourceTree = "<group>"; };
+		9B0C726B1C738D3400BAF3B1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = "swift-base/Base.lproj"; sourceTree = "<group>"; };
+		9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommunicationManager.swift; path = "swift-base/CommunicationManager.swift"; sourceTree = "<group>"; };
+		9B0C726D1C738D3400BAF3B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "swift-base/Info.plist"; sourceTree = "<group>"; };
+		9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInUpServiceManager.swift; path = "swift-base/SignInUpServiceManager.swift"; sourceTree = "<group>"; };
+		9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDataManager.swift; path = "swift-base/UserDataManager.swift"; sourceTree = "<group>"; };
+		9B0C72701C738D3400BAF3B1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "swift-base/ViewController.swift"; sourceTree = "<group>"; };
+		9B0C727B1C738D4700BAF3B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "swift-base/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		9B0C727E1C738D4B00BAF3B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "swift-base/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		9B5AFADA1C7205EC002347D6 /* swift-base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-base.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.staging.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.staging.xcconfig"; sourceTree = "<group>"; };
 		D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delfie_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -40,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ABD64B2BAE7DF1AF5A4B634 /* Pods_delfie_ios.framework in Frameworks */,
+				2FCE2F910F976A45C098E49E /* Pods_swift_base.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +60,9 @@
 				153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */,
 				51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */,
 				4C698F53039E2D3E1F61D6E7 /* Pods-delfie-ios.staging.xcconfig */,
+				8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */,
+				CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */,
+				719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -61,31 +71,40 @@
 			isa = PBXGroup;
 			children = (
 				D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */,
+				0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9B22F5591C7210FB003DDCD8 /* Networking */ = {
+		9B0C72511C738C3100BAF3B1 /* swift-base */ = {
 			isa = PBXGroup;
 			children = (
-				9B22F55A1C721129003DDCD8 /* CommunicationManager.swift */,
-				9BEE614D1C7364AD002E43B2 /* SignInUpServiceManager.swift */,
+				9B0C72791C738D3D00BAF3B1 /* Base.lproj */,
+				9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */,
+				9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */,
+				9B0C726B1C738D3400BAF3B1 /* Base.lproj */,
+				9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */,
+				9B0C726D1C738D3400BAF3B1 /* Info.plist */,
+				9B0C726E1C738D3400BAF3B1 /* SignInUpServiceManager.swift */,
+				9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */,
+				9B0C72701C738D3400BAF3B1 /* ViewController.swift */,
 			);
-			name = Networking;
+			name = "swift-base";
 			sourceTree = "<group>";
 		};
-		9B22F55C1C7213BB003DDCD8 /* Managers */ = {
+		9B0C72791C738D3D00BAF3B1 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				9B22F55D1C721406003DDCD8 /* UserDataManager.swift */,
+				9B0C727D1C738D4B00BAF3B1 /* Main.storyboard */,
+				9B0C727A1C738D4700BAF3B1 /* LaunchScreen.storyboard */,
 			);
-			name = Managers;
+			name = Base.lproj;
 			sourceTree = "<group>";
 		};
 		9B5AFAD11C7205EB002347D6 = {
 			isa = PBXGroup;
 			children = (
-				9B5AFADC1C7205EC002347D6 /* delfie-ios */,
+				9B0C72511C738C3100BAF3B1 /* swift-base */,
 				9B5AFADB1C7205EC002347D6 /* Products */,
 				26C39DA83574700C9BE09E3F /* Pods */,
 				79E2A25B5BE2D225781CCC5B /* Frameworks */,
@@ -95,40 +114,17 @@
 		9B5AFADB1C7205EC002347D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B5AFADA1C7205EC002347D6 /* delfie-ios.app */,
+				9B5AFADA1C7205EC002347D6 /* swift-base.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9B5AFADC1C7205EC002347D6 /* delfie-ios */ = {
-			isa = PBXGroup;
-			children = (
-				9BEE614F1C73674A002E43B2 /* Model */,
-				9B22F5591C7210FB003DDCD8 /* Networking */,
-				9B22F55C1C7213BB003DDCD8 /* Managers */,
-				9B5AFADD1C7205EC002347D6 /* AppDelegate.swift */,
-				9B5AFADF1C7205EC002347D6 /* ViewController.swift */,
-				9B5AFAE11C7205EC002347D6 /* Main.storyboard */,
-				9B5AFAE41C7205EC002347D6 /* Assets.xcassets */,
-				9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */,
-				9B5AFAE91C7205EC002347D6 /* Info.plist */,
-			);
-			path = "delfie-ios";
-			sourceTree = "<group>";
-		};
-		9BEE614F1C73674A002E43B2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9B5AFAD91C7205EB002347D6 /* delfie-ios */ = {
+		9B5AFAD91C7205EB002347D6 /* swift-base */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "delfie-ios" */;
+			buildConfigurationList = 9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "swift-base" */;
 			buildPhases = (
 				D1DBFE1566EAB7A482A53EF6 /* Check Pods Manifest.lock */,
 				9B5AFAD61C7205EB002347D6 /* Sources */,
@@ -142,9 +138,9 @@
 			);
 			dependencies = (
 			);
-			name = "delfie-ios";
+			name = "swift-base";
 			productName = "delfie-ios";
-			productReference = 9B5AFADA1C7205EC002347D6 /* delfie-ios.app */;
+			productReference = 9B5AFADA1C7205EC002347D6 /* swift-base.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +158,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "delfie-ios" */;
+			buildConfigurationList = 9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "swift-base" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -175,7 +171,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B5AFAD91C7205EB002347D6 /* delfie-ios */,
+				9B5AFAD91C7205EB002347D6 /* swift-base */,
 			);
 		};
 /* End PBXProject section */
@@ -185,9 +181,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B5AFAE81C7205EC002347D6 /* LaunchScreen.storyboard in Resources */,
-				9B5AFAE51C7205EC002347D6 /* Assets.xcassets in Resources */,
-				9B5AFAE31C7205EC002347D6 /* Main.storyboard in Resources */,
+				9B0C72731C738D3400BAF3B1 /* Base.lproj in Resources */,
+				9B0C727F1C738D4B00BAF3B1 /* Main.storyboard in Resources */,
+				9B0C727C1C738D4700BAF3B1 /* LaunchScreen.storyboard in Resources */,
+				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
+				9B0C72751C738D3400BAF3B1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swift-base/Pods-swift-base-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B22F5581C720E7D003DDCD8 /* ShellScript */ = {
@@ -249,7 +247,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swift-base/Pods-swift-base-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -259,31 +257,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B22F55E1C721406003DDCD8 /* UserDataManager.swift in Sources */,
-				9B5AFAE01C7205EC002347D6 /* ViewController.swift in Sources */,
-				9B22F55B1C721129003DDCD8 /* CommunicationManager.swift in Sources */,
-				9B5AFADE1C7205EC002347D6 /* AppDelegate.swift in Sources */,
-				9BEE614E1C7364AD002E43B2 /* SignInUpServiceManager.swift in Sources */,
+				9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */,
+				9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */,
+				9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */,
+				9B0C72761C738D3400BAF3B1 /* SignInUpServiceManager.swift in Sources */,
+				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9B5AFAE11C7205EC002347D6 /* Main.storyboard */ = {
+		9B0C727A1C738D4700BAF3B1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9B5AFAE21C7205EC002347D6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9B5AFAE61C7205EC002347D6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9B5AFAE71C7205EC002347D6 /* Base */,
+				9B0C727B1C738D4700BAF3B1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9B0C727D1C738D4B00BAF3B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B0C727E1C738D4B00BAF3B1 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -326,6 +324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -365,6 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -374,25 +374,28 @@
 		};
 		9B5AFAED1C7205EC002347D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */;
+			baseConfigurationReference = 8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "delfie-ios/Info.plist";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "swift-base/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.delfie-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.swift-base";
+				PRODUCT_NAME = "swift-base";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		9B5AFAEE1C7205EC002347D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */;
+			baseConfigurationReference = 719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "delfie-ios/Info.plist";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "swift-base/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.delfie-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.swift-base";
+				PRODUCT_NAME = "swift-base";
 			};
 			name = Release;
 		};
@@ -433,6 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -443,20 +447,22 @@
 		};
 		9BEE614C1C736054002E43B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C698F53039E2D3E1F61D6E7 /* Pods-delfie-ios.staging.xcconfig */;
+			baseConfigurationReference = CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "delfie-ios/Info.plist";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "swift-base/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.delfie-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "TopTier.swift-base";
+				PRODUCT_NAME = "swift-base";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Staging;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "delfie-ios" */ = {
+		9B5AFAD51C7205EB002347D6 /* Build configuration list for PBXProject "swift-base" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B5AFAEA1C7205EC002347D6 /* Debug */,
@@ -466,7 +472,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "delfie-ios" */ = {
+		9B5AFAEC1C7205EC002347D6 /* Build configuration list for PBXNativeTarget "swift-base" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B5AFAED1C7205EC002347D6 /* Debug */,

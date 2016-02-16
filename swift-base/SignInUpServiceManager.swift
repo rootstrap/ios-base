@@ -1,6 +1,6 @@
 //
 //  SignInUpServiceManager.swift
-//  delfie-ios
+//  swift-base
 //
 //  Created by TopTier labs on 16/2/16.
 //  Copyright © 2016 TopTier labs. All rights reserved.
