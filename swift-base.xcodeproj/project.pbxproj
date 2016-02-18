@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2FCE2F910F976A45C098E49E /* Pods_swift_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
 		9B0C72731C738D3400BAF3B1 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726B1C738D3400BAF3B1 /* Base.lproj */; };
@@ -21,12 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_base.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		4C698F53039E2D3E1F61D6E7 /* Pods-delfie-ios.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.staging.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.staging.xcconfig"; sourceTree = "<group>"; };
-		51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-delfie-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-delfie-ios/Pods-delfie-ios.release.xcconfig"; sourceTree = "<group>"; };
-		719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.release.xcconfig"; sourceTree = "<group>"; };
-		8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.debug.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "swift-base/AppDelegate.swift"; sourceTree = "<group>"; };
 		9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "swift-base/Assets.xcassets"; sourceTree = "<group>"; };
 		9B0C726B1C738D3400BAF3B1 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = "swift-base/Base.lproj"; sourceTree = "<group>"; };
@@ -38,8 +31,6 @@
 		9B0C727B1C738D4700BAF3B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "swift-base/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		9B0C727E1C738D4B00BAF3B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "swift-base/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		9B5AFADA1C7205EC002347D6 /* swift-base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-base.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.staging.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.staging.xcconfig"; sourceTree = "<group>"; };
-		D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_delfie_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FCE2F910F976A45C098E49E /* Pods_swift_base.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,12 +47,6 @@
 		26C39DA83574700C9BE09E3F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				153F8DF6E3470D0CDED25D98 /* Pods-delfie-ios.debug.xcconfig */,
-				51996617C1D9D4D43232B93E /* Pods-delfie-ios.release.xcconfig */,
-				4C698F53039E2D3E1F61D6E7 /* Pods-delfie-ios.staging.xcconfig */,
-				8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */,
-				CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */,
-				719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -70,8 +54,6 @@
 		79E2A25B5BE2D225781CCC5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D77F5556A518B3AB47263B17 /* Pods_delfie_ios.framework */,
-				0586DAD6E5B4DC6E695AE6CD /* Pods_swift_base.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -390,7 +372,6 @@
 		};
 		9B5AFAED1C7205EC002347D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BC0D992454FC7C5AC5DF3D5 /* Pods-swift-base.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -404,7 +385,6 @@
 		};
 		9B5AFAEE1C7205EC002347D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 719304783473F903A493AF7E /* Pods-swift-base.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -463,7 +443,6 @@
 		};
 		9BEE614C1C736054002E43B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA879039D07B2400233D4A6D /* Pods-swift-base.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
