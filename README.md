@@ -1,4 +1,6 @@
-## Instructions for change the name and use this project
+## Installation
+
+Instructions for install the project, change the name and use this project
 
 1) Clone repo.
 
@@ -23,3 +25,15 @@
 11) Run pod install.
 
 12) Done :)
+
+## Facebook integration
+
+The project already include the FBSDK and the configuration needed on the .plist file. After create a Facebook App you only need to replace:
+
+1) On the URL types array, the value on the "Item 0" for the string "fb" + the ID of your app. i.e: "fb435272928934".
+
+2) The "FacebookAppID" value for the same AppID that you replace above.
+
+3) The "FacebookDisplayName" value for the name of the app on Facebook.
+
+4) Done.
