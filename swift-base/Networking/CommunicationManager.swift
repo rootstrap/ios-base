@@ -13,7 +13,7 @@ import SwiftyJSON
 class CommunicationManager {
   
   private class func getHeader() -> [String: String]? {
-    return UserDataManager.getSessionToken() != nil ? ["X-USER-TOKEN": "\(UserDataManager.getSessionToken())"] : nil
+    return UserDataManager.getSessionToken() != nil ? ["X-USER-TOKEN": "\(UserDataManager.getSessionToken()!)"] : nil
   }
   
   private class func getBaseUrl() -> String {
