@@ -26,14 +26,15 @@ class CommunicationManager {
     Alamofire.request(.POST, requestUrl, parameters: params, headers: header)
       .responseJSON { response in
         guard let JSONDictionary = response.result.value as? [String : AnyObject] else {
-          if response.result.isSuccess {
+          if response.result.isSuccess || Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
             success(responseObject: ["":""])
+            return
           }
           
           failure(error: NSError(domain: "Check your connection", code: 0, userInfo: nil))
           return
         }
-        if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
+        if Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
           success(responseObject: JSONDictionary)
         } else {
           if let messageDict = JSONDictionary["error"] as? [String: [String]] {
@@ -42,6 +43,7 @@ class CommunicationManager {
           } else if let errors = JSONDictionary["errors"] as? [String] {
             failure(error: NSError(domain: errors[0], code:response.response!.statusCode, userInfo: nil))
           }
+          //TODO add default error case, some cases response contains 'errors' key, but cant parse to any of above
         }
     }
   }
@@ -53,10 +55,15 @@ class CommunicationManager {
       .responseJSON { response in
         
         guard let JSONDictionary = response.result.value as? [String : AnyObject] else {
+          if response.result.isSuccess || Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
+            success(responseObject: ["":""])
+            return
+          }
+          
           failure(error: NSError(domain: "Check your connection", code: 0, userInfo: nil))
           return
         }
-        if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
+        if Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
           success(responseObject: JSONDictionary)
         } else {
           if let messageDict = JSONDictionary["error"] as? [String: [String]] {
@@ -65,6 +72,7 @@ class CommunicationManager {
           } else if let errors = JSONDictionary["errors"] as? [String] {
             failure(error: NSError(domain: errors[0], code:response.response!.statusCode, userInfo: nil))
           }
+          //TODO add default error case, some cases response contains 'errors' key, but cant parse to any of above
         }
     }
   }
@@ -75,10 +83,15 @@ class CommunicationManager {
     Alamofire.request(.PUT, requestUrl, parameters: params, headers: header)
       .responseJSON { response in
         guard let JSONDictionary = response.result.value as? [String : AnyObject] else {
+          if response.result.isSuccess || Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
+            success(responseObject: ["":""])
+            return
+          }
+          
           failure(error: NSError(domain: "Check your connection", code: 0, userInfo: nil))
           return
         }
-        if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
+        if Range(start: 200, end: 210).contains(response.response?.statusCode ?? 500) {
           success(responseObject: JSONDictionary)
         } else {
           if let messageDict = JSONDictionary["error"] as? [String: [String]] {
@@ -87,6 +100,7 @@ class CommunicationManager {
           } else if let errors = JSONDictionary["errors"] as? [String] {
             failure(error: NSError(domain: errors[0], code:response.response!.statusCode, userInfo: nil))
           }
+          //TODO add default error case, some cases response contains 'errors' key, but cant parse to any of above
         }
     }
   }
