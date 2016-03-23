@@ -65,19 +65,27 @@ class PaginatedTableView: UITableView {
     currentPage = 1
     hasMore = true
   }
+  
+  func didScrollBeyondTop() -> Bool {
+    return contentOffset.y < 0
+  }
+  
+  func didScrollBeyondBottom() -> Bool {
+    return contentOffset.y >= (contentSize.height - bounds.size.height)
+  }
 }
 
 extension PaginatedTableView : UIScrollViewDelegate {
 
   func scrollViewDidScroll(scrollView: UIScrollView) {
     if direction == .AtBottom {
-      if scrollView.contentOffset.y < 0 {
+      if didScrollBeyondTop() {
         return
-      }else if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height) {
+      }else if didScrollBeyondBottom() {
         loadContentIfNeeded()
       }
     }else {
-      if scrollView.contentOffset.y < 0 {
+      if didScrollBeyondTop() {
         loadContentIfNeeded()
       }
     }
