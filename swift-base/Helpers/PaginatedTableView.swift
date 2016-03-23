@@ -23,19 +23,19 @@ enum PagingDirectionType: Int {
 class PaginatedTableView: UITableView {
   
   var currentPage: Int = 1
-  var isLoading: Bool = false
+  var isLoading = false
   
   //  This will be handled automatically taking into account newElements of updateDelegate completion
   //  call and elementsPerPage. If your uploadDelegate provides pagination data, you can take control
   //  over this flag to avoid unnecesary calls to your delegate.
-  var hasMore: Bool = true
+  var hasMore = true
   var elementsPerPage: Int = 10
   
   // Responsible for loading the content and call the completion with newElements count.
   var updateDelegate: PaginatedTableViewDelegate!
   
   // Tells when pagination calls occurs. Options are when the tableView reaches bottom(.AtBottom) or top(.AtTop)
-  var direction: PagingDirectionType! = .AtBottom
+  var direction: PagingDirectionType = .AtBottom
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -50,14 +50,15 @@ class PaginatedTableView: UITableView {
   }
   
   func loadContentIfNeeded() {
-    if hasMore && !isLoading {
-      isLoading = true
-      updateDelegate.loadDataForPage(currentPage, completion: { (newElements) -> Void in
-        self.currentPage++
-        self.hasMore = newElements == self.elementsPerPage
-        self.isLoading = false
-      })
+    guard hasMore && !isLoading else {
+      return
     }
+    isLoading = true
+    updateDelegate.loadDataForPage(currentPage, completion: { (newElements) -> Void in
+      self.currentPage++
+      self.hasMore = newElements == self.elementsPerPage
+      self.isLoading = false
+    })
   }
   
   func reset() {
