@@ -13,7 +13,7 @@ protocol PaginatedCollectionViewDelegate {
   
   // Required - Should not call this method directly or you will need to take care of
   // page update and flags status. Call loadContentIfNeeded instead
-  func loadDataForPage(page: Int, completion: (elementsAdded: Int) -> Void)
+  func loadDataForPage(page: Int, completion: (elementsAdded: Int, error: NSError?) -> Void)
 }
 
 class PaginatedCollectionView: UICollectionView {
@@ -47,16 +47,20 @@ class PaginatedCollectionView: UICollectionView {
       return
     }
     isLoading = true
-    updateDelegate.loadDataForPage(currentPage, completion: { (newElements) -> Void in
-      self.currentPage++
-      self.hasMore = newElements == self.elementsPerPage
+    updateDelegate.loadDataForPage(currentPage, completion: { (newElements, error) -> Void in
       self.isLoading = false
+      guard error == nil else {
+        return
+      }
+      self.currentPage += 1
+      self.hasMore = newElements == self.elementsPerPage
     })
   }
   
   func reset() {
     currentPage = 1
     hasMore = true
+    isLoading = false
   }
   
   func didScrollBeyondTop() -> Bool {
