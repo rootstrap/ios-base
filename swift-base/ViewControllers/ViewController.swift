@@ -36,7 +36,7 @@ class ViewController: UIViewController {
   }
   
   @IBAction func facebookLogin() {
-    spinningActivity = GeneralHelper.showSpinner(self.view)
+    spinningActivity = UIHelper.showSpinner(self.view)
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.logInWithReadPermissions(["email"], fromViewController: self) { (result, error) -> Void in
       guard error == nil else {
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         self.facebookLoginCallback()
       }
       if result.isCancelled {
-        GeneralHelper.hideSpinner(self.spinningActivity)
+        UIHelper.hideSpinner(self.spinningActivity)
       }
     }
   }
@@ -73,14 +73,14 @@ class ViewController: UIViewController {
       success: { (responseObject) -> Void in
         UserDataManager.storeSessionToken(responseObject)
         dispatch_async(dispatch_get_main_queue(), {
-          GeneralHelper.hideSpinner(self.spinningActivity)
+          UIHelper.hideSpinner(self.spinningActivity)
           print("perform segue")
           //TODO: perform segue
         })
       }) { (error) -> Void in
         dispatch_async(dispatch_get_main_queue(), {
-          GeneralHelper.hideSpinner(self.spinningActivity)
-          GeneralHelper.showMessageError(viewController: self, title: "Error", errorMessage: error.domain)
+          UIHelper.hideSpinner(self.spinningActivity)
+          UIHelper.showMessageError(viewController: self, title: "Error", errorMessage: error.domain)
         })
     }
   }

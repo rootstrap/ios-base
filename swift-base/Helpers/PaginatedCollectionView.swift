@@ -28,7 +28,7 @@ class PaginatedCollectionView: UICollectionView {
   var elementsPerPage: Int = 10
   
   // Responsible for loading the content and call the completion with newElements count.
-  var updateDelegate: PaginatedTableViewDelegate!
+  var updateDelegate: PaginatedCollectionViewDelegate!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -63,6 +63,8 @@ class PaginatedCollectionView: UICollectionView {
     isLoading = false
   }
   
+  
+  //MARK: Normal Scroll
   func didScrollBeyondTop() -> Bool {
     return contentOffset.y < 0
   }
@@ -79,28 +81,47 @@ class PaginatedCollectionView: UICollectionView {
     return contentOffset.x >= (contentSize.width - bounds.size.width)
   }
   
+  //MARK: Paged Scroll
+  func didReachLastVerticalPage() -> Bool {
+    return contentOffset.y >= (contentSize.height/frame.size.height - 1)*frame.size.height
+  }
+  
+  func didReachLastHorizontalPage() -> Bool {
+    return contentOffset.x >= (contentSize.width/frame.size.width - 1)*frame.size.width
+  }
+  
 }
 
 extension PaginatedCollectionView : UIScrollViewDelegate {
   
   func scrollViewDidScroll(scrollView: UIScrollView) {
-    
-    if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-      let direction = layout.scrollDirection
-      if direction == .Vertical {
-        if didScrollBeyondTop() {
-          return
-        }else if didScrollBeyondBottom() {
-          loadContentIfNeeded()
-        }
-      }else {
-        if didScrollBeyondLeft() {
-          return
-        }else if didScrollBeyondRight() {
-          loadContentIfNeeded()
+      if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+        let direction = layout.scrollDirection
+        if direction == .Vertical {
+          if pagingEnabled {
+            if didReachLastVerticalPage() {
+              loadContentIfNeeded()
+            }
+          }else {
+            if didScrollBeyondTop() {
+              return
+            }else if didScrollBeyondBottom() {
+              loadContentIfNeeded()
+            }
+          }
+        }else {
+          if pagingEnabled {
+            if didReachLastHorizontalPage() {
+              loadContentIfNeeded()
+            }
+          }else {
+            if didScrollBeyondLeft() {
+              return
+            }else if didScrollBeyondRight() {
+              loadContentIfNeeded()
+            }
+          }
         }
       }
     }
-
-  }
 }
