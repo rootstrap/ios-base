@@ -90,38 +90,29 @@ class PaginatedCollectionView: UICollectionView {
     return contentOffset.x >= (contentSize.width/frame.size.width - 1)*frame.size.width
   }
   
+  //New page should be loaded when:
+  // 1 - CollectionView scrolling vertically:
+  //    - pagingEnabled property on AND collectionView reach minimum content offset of the last vertical page
+  // OR
+  //    - pagingEnabled property off AND collectionView scroll reaches offset beyond last vertical page
+  // 2 - CollectionView scrolling horizontally:
+  //    - pagingEnabled property on AND collectionView reach minimum content offset of the last horizontal page
+  // OR
+  //    - pagingEnabled property off AND collectionView scroll reaches offset beyond last horizontal page
+  func shouldLoadNewContent() -> Bool {
+    guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
+      return false
+    }
+    return layout.scrollDirection == .Vertical ? (pagingEnabled && didReachLastVerticalPage()) || (!pagingEnabled && didScrollBeyondBottom())
+      : (pagingEnabled && didReachLastHorizontalPage()) || (!pagingEnabled && didScrollBeyondRight())
+  }
 }
 
 extension PaginatedCollectionView : UIScrollViewDelegate {
   
   func scrollViewDidScroll(scrollView: UIScrollView) {
-      if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-        let direction = layout.scrollDirection
-        if direction == .Vertical {
-          if pagingEnabled {
-            if didReachLastVerticalPage() {
-              loadContentIfNeeded()
-            }
-          }else {
-            if didScrollBeyondTop() {
-              return
-            }else if didScrollBeyondBottom() {
-              loadContentIfNeeded()
-            }
-          }
-        }else {
-          if pagingEnabled {
-            if didReachLastHorizontalPage() {
-              loadContentIfNeeded()
-            }
-          }else {
-            if didScrollBeyondLeft() {
-              return
-            }else if didScrollBeyondRight() {
-              loadContentIfNeeded()
-            }
-          }
-        }
-      }
+    if shouldLoadNewContent() {
+      loadContentIfNeeded()
     }
+  }
 }
