@@ -6,5 +6,11 @@ target 'swift-base' do
   pod 'MBProgressHUD', '~> 0.9'
   pod 'IQKeyboardManagerSwift', '~> 3.3'
   pod 'SwiftyJSON', '~> 2.3'
+  
+  # FB SDK ---
+  pod 'FBSDKCoreKit';
+  pod 'FBSDKLoginKit';
+  pod 'FBSDKShareKit';
+  # ------
 end
 
