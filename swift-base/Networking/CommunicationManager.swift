@@ -21,7 +21,7 @@ class CommunicationManager {
   }
 
   private class func isOkStatus(code: Int?) -> Bool {
-    return Range(start: 200, end: 210).contains(code ?? 500)
+    return Range(200 ..< 211).contains(code ?? 500)
   }
   
   //Recursively build multipart params to send along with media in upload requests.
