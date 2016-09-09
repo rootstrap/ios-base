@@ -34,21 +34,6 @@ class UIHelper {
   }
   
   //MARK: Customize Views
-  //Change the default values for params as you wish
-  
-  class func addBorderTo(targets: [UIView], color: UIColor = UIColor.blackColor(), weight: CGFloat = 1.0) {
-    for view in targets {
-      view.layer.borderColor = color.CGColor
-      view.layer.borderWidth = weight
-    }
-  }
-  
-  class func roundBordersOf(targets: [UIView], cornerRadius: CGFloat = 10.0) {
-    for view in targets {
-      view.layer.cornerRadius = cornerRadius
-    }
-  }
-  
   class func stylizePlaceholdersFor(targets: [UITextField], color: UIColor = UIColor.lightGrayColor()) {
     for textField in targets {
       textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "", attributes: [NSForegroundColorAttributeName: color])

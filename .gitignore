@@ -60,3 +60,5 @@ fastlane/screenshots
 
 #swiftlint
 .swiftlint.yml
+
+**/.DS_Store

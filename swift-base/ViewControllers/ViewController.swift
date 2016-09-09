@@ -12,22 +12,24 @@ import MBProgressHUD
 
 class ViewController: UIViewController {
   
+  @IBOutlet weak var testView: UIView!
+  
   var spinningActivity: MBProgressHUD!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    UserServiceManager.signup(email: "hello@hello.com", password: "123456789",
-      success: { (responseObject) -> Void in
-        print("Success")
-      }) { (error) -> Void in
-        print("Error")
+    UserServiceManager.signup(email: "hello@hello.com", password: "123456789", success: { (responseObject) -> Void in
+      print("Success")
+    }) { (error) -> Void in
+      print("Error")
     }
-    UserServiceManager.login(email: "hello@hello.com", password: "123456789",
-      success: { (responseObject) -> Void in
-        print("Success")
-      }) { (error) -> Void in
-        print("Error")
+    UserServiceManager.login(email: "hello@hello.com", password: "123456789", success: { (responseObject) -> Void in
+      print("Success")
+    }) { (error) -> Void in
+      print("Error")
     }
+    testView.addBorder()
+    testView.setRoundBorders()
   }
   
   override func didReceiveMemoryWarning() {
@@ -69,19 +71,14 @@ class ViewController: UIViewController {
   }
   
   func facebookSignIn(firstName firstName: String, lastName: String, email: String, facebookID: String) {
-    UserServiceManager.loginWithFacebook(email: email, firstName: firstName, lastName: lastName, facebookId: facebookID,
-      success: { (responseObject) -> Void in
-        UserDataManager.storeSessionToken(responseObject)
-        dispatch_async(dispatch_get_main_queue(), {
-          UIHelper.hideSpinner(self.spinningActivity)
-          print("perform segue")
-          //TODO: perform segue
-        })
-      }) { (error) -> Void in
-        dispatch_async(dispatch_get_main_queue(), {
-          UIHelper.hideSpinner(self.spinningActivity)
-          UIHelper.showMessageError(viewController: self, title: "Error", errorMessage: error.domain)
-        })
+    UserServiceManager.loginWithFacebook(email: email, firstName: firstName, lastName: lastName, facebookId: facebookID, success: { (responseObject) -> Void in
+      UserDataManager.storeSessionToken(responseObject)
+      UIHelper.hideSpinner(self.spinningActivity)
+      print("perform segue")
+      //TODO: perform segue
+    }) { (error) -> Void in
+      UIHelper.hideSpinner(self.spinningActivity)
+      UIHelper.showMessageError(viewController: self, title: "Error", errorMessage: error.domain)
     }
   }
   
