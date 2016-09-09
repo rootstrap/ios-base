@@ -24,13 +24,26 @@
                                     <action selector="facebookLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="hV1-2d-Ulo"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gx4-aW-Gdh">
+                                <rect key="frame" x="180" y="93" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="jn9-JZ-MHL"/>
+                                    <constraint firstAttribute="height" constant="128" id="mTW-ma-26T"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gx4-aW-Gdh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DLU-Po-uIG"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HLo-D0-cdg"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="id9-DK-KdB"/>
+                            <constraint firstItem="gx4-aW-Gdh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="w9w-bY-UXw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testView" destination="gx4-aW-Gdh" id="22F-7s-Q4P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
