@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (3.5.0)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -20,17 +20,17 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.2)
+  - Alamofire (~> 3.5)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - IQKeyboardManagerSwift (~> 3.3)
   - MBProgressHUD (~> 0.9)
-  - SDWebImage
+  - SDWebImage (~> 3.8.1)
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 40dc77d368942ae6485449dbcc88ec67018ff217
+PODFILE CHECKSUM: 20d1357a3822c681bc928f068726b8681ffd9197
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2
