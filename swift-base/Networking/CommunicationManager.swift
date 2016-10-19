@@ -131,7 +131,6 @@ class CommunicationManager {
   //Upload post request. Change the mediaType param to whatever type you need(default is String to match constants for media types provided in swift-base project).
   //TODO: Change method to support multiple media upload with an [NSData]
   class func sendPostRequest(_ url: String, params: [String: AnyObject]?, paramsRootKey: String, media: Data, mediaKey: String, mediaType: String, success:@escaping (_ responseObject: [String : AnyObject]) -> Void, failure:@escaping (_ error: Error) -> Void) {
-
     let header = CommunicationManager.getHeader()
     let requestUrl = getBaseUrl() + url
 
@@ -167,7 +166,6 @@ class CommunicationManager {
       }
     })
   }
-
 
   class func sendPostRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.post, url: url, params: params, success: success, failure: failure)
@@ -225,7 +223,6 @@ extension DataRequest {
 
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
     return DataResponseSerializer { request, response, data, error in
-
       guard let _ = data else {
         let failureReason = "Data could not be serialized. Input data was nil."
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
@@ -251,7 +248,6 @@ extension DataRequest {
       guard error != nil else {
         return .success(["":""])
       }
-
       return .failure(NSError(domain: "Check your connection", code: 0, userInfo: nil))
     }
   }
