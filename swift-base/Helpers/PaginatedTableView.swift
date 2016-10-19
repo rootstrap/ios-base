@@ -12,12 +12,12 @@ import UIKit
 protocol PaginatedTableViewDelegate: class {
   // Required - Should not call this method directly or you will need to take care of
   // page update and flags status. Call loadContentIfNeeded instead
-  func loadDataForPage(page: Int, completion: (elementsAdded: Int, error: NSError?) -> Void)
+  func loadData(page: Int, completion: (_ elementsAdded: Int, _ error: NSError?) -> Void)
 }
 
 enum PagingDirectionType: Int {
-  case AtBottom
-  case AtTop
+  case atBottom
+  case atTop
 }
 
 class PaginatedTableView: UITableView {
@@ -32,7 +32,7 @@ class PaginatedTableView: UITableView {
   // Responsible for loading the content and call the completion with newElements count.
   weak var updateDelegate: PaginatedTableViewDelegate!
   // Tells when pagination calls occurs. Options are when the tableView reaches bottom(.AtBottom) or top(.AtTop)
-  var direction: PagingDirectionType = .AtBottom
+  var direction: PagingDirectionType = .atBottom
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -51,7 +51,7 @@ class PaginatedTableView: UITableView {
       return
     }
     isLoading = true
-    updateDelegate.loadDataForPage(currentPage, completion: { (newElements, error) -> Void in
+    updateDelegate.loadData(page: currentPage, completion: { (newElements, error) -> Void in
       self.isLoading = false
       guard error == nil else {
         return
@@ -78,8 +78,8 @@ class PaginatedTableView: UITableView {
 
 extension PaginatedTableView : UIScrollViewDelegate {
 
-  func scrollViewDidScroll(scrollView: UIScrollView) {
-    if direction == .AtBottom {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if direction == .atBottom {
       if didScrollBeyondTop() {
         return
       }else if didScrollBeyondBottom() {

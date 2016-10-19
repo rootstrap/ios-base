@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import MBProgressHUD
+import SwiftyJSON
 
 class ViewController: UIViewController {
   
@@ -38,48 +39,49 @@ class ViewController: UIViewController {
   }
   
   @IBAction func facebookLogin() {
-    spinningActivity = showSpinner(self.view)
+    spinningActivity = showSpinner(view: self.view)
     let fbLoginManager = FBSDKLoginManager()
-    fbLoginManager.logInWithReadPermissions(["email"], fromViewController: self) { (result, error) -> Void in
+    fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
         return
       }
-      if result.grantedPermissions != nil && result.grantedPermissions.contains("email") {
+      if result?.grantedPermissions != nil && (result?.grantedPermissions.contains("email"))! {
         self.facebookLoginCallback()
       }
-      if result.isCancelled {
-        self.hideSpinner(self.spinningActivity)
+      if result?.isCancelled ?? true {
+        self.hide(spinner: self.spinningActivity)
       }
     }
   }
   
   //MARK: Facebook callback methods
   func facebookLoginCallback() {
-    guard FBSDKAccessToken.currentAccessToken() != nil else {
+    guard FBSDKAccessToken.current() != nil else {
       return
     }
-    FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).startWithCompletionHandler ({ (connection, result, error) -> Void in
-      guard error == nil else {
+    FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).start (completionHandler: { (connection, result, error) -> Void in
+      guard error == nil && result != nil else {
         return
       }
-      let firstName = result.valueForKey("first_name") as? String ?? ""
-      let lastName = result.valueForKey("last_name") as? String ?? ""
-      let email = result.valueForKey("email") as? String ?? ""
-      let facebookID = result.valueForKey("id") as? String ?? ""
-      self.facebookSignIn(firstName: firstName, lastName: lastName, email: email, facebookID: facebookID)
+
+      let json = JSON(result!)
+      let firstName = json["first_name"].stringValue
+      let lastName = json["lastName"].stringValue
+      let email = json["email"].stringValue
+      let facebookID = json["id"].stringValue
+      self.facebookSignIn(firstName, lastName: lastName, email: email, facebookID: facebookID)
     })
   }
   
-  func facebookSignIn(firstName firstName: String, lastName: String, email: String, facebookID: String) {
+  func facebookSignIn(_ firstName: String, lastName: String, email: String, facebookID: String) {
     UserServiceManager.loginWithFacebook(email: email, firstName: firstName, lastName: lastName, facebookId: facebookID, success: { (responseObject) -> Void in
-      UserDataManager.storeSessionToken(responseObject)
-      self.hideSpinner(self.spinningActivity)
+      UserDataManager.store(sessionToken: responseObject)
+      self.hide(spinner: self.spinningActivity)
       print("perform segue")
       //TODO: perform segue
     }) { (error) -> Void in
-      self.hideSpinner(self.spinningActivity)
-      self.showMessageError("Error", errorMessage: error.domain)
+      self.hide(spinner: self.spinningActivity)
+      self.showMessageError(title: "Error", errorMessage: error._domain)
     }
-  }
-  
+  } 
 }

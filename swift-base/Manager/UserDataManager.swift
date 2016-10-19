@@ -12,14 +12,14 @@ class UserDataManager: NSObject {
   
   var sessionToken: String?
   
-  class func storeSessionToken(token: String) {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setObject(token, forKey: "sessionToken")
+  class func store(sessionToken: String) {
+    let defaults = UserDefaults.standard
+    defaults.set(sessionToken, forKey: "sessionToken")
   }
   
   class func getSessionToken() -> String? {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    return defaults.objectForKey("sessionToken") as? String
+    let defaults = UserDefaults.standard
+    return defaults.object(forKey: "sessionToken") as? String
   }
   
 }
