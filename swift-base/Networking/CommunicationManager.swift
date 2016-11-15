@@ -6,38 +6,96 @@
 //  Copyright © 2016 TopTier labs. All rights reserved.
 //
 
+//
+//  CommunicationManager.swift
+//  swift-base
+//
+//  Created by TopTier labs on 15/2/16.
+//  Copyright © 2016 TopTier labs. All rights reserved.
+//
+
 import Foundation
 import Alamofire
 import SwiftyJSON
 
 public enum SwiftBaseErrorCode: Int {
-    case inputStreamReadFailed           = -6000
-    case outputStreamWriteFailed         = -6001
-    case contentTypeValidationFailed     = -6002
-    case statusCodeValidationFailed      = -6003
-    case dataSerializationFailed         = -6004
-    case stringSerializationFailed       = -6005
-    case jSONSerializationFailed         = -6006
-    case propertyListSerializationFailed = -6007
+  case inputStreamReadFailed           = -6000
+  case outputStreamWriteFailed         = -6001
+  case contentTypeValidationFailed     = -6002
+  case statusCodeValidationFailed      = -6003
+  case dataSerializationFailed         = -6004
+  case stringSerializationFailed       = -6005
+  case jsonSerializationFailed         = -6006
+  case propertyListSerializationFailed = -6007
 }
 
 class CommunicationManager {
 
+  enum HTTPHeader: String {
+    case uid = "Uid"
+    case client = "Client"
+    case token = "Access-Token"
+    case expiry = "Expiry"
+  }
+
   fileprivate class func getHeader() -> [String: String]? {
-    return UserDataManager.getSessionToken() != nil ? ["X-USER-TOKEN": "\(UserDataManager.getSessionToken()!)"] : nil
+    if let session = SessionDataManager.getSessionObject() {
+      return [
+        HTTPHeader.uid.rawValue: session.uid ?? "",
+        HTTPHeader.client.rawValue: session.client ?? "",
+        HTTPHeader.token.rawValue: session.accessToken ?? ""
+      ]
+    }
+
+    return nil
   }
 
   fileprivate class func getBaseUrl() -> String {
     return Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
   }
 
-  fileprivate class func isOk(statusCode: Int?) -> Bool {
+  fileprivate class func isOk(_ statusCode: Int?) -> Bool {
     return Range(200 ..< 211).contains(statusCode ?? 500)
   }
-  
+
+  fileprivate class func updateSessionData(_ responseHeaders: [AnyHashable: Any]) {
+    let session = Session()
+    for (key, value) in responseHeaders {
+      if let keyString = key as? String {
+        if let header = HTTPHeader(rawValue: keyString) {
+          switch header {
+          case .uid:
+            if let uid = value as? String {
+              session.uid = uid
+            }
+            break
+          case .client:
+            if let client = value as? String {
+              session.client = client
+            }
+            break
+          case .token:
+            if let token = value as? String {
+              session.accessToken = token
+            }
+            break
+          case .expiry:
+            if let expiry = value as? String {
+              if let expiryNumber = Double(expiry) {
+                session.expiry = Date(timeIntervalSince1970: expiryNumber) as NSDate?
+              }
+            }
+            break
+          }
+        }
+      }
+      SessionDataManager.storeSessionObject(session: session)
+    }
+  }
+
   //Recursively build multipart params to send along with media in upload requests.
   //If params includes the desired root key, call this method with an empty String for rootKey param.
-  class func multipartFormData(multipartForm: MultipartFormData, params: [String:AnyObject], rootKey: String) {
+  class func multipartFormData(_ multipartForm: MultipartFormData, params: [String:AnyObject], rootKey: String) {
     for (key, value) in params {
       switch value.self {
       case is [Int], is [String]:
@@ -52,80 +110,82 @@ class CommunicationManager {
       case is [AnyObject]:
         if let array = value as? [AnyObject] {
           for val in array {
-            multipartFormData(multipartForm: multipartForm, params: ["\(key)": val], rootKey: "[\(rootKey)][\(key)][]")
+            multipartFormData(multipartForm, params: ["\(key)": val], rootKey: "[\(rootKey)][\(key)][]")
           }
         }
         break
       case is [String:AnyObject]:
         if let subParams = value as? [String:AnyObject] {
-          multipartFormData(multipartForm: multipartForm, params: subParams, rootKey: "[\(rootKey)][\(key)]")
+          multipartFormData(multipartForm, params: subParams, rootKey: "[\(rootKey)][\(key)]")
         }
         break
       default:
         if let uploadData = "\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false) {
-          multipartForm.append(uploadData , withName: "\(rootKey)[\(key)]")
+          multipartForm.append(uploadData, withName: "\(rootKey)[\(key)]")
         }
         break
       }
     }
   }
-  
+
   //Upload post request. Change the mediaType param to whatever type you need(default is String to match constants for media types provided in swift-base project).
   //TODO: Change method to support multiple media upload with an [NSData]
-  class func sendPostRequest(url: String, params: [String: AnyObject]?, paramsRootKey: String , media: Data, mediaKey: String, mediaType: String, success:@escaping (_ responseObject: [String : AnyObject]) -> Void, failure:@escaping (_ error: Error) -> Void) {
-    
+  class func sendPostRequest(_ url: String, params: [String: AnyObject]?, paramsRootKey: String, media: Data, mediaKey: String, mediaType: String, success:@escaping (_ responseObject: [String : AnyObject]) -> Void, failure:@escaping (_ error: Error) -> Void) {
+
     let header = CommunicationManager.getHeader()
     let requestUrl = getBaseUrl() + url
 
     Alamofire.upload(multipartFormData: { (multipartForm) -> Void in
       if let parameters = params {
-        multipartFormData(multipartForm: multipartForm, params: parameters, rootKey: paramsRootKey)
+        multipartFormData(multipartForm, params: parameters, rootKey: paramsRootKey)
       }
-      
+
       if mediaType == videoType {
         multipartForm.append(media, withName: mediaKey, fileName: "fileName.mov", mimeType: "video/quicktime")
-      }else {
+      } else {
         multipartForm.append(media, withName: mediaKey, fileName: "fileName.jpg", mimeType: "image/jpg")
       }
-      
+
     }, to: requestUrl, headers: header, encodingCompletion: { (encodingResult) -> Void in
-        switch encodingResult {
-        case .success(let upload, _, _):
-          upload.validate()
-            .responseDictionary { (response) -> Void in
-              switch response.result {
-              case .success(let dictionary):
-                success(dictionary as [String : AnyObject])
-                return
-              case .failure(let error):
-                failure(error as Error)
+      switch encodingResult {
+      case .success(let upload, _, _):
+        upload.validate()
+          .responseDictionary { (response) -> Void in
+            switch response.result {
+            case .success(let dictionary):
+              if let urlResponse = response.response {
+                updateSessionData(urlResponse.allHeaderFields)
               }
-          }
-          
-        case .failure(let encodingError):
-          failure(encodingError as Error)
+              success(dictionary as [String : AnyObject])
+              return
+            case .failure(let error):
+              failure(error as Error)
+            }
         }
+      case .failure(let encodingError):
+        failure(encodingError as Error)
+      }
     })
   }
-  
 
-  class func sendPostRequest(url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(method: .post, url: url, params: params, success: success, failure: failure)
+
+  class func sendPostRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.post, url: url, params: params, success: success, failure: failure)
   }
-  
-  class func sendGetRequest(url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(method: .get, url: url, params: params, success: success, failure: failure)
+
+  class func sendGetRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.get, url: url, params: params, success: success, failure: failure)
   }
-  
-  class func sendPutRequest(url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(method: .put, url: url, params: params, success: success, failure: failure)
+
+  class func sendPutRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.put, url: url, params: params, success: success, failure: failure)
   }
-  
-  class func sendDeleteRequest(url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(method: .delete, url: url, params: params, success: success, failure: failure)
+
+  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.delete, url: url, params: params, success: success, failure: failure)
   }
-  
-  class func sendBaseRequest(method: HTTPMethod, url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+
+  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let header = CommunicationManager.getHeader()
     let requestUrl = getBaseUrl() + url
     Alamofire.request(requestUrl, method: method, parameters: params, headers: header)
@@ -133,18 +193,19 @@ class CommunicationManager {
       .responseDictionary { (response) -> Void in
         switch response.result {
         case .success(let dictionary):
+          if let urlResponse = response.response {
+            updateSessionData(urlResponse.allHeaderFields)
+          }
           success(dictionary as [String : AnyObject])
           return
         case .failure(let error):
-          
           failure(error)
         }
     }
   }
-  
-  
+
   //Handle rails-API-base errors if any
-  class func handleCustomError(code: Int?, dictionary: [String: AnyObject]) -> NSError?  {
+  class func handleCustomError(_ code: Int?, dictionary: [String: AnyObject]) -> NSError? {
     if let messageDict = dictionary["errors"] as? [String: [String]] {
       let errorsList = messageDict[messageDict.keys.first!]!
       return NSError(domain: "\(messageDict.keys.first!) \(errorsList.first!)", code: code ?? 500, userInfo: nil)
@@ -158,26 +219,25 @@ class CommunicationManager {
     }
     return nil
   }
-  
 }
 
 extension DataRequest {
-  
+
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
     return DataResponseSerializer { request, response, data, error in
-      
+
       guard let _ = data else {
         let failureReason = "Data could not be serialized. Input data was nil."
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         let error = NSError(domain: "\(Bundle.main.bundleIdentifier!).error", code: SwiftBaseErrorCode.dataSerializationFailed.rawValue, userInfo: userInfo)
         return .failure(error)
       }
-      
+
       var anError: NSError?
       let json = JSON.init(data: data!, options: .allowFragments, error: &anError)
       if json.type != .null {
         if let dictionary = json.dictionaryObject {
-          if let customError = CommunicationManager.handleCustomError(code: response?.statusCode, dictionary: dictionary as [String : AnyObject]) {
+          if let customError = CommunicationManager.handleCustomError(response?.statusCode, dictionary: dictionary as [String : AnyObject]) {
             return .failure(customError)
           }
           guard error == nil else {
@@ -191,14 +251,14 @@ extension DataRequest {
       guard error != nil else {
         return .success(["":""])
       }
-      
+
       return .failure(NSError(domain: "Check your connection", code: 0, userInfo: nil))
     }
   }
 
   @discardableResult
   func responseDictionary(
-    queue: DispatchQueue? = nil,
+    _ queue: DispatchQueue? = nil,
     completionHandler: @escaping (DataResponse<[String: Any]>) -> Void)
     -> Self
   {

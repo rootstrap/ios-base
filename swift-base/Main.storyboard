@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,31 +18,58 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-2n-nei">
-                                <rect key="frame" x="246" y="285" width="108" height="30"/>
-                                <state key="normal" title="Facebook Login"/>
+                                <rect key="frame" x="120" y="193" width="134" height="30"/>
+                                <state key="normal" title="Try Facebook Login"/>
                                 <connections>
                                     <action selector="facebookLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="hV1-2d-Ulo"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gx4-aW-Gdh">
-                                <rect key="frame" x="180" y="93" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="97.5" y="93" width="180" height="70"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="jn9-JZ-MHL"/>
-                                    <constraint firstAttribute="height" constant="128" id="mTW-ma-26T"/>
+                                    <constraint firstAttribute="width" constant="180" id="jn9-JZ-MHL"/>
+                                    <constraint firstAttribute="height" constant="70" id="mTW-ma-26T"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-2Z-C64">
+                                <rect key="frame" x="149" y="253" width="76" height="30"/>
+                                <state key="normal" title="Try sign up"/>
+                                <connections>
+                                    <action selector="tapOnSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9AK-CY-9eJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skx-M3-7Qv">
+                                <rect key="frame" x="152" y="313" width="71" height="30"/>
+                                <state key="normal" title="Try sign in"/>
+                                <connections>
+                                    <action selector="tapOnSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bGw-Kw-bS6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtk-8N-E9o">
+                                <rect key="frame" x="127" y="373" width="121" height="30"/>
+                                <state key="normal" title="Try get my profile"/>
+                                <connections>
+                                    <action selector="tapOnGetMyProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cUx-sH-WuR"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="EN8-2n-nei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A5I-pi-qzS"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DLU-Po-uIG"/>
-                            <constraint firstItem="EN8-2n-nei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HLo-D0-cdg"/>
-                            <constraint firstItem="EN8-2n-nei" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="id9-DK-KdB"/>
+                            <constraint firstItem="nZV-2Z-C64" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="30" id="Fxv-vW-Gs4"/>
+                            <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="gx4-aW-Gdh" secondAttribute="bottom" constant="30" id="GFz-xO-OnE"/>
+                            <constraint firstItem="mtk-8N-E9o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UvF-GW-gPd"/>
+                            <constraint firstItem="skx-M3-7Qv" firstAttribute="top" secondItem="nZV-2Z-C64" secondAttribute="bottom" constant="30" id="d0D-gJ-g71"/>
+                            <constraint firstItem="skx-M3-7Qv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e2R-10-5xb"/>
+                            <constraint firstItem="nZV-2Z-C64" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="u8q-Js-u2N"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="w9w-bY-UXw"/>
+                            <constraint firstItem="mtk-8N-E9o" firstAttribute="top" secondItem="skx-M3-7Qv" secondAttribute="bottom" constant="30" id="zHO-Nb-8lp"/>
                         </constraints>
                     </view>
                     <connections>

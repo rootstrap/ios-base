@@ -11,7 +11,6 @@
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
 		9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */; };
 		9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */; };
-		9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */; };
 		9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72701C738D3400BAF3B1 /* ViewController.swift */; };
 		9B186ED81CA30DEF002CADE5 /* PaginatedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B186ED71CA30DEF002CADE5 /* PaginatedTableView.swift */; };
 		9B88CC651CAB2DCE00AE60C5 /* PaginatedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88CC641CAB2DCE00AE60C5 /* PaginatedCollectionView.swift */; };
@@ -23,16 +22,19 @@
 		E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81171911DE5EFB7003D3DF5 /* UIViewControllerExtension.swift */; };
 		E8290BFE1D832D9200599960 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8290BFD1D832D9200599960 /* UIViewExtension.swift */; };
 		E8290C021D8330A800599960 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8290C011D8330A800599960 /* StringExtension.swift */; };
+		E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBB1BE1DD21A32000D6740 /* Session.swift */; };
+		E8FBB1C11DD21D18000D6740 /* SessionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBB1C01DD21D18000D6740 /* SessionDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D948268C6BEC74EF2F9EC89 /* Pods-swift-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.release.xcconfig"; sourceTree = "<group>"; };
 		55F1FE8FEC8BA22649B0768B /* Pods_swift_base.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_base.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92799089D128539EBD34549A /* Pods-swift-base.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.staging.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.staging.xcconfig"; sourceTree = "<group>"; };
 		9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		9B0C726D1C738D3400BAF3B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceManager.swift; sourceTree = "<group>"; };
-		9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		9B0C72701C738D3400BAF3B1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B186ED71CA30DEF002CADE5 /* PaginatedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedTableView.swift; sourceTree = "<group>"; };
 		9B5AFADA1C7205EC002347D6 /* swift-base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-base.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,12 +43,12 @@
 		9BD4090F1CE9F19E005223C9 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BFA84F41C77682B009F64E4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C2CD6635F432CDDDCA6B1074 /* Pods-swift-base.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.staging.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.staging.xcconfig"; sourceTree = "<group>"; };
-		E199314555820F57AF5ADA22 /* Pods-swift-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.debug.xcconfig"; sourceTree = "<group>"; };
+		BBEBEB17E7326C831632AC1D /* Pods-swift-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.debug.xcconfig"; sourceTree = "<group>"; };
 		E81171911DE5EFB7003D3DF5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		E8290BFD1D832D9200599960 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		E8290C011D8330A800599960 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		F07F78AC59C6C6FBD4A6F6F8 /* Pods-swift-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-base.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-base/Pods-swift-base.release.xcconfig"; sourceTree = "<group>"; };
+		E8FBB1BE1DD21A32000D6740 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = SOURCE_ROOT; };
+		E8FBB1C01DD21D18000D6740 /* SessionDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,7 @@
 		9BDA91E01C7390D30003877D /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9B0C726F1C738D3400BAF3B1 /* UserDataManager.swift */,
+				E8FBB1C01DD21D18000D6740 /* SessionDataManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 		9BFA84EE1C7767D9009F64E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E8FBB1BE1DD21A32000D6740 /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,9 +180,9 @@
 		EC7EBFF28F703A3155DF49CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E199314555820F57AF5ADA22 /* Pods-swift-base.debug.xcconfig */,
-				C2CD6635F432CDDDCA6B1074 /* Pods-swift-base.staging.xcconfig */,
-				F07F78AC59C6C6FBD4A6F6F8 /* Pods-swift-base.release.xcconfig */,
+				BBEBEB17E7326C831632AC1D /* Pods-swift-base.debug.xcconfig */,
+				92799089D128539EBD34549A /* Pods-swift-base.staging.xcconfig */,
+				3D948268C6BEC74EF2F9EC89 /* Pods-swift-base.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -323,15 +326,16 @@
 			files = (
 				E8290BFE1D832D9200599960 /* UIViewExtension.swift in Sources */,
 				9B0C72781C738D3400BAF3B1 /* ViewController.swift in Sources */,
-				9B0C72771C738D3400BAF3B1 /* UserDataManager.swift in Sources */,
 				9BD409101CE9F19E005223C9 /* UIHelper.swift in Sources */,
 				9B186ED81CA30DEF002CADE5 /* PaginatedTableView.swift in Sources */,
 				9B88CC651CAB2DCE00AE60C5 /* PaginatedCollectionView.swift in Sources */,
 				9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
+				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
 				9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
+				E8FBB1C11DD21D18000D6740 /* SessionDataManager.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,11 +437,11 @@
 		};
 		9B5AFAED1C7205EC002347D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E199314555820F57AF5ADA22 /* Pods-swift-base.debug.xcconfig */;
+			baseConfigurationReference = BBEBEB17E7326C831632AC1D /* Pods-swift-base.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "http://target--mvd.herokuapp.com/api/v1";
+				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -455,11 +459,11 @@
 		};
 		9B5AFAEE1C7205EC002347D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F07F78AC59C6C6FBD4A6F6F8 /* Pods-swift-base.release.xcconfig */;
+			baseConfigurationReference = 3D948268C6BEC74EF2F9EC89 /* Pods-swift-base.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "http://target--mvd.herokuapp.com/api/v1";
+				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -525,11 +529,11 @@
 		};
 		9BEE614C1C736054002E43B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2CD6635F432CDDDCA6B1074 /* Pods-swift-base.staging.xcconfig */;
+			baseConfigurationReference = 92799089D128539EBD34549A /* Pods-swift-base.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "http://target--mvd.herokuapp.com/api/v1";
+				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
