@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-protocol PaginatedCollectionViewDelegate {
-  
+protocol PaginatedCollectionViewDelegate: class {
   // Required - Should not call this method directly or you will need to take care of
   // page update and flags status. Call loadContentIfNeeded instead
   func loadDataForPage(page: Int, completion: (elementsAdded: Int, error: NSError?) -> Void)
@@ -20,15 +19,13 @@ class PaginatedCollectionView: UICollectionView {
   
   var currentPage: Int = 1
   var isLoading: Bool = false
-  
   //  This will be handled automatically taking into account newElements of updateDelegate completion
   //  call and elementsPerPage. If your uploadDelegate provides pagination data, you can take control
   //  over this flag to avoid unnecesary calls to your delegate.
   var hasMore: Bool = true
   var elementsPerPage: Int = 10
-  
   // Responsible for loading the content and call the completion with newElements count.
-  var updateDelegate: PaginatedCollectionViewDelegate!
+  weak var updateDelegate: PaginatedCollectionViewDelegate!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -62,7 +59,6 @@ class PaginatedCollectionView: UICollectionView {
     hasMore = true
     isLoading = false
   }
-  
   
   //MARK: Normal Scroll
   func didScrollBeyondTop() -> Bool {
