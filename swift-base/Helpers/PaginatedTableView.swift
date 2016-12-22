@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-protocol PaginatedTableViewDelegate {
-  
+protocol PaginatedTableViewDelegate: class {
   // Required - Should not call this method directly or you will need to take care of
   // page update and flags status. Call loadContentIfNeeded instead
   func loadDataForPage(page: Int, completion: (elementsAdded: Int, error: NSError?) -> Void)
@@ -22,19 +21,16 @@ enum PagingDirectionType: Int {
 }
 
 class PaginatedTableView: UITableView {
-  
+
   var currentPage: Int = 1
   var isLoading = false
-  
   //  This will be handled automatically taking into account newElements of updateDelegate completion
   //  call and elementsPerPage. If your uploadDelegate provides pagination data, you can take control
   //  over this flag to avoid unnecesary calls to your delegate.
   var hasMore = true
   var elementsPerPage: Int = 10
-  
   // Responsible for loading the content and call the completion with newElements count.
-  var updateDelegate: PaginatedTableViewDelegate!
-  
+  weak var updateDelegate: PaginatedTableViewDelegate!
   // Tells when pagination calls occurs. Options are when the tableView reaches bottom(.AtBottom) or top(.AtTop)
   var direction: PagingDirectionType = .AtBottom
   
