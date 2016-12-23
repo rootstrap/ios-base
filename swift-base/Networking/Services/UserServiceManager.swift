@@ -11,9 +11,9 @@ import SwiftyJSON
 
 class UserServiceManager {
   
-  private static let usersUrl = "/users/"
+  fileprivate static let usersUrl = "/users/"
   
-  class func login(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
+  class func login(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -21,15 +21,15 @@ class UserServiceManager {
         "password": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url: url, params: parameters,
+    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
-        success(responseObject: "")
+        success("")
       }) { (error) -> Void in
-        failure(error: error)
+        failure(error)
     }
   }
   
-  class func signup(email email: String, password: String, success:(responseObject: String?) -> Void, failure: (error: NSError) -> Void) {
+  class func signup(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl
     let parameters = [
       "user": [
@@ -38,15 +38,15 @@ class UserServiceManager {
         "password_confirmation": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url: url, params: parameters,
+    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
-        success(responseObject: "")
+        success("")
       }) { (error) -> Void in
-        failure(error: error)
+        failure(error)
     }
   }
   
-  class func loginWithFacebook(email email: String, firstName: String, lastName: String, facebookId: String, success:(responseObject: String) -> Void, failure: (error: NSError) -> Void) {
+  class func loginWithFacebook(email: String, firstName: String, lastName: String, facebookId: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -56,14 +56,13 @@ class UserServiceManager {
         "email": email
       ],
       "type": "facebook"
-    ]
-    CommunicationManager.sendPostRequest(url: url, params: parameters,
+    ] as [String : Any]
+    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         let json = JSON(responseObject)
-        success(responseObject: json["token"].stringValue)
+        success(json["token"].stringValue)
       }) { (error) -> Void in
-        failure(error: error)
+        failure(error)
     }
   }
-  
 }

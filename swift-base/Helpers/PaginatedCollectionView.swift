@@ -12,7 +12,7 @@ import UIKit
 protocol PaginatedCollectionViewDelegate: class {
   // Required - Should not call this method directly or you will need to take care of
   // page update and flags status. Call loadContentIfNeeded instead
-  func loadDataForPage(page: Int, completion: (elementsAdded: Int, error: NSError?) -> Void)
+  func loadData(page: Int, completion: (_ elementsAdded: Int, _ error: NSError?) -> Void)
 }
 
 class PaginatedCollectionView: UICollectionView {
@@ -44,7 +44,7 @@ class PaginatedCollectionView: UICollectionView {
       return
     }
     isLoading = true
-    updateDelegate.loadDataForPage(currentPage, completion: { (newElements, error) -> Void in
+    updateDelegate.loadData(page: currentPage, completion: { (newElements, error) -> Void in
       self.isLoading = false
       guard error == nil else {
         return
@@ -99,14 +99,14 @@ class PaginatedCollectionView: UICollectionView {
     guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
       return false
     }
-    return layout.scrollDirection == .Vertical ? (pagingEnabled && didReachLastVerticalPage()) || (!pagingEnabled && didScrollBeyondBottom())
-      : (pagingEnabled && didReachLastHorizontalPage()) || (!pagingEnabled && didScrollBeyondRight())
+    return layout.scrollDirection == .vertical ? (isPagingEnabled && didReachLastVerticalPage()) || (!isPagingEnabled && didScrollBeyondBottom())
+      : (isPagingEnabled && didReachLastHorizontalPage()) || (!isPagingEnabled && didScrollBeyondRight())
   }
 }
 
 extension PaginatedCollectionView : UIScrollViewDelegate {
   
-  func scrollViewDidScroll(scrollView: UIScrollView) {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if shouldLoadNewContent() {
       loadContentIfNeeded()
     }
