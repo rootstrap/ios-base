@@ -55,7 +55,7 @@ class CommunicationManager {
   }
 
   fileprivate class func isOk(_ statusCode: Int?) -> Bool {
-    return Range(200 ..< 211).contains(statusCode ?? 500)
+    return statusCode != nil && 200...210 ~= statusCode!
   }
 
   fileprivate class func updateSessionData(_ responseHeaders: [AnyHashable: Any]) {
