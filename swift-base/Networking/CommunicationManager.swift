@@ -54,10 +54,6 @@ class CommunicationManager {
     return Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
   }
 
-  fileprivate class func isOk(_ statusCode: Int?) -> Bool {
-    return Range(200 ..< 211).contains(statusCode ?? 500)
-  }
-
   fileprivate class func updateSessionData(_ responseHeaders: [AnyHashable: Any]) {
     let session = Session()
     for (key, value) in responseHeaders {
