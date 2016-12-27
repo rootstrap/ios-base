@@ -82,14 +82,14 @@ class CommunicationManager {
           case .expiry:
             if let expiry = value as? String {
               if let expiryNumber = Double(expiry) {
-                session.expiry = Date(timeIntervalSince1970: expiryNumber) as NSDate?
+                session.expiry = Date(timeIntervalSince1970: expiryNumber)
               }
             }
             break
           }
         }
       }
-      SessionDataManager.storeSessionObject(session: session)
+      SessionDataManager.storeSessionObject(session)
     }
   }
 
@@ -170,19 +170,19 @@ class CommunicationManager {
   class func sendPostRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.post, url: url, params: params, success: success, failure: failure)
   }
-
+  
   class func sendGetRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.get, url: url, params: params, success: success, failure: failure)
   }
-
+  
   class func sendPutRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.put, url: url, params: params, success: success, failure: failure)
   }
-
+  
   class func sendDeleteRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.delete, url: url, params: params, success: success, failure: failure)
   }
-
+  
   class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let header = CommunicationManager.getHeader()
     let requestUrl = getBaseUrl() + url

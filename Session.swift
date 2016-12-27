@@ -12,9 +12,9 @@ class Session: NSObject, NSCoding {
   var uid: String?
   var client: String?
   var accessToken: String?
-  var expiry: NSDate?
+  var expiry: Date?
 
-  init(uid: String? = nil, client: String? = nil, token: String? = nil, expires: NSDate? = nil) {
+  init(uid: String? = nil, client: String? = nil, token: String? = nil, expires: Date? = nil) {
     self.uid = uid
     self.client = client
     self.accessToken = token
@@ -25,10 +25,10 @@ class Session: NSObject, NSCoding {
     self.uid = aDecoder.decodeObject(forKey: "session-uid") as? String
     self.client = aDecoder.decodeObject(forKey: "session-client") as? String
     self.accessToken = aDecoder.decodeObject(forKey: "session-token") as? String
-    self.expiry = aDecoder.decodeObject(forKey: "session-expiry") as? NSDate
+    self.expiry = aDecoder.decodeObject(forKey: "session-expiry") as? Date
   }
 
-  func encodeWithCoder(aCoder: NSCoder) {
+  func encode(with aCoder: NSCoder) {
     aCoder.encode(self.uid, forKey: "session-uid")
     aCoder.encode(self.client, forKey: "session-client")
     aCoder.encode(self.accessToken, forKey: "session-token")

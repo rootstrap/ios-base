@@ -10,7 +10,7 @@ import UIKit
 
 class SessionDataManager: NSObject {
 
-  class func storeSessionObject(session: Session) {
+  class func storeSessionObject(_ session: Session) {
     let defaults = UserDefaults.standard
     defaults.set(NSKeyedArchiver.archivedData(withRootObject: session), forKey: "toptier-session")
     defaults.synchronize()
@@ -19,8 +19,8 @@ class SessionDataManager: NSObject {
   class func getSessionObject() -> Session? {
     let defaults = UserDefaults.standard
 
-    if let data = defaults.object(forKey: "toptier-session") as? NSData {
-      let unarc = NSKeyedUnarchiver(forReadingWith: data as Data)
+    if let data = defaults.object(forKey: "toptier-session") as? Data {
+      let unarc = NSKeyedUnarchiver(forReadingWith: data)
       return unarc.decodeObject(forKey: "root") as? Session
     }
 

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-2n-nei">
-                                <rect key="frame" x="120" y="193" width="134" height="30"/>
+                                <rect key="frame" x="120.5" y="193" width="134" height="30"/>
                                 <state key="normal" title="Try Facebook Login"/>
                                 <connections>
                                     <action selector="facebookLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="hV1-2d-Ulo"/>
@@ -37,24 +37,24 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-2Z-C64">
-                                <rect key="frame" x="149" y="253" width="76" height="30"/>
+                                <rect key="frame" x="149.5" y="253" width="76" height="30"/>
                                 <state key="normal" title="Try sign up"/>
                                 <connections>
-                                    <action selector="tapOnSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9AK-CY-9eJ"/>
+                                    <action selector="tapOnSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RTg-W5-Gti"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skx-M3-7Qv">
                                 <rect key="frame" x="152" y="313" width="71" height="30"/>
                                 <state key="normal" title="Try sign in"/>
                                 <connections>
-                                    <action selector="tapOnSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bGw-Kw-bS6"/>
+                                    <action selector="tapOnSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J4Y-RU-EE6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtk-8N-E9o">
                                 <rect key="frame" x="127" y="373" width="121" height="30"/>
                                 <state key="normal" title="Try get my profile"/>
                                 <connections>
-                                    <action selector="tapOnGetMyProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cUx-sH-WuR"/>
+                                    <action selector="tapOnGetMyProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HM9-ax-z3p"/>
                                 </connections>
                             </button>
                         </subviews>

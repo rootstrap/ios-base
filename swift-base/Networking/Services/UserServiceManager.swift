@@ -13,7 +13,7 @@ class UserServiceManager {
   
   fileprivate static let usersUrl = "/users/"
 
-  class func login(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func login(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -29,7 +29,7 @@ class UserServiceManager {
     }
   }
 
-  class func signup(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func signup(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl
     let parameters = [
       "user": [
@@ -46,7 +46,7 @@ class UserServiceManager {
     }
   }
 
-  class func getMyProfile(success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "me"
     CommunicationManager.sendGetRequest(url, params: nil, success: { (responseObject) in
       let json = JSON(responseObject)
@@ -56,7 +56,7 @@ class UserServiceManager {
     }
   }
 
-  class func loginWithFacebook(email: String, firstName: String, lastName: String, facebookId: String, token: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func loginWithFacebook(_ email: String, firstName: String, lastName: String, facebookId: String, token: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "facebook"
     let parameters = [
       "access_token": token,
@@ -70,7 +70,7 @@ class UserServiceManager {
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         let json = JSON(responseObject)
-        print(json)
+        success(json["token"].stringValue)
       }) { (error) -> Void in
         failure(error)
     }
