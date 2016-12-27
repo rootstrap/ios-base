@@ -82,10 +82,10 @@ extension PaginatedTableView : UIScrollViewDelegate {
     if direction == .atBottom {
       if didScrollBeyondTop() {
         return
-      }else if didScrollBeyondBottom() {
+      } else if didScrollBeyondBottom() {
         loadContentIfNeeded()
       }
-    }else {
+    } else {
       if didScrollBeyondTop() {
         loadContentIfNeeded()
       }

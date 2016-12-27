@@ -12,8 +12,8 @@ import SwiftyJSON
 class UserServiceManager {
   
   fileprivate static let usersUrl = "/users/"
-  
-  class func login(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+
+  class func login(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -21,15 +21,15 @@ class UserServiceManager {
         "password": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
+    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         success("")
       }) { (error) -> Void in
         failure(error)
     }
   }
-  
-  class func signup(email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+
+  class func signup(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl
     let parameters = [
       "user": [
@@ -38,26 +38,36 @@ class UserServiceManager {
         "password_confirmation": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
+    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         success("")
       }) { (error) -> Void in
         failure(error)
     }
   }
-  
-  class func loginWithFacebook(email: String, firstName: String, lastName: String, facebookId: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    let url = usersUrl + "sign_in"
+
+  class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    let url = usersUrl + "me"
+    CommunicationManager.sendGetRequest(url, params: nil, success: { (responseObject) in
+      let json = JSON(responseObject)
+      success(json)
+      }) { (error) in
+        failure(error)
+    }
+  }
+
+  class func loginWithFacebook(_ email: String, firstName: String, lastName: String, facebookId: String, token: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    let url = usersUrl + "facebook"
     let parameters = [
+      "access_token": token,
       "user": [
         "facebook_id": facebookId,
         "first_name": firstName,
         "last_name": lastName,
         "email": email
-      ],
-      "type": "facebook"
+      ]
     ] as [String : Any]
-    CommunicationManager.sendPostRequest(url: url, params: parameters as [String : AnyObject]?,
+    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         let json = JSON(responseObject)
         success(json["token"].stringValue)
