@@ -19,7 +19,7 @@ extension UIViewController {
     }
 
     //MARK: Spinner
-    func showSpinner(view: UIView, message: String? = "Please Wait", comment :String? = "") -> MBProgressHUD {
+    func showSpinner(view: UIView, message: String? = "Please Wait", comment: String? = "") -> MBProgressHUD {
         let spinningActivity = MBProgressHUD.showAdded(to: view, animated: true)
         spinningActivity.label.text = NSLocalizedString(message!, comment: comment!)
         spinningActivity.isUserInteractionEnabled = false

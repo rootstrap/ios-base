@@ -14,6 +14,7 @@ import SwiftyJSON
 class ViewController: UIViewController {
 
   @IBOutlet weak var testView: UIView!
+  @IBOutlet weak var textView: PlaceholderTextView!
 
   var spinningActivity: MBProgressHUD!
 
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
 
     testView.addBorder()
     testView.setRoundBorders()
+    textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
   }
 
   override func didReceiveMemoryWarning() {
