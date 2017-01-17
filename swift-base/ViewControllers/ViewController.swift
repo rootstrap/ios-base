@@ -16,8 +16,6 @@ class ViewController: UIViewController {
   @IBOutlet weak var testView: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
 
-  var spinningActivity: MBProgressHUD!
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -34,7 +32,7 @@ class ViewController: UIViewController {
   //MARK: Actions
 
   @IBAction func facebookLogin() {
-    spinningActivity = showSpinner(view: self.view)
+    showSpinner()
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
@@ -44,23 +42,29 @@ class ViewController: UIViewController {
         self.facebookLoginCallback()
       }
       if result?.isCancelled ?? true {
-        self.hide(spinner: self.spinningActivity)
+        self.view.hideSpinner()
       }
     }
   }
 
   @IBAction func tapOnSignUp(_ sender: Any) {
+    showSpinner(message: "VC spinner")
     UserServiceManager.signup("toptier@mail.com", password: "123456789", success: { (responseObject) in
       print(responseObject)
+      self.hideSpinner()
     }) { (error) in
+      self.hideSpinner()
       print(error)
     }
   }
 
   @IBAction func tapOnSignIn(_ sender: Any) {
+    view.showSpinner(message: "View spinner")
     UserServiceManager.login("toptier@mail.com", password: "123456789", success: { (responseObject) in
+      self.hideSpinner()
       print(responseObject)
     }) { (error) in
+      self.hideSpinner()
       print(error)
     }
   }
@@ -96,11 +100,11 @@ class ViewController: UIViewController {
     //Optionally store params (facebook user data) locally.
     UserServiceManager.loginWithFacebook(email, firstName: firstName, lastName: lastName, facebookId: facebookID, token: FBSDKAccessToken.current().tokenString,
                                          success: { (responseObject) -> Void in
-      self.hide(spinner: self.spinningActivity)
+      self.hideSpinner()
       print("perform segue")
       //TODO: perform segue
     }) { (error) -> Void in
-      self.hide(spinner: self.spinningActivity)
+      self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error._domain)
     }
   }

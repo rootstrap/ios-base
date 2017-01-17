@@ -12,6 +12,10 @@ extension String {
   func length() -> Int {
     return self.characters.count
   }
+    
+  func localize(comment: String = "") -> String {
+    return NSLocalizedString(self, comment: comment)
+  }
   
   //Regex fulfill RFC 5322 Internet Message format
   func isEmailFormatted() -> Bool {
