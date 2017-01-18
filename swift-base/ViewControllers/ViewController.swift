@@ -30,19 +30,24 @@ class ViewController: UIViewController {
   }
 
   //MARK: Actions
-
   @IBAction func facebookLogin() {
     showSpinner()
     let fbLoginManager = FBSDKLoginManager()
+    //Logs out before login, in case user changes facebook accounts
+    fbLoginManager.logOut()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
+        self.showMessageError(title: "Oops..", errorMessage: "Something went wrong, try again later.")
+        self.hideSpinner()
         return
       }
-      if result?.grantedPermissions != nil && (result?.grantedPermissions.contains("email"))! {
+      if result?.grantedPermissions == nil || result?.isCancelled ?? true {
+        self.hideSpinner()
+      } else if !(result?.grantedPermissions.contains("email"))! {
+        self.hideSpinner()
+        self.showMessageError(title: "Oops..", errorMessage: "It seems that you haven't allowed Facebook to provide your email address.")
+      } else {
         self.facebookLoginCallback()
-      }
-      if result?.isCancelled ?? true {
-        self.view.hideSpinner()
       }
     }
   }
@@ -50,7 +55,7 @@ class ViewController: UIViewController {
   @IBAction func tapOnSignUp(_ sender: Any) {
     showSpinner(message: "VC spinner")
     UserServiceManager.signup("toptier@mail.com", password: "123456789", success: { (responseObject) in
-      print(responseObject)
+      print("\(responseObject)")
       self.hideSpinner()
     }) { (error) in
       self.hideSpinner()
@@ -62,7 +67,7 @@ class ViewController: UIViewController {
     view.showSpinner(message: "View spinner")
     UserServiceManager.login("toptier@mail.com", password: "123456789", success: { (responseObject) in
       self.hideSpinner()
-      print(responseObject)
+      print("\(responseObject)")
     }) { (error) in
       self.hideSpinner()
       print(error)
@@ -79,30 +84,14 @@ class ViewController: UIViewController {
 
   //MARK: Facebook callback methods
   func facebookLoginCallback() {
+    //Optionally store params (facebook user data) locally.
     guard FBSDKAccessToken.current() != nil else {
       return
     }
-    FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).start (completionHandler: { (connection, result, error) -> Void in
-      guard error == nil && result != nil else {
-        return
-      }
-
-      let json = JSON(result!)
-      let firstName = json["first_name"].stringValue
-      let lastName = json["lastName"].stringValue
-      let email = json["email"].stringValue
-      let facebookID = json["id"].stringValue
-      self.facebookSignIn(firstName, lastName: lastName, email: email, facebookID: facebookID)
-    })
-  }
-
-  func facebookSignIn(_ firstName: String, lastName: String, email: String, facebookID: String) {
-    //Optionally store params (facebook user data) locally.
-    UserServiceManager.loginWithFacebook(email, firstName: firstName, lastName: lastName, facebookId: facebookID, token: FBSDKAccessToken.current().tokenString,
-                                         success: { (responseObject) -> Void in
-      self.hideSpinner()
-      print("perform segue")
-      //TODO: perform segue
+    UserServiceManager.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
+                                         success: { _ -> Void in
+                                          self.hideSpinner()
+                                          self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }) { (error) -> Void in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error._domain)

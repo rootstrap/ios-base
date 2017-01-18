@@ -10,16 +10,30 @@ import UIKit
 
 class UserDataManager: NSObject {
   
-  var sessionToken: String?
-  
-  class func store(sessionToken: String) {
+  class func storeUserObject(_ user: User) {
     let defaults = UserDefaults.standard
-    defaults.set(sessionToken, forKey: "sessionToken")
+    defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "seatmate-user")
+    defaults.synchronize()
   }
   
-  class func getSessionToken() -> String? {
+  class func getUserObject() -> User? {
     let defaults = UserDefaults.standard
-    return defaults.object(forKey: "sessionToken") as? String
+    
+    if let data = defaults.object(forKey: "seatmate-user") as? Data {
+      let unarc = NSKeyedUnarchiver(forReadingWith: data)
+      return unarc.decodeObject(forKey: "root") as? User
+    }
+    
+    return nil
   }
   
+  class func deleteUserObject() {
+    let defaults = UserDefaults.standard
+    defaults.removeObject(forKey: "seatmate-user")
+    defaults.synchronize()
+  }
+  
+  class func checkSignin() -> Bool {
+    return self.getUserObject() != nil
+  }
 }

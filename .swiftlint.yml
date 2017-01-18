@@ -1,5 +1,35 @@
+disabled_rules: # rule identifiers to exclude from running
+  - control_statement
+  - trailing_whitespace
+  - type_name # deactivated because swift3 need lowercase enums
+  - nesting
+  - cyclomatic_complexity
+  - todo
+  - mark
+  - variable_name
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  # Find all the available rules by running:
+  # swiftlint rules
+whitelist_rules:
 excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
   - Pods
-disabled_rules:
-  - line_length
-  - type_name
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+force_cast: error
+force_try:
+  severity: warning # explicitly
+line_length:
+  - 230
+  - 500
+type_body_length:
+  - 300 # warning
+  - 400 # error
+file_length:
+  - 500 # warning
+  - 1200 # error
+function_parameter_count:
+  - 6 # warning
+  - 8 # error
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)

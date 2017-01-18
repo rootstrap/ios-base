@@ -26,6 +26,16 @@ Instructions for install the project, change the name and use this project
 
 12) Done :)
 
+## Travis - SwiftLint configuration
+
+1) Replace any occurrence of swift-base in the .travis.yml file.
+
+2) Login into travis-ci.com with your github account
+
+3) Add the project to the list of projects to build
+
+4) Happy linting :)
+
 ## Facebook integration
 
 The project already include the FBSDK and the configuration needed on the .plist file. After create a Facebook App you only need to replace:
