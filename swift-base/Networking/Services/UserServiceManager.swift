@@ -22,7 +22,7 @@ class UserServiceManager {
       ]
     ]
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (responseObject) -> Void in
+      success: { (_) -> Void in
         success("")
       }) { (error) -> Void in
         failure(error)
@@ -39,7 +39,7 @@ class UserServiceManager {
       ]
     ]
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (responseObject) -> Void in
+      success: { (_) -> Void in
         success("")
       }) { (error) -> Void in
         failure(error)
@@ -56,23 +56,18 @@ class UserServiceManager {
     }
   }
 
-  class func loginWithFacebook(_ email: String, firstName: String, lastName: String, facebookId: String, token: String, success:@escaping (_ responseObject: String) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func loginWithFacebook(token: String, success:@escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "facebook"
     let parameters = [
-      "access_token": token,
-      "user": [
-        "facebook_id": facebookId,
-        "first_name": firstName,
-        "last_name": lastName,
-        "email": email
-      ]
-    ] as [String : Any]
+      "access_token": token
+      ] as [String : Any]
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (responseObject) -> Void in
-        let json = JSON(responseObject)
-        success(json["token"].stringValue)
-      }) { (error) -> Void in
-        failure(error)
+                                         success: { (responseObject) -> Void in
+                                          let json = JSON(responseObject)
+                                          UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
+                                          success()
+    }) { (error) -> Void in
+      failure(error)
     }
   }
 }

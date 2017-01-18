@@ -13,6 +13,9 @@
 		9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C726E1C738D3400BAF3B1 /* UserServiceManager.swift */; };
 		9B186ED81CA30DEF002CADE5 /* PaginatedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B186ED71CA30DEF002CADE5 /* PaginatedTableView.swift */; };
 		9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B715A451E28083600C0C039 /* PlaceholderTextView.swift */; };
+		9B77E0731E2FB6350020E450 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0721E2FB6350020E450 /* User.swift */; };
+		9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0741E2FB66F0020E450 /* UserDataManager.swift */; };
+		9B77E0791E2FCF710020E450 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0781E2FCF710020E450 /* Media.swift */; };
 		9B88CC651CAB2DCE00AE60C5 /* PaginatedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88CC641CAB2DCE00AE60C5 /* PaginatedCollectionView.swift */; };
 		9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88CC661CAB305900AE60C5 /* Constants.swift */; };
 		9BD409101CE9F19E005223C9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4090F1CE9F19E005223C9 /* UIHelper.swift */; };
@@ -39,6 +42,9 @@
 		9B186ED71CA30DEF002CADE5 /* PaginatedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedTableView.swift; sourceTree = "<group>"; };
 		9B5AFADA1C7205EC002347D6 /* swift-base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-base.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B715A451E28083600C0C039 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		9B77E0721E2FB6350020E450 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9B77E0741E2FB66F0020E450 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		9B77E0781E2FCF710020E450 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		9B88CC641CAB2DCE00AE60C5 /* PaginatedCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedCollectionView.swift; sourceTree = "<group>"; };
 		9B88CC661CAB305900AE60C5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9BD4090F1CE9F19E005223C9 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -115,6 +121,7 @@
 			children = (
 				9BFA84F11C776817009F64E4 /* Services */,
 				9B0C726C1C738D3400BAF3B1 /* CommunicationManager.swift */,
+				9B77E0781E2FCF710020E450 /* Media.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FBB1C01DD21D18000D6740 /* SessionDataManager.swift */,
+				9B77E0741E2FB66F0020E450 /* UserDataManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FBB1BE1DD21A32000D6740 /* Session.swift */,
+				9B77E0721E2FB6350020E450 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		81F110028DEA7A4F442F6DAB /* [CP] Embed Pods Frameworks */ = {
@@ -333,14 +342,17 @@
 				9BD409101CE9F19E005223C9 /* UIHelper.swift in Sources */,
 				9B186ED81CA30DEF002CADE5 /* PaginatedTableView.swift in Sources */,
 				9B88CC651CAB2DCE00AE60C5 /* PaginatedCollectionView.swift in Sources */,
+				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
 				E8FBB1BF1DD21A32000D6740 /* Session.swift in Sources */,
+				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
 				FA54D5881E11C59600F0DBEA /* ViewController.swift in Sources */,
 				9B0C72761C738D3400BAF3B1 /* UserServiceManager.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionDataManager.swift in Sources */,
+				9B77E0791E2FCF710020E450 /* Media.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
 			);
