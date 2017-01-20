@@ -32,10 +32,10 @@ public enum SwiftBaseErrorCode: Int {
 class CommunicationManager {
   
   enum HTTPHeader: String {
-    case uid = "Uid"
-    case client = "Client"
-    case token = "Access-Token"
-    case expiry = "Expiry"
+    case uid = "uid"
+    case client = "client"
+    case token = "access-token"
+    case expiry = "expiry"
   }
   
   fileprivate class func getHeader() -> [String: String]? {
@@ -56,36 +56,43 @@ class CommunicationManager {
   
   fileprivate class func updateSessionData(_ responseHeaders: [AnyHashable: Any]) {
     let session = Session()
+    var changed = false
     for (key, value) in responseHeaders {
       if let keyString = key as? String {
-        if let header = HTTPHeader(rawValue: keyString) {
+        if let header = HTTPHeader(rawValue: keyString.lowercased()) {
           switch header {
           case .uid:
             if let uid = value as? String {
               session.uid = uid
+              changed = true
             }
             break
           case .client:
             if let client = value as? String {
               session.client = client
+              changed = true
             }
             break
           case .token:
             if let token = value as? String {
               session.accessToken = token
+              changed = true
             }
             break
           case .expiry:
             if let expiry = value as? String {
               if let expiryNumber = Double(expiry) {
                 session.expiry = Date(timeIntervalSince1970: expiryNumber)
+                changed = true
               }
             }
             break
           }
         }
       }
-      SessionDataManager.storeSessionObject(session)
+      if changed {
+        SessionDataManager.storeSessionObject(session)
+      }
     }
   }
   
