@@ -8,7 +8,6 @@
 
 import UIKit
 import FBSDKLoginKit
-import MBProgressHUD
 import SwiftyJSON
 
 class ViewController: UIViewController {
@@ -16,17 +15,13 @@ class ViewController: UIViewController {
   @IBOutlet weak var testView: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
 
+  //MARK: Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     testView.addBorder()
     testView.setRoundBorders()
     textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 
   //MARK: Actions
@@ -89,9 +84,9 @@ class ViewController: UIViewController {
       return
     }
     UserServiceManager.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
-                                         success: { _ -> Void in
-                                          self.hideSpinner()
-                                          self.performSegue(withIdentifier: "goToMainView", sender: nil)
+     success: { _ -> Void in
+      self.hideSpinner()
+      self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }) { (error) -> Void in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error._domain)

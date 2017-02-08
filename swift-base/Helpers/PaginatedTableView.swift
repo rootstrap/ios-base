@@ -22,28 +22,20 @@ enum PagingDirectionType: Int {
 
 class PaginatedTableView: UITableView {
 
-  var currentPage: Int = 1
+  var currentPage = 1
   var isLoading = false
   //  This will be handled automatically taking into account newElements of updateDelegate completion
   //  call and elementsPerPage. If your uploadDelegate provides pagination data, you can take control
   //  over this flag to avoid unnecesary calls to your delegate.
   var hasMore = true
-  var elementsPerPage: Int = 10
+  var elementsPerPage = 10
   // Responsible for loading the content and call the completion with newElements count.
   weak var updateDelegate: PaginatedTableViewDelegate!
   // Tells when pagination calls occurs. Options are when the tableView reaches bottom(.AtBottom) or top(.AtTop)
   var direction: PagingDirectionType = .atBottom
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-  }
-  
-  override init(frame: CGRect, style: UITableViewStyle) {
-    super.init(frame: frame, style: style)
   }
   
   func loadContentIfNeeded() {

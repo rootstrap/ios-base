@@ -13,7 +13,7 @@ class UserServiceManager {
   
   fileprivate static let usersUrl = "/users/"
 
-  class func login(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func login(_ email: String, password: String, success: @escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -29,7 +29,7 @@ class UserServiceManager {
     }
   }
 
-  class func signup(_ email: String, password: String, success:@escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func signup(_ email: String, password: String, success: @escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl
     let parameters = [
       "user": [
@@ -48,7 +48,7 @@ class UserServiceManager {
 
   class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "me"
-    CommunicationManager.sendGetRequest(url, params: nil, success: { (responseObject) in
+    CommunicationManager.sendGetRequest(url, success: { (responseObject) in
       let json = JSON(responseObject)
       success(json)
       }) { (error) in
@@ -56,16 +56,16 @@ class UserServiceManager {
     }
   }
 
-  class func loginWithFacebook(token: String, success:@escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func loginWithFacebook(token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "facebook"
     let parameters = [
       "access_token": token
       ] as [String : Any]
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-                                         success: { (responseObject) -> Void in
-                                          let json = JSON(responseObject)
-                                          UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
-                                          success()
+     success: { (responseObject) -> Void in
+      let json = JSON(responseObject)
+      UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
+      success()
     }) { (error) -> Void in
       failure(error)
     }
