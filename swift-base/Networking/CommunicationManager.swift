@@ -179,7 +179,7 @@ class CommunicationManager {
     sendBaseRequest(.post, url: url, params: params, success: success, failure: failure)
   }
   
-  class func sendGetRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func sendGetRequest(_ url: String, params: [String: AnyObject]? = nil, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.get, url: url, params: params, success: success, failure: failure)
   }
   
@@ -187,7 +187,7 @@ class CommunicationManager {
     sendBaseRequest(.put, url: url, params: params, success: success, failure: failure)
   }
   
-  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]? = nil, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     sendBaseRequest(.delete, url: url, params: params, success: success, failure: failure)
   }
   

@@ -17,26 +17,18 @@ protocol PaginatedCollectionViewDelegate: class {
 
 class PaginatedCollectionView: UICollectionView {
   
-  var currentPage: Int = 1
-  var isLoading: Bool = false
+  var currentPage = 1
+  var isLoading = false
   //  This will be handled automatically taking into account newElements of updateDelegate completion
   //  call and elementsPerPage. If your uploadDelegate provides pagination data, you can take control
   //  over this flag to avoid unnecesary calls to your delegate.
-  var hasMore: Bool = true
-  var elementsPerPage: Int = 10
+  var hasMore = true
+  var elementsPerPage = 10
   // Responsible for loading the content and call the completion with newElements count.
   weak var updateDelegate: PaginatedCollectionViewDelegate!
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-  }
-  
-  override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-    super.init(frame: frame, collectionViewLayout: layout)
   }
   
   func loadContentIfNeeded() {

@@ -39,6 +39,8 @@ class PlaceholderTextView: UITextView {
   }
     
   override func awakeFromNib() {
+    super.awakeFromNib()
+    
     textColor = text == placeholder ? placeholderColor : fontColor
   }
   

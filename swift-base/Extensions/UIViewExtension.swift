@@ -13,13 +13,13 @@ extension UIView {
   //MARK: Instance methods
   //Change the default values for params as you wish
   func addBorder(color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
-    self.layer.borderColor = color.cgColor
-    self.layer.borderWidth = weight
+    layer.borderColor = color.cgColor
+    layer.borderWidth = weight
   }
   
   func setRoundBorders(_ cornerRadius: CGFloat = 10.0) {
-    self.clipsToBounds = true
-    self.layer.cornerRadius = cornerRadius
+    clipsToBounds = true
+    layer.cornerRadius = cornerRadius
   }
   
   //MARK: Class methods
@@ -39,7 +39,7 @@ extension UIView {
   func showSpinner(message: String = "Please Wait", comment: String = "") {
     if let spinner = AppDelegate.shared.spinner {
       spinner.label.text = message.localize(comment: comment)
-      spinner.center = self.center
+      spinner.center = center
       spinner.willMove(toSuperview: self)
       addSubview(spinner)
       spinner.show(animated: true)

@@ -8,14 +8,13 @@
 
 import Foundation
 import UIKit
-import MBProgressHUD
 
 extension UIViewController {
   //MARK: Message Error
   func showMessageError(title: String, errorMessage: String, handler: ((_ action: UIAlertAction) -> Void)? = nil) {
     let alert = UIAlertController(title: title, message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: handler))
-    self.present(alert, animated: true, completion: nil)
+    present(alert, animated: true, completion: nil)
   }
   
   func showSpinner(message: String = "Please Wait", comment: String = "") {
