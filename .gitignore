@@ -58,7 +58,4 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 
-#swiftlint
-.swiftlint.yml
-
 **/.DS_Store
