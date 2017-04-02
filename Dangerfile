@@ -4,3 +4,4 @@ fail 'Please provide a summary in the Pull Request description' if github.pr_bod
 # Run SwiftLint
 swiftlint.config_file = '.swiftlint.yml'
 swiftlint.lint_files
+print "swiftlint executed"
