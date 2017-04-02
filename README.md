@@ -36,6 +36,8 @@ Instructions for install the project, change the name and use this project
 
 4) Happy linting :)
 
+## Danger integration
+
 ## Facebook integration
 
 The project already include the FBSDK and the configuration needed on the .plist file. After create a Facebook App you only need to replace:
