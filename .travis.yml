@@ -4,5 +4,7 @@ xcode_scheme: swift-base
 osx_image: xcode8
 xcode_sdk: iphonesimulator8.4
 install: true
-before_script: gem install danger
+before_script: 
+  - gem install danger
+  - gem install danger-swiftlint
 script: danger
