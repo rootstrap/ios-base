@@ -1,8 +1,7 @@
 language: swift
-xcode_project: swift-base.xcodeproj
-xcode_scheme: swift-base
+xcode_project: topplay-iOS.xcodeproj
+xcode_scheme: topplay-iOS
 osx_image: xcode8
 xcode_sdk: iphonesimulator8.4
 install: true
-before_script: bundle install
-script: danger
+script: swiftlint
