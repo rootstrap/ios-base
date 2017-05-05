@@ -14,3 +14,9 @@ target 'swift-base' do
   pod 'FBSDKShareKit';
   # ------
 end
+
+target 'AcceptanceTests' do
+  pod 'KIF', '~> 3.5.2', :configurations => ['Debug']
+  pod 'KIF/IdentifierTests', '~> 3.5.2', :configurations => ['Debug']
+  pod 'OHHTTPStubs/Swift', '~> 6.0.0', :configurations => ['Debug']
+end
