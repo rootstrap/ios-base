@@ -30,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     IQKeyboardManager.sharedManager().enable = true
     spinner = UIHelper.initSpinner()
     
+    if SessionDataManager.checkSession() {
+      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
+      self.window?.rootViewController = vc
+    }
+    
     return true
   }
   

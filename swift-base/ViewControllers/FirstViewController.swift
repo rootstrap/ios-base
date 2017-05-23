@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class FirstViewController: UIViewController {
 
   @IBOutlet weak var testView: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
   //MARK: Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     testView.addBorder()
     testView.setRoundBorders()
     textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
@@ -44,28 +44,6 @@ class ViewController: UIViewController {
       } else {
         self.facebookLoginCallback()
       }
-    }
-  }
-
-  @IBAction func tapOnSignUp(_ sender: Any) {
-    showSpinner(message: "VC spinner")
-    UserServiceManager.signup("toptier@mail.com", password: "123456789", success: { (responseObject) in
-      print("\(responseObject)")
-      self.hideSpinner()
-    }) { (error) in
-      self.hideSpinner()
-      print(error)
-    }
-  }
-
-  @IBAction func tapOnSignIn(_ sender: Any) {
-    view.showSpinner(message: "View spinner")
-    UserServiceManager.login("toptier@mail.com", password: "123456789", success: { (responseObject) in
-      self.hideSpinner()
-      print("\(responseObject)")
-    }) { (error) in
-      self.hideSpinner()
-      print(error)
     }
   }
 
