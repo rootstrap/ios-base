@@ -26,4 +26,14 @@ class SessionDataManager: NSObject {
 
     return nil
   }
+  
+  class func deleteSessionObject() {
+    let defaults = UserDefaults.standard
+    defaults.removeObject(forKey: "toptier-session")
+    defaults.synchronize()
+  }
+  
+  class func checkSession() -> Bool {
+    return self.getSessionObject() != nil
+  }
 }

@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XFt-23-ycy">
             <objects>
-                <navigationController id="aXS-GV-C4h" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StartViewController" id="aXS-GV-C4h" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KuO-wr-86C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-418" y="429"/>
         </scene>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -53,20 +53,6 @@
                                     <constraint firstAttribute="height" constant="70" id="mTW-ma-26T"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-2Z-C64">
-                                <rect key="frame" x="63.5" y="297" width="76" height="30"/>
-                                <state key="normal" title="Try sign up"/>
-                                <connections>
-                                    <action selector="tapOnSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RTg-W5-Gti"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skx-M3-7Qv">
-                                <rect key="frame" x="66" y="357" width="71" height="30"/>
-                                <state key="normal" title="Try sign in"/>
-                                <connections>
-                                    <action selector="tapOnSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J4Y-RU-EE6"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtk-8N-E9o">
                                 <rect key="frame" x="127" y="417" width="121" height="30"/>
                                 <state key="normal" title="Try get my profile"/>
@@ -88,17 +74,17 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-bX-pA7">
-                                <rect key="frame" x="229" y="357" width="80" height="30"/>
+                                <rect key="frame" x="152" y="357" width="73" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignInButton"/>
-                                <state key="normal" title="Sign in Test"/>
+                                <state key="normal" title="Try Sign in"/>
                                 <connections>
                                     <segue destination="8qd-iW-5fg" kind="show" id="JE1-9S-HW5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0t-Ld-GB4">
-                                <rect key="frame" x="227" y="297" width="85" height="30"/>
+                                <rect key="frame" x="149" y="297" width="78" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignUpButton"/>
-                                <state key="normal" title="Sign up Test"/>
+                                <state key="normal" title="Try Sign up"/>
                                 <connections>
                                     <segue destination="1Oa-ww-vdW" kind="show" id="uVj-tv-5zh"/>
                                 </connections>
@@ -107,23 +93,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="StartView"/>
                         <constraints>
-                            <constraint firstItem="OVq-bX-pA7" firstAttribute="centerY" secondItem="skx-M3-7Qv" secondAttribute="centerY" id="7bL-53-Uoa"/>
+                            <constraint firstItem="mtk-8N-E9o" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="30" id="3aY-N2-98a"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A5I-pi-qzS"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DLU-Po-uIG"/>
                             <constraint firstItem="ePJ-eB-iLL" firstAttribute="top" secondItem="mtk-8N-E9o" secondAttribute="bottom" constant="20" id="DU4-Ge-Ve3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ePJ-eB-iLL" secondAttribute="bottom" constant="20" id="E8B-Ff-tPm"/>
-                            <constraint firstItem="nZV-2Z-C64" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="30" id="Fxv-vW-Gs4"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="gx4-aW-Gdh" secondAttribute="bottom" constant="30" id="GFz-xO-OnE"/>
                             <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerX" secondItem="OVq-bX-pA7" secondAttribute="centerX" id="QZt-gC-lfa"/>
                             <constraint firstItem="mtk-8N-E9o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UvF-GW-gPd"/>
-                            <constraint firstItem="nZV-2Z-C64" firstAttribute="centerX" secondItem="skx-M3-7Qv" secondAttribute="centerX" id="btd-Ut-qHn"/>
-                            <constraint firstItem="skx-M3-7Qv" firstAttribute="top" secondItem="nZV-2Z-C64" secondAttribute="bottom" constant="30" id="d0D-gJ-g71"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OVq-bX-pA7" secondAttribute="trailing" constant="50" id="fhD-fv-eCn"/>
-                            <constraint firstItem="skx-M3-7Qv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="kKQ-4x-vdt"/>
+                            <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bKS-8X-f2g"/>
+                            <constraint firstItem="Z0t-Ld-GB4" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="30" id="de7-e3-1dq"/>
                             <constraint firstAttribute="trailing" secondItem="ePJ-eB-iLL" secondAttribute="trailing" constant="16" id="l6X-ZY-IhW"/>
-                            <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerY" secondItem="nZV-2Z-C64" secondAttribute="centerY" id="vnn-i1-WhH"/>
+                            <constraint firstItem="OVq-bX-pA7" firstAttribute="top" secondItem="Z0t-Ld-GB4" secondAttribute="bottom" constant="30" id="w5J-ad-x6b"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="w9w-bY-UXw"/>
-                            <constraint firstItem="mtk-8N-E9o" firstAttribute="top" secondItem="skx-M3-7Qv" secondAttribute="bottom" constant="30" id="zHO-Nb-8lp"/>
                             <constraint firstItem="ePJ-eB-iLL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="zJW-M9-YwV"/>
                         </constraints>
                     </view>
@@ -137,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="382" y="429"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="ZQL-UK-H2d">
             <objects>
-                <viewController id="8qd-iW-5fg" sceneMemberID="viewController">
+                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dm9-Bd-t2A"/>
                         <viewControllerLayoutGuide type="bottom" id="uJs-A0-SPi"/>
@@ -153,6 +135,9 @@
                                 <rect key="frame" x="164" y="378.5" width="47" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SignInButton"/>
                                 <state key="normal" title="Sign in"/>
+                                <connections>
+                                    <action selector="tapOnSignInButton:" destination="8qd-iW-5fg" eventType="touchUpInside" id="W66-SR-pZi"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SGW-mB-J78">
                                 <rect key="frame" x="30" y="274" width="315" height="30"/>
@@ -174,12 +159,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YuE-Be-Wdx">
-                                <rect key="frame" x="161" y="424" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
-                                <state key="normal" title="Log out"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="SignInView"/>
@@ -200,10 +179,51 @@
             </objects>
             <point key="canvasLocation" x="1157.5999999999999" y="428.63568215892059"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
+        <scene sceneID="qZP-Pf-s6w">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b07-nt-cIs"/>
+                        <viewControllerLayoutGuide type="bottom" id="gRs-YP-uAr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YnO-i4-MwY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in/signed up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-Nf-PW5">
+                                <rect key="frame" x="81" y="323" width="213" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
+                                <rect key="frame" x="161" y="374" width="52" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="tapOnLogOutButton:" destination="K4y-mn-w4p" eventType="touchUpInside" id="7k9-jn-HZL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="AfterLoginSignupView"/>
+                        <constraints>
+                            <constraint firstItem="aMM-gP-X0k" firstAttribute="top" secondItem="deB-Nf-PW5" secondAttribute="bottom" constant="30" id="Cqa-tQ-BbD"/>
+                            <constraint firstItem="aMM-gP-X0k" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="fmE-ac-Poo"/>
+                            <constraint firstItem="deB-Nf-PW5" firstAttribute="centerY" secondItem="YnO-i4-MwY" secondAttribute="centerY" id="nTv-pE-GOg"/>
+                            <constraint firstItem="deB-Nf-PW5" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="vJG-gJ-twA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCL-Vt-8BE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946" y="429"/>
+        </scene>
+        <!--Sign Up View Controller-->
         <scene sceneID="D1s-zu-Y9Z">
             <objects>
-                <viewController id="1Oa-ww-vdW" sceneMemberID="viewController">
+                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XMA-3Z-CBb"/>
                         <viewControllerLayoutGuide type="bottom" id="sxg-nY-nv5"/>
@@ -256,6 +276,9 @@
                                 <rect key="frame" x="161.5" y="388.5" width="52" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SignUpButton"/>
                                 <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="tapOnSignUpButton:" destination="1Oa-ww-vdW" eventType="touchUpInside" id="4ez-s0-Fo5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

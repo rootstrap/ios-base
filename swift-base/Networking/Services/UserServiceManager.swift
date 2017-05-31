@@ -24,7 +24,7 @@ class UserServiceManager {
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (_) -> Void in
         success("")
-      }) { (error) -> Void in
+    }) { (error) -> Void in
         failure(error)
     }
   }
@@ -41,7 +41,7 @@ class UserServiceManager {
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (_) -> Void in
         success("")
-      }) { (error) -> Void in
+    }) { (error) -> Void in
         failure(error)
     }
   }
@@ -51,7 +51,7 @@ class UserServiceManager {
     CommunicationManager.sendGetRequest(url, success: { (responseObject) in
       let json = JSON(responseObject)
       success(json)
-      }) { (error) in
+    }) { (error) in
         failure(error)
     }
   }
@@ -62,9 +62,19 @@ class UserServiceManager {
       "access_token": token
       ] as [String : Any]
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-     success: { (responseObject) -> Void in
-      let json = JSON(responseObject)
-      UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
+      success: { (responseObject) -> Void in
+        let json = JSON(responseObject)
+        UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
+        success()
+    }) { (error) -> Void in
+      failure(error)
+    }
+  }
+  
+  class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
+    let url = usersUrl + "sign_out"
+    CommunicationManager.sendDeleteRequest(url, success: { (responseObject) in
+      SessionDataManager.deleteSessionObject()
       success()
     }) { (error) -> Void in
       failure(error)
