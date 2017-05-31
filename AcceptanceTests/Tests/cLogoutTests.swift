@@ -15,13 +15,25 @@ class cLogoutTests: KIFTestCase {
   override func beforeAll() {
     super.beforeAll()
     
-    SessionDataManager.storeSessionObject(Session())
+    SessionDataManager.storeSessionObject(Session()) //Simulates the login
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController,
+      let vc = navigationController.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") {
+      navigationController.pushViewController(vc, animated: true)
+    }
   }
   
   override func beforeEach() {
     super.beforeEach()
     
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
+  }
+  
+  override func afterAll() {
+    super.afterAll()
+    
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+      navigationController.popToRootViewController(animated: true)
+    }
   }
   
   // MARK: Tests
