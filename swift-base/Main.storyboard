@@ -29,7 +29,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="swiftbase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -60,7 +60,7 @@
                                     <action selector="tapOnGetMyProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HM9-ax-z3p"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-eB-iLL" customClass="PlaceholderTextView" customModule="swift_base" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-eB-iLL" customClass="PlaceholderTextView" customModule="swiftbase" customModuleProvider="target">
                                 <rect key="frame" x="16" y="467" width="343" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,7 +122,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="ZQL-UK-H2d">
             <objects>
-                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="swiftbase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dm9-Bd-t2A"/>
                         <viewControllerLayoutGuide type="bottom" id="uJs-A0-SPi"/>
@@ -182,7 +182,7 @@
         <!--Home View Controller-->
         <scene sceneID="qZP-Pf-s6w">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="swiftbase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b07-nt-cIs"/>
                         <viewControllerLayoutGuide type="bottom" id="gRs-YP-uAr"/>
@@ -223,7 +223,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="D1s-zu-Y9Z">
             <objects>
-                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="swiftbase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XMA-3Z-CBb"/>
                         <viewControllerLayoutGuide type="bottom" id="sxg-nY-nv5"/>

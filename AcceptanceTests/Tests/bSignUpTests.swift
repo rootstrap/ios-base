@@ -32,6 +32,9 @@ class bSignUpTests: KIFTestCase {
     super.afterAll()
     
     SessionDataManager.deleteSessionObject()
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+      navigationController.popToRootViewController(animated: true)
+    }
   }
   
   // MARK: Tests
