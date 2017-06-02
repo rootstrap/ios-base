@@ -59,3 +59,6 @@ fastlane/report.xml
 fastlane/screenshots
 
 **/.DS_Store
+
+# Private keys
+*/ThirdPartyKeys.plist
