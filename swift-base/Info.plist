@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ConfigurationName</key>
+	<string></string>
 	<key>Base URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -31,8 +33,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>FacebookAppID</key>
-	<string>XXXXXXXXXXX</string>
 	<key>FacebookDisplayName</key>
 	<string>APP-NAME</string>
 	<key>LSApplicationQueriesSchemes</key>

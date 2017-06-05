@@ -47,3 +47,26 @@ The project already include the FBSDK and the configuration needed on the .plist
 3) The "FacebookDisplayName" value for the name of the app on Facebook.
 
 4) Done.
+
+## Third Party keys management 
+
+For security reasons all private api keys will be added on a separated .plist file that will be excluded from git. So you will need to follow the next steps:
+
+1) Rename the ThirdPartyKeys.example.plist file on your project so that it is called ThirdPartyKeys.plist.
+  Every entrance of this file should be a dictionary where each key would be *ApiKeyName*. 
+  All dictionaries should have one entrance for each environment configuration where the actual value for the specific api key will be set.
+  ![screen shot 2017-06-02 at 4 48 30 pm](https://cloud.githubusercontent.com/assets/16453725/26742399/e39db67a-47b3-11e7-9ce6-fd2c894748dd.png)
+
+3) In order to consume the right key for the particular scheme configuration that you are using to build/archive your code you will need to add a run script as a pre-action for both cases. To do this follow the next steps: 
+    1. Go to Edit Scheme.
+    2. Expand Build options.
+    3. Select Pre-actions.
+    4. Click on Add a run script.
+    5. Set your project on *Provide build setting from* section.
+    6. Paste this script:
+    ```
+    /usr/libexec/PlistBuddy -c "Set :ConfigurationName \"$CONFIGURATION\"" "$PROJECT_DIR/$INFOPLIST_FILE"
+    ```
+    7. Repeat this steps for Archive options.
+
+4) Done!
