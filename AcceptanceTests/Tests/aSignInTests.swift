@@ -14,18 +14,14 @@ class aSignInTests: KIFTestCase {
   
   override func beforeEach() {
     super.beforeEach()
+
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+      navigationController.popViewController(animated: true)
+    }
     
     tester().waitForView(withAccessibilityIdentifier: "StartView")
     tester().tapView(withAccessibilityIdentifier: "GoToSignInButton")
     tester().waitForView(withAccessibilityIdentifier: "SignInView")
-  }
-  
-  override func afterEach() {
-    super.afterEach()
-    
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      navigationController.popViewController(animated: true)
-    }
   }
   
   override func afterAll() {
