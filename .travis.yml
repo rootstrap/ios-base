@@ -1,7 +1,17 @@
 language: swift
-xcode_project: swift-base.xcodeproj
+xcode_workspace: swift-base.xcworkspace
 xcode_scheme: swift-base
-osx_image: xcode8
-xcode_sdk: iphonesimulator8.4
+osx_image: xcode8.3
+xcode_sdk: iphonesimulator10.3
 install: true
-script: swiftlint
+cache: cocoapods
+before_install:
+- export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (10.2" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
+- echo $IOS_SIMULATOR_UDID
+- open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
+before_script:
+- pod install
+- chmod u+x ./scripts/acceptance-tests.sh
+script: 
+- swiftlint
+- travis_retry ./scripts/acceptance-tests.sh
