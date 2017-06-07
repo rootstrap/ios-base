@@ -1,6 +1,6 @@
 language: swift
-xcode_project: topplay-iOS.xcodeproj
-xcode_scheme: topplay-iOS
+xcode_project: swift-base.xcodeproj
+xcode_scheme: swift-base
 osx_image: xcode8
 xcode_sdk: iphonesimulator8.4
 install: true

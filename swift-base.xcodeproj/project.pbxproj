@@ -590,9 +590,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/toptierlabs/Desktop/Projects/swift-base/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swiftbase.app/swiftbase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -609,9 +610,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/toptierlabs/Desktop/Projects/swift-base/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swiftbase.app/swiftbase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Staging;
 		};
@@ -628,9 +630,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/toptierlabs/Desktop/Projects/swift-base/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swiftbase.app/swiftbase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
