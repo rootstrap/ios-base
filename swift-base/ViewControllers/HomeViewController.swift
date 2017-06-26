@@ -9,6 +9,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+  
+  @IBAction func tapOnGetMyProfile(_ sender: Any) {
+    UserServiceManager.getMyProfile({ (json) in
+      print(json)
+    }) { (error) in
+      print(error)
+    }
+  }
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     view.showSpinner(message: "View spinner")
