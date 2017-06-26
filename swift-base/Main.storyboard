@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,15 +53,8 @@
                                     <constraint firstAttribute="height" constant="70" id="mTW-ma-26T"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtk-8N-E9o">
-                                <rect key="frame" x="127" y="417" width="121" height="30"/>
-                                <state key="normal" title="Try get my profile"/>
-                                <connections>
-                                    <action selector="tapOnGetMyProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HM9-ax-z3p"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-eB-iLL" customClass="PlaceholderTextView" customModule="swiftbase" customModuleProvider="target">
-                                <rect key="frame" x="16" y="467" width="343" height="180"/>
+                                <rect key="frame" x="16" y="407" width="343" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -93,17 +86,15 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="StartView"/>
                         <constraints>
-                            <constraint firstItem="mtk-8N-E9o" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="30" id="3aY-N2-98a"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A5I-pi-qzS"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DLU-Po-uIG"/>
-                            <constraint firstItem="ePJ-eB-iLL" firstAttribute="top" secondItem="mtk-8N-E9o" secondAttribute="bottom" constant="20" id="DU4-Ge-Ve3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ePJ-eB-iLL" secondAttribute="bottom" constant="20" id="E8B-Ff-tPm"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="gx4-aW-Gdh" secondAttribute="bottom" constant="30" id="GFz-xO-OnE"/>
                             <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerX" secondItem="OVq-bX-pA7" secondAttribute="centerX" id="QZt-gC-lfa"/>
-                            <constraint firstItem="mtk-8N-E9o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UvF-GW-gPd"/>
                             <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bKS-8X-f2g"/>
                             <constraint firstItem="Z0t-Ld-GB4" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="30" id="de7-e3-1dq"/>
                             <constraint firstAttribute="trailing" secondItem="ePJ-eB-iLL" secondAttribute="trailing" constant="16" id="l6X-ZY-IhW"/>
+                            <constraint firstItem="ePJ-eB-iLL" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="20" id="qMI-oB-NOp"/>
                             <constraint firstItem="OVq-bX-pA7" firstAttribute="top" secondItem="Z0t-Ld-GB4" secondAttribute="bottom" constant="30" id="w5J-ad-x6b"/>
                             <constraint firstItem="gx4-aW-Gdh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="w9w-bY-UXw"/>
                             <constraint firstItem="ePJ-eB-iLL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="zJW-M9-YwV"/>
@@ -205,6 +196,13 @@
                                     <action selector="tapOnLogOutButton:" destination="K4y-mn-w4p" eventType="touchUpInside" id="7k9-jn-HZL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-gz-amO">
+                                <rect key="frame" x="127" y="273" width="121" height="30"/>
+                                <state key="normal" title="Try get my profile"/>
+                                <connections>
+                                    <action selector="tapOnGetMyProfile:" destination="K4y-mn-w4p" eventType="touchUpInside" id="HQj-iH-IxE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" identifier="AfterLoginSignupView"/>
@@ -212,6 +210,8 @@
                             <constraint firstItem="aMM-gP-X0k" firstAttribute="top" secondItem="deB-Nf-PW5" secondAttribute="bottom" constant="30" id="Cqa-tQ-BbD"/>
                             <constraint firstItem="aMM-gP-X0k" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="fmE-ac-Poo"/>
                             <constraint firstItem="deB-Nf-PW5" firstAttribute="centerY" secondItem="YnO-i4-MwY" secondAttribute="centerY" id="nTv-pE-GOg"/>
+                            <constraint firstItem="sla-gz-amO" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="oiT-yw-cnD"/>
+                            <constraint firstItem="deB-Nf-PW5" firstAttribute="top" secondItem="sla-gz-amO" secondAttribute="bottom" constant="20" id="p5A-Ry-eR1"/>
                             <constraint firstItem="deB-Nf-PW5" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="vJG-gJ-twA"/>
                         </constraints>
                     </view>

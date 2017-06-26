@@ -23,7 +23,7 @@ class User: NSObject, NSCoding {
   }
   
   required init(coder aDecoder: NSCoder) {
-    self.id = (aDecoder.decodeObject(forKey: "user-id") as? Int)!
+    self.id = aDecoder.decodeInteger(forKey: "user-id")
     self.username = aDecoder.decodeObject(forKey: "user-username") as? String
     self.email = aDecoder.decodeObject(forKey: "user-email") as? String
     self.image = aDecoder.decodeObject(forKey: "user-image") as? String
@@ -37,7 +37,7 @@ class User: NSObject, NSCoding {
   }
   
   //MARK Parser
-  class func parseUserFromJSON(json: JSON) -> User {
+  class func parse(fromJSON json: JSON) -> User {
     let user = json["user"]
     
     return User(id:       user["id"].intValue,

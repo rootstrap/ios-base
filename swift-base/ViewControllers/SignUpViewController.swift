@@ -12,11 +12,9 @@ class SignUpViewController: UIViewController {
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     showSpinner(message: "VC spinner")
-    UserServiceManager.signup("toptier@mail.com", password: "123456789", success: { (responseObject) in
-      self.hideSpinner()     
-      if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") {
-        self.navigationController?.pushViewController(vc, animated: true)
-      }
+    UserServiceManager.signup("toptiertest@gmail.com", password: "123456789", success: { (responseObject) in
+      self.hideSpinner()
+      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }) { (error) in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)

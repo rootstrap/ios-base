@@ -47,14 +47,6 @@ class FirstViewController: UIViewController {
     }
   }
 
-  @IBAction func tapOnGetMyProfile(_ sender: Any) {
-    UserServiceManager.getMyProfile({ (json) in
-      print(json)
-    }) { (error) in
-      print(error)
-    }
-  }
-
   //MARK: Facebook callback methods
   func facebookLoginCallback() {
     //Optionally store params (facebook user data) locally.

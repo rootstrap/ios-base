@@ -28,6 +28,7 @@
 		9B90C3A61ECB4A8A00FBE2FB /* cLogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A31ECB4A8A00FBE2FB /* cLogoutTests.swift */; };
 		9B90C3A71ECB4A8A00FBE2FB /* aSignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A41ECB4A8A00FBE2FB /* aSignInTests.swift */; };
 		9B90C3A81ECB4A8A00FBE2FB /* bSignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A51ECB4A8A00FBE2FB /* bSignUpTests.swift */; };
+		9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD01E351F01641E007255E3 /* DictionaryExtension.swift */; };
 		9BD409101CE9F19E005223C9 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4090F1CE9F19E005223C9 /* UIHelper.swift */; };
 		9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */; };
 		9BFA84F51C77682B009F64E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFA84F41C77682B009F64E4 /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		9B90C3A31ECB4A8A00FBE2FB /* cLogoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = cLogoutTests.swift; path = Tests/cLogoutTests.swift; sourceTree = "<group>"; };
 		9B90C3A41ECB4A8A00FBE2FB /* aSignInTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = aSignInTests.swift; path = Tests/aSignInTests.swift; sourceTree = "<group>"; };
 		9B90C3A51ECB4A8A00FBE2FB /* bSignUpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = bSignUpTests.swift; path = Tests/bSignUpTests.swift; sourceTree = "<group>"; };
+		9BD01E351F01641E007255E3 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		9BD4090F1CE9F19E005223C9 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BFA84F41C77682B009F64E4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				E81171911DE5EFB7003D3DF5 /* UIViewControllerExtension.swift */,
 				E8290BFD1D832D9200599960 /* UIViewExtension.swift */,
 				E8B30E011E72FF8000131DCF /* UIStoryboardExtension.swift */,
+				9BD01E351F01641E007255E3 /* DictionaryExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -365,12 +368,13 @@
 				TargetAttributes = {
 					9B2BF7281EBB9AB5001638C4 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 2R9P8RBGBJ;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B5AFAD91C7205EB002347D6;
 					};
 					9B5AFAD91C7205EB002347D6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = XWSPW5AJWX;
+						DevelopmentTeam = 2R9P8RBGBJ;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -446,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		81F110028DEA7A4F442F6DAB /* [CP] Embed Pods Frameworks */ = {
@@ -504,7 +508,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FF6432F157233096C43DCC7B /* [CP] Copy Pods Resources */ = {
@@ -548,6 +552,7 @@
 				9B3AA3A11ED4D014005A4D26 /* HomeViewController.swift in Sources */,
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9B0C72741C738D3400BAF3B1 /* CommunicationManager.swift in Sources */,
+				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* UIViewControllerExtension.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
@@ -584,6 +589,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -605,6 +611,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -625,6 +632,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -738,7 +746,7 @@
 				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWSPW5AJWX;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -764,7 +772,7 @@
 				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWSPW5AJWX;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -838,7 +846,7 @@
 				BASE_URL = "https://rails5-api-base.herokuapp.com/api/v1";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWSPW5AJWX;
+				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",

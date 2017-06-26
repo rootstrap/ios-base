@@ -64,7 +64,7 @@ class UserServiceManager {
     CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         let json = JSON(responseObject)
-        UserDataManager.storeUserObject(User.parseUserFromJSON(json: json))
+        UserDataManager.storeUserObject(User.parse(fromJSON: json))
         success()
     }) { (error) -> Void in
       failure(error)
