@@ -35,6 +35,8 @@ class bSignUpTests: KIFTestCase {
     if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
       navigationController.popToRootViewController(animated: true)
     }
+    
+    UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
   }
   
   // MARK: Tests
