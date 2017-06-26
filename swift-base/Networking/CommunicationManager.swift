@@ -36,18 +36,23 @@ class CommunicationManager {
     case client = "client"
     case token = "access-token"
     case expiry = "expiry"
+    case accept = "Accept"
+    case contentType = "Content-Type"
   }
+  
+  //Mandatory headers for Rails 5 API
+  static let baseHeaders: [String: String] = [HTTPHeader.accept.rawValue: "application/json",
+                                              HTTPHeader.contentType.rawValue: "application/json"]
   
   fileprivate class func getHeader() -> [String: String]? {
     if let session = SessionDataManager.getSessionObject() {
-      return [
+      return baseHeaders + [
         HTTPHeader.uid.rawValue: session.uid ?? "",
         HTTPHeader.client.rawValue: session.client ?? "",
         HTTPHeader.token.rawValue: session.accessToken ?? ""
       ]
     }
-    
-    return nil
+    return baseHeaders
   }
   
   fileprivate class func getBaseUrl() -> String {
@@ -87,6 +92,7 @@ class CommunicationManager {
               }
             }
             break
+          default: break
           }
         }
       }
@@ -175,26 +181,26 @@ class CommunicationManager {
     })
   }
   
-  class func sendPostRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(.post, url: url, params: params, success: success, failure: failure)
+  class func sendPostRequest(_ url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.post, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendGetRequest(_ url: String, params: [String: AnyObject]? = nil, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(.get, url: url, params: params, success: success, failure: failure)
+  class func sendGetRequest(_ url: String, params: [String: AnyObject]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.get, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendPutRequest(_ url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(.put, url: url, params: params, success: success, failure: failure)
+  class func sendPutRequest(_ url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.put, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]? = nil, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sendBaseRequest(.delete, url: url, params: params, success: success, failure: failure)
+  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    sendBaseRequest(.delete, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping (_ responseObject: [String: AnyObject]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let header = CommunicationManager.getHeader()
     let requestUrl = getBaseUrl() + url
-    Alamofire.request(requestUrl, method: method, parameters: params, headers: header)
+    Alamofire.request(requestUrl, method: method, parameters: params, encoding: paramsEncoding, headers: header)
       .validate()
       .responseDictionary { (response) -> Void in
         switch response.result {

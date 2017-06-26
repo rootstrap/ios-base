@@ -14,9 +14,7 @@ class SignInViewController: UIViewController {
     view.showSpinner(message: "View spinner")
     UserServiceManager.login("toptier@mail.com", password: "123456789", success: { (responseObject) in
       self.hideSpinner()
-      if let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") {
-        self.navigationController?.pushViewController(vc, animated: true)
-      }
+      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }) { (error) in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)

@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     view.showSpinner(message: "View spinner")
     UserServiceManager.logout({
       self.hideSpinner()
-      _ = self.navigationController?.popToRootViewController(animated: true)
+      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }) { (error) in
       self.hideSpinner()
       print(error)
