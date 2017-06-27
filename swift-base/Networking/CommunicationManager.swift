@@ -258,10 +258,10 @@ extension DataRequest {
         return .success(["": ""])
       }
       //There was no error in validate()
-      guard error != nil else {
-        return .success(["": ""])
+      if let err = error {
+        return .failure(err)
       }
-      return .failure(NSError(domain: "Check your connection", code: 0, userInfo: nil))
+      return .success(["": ""])
     }
   }
   
