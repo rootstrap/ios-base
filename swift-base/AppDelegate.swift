@@ -13,7 +13,7 @@ import MBProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+  
   static let shared: AppDelegate = {
     guard let appD = UIApplication.shared.delegate as? AppDelegate else {
       return AppDelegate()
