@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
   
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
-    UserServiceManager.getMyProfile({ (json) in
+    UserAPI.getMyProfile({ (json) in
       print(json)
     }) { (error) in
       print(error)
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     view.showSpinner(message: "View spinner")
-    UserServiceManager.logout({
+    UserAPI.logout({
       self.hideSpinner()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }) { (error) in

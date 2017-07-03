@@ -53,7 +53,7 @@ class FirstViewController: UIViewController {
     guard FBSDKAccessToken.current() != nil else {
       return
     }
-    UserServiceManager.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
+    UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
      success: { _ -> Void in
       self.hideSpinner()
       self.performSegue(withIdentifier: "goToMainView", sender: nil)

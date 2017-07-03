@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class UserServiceManager {
+class UserAPI {
   
   fileprivate static let usersUrl = "/users/"
 
