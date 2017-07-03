@@ -10,11 +10,16 @@ import Foundation
 
 extension String {
   func length() -> Int {
-    return self.characters.count
+    return characters.count
   }
     
   func localize(comment: String = "") -> String {
     return NSLocalizedString(self, comment: comment)
+  }
+  
+  var validFilename: String {
+    guard !isEmpty else { return "emptyFilename" }
+    return addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "emptyFilename"
   }
   
   //Regex fulfill RFC 5322 Internet Message format
