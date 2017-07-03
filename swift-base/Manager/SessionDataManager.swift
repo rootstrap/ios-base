@@ -13,7 +13,6 @@ class SessionDataManager: NSObject {
   class func storeSessionObject(_ session: Session) {
     let defaults = UserDefaults.standard
     defaults.set(NSKeyedArchiver.archivedData(withRootObject: session), forKey: "toptier-session")
-    defaults.synchronize()
   }
 
   class func getSessionObject() -> Session? {
@@ -30,7 +29,6 @@ class SessionDataManager: NSObject {
   class func deleteSessionObject() {
     let defaults = UserDefaults.standard
     defaults.removeObject(forKey: "toptier-session")
-    defaults.synchronize()
   }
   
   class func checkSession() -> Bool {

@@ -1,5 +1,5 @@
 //
-//  CommunicationManager.swift
+//  APIClient.swift
 //  swift-base
 //
 //  Created by TopTier labs on 15/2/16.
@@ -7,7 +7,7 @@
 //
 
 //
-//  CommunicationManager.swift
+//  APIClient.swift
 //  swift-base
 //
 //  Created by TopTier labs on 15/2/16.
@@ -77,7 +77,7 @@ struct MultipartMedia {
 public typealias SuccessCallback = (_ responseObject: [String: Any]) -> Void
 public typealias FailureCallback = (_ error: Error) -> Void
 
-class CommunicationManager {
+class APIClient {
   
   enum HTTPHeader: String {
     case uid = "uid"
@@ -185,7 +185,7 @@ class CommunicationManager {
                                   success: @escaping SuccessCallback,
                                   failure: @escaping FailureCallback) {
     
-    let header = CommunicationManager.getHeader()
+    let header = APIClient.getHeader()
     let requestUrl = getBaseUrl() + url
     
     Alamofire.upload(multipartFormData: { (multipartForm) -> Void in
@@ -235,7 +235,7 @@ class CommunicationManager {
   }
   
   class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
-    let header = CommunicationManager.getHeader()
+    let header = APIClient.getHeader()
     let requestUrl = getBaseUrl() + url
     Alamofire.request(requestUrl, method: method, parameters: params, encoding: paramsEncoding, headers: header)
       .validate()
@@ -284,7 +284,7 @@ extension DataRequest {
       let json = JSON.init(data: data!, options: .allowFragments, error: &anError)
       if json.type != .null {
         if let dictionary = json.dictionaryObject {
-          if let customError = CommunicationManager.handleCustomError(response?.statusCode, dictionary: dictionary as [String : AnyObject]) {
+          if let customError = APIClient.handleCustomError(response?.statusCode, dictionary: dictionary as [String : AnyObject]) {
             return .failure(customError)
           }
           guard error == nil else {

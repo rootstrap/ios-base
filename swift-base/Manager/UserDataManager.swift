@@ -13,7 +13,6 @@ class UserDataManager: NSObject {
   class func storeUserObject(_ user: User) {
     let defaults = UserDefaults.standard
     defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "seatmate-user")
-    defaults.synchronize()
   }
   
   class func getUserObject() -> User? {
@@ -30,7 +29,6 @@ class UserDataManager: NSObject {
   class func deleteUserObject() {
     let defaults = UserDefaults.standard
     defaults.removeObject(forKey: "seatmate-user")
-    defaults.synchronize()
   }
   
   class func checkSignin() -> Bool {
