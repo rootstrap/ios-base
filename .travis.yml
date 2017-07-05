@@ -31,6 +31,6 @@ before_script:
 - gem 'danger-swiftlint'
 - pod install
 - chmod u+x ./scripts/acceptance-tests.sh
-script: 
 - bundle exec danger
+script: 
 - travis_retry ./scripts/acceptance-tests.sh
