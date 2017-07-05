@@ -70,3 +70,7 @@ For security reasons all private api keys will be added on a separated .plist fi
     7. Repeat this steps for Archive options.
 
 4) Done!
+
+## Danger integration
+
+Some info...
