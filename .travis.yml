@@ -24,11 +24,11 @@ xcode_sdk: iphonesimulator10.3
 install: true
 cache: cocoapods
 before_install:
+- gem 'danger-swiftlint'
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (10.2" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
 - echo $IOS_SIMULATOR_UDID
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 before_script:
-- gem 'danger-swiftlint'
 - pod install
 - chmod u+x ./scripts/acceptance-tests.sh
 - bundle exec danger
