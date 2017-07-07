@@ -31,29 +31,24 @@ public enum SwiftBaseErrorCode: Int {
 
 //Basic media MIME types, add more if needed.
 enum MimeType: String {
-  case jpeg = "image/jpg"
+  case jpeg = "image/jpeg"
   case bmp = "image/bmp"
   case png = "image/png"
   
   case mov = "video/quicktime"
   case mpeg = "video/mpeg"
   case avi = "video/avi"
+  case json = "application/json"
   
   func fileExtension() -> String {
     switch self {
-    case .bmp:
-      return ".bmp"
-    case .png:
-      return ".png"
-    case .mov:
-      return ".mov"
-    case .mpeg:
-      return ".mpeg"
-    case .avi:
-      return ".avi"
-      
-    default:
-      return ".jpg"
+    case .bmp: return ".bmp"
+    case .png: return ".png"
+    case .mov: return ".mov"
+    case .mpeg: return ".mpeg"
+    case .avi: return ".avi"
+    case .json: return ".json"
+    default: return ".jpg"
     }
   }
 }
@@ -175,8 +170,10 @@ class APIClient {
     }
   }
   
-  //Upload post request. Change the mediaType param to whatever type you need(default is String to match constants for media types provided in swift-base project).
-  class func sendMultipartRequest(_ method: HTTPMethod,
+  //Multipart-form base request. Used to upload media along with desired params.
+  //Note: Multipart request does not support Content-Type = application/json.
+  //If your API requires this header do not use this method or change backend to skip this validation.
+  class func sendMultipartRequest(_ method: HTTPMethod = .post,
                                   url: String,
                                   headers: [String: String]? = nil,
                                   params: [String: Any]?,
@@ -266,6 +263,7 @@ class APIClient {
     } else if dictionary["errors"] != nil || dictionary["error"] != nil {
       return NSError(domain: "Something went wrong. Try again later.", code:code ?? 500, userInfo: nil)
     }
+
     return nil
   }
 }
@@ -311,5 +309,12 @@ extension DataRequest {
       responseSerializer: DataRequest.responseDictionary(),
       completionHandler: completionHandler
     )
+  }
+}
+
+//Helper to retrieve the right string value a base64 API uploaders
+extension Data {
+  func asBase64Param(withType type: MimeType = .jpeg) -> String {
+    return "data:\(type.rawValue);base64,\(self.base64EncodedString())"
   }
 }
