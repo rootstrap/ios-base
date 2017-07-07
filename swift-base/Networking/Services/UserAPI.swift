@@ -97,7 +97,7 @@ class UserAPI {
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    APIClient.sendDeleteRequest(url, success: { (responseObject) in
+    APIClient.sendDeleteRequest(url, success: { (_) in
       SessionDataManager.deleteSessionObject()
       success()
     }) { (error) -> Void in

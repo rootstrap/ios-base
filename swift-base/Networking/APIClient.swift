@@ -230,7 +230,7 @@ class APIClient {
 extension DataRequest {
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
     return DataResponseSerializer { _, response, data, error in
-      guard let _ = data else {
+      guard data != nil else {
         let failureReason = "Data could not be serialized. Input data was nil."
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         let error = NSError(domain: "\(Bundle.main.bundleIdentifier!).error", code: SwiftBaseErrorCode.dataSerializationFailed.rawValue, userInfo: userInfo)
