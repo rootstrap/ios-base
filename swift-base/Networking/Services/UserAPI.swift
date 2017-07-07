@@ -39,9 +39,11 @@ class UserAPI {
       ]
     ]
     
-    let picData = UIImageJPEGRepresentation(avatar, 0.75)
-    let media = MultipartMedia(key: "user[avatar]", data: picData!)
-    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [media], success: { (response) in
+    let picData = UIImageJPEGRepresentation(avatar, 0.75)!
+    let image = MultipartMedia(key: "user[avatar]", data: picData)
+    //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
+    //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
+    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { (response) in
       success(response)
     }, failure: { (error) in
       failure(error)

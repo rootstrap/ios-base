@@ -37,6 +37,6 @@ class SignUpViewController: UIViewController {
   }
   
   func randomName() -> String {
-    return "user\(arc4random_uniform(1000))"
+    return "user\(arc4random_uniform(10000))"
   }
 }

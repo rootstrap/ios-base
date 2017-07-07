@@ -29,46 +29,6 @@ public enum SwiftBaseErrorCode: Int {
   case propertyListSerializationFailed = -6007
 }
 
-//Basic media MIME types, add more if needed.
-enum MimeType: String {
-  case jpeg = "image/jpeg"
-  case bmp = "image/bmp"
-  case png = "image/png"
-  
-  case mov = "video/quicktime"
-  case mpeg = "video/mpeg"
-  case avi = "video/avi"
-  case json = "application/json"
-  
-  func fileExtension() -> String {
-    switch self {
-    case .bmp: return ".bmp"
-    case .png: return ".png"
-    case .mov: return ".mov"
-    case .mpeg: return ".mpeg"
-    case .avi: return ".avi"
-    case .json: return ".json"
-    default: return ".jpg"
-    }
-  }
-}
-
-struct MultipartMedia {
-  var key: String
-  var data: Data
-  var type: MimeType
-  
-  init(key: String, data: Data, type: MimeType = .jpeg) {
-    self.key = key
-    self.data = data
-    self.type = type
-  }
-  
-  var toFile: String {
-    return key.validFilename + type.fileExtension()
-  }
-}
-
 public typealias SuccessCallback = (_ responseObject: [String: Any]) -> Void
 public typealias FailureCallback = (_ error: Error) -> Void
 
@@ -190,7 +150,7 @@ class APIClient {
         multipartFormData(multipartForm, params: parameters, rootKey: paramsRootKey)
       }
       for elem in media {
-        multipartForm.append(elem.data, withName: elem.key, fileName: elem.toFile, mimeType: elem.type.rawValue)
+        elem.embed(inForm: multipartForm)
       }
       
     }, to: requestUrl, method: method, headers: header, encodingCompletion: { (encodingResult) -> Void in
@@ -263,7 +223,6 @@ class APIClient {
     } else if dictionary["errors"] != nil || dictionary["error"] != nil {
       return NSError(domain: "Something went wrong. Try again later.", code:code ?? 500, userInfo: nil)
     }
-
     return nil
   }
 }
@@ -312,7 +271,7 @@ extension DataRequest {
   }
 }
 
-//Helper to retrieve the right string value a base64 API uploaders
+//Helper to retrieve the right string value for base64 API uploaders
 extension Data {
   func asBase64Param(withType type: MimeType = .jpeg) -> String {
     return "data:\(type.rawValue);base64,\(self.base64EncodedString())"
