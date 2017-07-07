@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class UserServiceManager {
+class UserAPI {
   
   fileprivate static let usersUrl = "/users/"
 
@@ -21,7 +21,7 @@ class UserServiceManager {
         "password": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
+    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (_) -> Void in
         success("")
     }) { (error) -> Void in
@@ -38,7 +38,7 @@ class UserServiceManager {
         "password_confirmation": password
       ]
     ]
-    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
+    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (_) -> Void in
         success("")
     }) { (error) -> Void in
@@ -48,7 +48,7 @@ class UserServiceManager {
 
   class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "me"
-    CommunicationManager.sendGetRequest(url, success: { (responseObject) in
+    APIClient.sendGetRequest(url, success: { (responseObject) in
       let json = JSON(responseObject)
       success(json)
     }) { (error) in
@@ -61,7 +61,7 @@ class UserServiceManager {
     let parameters = [
       "access_token": token
       ] as [String : Any]
-    CommunicationManager.sendPostRequest(url, params: parameters as [String : AnyObject]?,
+    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
       success: { (responseObject) -> Void in
         let json = JSON(responseObject)
         UserDataManager.storeUserObject(User.parse(fromJSON: json))
@@ -73,7 +73,7 @@ class UserServiceManager {
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    CommunicationManager.sendDeleteRequest(url, success: { (responseObject) in
+    APIClient.sendDeleteRequest(url, success: { (responseObject) in
       SessionDataManager.deleteSessionObject()
       success()
     }) { (error) -> Void in
