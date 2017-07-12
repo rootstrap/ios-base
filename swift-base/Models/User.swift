@@ -11,29 +11,31 @@ import SwiftyJSON
 
 class User: NSObject, NSCoding {
   var id: Int
-  var username: String?
-  var email: String?
-  var image: String?
+  var username: String
+  var email: String
+  var image: URL?
   
-  init(id: Int, username: String? = nil, email: String? = nil, image: String? = nil) {
+  init(id: Int, username: String = "", email: String, image: String = "") {
     self.id = id
     self.username = username
     self.email = email
-    self.image = image
+    self.image = image.isEmpty ? nil : URL(string: image)
   }
   
   required init(coder aDecoder: NSCoder) {
     self.id = aDecoder.decodeInteger(forKey: "user-id")
-    self.username = aDecoder.decodeObject(forKey: "user-username") as? String
-    self.email = aDecoder.decodeObject(forKey: "user-email") as? String
-    self.image = aDecoder.decodeObject(forKey: "user-image") as? String
+    self.username = aDecoder.decodeObject(forKey: "user-username") as? String ?? ""
+    self.email = aDecoder.decodeObject(forKey: "user-email") as? String ?? ""
+    if let str = aDecoder.decodeObject(forKey: "user-image") as? String {
+      self.image = URL(string: str)
+    }
   }
   
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.id, forKey: "user-id")
     aCoder.encode(self.username, forKey: "user-username")
     aCoder.encode(self.email, forKey: "user-email")
-    aCoder.encode(self.image, forKey: "user-image")
+    aCoder.encode(self.image?.absoluteString, forKey: "user-image")
   }
   
   //MARK Parser
