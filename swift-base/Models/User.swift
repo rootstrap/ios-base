@@ -41,7 +41,7 @@ class User: NSObject, NSCoding {
     let user = json["user"]
     
     return User(id:       user["id"].intValue,
-                username: user["full_name"].stringValue,
+                username: user["username"].stringValue,
                 email:    user["email"].stringValue,
                 image:    user["profile_picture"].stringValue
     )
