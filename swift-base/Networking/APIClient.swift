@@ -29,51 +29,6 @@ public enum SwiftBaseErrorCode: Int {
   case propertyListSerializationFailed = -6007
 }
 
-//Basic media MIME types, add more if needed.
-enum MimeType: String {
-  case jpeg = "image/jpg"
-  case bmp = "image/bmp"
-  case png = "image/png"
-  
-  case mov = "video/quicktime"
-  case mpeg = "video/mpeg"
-  case avi = "video/avi"
-  
-  func fileExtension() -> String {
-    switch self {
-    case .bmp:
-      return ".bmp"
-    case .png:
-      return ".png"
-    case .mov:
-      return ".mov"
-    case .mpeg:
-      return ".mpeg"
-    case .avi:
-      return ".avi"
-      
-    default:
-      return ".jpg"
-    }
-  }
-}
-
-struct MultipartMedia {
-  var key: String
-  var data: Data
-  var type: MimeType
-  
-  init(key: String, data: Data, type: MimeType = .jpeg) {
-    self.key = key
-    self.data = data
-    self.type = type
-  }
-  
-  var toFile: String {
-    return key.validFilename + type.fileExtension()
-  }
-}
-
 public typealias SuccessCallback = (_ responseObject: [String: Any]) -> Void
 public typealias FailureCallback = (_ error: Error) -> Void
 
@@ -175,8 +130,10 @@ class APIClient {
     }
   }
   
-  //Upload post request. Change the mediaType param to whatever type you need(default is String to match constants for media types provided in swift-base project).
-  class func sendMultipartRequest(_ method: HTTPMethod,
+  //Multipart-form base request. Used to upload media along with desired params.
+  //Note: Multipart request does not support Content-Type = application/json.
+  //If your API requires this header do not use this method or change backend to skip this validation.
+  class func sendMultipartRequest(_ method: HTTPMethod = .post,
                                   url: String,
                                   headers: [String: String]? = nil,
                                   params: [String: Any]?,
@@ -193,7 +150,7 @@ class APIClient {
         multipartFormData(multipartForm, params: parameters, rootKey: paramsRootKey)
       }
       for elem in media {
-        multipartForm.append(elem.data, withName: elem.key, fileName: elem.toFile, mimeType: elem.type.rawValue)
+        elem.embed(inForm: multipartForm)
       }
       
     }, to: requestUrl, method: method, headers: header, encodingCompletion: { (encodingResult) -> Void in
@@ -273,7 +230,7 @@ class APIClient {
 extension DataRequest {
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
     return DataResponseSerializer { _, response, data, error in
-      guard let _ = data else {
+      guard data != nil else {
         let failureReason = "Data could not be serialized. Input data was nil."
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         let error = NSError(domain: "\(Bundle.main.bundleIdentifier!).error", code: SwiftBaseErrorCode.dataSerializationFailed.rawValue, userInfo: userInfo)
@@ -311,5 +268,12 @@ extension DataRequest {
       responseSerializer: DataRequest.responseDictionary(),
       completionHandler: completionHandler
     )
+  }
+}
+
+//Helper to retrieve the right string value for base64 API uploaders
+extension Data {
+  func asBase64Param(withType type: MimeType = .jpeg) -> String {
+    return "data:\(type.rawValue);base64,\(self.base64EncodedString())"
   }
 }

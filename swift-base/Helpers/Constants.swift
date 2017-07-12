@@ -8,7 +8,4 @@
 
 import Foundation
 
-//MARK: Media Types
-
-let videoType = "video"
-let imageType = "image"
+//Add global constants here

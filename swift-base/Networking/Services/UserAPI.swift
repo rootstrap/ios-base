@@ -29,8 +29,8 @@ class UserAPI {
     }
   }
 
-  class func signup(_ email: String, password: String, success: @escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    let url = usersUrl
+  //Example method that uploads an image using multipart-form.
+  class func signup(_ email: String, password: String, avatar: UIImage, success: @escaping (_ responseObject: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let parameters = [
       "user": [
         "email": email,
@@ -38,11 +38,35 @@ class UserAPI {
         "password_confirmation": password
       ]
     ]
-    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (_) -> Void in
-        success("")
+    
+    let picData = UIImageJPEGRepresentation(avatar, 0.75)!
+    let image = MultipartMedia(key: "user[avatar]", data: picData)
+    //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
+    //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
+    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { (response) in
+      success(response)
+    }, failure: { (error) in
+      failure(error)
+    })
+  }
+
+  //Example method that uploads base64 encoded image.
+  class func signup(_ email: String, password: String, avatar64: UIImage, success: @escaping (_ responseObject: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    let picData = UIImageJPEGRepresentation(avatar64, 0.75)
+    let parameters = [
+      "user": [
+        "email": email,
+        "password": password,
+        "password_confirmation": password,
+        "image": picData!.asBase64Param()
+      ]
+    ]
+    
+    APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?,
+                              success: { (response) -> Void in
+                                success(response)
     }) { (error) -> Void in
-        failure(error)
+      failure(error)
     }
   }
 
@@ -73,7 +97,7 @@ class UserAPI {
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    APIClient.sendDeleteRequest(url, success: { (responseObject) in
+    APIClient.sendDeleteRequest(url, success: { (_) in
       SessionDataManager.deleteSessionObject()
       success()
     }) { (error) -> Void in
