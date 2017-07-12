@@ -70,3 +70,7 @@ For security reasons all private api keys will be added on a separated .plist fi
     7. Repeat this steps for Archive options.
 
 4) Done!
+
+## Danger integration
+
+Most of the configuration has been already done inside the swift-base files. The only thing you need to do is add the DANGER_GITHUB_API_TOKEN as an environment variable inside the Travis settings for your new repo after configuring Travis. To get this key talk with [@glm4](https://github.com/glm4) or [@pMalvasio](https://github.com/pmalvasio)
