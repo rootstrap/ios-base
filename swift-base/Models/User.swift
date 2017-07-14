@@ -19,16 +19,14 @@ class User: NSObject, NSCoding {
     self.id = id
     self.username = username
     self.email = email
-    self.image = image.isEmpty ? nil : URL(string: image)
+    self.image = URL(string: image)
   }
   
   required init(coder aDecoder: NSCoder) {
     self.id = aDecoder.decodeInteger(forKey: "user-id")
     self.username = aDecoder.decodeObject(forKey: "user-username") as? String ?? ""
     self.email = aDecoder.decodeObject(forKey: "user-email") as? String ?? ""
-    if let str = aDecoder.decodeObject(forKey: "user-image") as? String {
-      self.image = URL(string: str)
-    }
+    self.image = URL(string: aDecoder.decodeObject(forKey: "user-image") as? String ?? "")
   }
   
   func encode(with aCoder: NSCoder) {
