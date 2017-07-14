@@ -12,6 +12,7 @@ import SwiftyJSON
 class UserAPI {
   
   fileprivate static let usersUrl = "/users/"
+  fileprivate static let currentUserUrl = "/user/"
 
   class func login(_ email: String, password: String, success: @escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
@@ -22,7 +23,9 @@ class UserAPI {
       ]
     ]
     APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (_) -> Void in
+      success: { (response) -> Void in
+        let json = JSON(response)
+        UserDataManager.storeUserObject(User.parse(fromJSON: json))
         success("")
     }) { (error) -> Void in
         failure(error)
@@ -64,6 +67,8 @@ class UserAPI {
     
     APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?,
                               success: { (response) -> Void in
+                                let json = JSON(response)
+                                UserDataManager.storeUserObject(User.parse(fromJSON: json))
                                 success(response)
     }) { (error) -> Void in
       failure(error)
@@ -71,17 +76,17 @@ class UserAPI {
   }
 
   class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    let url = usersUrl + "me"
+    let url = currentUserUrl + "profile"
     APIClient.sendGetRequest(url, success: { (responseObject) in
       let json = JSON(responseObject)
       success(json)
     }) { (error) in
-        failure(error)
+      failure(error)
     }
   }
 
   class func loginWithFacebook(token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
-    let url = usersUrl + "facebook"
+    let url = currentUserUrl + "facebook"
     let parameters = [
       "access_token": token
       ] as [String : Any]
