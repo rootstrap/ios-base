@@ -57,7 +57,10 @@ For security reasons all private api keys will be added on a separated .plist fi
   All dictionaries should have one entrance for each environment configuration where the actual value for the specific api key will be set.
   ![screen shot 2017-06-02 at 4 48 30 pm](https://cloud.githubusercontent.com/assets/16453725/26742399/e39db67a-47b3-11e7-9ce6-fd2c894748dd.png)
 
-3) In order to consume the right key for the particular scheme configuration that you are using to build/archive your code you will need to add a run script as a pre-action for both cases. To do this follow the next steps: 
+2) Delete the ThirdPartyKeys.plist by just removing the reference from XCode. This way, you will keep the file locally(it is already in the .gitignore list) in the project directory.
+
+3) In order to consume the right key for the particular scheme configuration that you are using to build/archive your code you will need to add a run script as a pre-action for both cases. 
+To do this follow the next steps: 
     1. Go to Edit Scheme.
     2. Expand Build options.
     3. Select Pre-actions.
@@ -69,4 +72,6 @@ For security reasons all private api keys will be added on a separated .plist fi
     ```
     7. Repeat this steps for Archive options.
 
-4) Done!
+4) Go to Product -> Scheme -> Edit scheme. Then select Post-actions for the Build stage and make sure that the 'Provided build setting' is set to your current target.
+
+5) Done!
