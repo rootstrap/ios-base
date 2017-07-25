@@ -10,12 +10,13 @@ import Foundation
 
 class ConfigurationManager: NSObject {
 
-  class func getValue(for key: String, on propertyList: String = "ThirdPartyKeys") -> String {
+  class func getValue(for key: String, on propertyList: String = "ThirdPartyKeys") -> String? {
     if let path = Bundle.main.path(forResource: propertyList, ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject],
       let configDict = dict[key] as? [String: AnyObject] {
-      return configDict[Bundle.main.object(forInfoDictionaryKey: "ConfigurationName") as? String ?? ""] as? String ?? ""
+      return configDict[Bundle.main.object(forInfoDictionaryKey: "ConfigurationName") as? String ?? ""] as? String
     }
-
-    return ""
+    
+    print("ThirdPartyKeys.plist NOT FOUND - Please check your project configuration in: \n https://github.com/toptier/swift-base")
+    return nil
   }
 }

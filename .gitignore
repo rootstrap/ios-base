@@ -61,4 +61,4 @@ fastlane/screenshots
 **/.DS_Store
 
 # Private keys
-*/ThirdPartyKeys.plist
+**/ThirdPartyKeys.plist
