@@ -3,12 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>FacebookKey</key>
-	<dict/>
-	<key>Release</key>
-	<string>XXXXXX</string>
-	<key>Staging</key>
-	<string>XXXXXX</string>
-	<key>Debug</key>
-	<string>XXXXXX</string>
+	<dict>
+		<key>Release</key>
+		<string>XXXXXX</string>
+		<key>Staging</key>
+		<string>XXXXXX</string>
+		<key>Debug</key>
+		<string>XXXXXX</string>
+	</dict>
 </dict>
 </plist>
