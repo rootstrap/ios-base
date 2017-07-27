@@ -11,20 +11,25 @@ import FBSDKLoginKit
 import SwiftyJSON
 
 class FirstViewController: UIViewController {
-
+  // MARK: - Outlets
   @IBOutlet weak var testView: UIView!
+  @IBOutlet weak var testView2: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
-
-  //MARK: Lifecycle
+  
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    testView.addBorder()
-    testView.setRoundBorders()
+    testView2.setRoundBorders()
+    testView.setCircleBorders()
     textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
   }
-
-  //MARK: Actions
+  
+  // MARK: - Actions
+  @IBAction func shake(_ sender: Any) {
+    testView2.shake()
+  }
+  
   @IBAction func facebookLogin() {
     showSpinner()
     let fbLoginManager = FBSDKLoginManager()
@@ -46,7 +51,7 @@ class FirstViewController: UIViewController {
       }
     }
   }
-
+  
   //MARK: Facebook callback methods
   func facebookLoginCallback() {
     //Optionally store params (facebook user data) locally.
@@ -54,9 +59,9 @@ class FirstViewController: UIViewController {
       return
     }
     UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
-     success: { _ -> Void in
-      self.hideSpinner()
-      self.performSegue(withIdentifier: "goToMainView", sender: nil)
+                              success: { _ -> Void in
+                                self.hideSpinner()
+                                self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }) { (error) -> Void in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error._domain)

@@ -22,6 +22,26 @@ extension UIView {
     layer.cornerRadius = cornerRadius
   }
   
+  func setCircleBorders() {
+    setRoundBorders(bounds.size.width / 2)
+  }
+  
+  func animateToIdentity(withDuration duration: TimeInterval = 0.5) {
+    UIView.animate(withDuration: duration, animations: {
+      self.transform = CGAffineTransform.identity
+    })
+  }
+  
+  func shake() {
+    let animation = CABasicAnimation(keyPath: "position")
+    animation.duration = 0.05
+    animation.repeatCount = 2
+    animation.autoreverses = true
+    animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 5, y: center.y))
+    animation.toValue = NSValue(cgPoint: CGPoint(x: center.x + 5, y: center.y))
+    layer.add(animation, forKey: "position")
+  }
+  
   //MARK: Class methods
   //Change the default values for params as you wish
   class func addBorder(to targets: [UIView], color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
@@ -33,6 +53,12 @@ extension UIView {
   class func roundBorders(of targets: [UIView], cornerRadius: CGFloat = 10.0) {
     for view in targets {
       view.setRoundBorders(cornerRadius)
+    }
+  }
+  
+  class func circleBorders(of targets: [UIView]) {
+    for view in targets {
+      view.setCircleBorders()
     }
   }
   

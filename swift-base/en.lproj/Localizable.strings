@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  swift-base
+
+  Created by Eric Pintos on 7/26/17.
+  Copyright © 2017 TopTier labs. All rights reserved.
+*/
+
+// MARK: Example App Messages
+"You are logged in/ \nsigned up" = "You are logged in/ \nsigned up.";
+"Try get my profile" = "Try get my profile";
+"Log Out" = "Log Out";
