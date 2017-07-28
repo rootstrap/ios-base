@@ -9,6 +9,18 @@
 import Foundation
 
 extension String {
+  var isAlphanumericWithNoSpaces: Bool {
+    return rangeOfCharacter(from: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").inverted) == nil
+  }
+  
+  var hasPunctuationCharacters: Bool {
+    return rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
+  }
+  
+  var hasNumbers: Bool {
+    return rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
+  }
+  
   func length() -> Int {
     return characters.count
   }

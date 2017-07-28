@@ -9,7 +9,28 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+  // MARK: - Outlets
+  @IBOutlet weak var name: UITextField!
+  @IBOutlet weak var email: UITextField!
+  @IBOutlet weak var password: UITextField!
+  @IBOutlet weak var confirmPassword: UITextField!
+  @IBOutlet weak var signUP: UIButton!
   
+  // MARK: - Lifecycle Events
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setUI()
+  }
+  
+  // MARK: - Setters
+  func setUI() {
+    signUP.setRoundBorders(20)
+    for item in [name, email, password, confirmPassword] {
+      item?.addLeftPadding()
+    }
+  }
+  
+  // MARK: - Actions
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     showSpinner(message: "VC spinner")
     UserAPI.signup("\(randomName())@gmail.com", password: "123456789", avatar64: randomImage(), success: { (_) in
