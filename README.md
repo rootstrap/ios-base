@@ -67,6 +67,18 @@ For security reasons all private api keys will be added on a separated .plist fi
 
 4) Done!
 
+## Extensions
+
+If your project needs some specific feature, utility or helpers, look into the existing branches for possible matches. 
+Currently we have these extra branches:
+
+**feature/observe_root_vc**: Detecting when rootViewController gets loaded.
+
+**branch util_gradients**: Helper methods to easily add color gradients.
+
+
+To use them simply download the branch and locally rebase against master/develop from your initial swift-base clone.
+
 ## Danger integration
 
 Most of the configuration has been already done inside the swift-base files. The only thing you need to do is add the DANGER_GITHUB_API_TOKEN as an environment variable inside the Travis settings for your new repo after configuring Travis. To get this key talk with [@glm4](https://github.com/glm4) or [@pMalvasio](https://github.com/pmalvasio)

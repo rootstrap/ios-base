@@ -22,20 +22,6 @@ extension UIView {
     layer.cornerRadius = cornerRadius
   }
   
-  //MARK: Class methods
-  //Change the default values for params as you wish
-  class func addBorder(to targets: [UIView], color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
-    for view in targets {
-      view.addBorder(color: color, weight: weight)
-    }
-  }
-  
-  class func roundBorders(of targets: [UIView], cornerRadius: CGFloat = 10.0) {
-    for view in targets {
-      view.setRoundBorders(cornerRadius)
-    }
-  }
-  
   func showSpinner(message: String = "Please Wait", comment: String = "") {
     if let spinner = AppDelegate.shared.spinner {
       spinner.label.text = message.localize(comment: comment)
@@ -55,5 +41,19 @@ extension UIView {
       spinner.didMoveToSuperview()
     }
     UIApplication.shared.endIgnoringInteractionEvents()
+  }
+}
+
+extension Array where Element: UIView {
+  func addBorder(color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
+    for view in self {
+      view.addBorder(color: color, weight: weight)
+    }
+  }
+  
+  func roundBorders(cornerRadius: CGFloat = 10.0) {
+    for view in self {
+      view.setRoundBorders(cornerRadius)
+    }
   }
 }
