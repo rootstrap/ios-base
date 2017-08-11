@@ -74,7 +74,7 @@ Currently we have these extra branches:
 
 **feature/observe_root_vc**: Detecting when rootViewController gets loaded.
 
-**branch util_gradients**: Helper methods to easily add color gradients.
+**util_gradients**: Helper methods to easily add color gradients.
 
 
 To use them simply download the branch and locally rebase against master/develop from your initial swift-base clone.
