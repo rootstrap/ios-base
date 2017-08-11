@@ -76,6 +76,7 @@ Currently we have these extra branches:
 
 **util_gradients**: Helper methods to easily add color gradients.
 
+**paginated_collections**: Adds paginated subclasses of UITableView and UICollectionView.
 
 To use them simply download the branch and locally rebase against master/develop from your initial swift-base clone.
 
