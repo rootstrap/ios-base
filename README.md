@@ -80,6 +80,11 @@ Currently we have these extra branches:
 
 To use them simply download the branch and locally rebase against master/develop from your initial swift-base clone.
 
+## MVVM/RxSwift
+
+In case you want to work with RxSwift or MVVM you can check the **rx_swift** branch.
+To use it simply download the branch and use it as your master/develop branch.
+
 ## Danger integration
 
 Most of the configuration has been already done inside the swift-base files. The only thing you need to do is add the DANGER_GITHUB_API_TOKEN as an environment variable inside the Travis settings for your new repo after configuring Travis. To get this key talk with [@glm4](https://github.com/glm4) or [@pMalvasio](https://github.com/pmalvasio)
