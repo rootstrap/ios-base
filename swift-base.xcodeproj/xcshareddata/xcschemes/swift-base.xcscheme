@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "swiftbase.app"
+                     BuildableName = "swift-base.app"
                      BlueprintName = "swift-base"
                      ReferencedContainer = "container:swift-base.xcodeproj">
                   </BuildableReference>
@@ -33,7 +33,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "swiftbase.app"
+                     BuildableName = "swift-base.app"
                      BlueprintName = "swift-base"
                      ReferencedContainer = "container:swift-base.xcodeproj">
                   </BuildableReference>
@@ -233,7 +233,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-               BuildableName = "swiftbase.app"
+               BuildableName = "swift-base.app"
                BlueprintName = "swift-base"
                ReferencedContainer = "container:swift-base.xcodeproj">
             </BuildableReference>
@@ -261,7 +261,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swiftbase.app"
+            BuildableName = "swift-base.app"
             BlueprintName = "swift-base"
             ReferencedContainer = "container:swift-base.xcodeproj">
          </BuildableReference>
@@ -284,7 +284,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swiftbase.app"
+            BuildableName = "swift-base.app"
             BlueprintName = "swift-base"
             ReferencedContainer = "container:swift-base.xcodeproj">
          </BuildableReference>
@@ -303,7 +303,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swiftbase.app"
+            BuildableName = "swift-base.app"
             BlueprintName = "swift-base"
             ReferencedContainer = "container:swift-base.xcodeproj">
          </BuildableReference>

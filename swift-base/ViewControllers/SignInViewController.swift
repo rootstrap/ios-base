@@ -12,7 +12,7 @@ class SignInViewController: UIViewController {
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
     view.showSpinner(message: "View spinner")
-    UserAPI.login("toptier@mail.com", password: "123456789", success: { (responseObject) in
+    UserAPI.login("toptier@mail.com", password: "123456789", success: { _ in
       self.hideSpinner()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }) { (error) in

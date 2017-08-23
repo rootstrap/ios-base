@@ -2,29 +2,40 @@
 
 Instructions for install the project, change the name and use this project
 
-1) Clone repo.
+1) Clone repo. 
 
-2) Change the name of the project on the left sidbar in Xcode.
+2) Change the name of the project on the left sidebar in Xcode. 
 
-3) Enter on Manage Schemas and change the name to the new one.
+3) Enter on Manage Schemas and change the name to the new one. 
 
-4) Close Xcode.
+4) Search for the name of the project(using underscore instead of dash) in the entire project and replace all occurrences for the new name(using underscore instead of dash).
 
-5) Rename the main and the source folder.
+5) Close Xcode. 
 
-6) Right click the project bundle .xcodeproj file and select “Show Package Contents” from the context menu.
+6) Rename the main and the source folder. 
 
-7) Open the .pbxproj file with any text editor.
+7) Right click the project bundle .xcodeproj file and select “Show Package Contents” from the context menu. 
 
-8) Search and replace any occurrence of the original folder name with the new folder name.
+8) Open the .pbxproj file with any text editor. 
 
-9) Save the file.
+9) Search and replace any occurrence of the original folder name with the new folder name. If the name contains a hyphen then also search for the name replacing the hyphen for an underscore (swift-base and swift_base). 
 
-10) Open Podfile and change the target name with the new name of your project.
+10) Save the file.
 
-11) Run pod install.
+11) Open the scripts folder, open the acceptance-tests.sh file with any text editor.
 
-12) Done :)
+12) Search and replace any occurrence of the original folder name with the new folder name. 
+
+13) Save the file 
+
+14) Open Podfile and change the target name with the new name of your project.
+
+15) Delete the *.workspace file. 
+
+16) Run pod install. 
+
+17) Done :)
+
 
 ## Travis - SwiftLint configuration
 
