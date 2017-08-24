@@ -8,7 +8,7 @@
 
 import OHHTTPStubs
 import KIF
-@testable import swiftbase
+@testable import swift_base
 
 class bSignUpTests: KIFTestCase {
   
