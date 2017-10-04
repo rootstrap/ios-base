@@ -13,9 +13,9 @@ class HomeViewController: UIViewController {
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
     UserAPI.getMyProfile({ (json) in
       print(json)
-    }) { (error) in
+    }, failure: { error in
       print(error)
-    }
+    })
   }
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
@@ -23,9 +23,9 @@ class HomeViewController: UIViewController {
     UserAPI.logout({
       self.hideSpinner()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
-    }) { (error) in
+    }, failure: { error in
       self.hideSpinner()
       print(error)
-    }
+    })
   }
 }

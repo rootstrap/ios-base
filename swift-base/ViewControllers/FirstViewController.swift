@@ -11,14 +11,29 @@ import FBSDKLoginKit
 import SwiftyJSON
 
 class FirstViewController: UIViewController {
-
+  // MARK: - Outlets
+  @IBOutlet weak var facebookSign: UIButton!
+  @IBOutlet weak var signIn: UIButton!
+  @IBOutlet weak var signUp: UIButton!
+  
   @IBOutlet weak var testView: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
 
-  //MARK: Lifecycle
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    setText()
+    setTestView()
+  }
+  
+  // MARK: - Setters
+  func setText() {
+    facebookSign.setTitle("Try Facebook Login".localized, for: .normal)
+    signUp.setTitle("Try Sign up".localized, for: .normal)
+    signIn.setTitle("Try Sign in".localized, for: .normal)
+  }
+  
+  func setTestView() {
     testView.addBorder()
     testView.setRoundBorders()
     textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
@@ -54,12 +69,12 @@ class FirstViewController: UIViewController {
       return
     }
     UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
-     success: { _ -> Void in
+     success: { _ in
       self.hideSpinner()
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
-    }) { (error) -> Void in
+    }, failure: { error in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error._domain)
-    }
+    })
   }
 }

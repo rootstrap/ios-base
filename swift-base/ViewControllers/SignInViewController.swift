@@ -15,10 +15,10 @@ class SignInViewController: UIViewController {
     UserAPI.login("toptier@mail.com", password: "123456789", success: { _ in
       self.hideSpinner()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-    }) { (error) in
+    }, failure: { error in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
       print(error)
-    }
+    })
   }
 }
