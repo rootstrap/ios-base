@@ -15,11 +15,11 @@ class SignUpViewController: UIViewController {
     UserAPI.signup("\(randomName())@gmail.com", password: "123456789", avatar64: randomImage(), success: { (_) in
       self.hideSpinner()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-    }) { (error) in
+    }, failure: { error in
       self.hideSpinner()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
       print(error)
-    }
+    })
   }
   
   //Helper methods for test purposes

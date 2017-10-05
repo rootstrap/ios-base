@@ -9,8 +9,24 @@
 import Foundation
 
 extension String {
-  func length() -> Int {
+  var isAlphanumericWithNoSpaces: Bool {
+    return rangeOfCharacter(from: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").inverted) == nil
+  }
+  
+  var hasPunctuationCharacters: Bool {
+    return rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
+  }
+  
+  var hasNumbers: Bool {
+    return rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
+  }
+  
+  var length: Int {
     return characters.count
+  }
+  
+  var localized: String {
+    return self.localize()
   }
     
   func localize(comment: String = "") -> String {

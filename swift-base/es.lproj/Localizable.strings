@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  swift-base
+
+  Created by Eric Pintos on 10/4/17.
+  Copyright © 2017 TopTier labs. All rights reserved.
+*/
+
+"Try Facebook Login" = "Inicia sesión con Facebook";
+"Try Sign up" = "Regístrate";
+"Try Sign in" = "Inicia Sesión";

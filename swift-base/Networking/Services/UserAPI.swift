@@ -23,13 +23,13 @@ class UserAPI {
       ]
     ]
     APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (response) -> Void in
+      success: { response in
         let json = JSON(response)
         UserDataManager.storeUserObject(User.parse(fromJSON: json))
         success("")
-    }) { (error) -> Void in
+    }, failure: { error in
         failure(error)
-    }
+    })
   }
 
   //Example method that uploads an image using multipart-form.
@@ -66,13 +66,13 @@ class UserAPI {
     ]
     
     APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?,
-                              success: { (response) -> Void in
+                              success: { response in
                                 let json = JSON(response)
                                 UserDataManager.storeUserObject(User.parse(fromJSON: json))
                                 success(response)
-    }) { (error) -> Void in
+    }, failure: { error in
       failure(error)
-    }
+    })
   }
 
   class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
@@ -80,9 +80,9 @@ class UserAPI {
     APIClient.sendGetRequest(url, success: { (responseObject) in
       let json = JSON(responseObject)
       success(json)
-    }) { (error) in
+    }, failure: { error in
       failure(error)
-    }
+    })
   }
 
   class func loginWithFacebook(token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
@@ -91,22 +91,22 @@ class UserAPI {
       "access_token": token
       ] as [String : Any]
     APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { (responseObject) -> Void in
+      success: { responseObject in
         let json = JSON(responseObject)
         UserDataManager.storeUserObject(User.parse(fromJSON: json))
         success()
-    }) { (error) -> Void in
+    }, failure: { error in
       failure(error)
-    }
+    })
   }
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    APIClient.sendDeleteRequest(url, success: { (_) in
+    APIClient.sendDeleteRequest(url, success: { _ in
       SessionDataManager.deleteSessionObject()
       success()
-    }) { (error) -> Void in
+    }, failure: { error in
       failure(error)
-    }
+    })
   }
 }
