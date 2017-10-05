@@ -15,21 +15,28 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
-  
-  // MARK: - Lifecycle
+
+  // MARK: Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setText()
+    setUI()
   }
   
-  // MARK: - Setters
-  func setText() {
-    facebookSign.setTitle("Try Facebook Login".localized, for: .normal)
-    signUp.setTitle("Try Sign up".localized, for: .normal)
-    signIn.setTitle("Try Sign in".localized, for: .normal)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
-  //MARK: Actions
+  // MARK: - Setters
+  func setUI() {
+    facebookSign.setTitle("FACEBOOK CONNECT".localized, for: .normal)
+    signIn.setTitle("LOG IN".localized, for: .normal)
+    signUp.setTitle("Don’t have an account? Let’s create one".localized, for: .normal)
+
+    [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
+  }
+
+  // MARK: Actions
   @IBAction func facebookLogin() {
     UIApplication.showNetworkActivity()
     let fbLoginManager = FBSDKLoginManager()
@@ -52,7 +59,7 @@ class FirstViewController: UIViewController {
     }
   }
 
-  //MARK: Facebook callback methods
+  // MARK: Facebook callback methods
   func facebookLoginCallback() {
     //Optionally store params (facebook user data) locally.
     guard FBSDKAccessToken.current() != nil else {

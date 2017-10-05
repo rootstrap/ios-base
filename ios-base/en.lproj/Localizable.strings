@@ -6,6 +6,9 @@
   Copyright © 2017 Rootstrap. All rights reserved.
 */
 
-"Try Facebook Login" = "Try Facebook Login";
-"Try Sign up" = "Try Sign up";
-"Try Sign in" = "Try Sign in";
+// MARK: - Welcome Screen Strings
+"FACEBOOK CONNECT" = "FACEBOOK CONNECT";
+"Don’t have an account? Let’s create one" = "Don’t have an account? Let’s create one";
+"LOG IN" = "LOG IN";
+"SIGN UP" = "SIGN UP";
+"LOG OUT" = "LOG OUT";

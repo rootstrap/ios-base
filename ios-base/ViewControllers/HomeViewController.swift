@@ -9,7 +9,17 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+  // MARK: - Outlets
+  @IBOutlet weak var logOut: UIButton!
   
+  // MARK: - Lifecycle Events
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    logOut.setTitle("LOG OUT".localized, for: .normal)
+    logOut.setRoundBorders(22)
+  }
+  
+  // MARK: - Actions
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
     UserAPI.getMyProfile({ (json) in
       print(json)
@@ -19,13 +29,18 @@ class HomeViewController: UIViewController {
   }
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
-    UIApplication.showNetworkActivity()
+
+    UIApplication.showSpinner(message: "Logging Out")
     UserAPI.logout({
-      UIApplication.hideNetworkActivity()
-      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
+      self.logOutResponse()
     }, failure: { error in
-      UIApplication.hideNetworkActivity()
+      self.logOutResponse()
       print(error)
     })
+  }
+  
+  func logOutResponse() {
+    self.hideSpinner()
+    UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
   }
 }
