@@ -11,12 +11,12 @@ import UIKit
 class SignUpViewController: UIViewController {
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    showSpinner(message: "VC spinner")
+    Spinner.show()
     UserAPI.signup("\(randomName())@gmail.com", password: "123456789", avatar64: randomImage(), success: { (_) in
-      self.hideSpinner()
+      Spinner.hide()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in
-      self.hideSpinner()
+      Spinner.hide()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
       print(error)
     })

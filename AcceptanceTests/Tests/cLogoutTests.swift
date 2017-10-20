@@ -8,7 +8,7 @@
 
 import KIF
 import OHHTTPStubs
-@testable import swift_base
+@testable import ios_base
 
 class cLogoutTests: KIFTestCase {
   

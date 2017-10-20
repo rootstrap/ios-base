@@ -29,7 +29,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FirstViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -53,7 +53,7 @@
                                     <constraint firstAttribute="height" constant="70" id="mTW-ma-26T"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-eB-iLL" customClass="PlaceholderTextView" customModule="swift_base" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-eB-iLL" customClass="PlaceholderTextView" customModule="ios_base" customModuleProvider="target">
                                 <rect key="frame" x="16" y="407" width="343" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,7 +67,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-bX-pA7">
-                                <rect key="frame" x="152.5" y="357" width="72" height="30"/>
+                                <rect key="frame" x="152" y="357" width="72" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignInButton"/>
                                 <state key="normal" title="Try Sign in"/>
                                 <connections>
@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0t-Ld-GB4">
-                                <rect key="frame" x="149" y="297" width="78" height="30"/>
+                                <rect key="frame" x="148.5" y="297" width="78" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignUpButton"/>
                                 <state key="normal" title="Try Sign up"/>
                                 <connections>
@@ -116,7 +116,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="ZQL-UK-H2d">
             <objects>
-                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dm9-Bd-t2A"/>
                         <viewControllerLayoutGuide type="bottom" id="uJs-A0-SPi"/>
@@ -176,7 +176,7 @@
         <!--Home View Controller-->
         <scene sceneID="qZP-Pf-s6w">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b07-nt-cIs"/>
                         <viewControllerLayoutGuide type="bottom" id="gRs-YP-uAr"/>
@@ -192,7 +192,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
-                                <rect key="frame" x="161" y="374" width="52" height="30"/>
+                                <rect key="frame" x="161.5" y="374" width="52" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
                                 <state key="normal" title="Log out"/>
                                 <connections>
@@ -226,7 +226,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="D1s-zu-Y9Z">
             <objects>
-                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="swift_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XMA-3Z-CBb"/>
                         <viewControllerLayoutGuide type="bottom" id="sxg-nY-nv5"/>

@@ -16,12 +16,4 @@ extension UIViewController {
     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: handler))
     present(alert, animated: true, completion: nil)
   }
-  
-  func showSpinner(message: String = "Please Wait", comment: String = "") {
-    view.showSpinner(message: message, comment: comment)
-  }
-  
-  func hideSpinner() {
-    view.hideSpinner()
-  }
 }

@@ -15,9 +15,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "swift-base.app"
-                     BlueprintName = "swift-base"
-                     ReferencedContainer = "container:swift-base.xcodeproj">
+                     BuildableName = "ios-base.app"
+                     BlueprintName = "ios-base"
+                     ReferencedContainer = "container:ios-base.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -33,9 +33,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "swift-base.app"
-                     BlueprintName = "swift-base"
-                     ReferencedContainer = "container:swift-base.xcodeproj">
+                     BuildableName = "ios-base.app"
+                     BlueprintName = "ios-base"
+                     ReferencedContainer = "container:ios-base.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -190,7 +190,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19F68CB3554C52BAF54028452F51780C"
+               BlueprintIdentifier = "DF4B10E720F12B790C7C3467B3DA9B39"
                BuildableName = "Pods_swift_base.framework"
                BlueprintName = "Pods-swift-base"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -218,7 +218,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "55D82DC1096450D7B9B71AC9CA78E5E9"
+               BlueprintIdentifier = "04DC472041AC6DE0D376618533FC2C93"
                BuildableName = "SwiftyJSON.framework"
                BlueprintName = "SwiftyJSON"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -233,9 +233,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-               BuildableName = "swift-base.app"
-               BlueprintName = "swift-base"
-               ReferencedContainer = "container:swift-base.xcodeproj">
+               BuildableName = "ios-base.app"
+               BlueprintName = "ios-base"
+               ReferencedContainer = "container:ios-base.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -244,6 +244,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -253,7 +254,7 @@
                BlueprintIdentifier = "9B2BF7281EBB9AB5001638C4"
                BuildableName = "AcceptanceTests.xctest"
                BlueprintName = "AcceptanceTests"
-               ReferencedContainer = "container:swift-base.xcodeproj">
+               ReferencedContainer = "container:ios-base.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -261,9 +262,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swift-base.app"
-            BlueprintName = "swift-base"
-            ReferencedContainer = "container:swift-base.xcodeproj">
+            BuildableName = "ios-base.app"
+            BlueprintName = "ios-base"
+            ReferencedContainer = "container:ios-base.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -273,6 +274,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -284,9 +286,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swift-base.app"
-            BlueprintName = "swift-base"
-            ReferencedContainer = "container:swift-base.xcodeproj">
+            BuildableName = "ios-base.app"
+            BlueprintName = "ios-base"
+            ReferencedContainer = "container:ios-base.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -303,9 +305,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-            BuildableName = "swift-base.app"
-            BlueprintName = "swift-base"
-            ReferencedContainer = "container:swift-base.xcodeproj">
+            BuildableName = "ios-base.app"
+            BlueprintName = "ios-base"
+            ReferencedContainer = "container:ios-base.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

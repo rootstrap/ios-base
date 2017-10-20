@@ -21,27 +21,6 @@ extension UIView {
     clipsToBounds = true
     layer.cornerRadius = cornerRadius
   }
-  
-  func showSpinner(message: String = "Please Wait", comment: String = "") {
-    if let spinner = AppDelegate.shared.spinner {
-      spinner.label.text = message.localize(comment: comment)
-      spinner.center = center
-      spinner.willMove(toSuperview: self)
-      addSubview(spinner)
-      spinner.show(animated: true)
-      spinner.didMoveToSuperview()
-      UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-  }
-  
-  func hideSpinner() {
-    if let spinner = AppDelegate.shared.spinner {
-      spinner.willMove(toSuperview: nil)
-      spinner.hide(animated: true)
-      spinner.didMoveToSuperview()
-    }
-    UIApplication.shared.endIgnoringInteractionEvents()
-  }
 }
 
 extension Array where Element: UIView {

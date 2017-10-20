@@ -19,12 +19,12 @@ class HomeViewController: UIViewController {
   }
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
-    view.showSpinner(message: "View spinner")
+    Spinner.show()
     UserAPI.logout({
-      self.hideSpinner()
+      Spinner.hide()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }, failure: { error in
-      self.hideSpinner()
+      Spinner.hide()
       print(error)
     })
   }

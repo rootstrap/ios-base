@@ -41,20 +41,20 @@ class FirstViewController: UIViewController {
 
   //MARK: Actions
   @IBAction func facebookLogin() {
-    showSpinner()
+    Spinner.show()
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
         self.showMessageError(title: "Oops..", errorMessage: "Something went wrong, try again later.")
-        self.hideSpinner()
+        Spinner.hide()
         return
       }
       if result?.grantedPermissions == nil || result?.isCancelled ?? true {
-        self.hideSpinner()
+        Spinner.hide()
       } else if !(result?.grantedPermissions.contains("email"))! {
-        self.hideSpinner()
+        Spinner.hide()
         self.showMessageError(title: "Oops..", errorMessage: "It seems that you haven't allowed Facebook to provide your email address.")
       } else {
         self.facebookLoginCallback()
@@ -70,10 +70,10 @@ class FirstViewController: UIViewController {
     }
     UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
      success: { _ in
-      self.hideSpinner()
+      Spinner.hide()
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }, failure: { error in
-      self.hideSpinner()
+      Spinner.hide()
       self.showMessageError(title: "Error", errorMessage: error._domain)
     })
   }

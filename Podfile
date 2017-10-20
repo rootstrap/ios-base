@@ -1,7 +1,7 @@
 platform :ios, '10.0'
 use_frameworks!
 
-target 'swift-base' do
+target 'ios-base' do
   pod 'Alamofire', '~> 4.5.1'
   pod 'SwiftyJSON', '~> 3.1.3'
   pod 'IQKeyboardManagerSwift', '~> 5.0.4'
