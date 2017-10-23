@@ -18,12 +18,15 @@ class FirstViewController: UIViewController {
   
   @IBOutlet weak var testView: UIView!
   @IBOutlet weak var textView: PlaceholderTextView!
-
+  @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
+  
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setText()
     setTestView()
+    setTextView()
   }
   
   // MARK: - Setters
@@ -37,6 +40,14 @@ class FirstViewController: UIViewController {
     testView.addBorder()
     testView.setRoundBorders()
     textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
+  }
+  
+  func setTextView() {
+    let topBarHeight: CGFloat = navigationController!.navigationBar.bounds.height + UIApplication.shared.statusBarFrame.height
+    textViewHeightConstraint.constant = view.frame.height - topBarHeight - textView.frame.minY - textViewBottomConstraint.constant
+    if #available(iOS 11.0, *) {
+      textViewHeightConstraint.constant -= UIApplication.shared.delegate!.window!!.safeAreaInsets.bottom
+    }
   }
 
   //MARK: Actions
