@@ -1,8 +1,8 @@
 language: swift
 xcode_workspace: swift-base.xcworkspace
 xcode_scheme: swift-base
-osx_image: xcode8.3
-xcode_sdk: iphonesimulator10.3
+osx_image: xcode9
+xcode_sdk: iphonesimulator11
 install: true
 cache: cocoapods
 before_install:

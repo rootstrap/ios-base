@@ -11,12 +11,12 @@ import UIKit
 class SignInViewController: UIViewController {
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    Spinner.show()
+    UIApplication.showNetworkActivity()
     UserAPI.login("toptier@mail.com", password: "123456789", success: { _ in
-      Spinner.hide()
+      UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in
-      Spinner.hide()
+      UIApplication.hideNetworkActivity()
       self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
       print(error)
     })

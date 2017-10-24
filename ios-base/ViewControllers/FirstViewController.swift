@@ -16,17 +16,10 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
   
-  @IBOutlet weak var testView: UIView!
-  @IBOutlet weak var textView: PlaceholderTextView!
-  @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
-  
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setText()
-    setTestView()
-    setTextView()
   }
   
   // MARK: - Setters
@@ -35,37 +28,23 @@ class FirstViewController: UIViewController {
     signUp.setTitle("Try Sign up".localized, for: .normal)
     signIn.setTitle("Try Sign in".localized, for: .normal)
   }
-  
-  func setTestView() {
-    testView.addBorder()
-    testView.setRoundBorders()
-    textView.addBorder(color: textView.placeholderColor!, weight: 1.0)
-  }
-  
-  func setTextView() {
-    let topBarHeight: CGFloat = navigationController!.navigationBar.bounds.height + UIApplication.shared.statusBarFrame.height
-    textViewHeightConstraint.constant = view.frame.height - topBarHeight - textView.frame.minY - textViewBottomConstraint.constant
-    if #available(iOS 11.0, *) {
-      textViewHeightConstraint.constant -= UIApplication.shared.delegate!.window!!.safeAreaInsets.bottom
-    }
-  }
 
   //MARK: Actions
   @IBAction func facebookLogin() {
-    Spinner.show()
+    UIApplication.showNetworkActivity()
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
         self.showMessageError(title: "Oops..", errorMessage: "Something went wrong, try again later.")
-        Spinner.hide()
+        UIApplication.hideNetworkActivity()
         return
       }
       if result?.grantedPermissions == nil || result?.isCancelled ?? true {
-        Spinner.hide()
+        UIApplication.hideNetworkActivity()
       } else if !(result?.grantedPermissions.contains("email"))! {
-        Spinner.hide()
+        UIApplication.hideNetworkActivity()
         self.showMessageError(title: "Oops..", errorMessage: "It seems that you haven't allowed Facebook to provide your email address.")
       } else {
         self.facebookLoginCallback()
@@ -81,10 +60,10 @@ class FirstViewController: UIViewController {
     }
     UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
      success: { _ in
-      Spinner.hide()
+      UIApplication.hideNetworkActivity()
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }, failure: { error in
-      Spinner.hide()
+      UIApplication.hideNetworkActivity()
       self.showMessageError(title: "Error", errorMessage: error._domain)
     })
   }
