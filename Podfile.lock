@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.2.0)
+  - Alamofire (4.5.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -10,15 +10,12 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.23.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.23.0):
-    - FBSDKCoreKit
-  - IQKeyboardManagerSwift (4.0.10)
+  - IQKeyboardManagerSwift (5.0.4)
   - KIF (3.5.2):
     - KIF/Core (= 3.5.2)
   - KIF/Core (3.5.2)
   - KIF/IdentifierTests (3.5.2):
     - KIF/Core
-  - MBProgressHUD (1.0.0)
   - OHHTTPStubs/Core (6.0.0)
   - OHHTTPStubs/Default (6.0.0):
     - OHHTTPStubs/Core
@@ -32,37 +29,28 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (6.0.0)
   - OHHTTPStubs/Swift (6.0.0):
     - OHHTTPStubs/Default
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.2.0)
+  - Alamofire (~> 4.5.1)
   - FBSDKCoreKit
   - FBSDKLoginKit
-  - FBSDKShareKit
-  - IQKeyboardManagerSwift (~> 4.0.8)
+  - IQKeyboardManagerSwift (~> 5.0.4)
   - KIF (~> 3.5.2)
   - KIF/IdentifierTests (~> 3.5.2)
-  - MBProgressHUD (~> 1.0.0)
   - OHHTTPStubs/Swift (~> 6.0.0)
-  - SDWebImage (~> 3.8)
   - SwiftyJSON (~> 3.1.3)
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
   FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
-  FBSDKShareKit: 65751c3b9937ab9d594e6c37611ecc115ceeb448
-  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
   KIF: f2a6025bb3f11692df675054a134d43a9ec2d7db
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   OHHTTPStubs: 752f9b11fd810a15162d50f11c06ff94f8e012eb
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: bf7d826c9a3ad0ab4ddf9df8c692507a2d5a3297
+PODFILE CHECKSUM: c5995125dd1d13229716ff73a4a13ab8242bebfd
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1

@@ -1,17 +1,14 @@
 platform :ios, '10.0'
 use_frameworks!
 
-target 'swift-base' do
-  pod 'Alamofire', '~> 4.2.0'
-  pod 'MBProgressHUD', '~> 1.0.0'
+target 'ios-base' do
+  pod 'Alamofire', '~> 4.5.1'
   pod 'SwiftyJSON', '~> 3.1.3'
-  pod 'IQKeyboardManagerSwift', '~> 4.0.8'
-  pod 'SDWebImage', '~> 3.8'
-  
+  pod 'IQKeyboardManagerSwift', '~> 5.0.4'
+
   # FB SDK ---
   pod 'FBSDKCoreKit';
   pod 'FBSDKLoginKit';
-  pod 'FBSDKShareKit';
   # ------
 end
 
