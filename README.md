@@ -1,101 +1,84 @@
-## Installation
+# iOS Base Template
+**iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 3.2. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
 
-Instructions for install the project, change the name and use this project
-
-1) Clone repo. 
-
-2) Change the name of the project on the left sidebar in Xcode. 
-
-3) Enter on Manage Schemas and change the name to the new one. 
-
-4) Search for the name of the project(using underscore instead of dash) in the entire project and replace all occurrences for the new name(using underscore instead of dash).
-
-5) Close Xcode. 
-
-6) Rename the main and the source folder. 
-
-7) Right click the project bundle .xcodeproj file and select “Show Package Contents” from the context menu. 
-
-8) Open the .pbxproj file with any text editor. 
-
-9) Search and replace any occurrence of the original folder name with the new folder name. If the name contains a hyphen then also search for the name replacing the hyphen for an underscore (swift-base and swift_base). 
-
-10) Save the file.
-
-11) Open the scripts folder, open the acceptance-tests.sh file with any text editor.
-
-12) Search and replace any occurrence of the original folder name with the new folder name. 
-
-13) Save the file 
-
-14) Open Podfile and change the target name with the new name of your project.
-
-15) Delete the *.workspace file. 
-
-16) Run pod install. 
-
-17) Done :)
+## Features
+This template comes with:
+#### Main
+- Complete **API client** class to easily communicate with **REST services**.
+- Examples for **account creation** and **Facebook integration**.
+- Useful classes to **manage User and Session data**.
+- **Secure** way to store keys of your **third party integrations**.
+- Handy **helpers** and **extensions** to make your coding experience faster and easier.
 
 
-## Travis - SwiftLint configuration
+#### Extensions
+ This App Template also contains other branches with specific features that may be of use to you:
 
-1) Replace any occurrence of swift-base in the .travis.yml file.
+- [**feature/observe_root_vc**](https://github.com/rootstrap/ios-base/tree/feature/observe_root_vc): Detecting when **rootViewController** gets loaded.
+- [**util_gradients**](https://github.com/rootstrap/ios-base/tree/util_gradients): Helper methods to easily add **color gradients**.
+- [**paginated_collections**](https://github.com/rootstrap/ios-base/tree/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
+- [**rx_swift**](https://github.com/rootstrap/ios-base/tree/rx_swift) in case you want to work with **RxSwift** or **MVVM**.
 
-2) Login into travis-ci.com with your github account
+To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 
-3) Add the project to the list of projects to build
+## How to use
+1. Clone repo.
+2. Change the name of the project on the left sidebar in Xcode.
+3. Go to Manage Schemes and change the name to the new one.
+4. Search for the name `ios_base` in the entire project and replace all occurrences for the new name(If your project name contains a dash then use an underscore instead).
+5. Close Xcode.
+6. Rename the main and the source folder.
+7. Right click the project bundle `.xcodeproj` file and select “Show Package Contents” from the context menu.
+8. Open the `.pbxproj` file with any text editor.
+9. Search and replace any occurrence of `ios-base` and `ios_base` and replace it with the new folder name. If the new folder name contains any dashes please use underscore instead when replacing `ios_base`.
+10. Save the file.
+11. Open the scripts folder, open the `acceptance-tests.sh` file with any text editor.
+12. Search and replace any occurrence of the original folder name with the new folder name.
+13. Save the file.
+14. Open `Podfile` and change the target name with the new name of your project.
+15. Delete the `*.workspace` file.
+16. Run `pod install`.
+17. Done :)
 
-4) Happy linting :)
+## Pods
+#### Main
+ - [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
+ - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for easy JSON parsing.
+ - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
+    Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
 
-## Facebook integration
 
-The project already include the FBSDK and the configuration needed on the .plist file. After create a Facebook App you only need to replace:
+#### Testing
+ - [KIF](https://github.com/kif-framework/KIF) for UI testing.
+ - [KIF/IdentifierTests](https://github.com/kif-framework/KIF) to have access to accesibility identifiers.
+ - [OHHTTPStubs/Swift](https://github.com/AliSoftware/OHHTTPStubs) for network testing.
 
-1) On the URL types array, the value on the "Item 0" for the string "fb" + the ID of your app. i.e: "fb435272928934".
+#### Optional
+ - [FBSDKCoreKit](https://github.com/facebook/facebook-ios-sdk) facebook pods dependency.
+ - [FBSDKLoginKit](https://github.com/facebook/facebook-ios-sdk) for facebook login.
 
-2) The "FacebookAppID" value for the same AppID that you replace above.
+## Optional configuration
+#### facebook
+1. In `info.plist` on the URL types array, find `fbXXXXXXXXXXX` and replace it for the string "fb" + the ID of your app. i.e: `fb435272928934`.
+2. Change the `FacebookAppID` value for the same AppID that you replace above.
+3. Change the `FacebookDisplayName` value for the name of the app on Facebook.
+4. Done :)
 
-3) The "FacebookDisplayName" value for the name of the app on Facebook.
+## Security recommendations
+#### Third Party Keys
 
-4) Done.
+We strongly recommend that all private keys be added to a `.plist` file that will remain localy and not be commited to your project repo. An example file is already provided, this are the final steps to setting it up:
 
-## Third Party keys management 
+1. Rename the `ThirdPartyKeys.example.plist` file on your project so that it is called `ThirdPartyKeys.plist`.
+  To add a set of keys simply add a dictionary with the name you want the key to have and add the corresponding **Debug**, **Staging** and **Release** keys as items.
+2. Remove the reference of `ThirdPartyKeys.plist` from XCode but do not delete the file. This way, you will keep the file locally(it is already in the .gitignore list) in the project directory.
+  **Note: Do NOT move the file from the current location, the script uses the $(PROJECT_DIR) directory.**
+3. Go to **Product** -> **Scheme** -> **Edit scheme**. Then select **Pre-actions** for the Build stage and make sure that the `Provided build setting` is set to your current target.
+**Repeat this step for the Post-actions script.**
+4. Done :)
 
-For security reasons all private api keys will be added on a separated .plist file that will be excluded from git. So you will need to follow the next steps:
+## Credits
 
-1) Rename the ThirdPartyKeys.example.plist file on your project so that it is called ThirdPartyKeys.plist.
-  Every entrance of this file should be a dictionary where each key would be *ApiKeyName*. 
-  All dictionaries should have one entrance for each environment configuration where the actual value for the specific api key will be set.
-  ![screen shot 2017-06-02 at 4 48 30 pm](https://cloud.githubusercontent.com/assets/16453725/26742399/e39db67a-47b3-11e7-9ce6-fd2c894748dd.png)
+**iOS Base** is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our [contributors](https://github.com/rootstrap/ios-base/contributors).
 
-2) Delete the ThirdPartyKeys.plist by just removing the reference from XCode. This way, you will keep the file locally(it is already in the .gitignore list) in the project directory.
-
-    -Note: Do NOT move the file from the current location, the script uses the $(PROJECT_DIR) directory.
-
-3) Go to Product -> Scheme -> Edit scheme. Then select Pre-actions for the Build stage and make sure that the 'Provided build setting' is set to your current target.
-    
-    -Repeat this step for the Post-actions script. 
-
-4) Done!
-
-## Extensions
-
-If your project needs some specific feature, utility or helpers, look into the existing branches for possible matches. 
-Currently we have these extra branches:
-
-**feature/observe_root_vc**: Detecting when rootViewController gets loaded.
-
-**util_gradients**: Helper methods to easily add color gradients.
-
-**paginated_collections**: Adds paginated subclasses of UITableView and UICollectionView.
-
-To use them simply download the branch and locally rebase against master/develop from your initial swift-base clone.
-
-## MVVM/RxSwift
-
-In case you want to work with RxSwift or MVVM you can check the **rx_swift** branch.
-To use it simply download the branch and use it as your master/develop branch.
-
-## Danger integration
-
-Most of the configuration has been already done inside the swift-base files. The only thing you need to do is add the DANGER_GITHUB_API_TOKEN as an environment variable inside the Travis settings for your new repo after configuring Travis. To get this key talk with [@glm4](https://github.com/glm4) or [@pMalvasio](https://github.com/pmalvasio)
+[<img src="https://s3-us-west-1.amazonaws.com/rootstrap.com/img/rs.png" width="100"/>](http://www.rootstrap.com)
