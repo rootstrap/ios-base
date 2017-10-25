@@ -1,17 +1,9 @@
 //
 //  APIClient.swift
-//  swift-base
+//  ios-base
 //
-//  Created by TopTier labs on 15/2/16.
-//  Copyright © 2016 TopTier labs. All rights reserved.
-//
-
-//
-//  APIClient.swift
-//  swift-base
-//
-//  Created by TopTier labs on 15/2/16.
-//  Copyright © 2016 TopTier labs. All rights reserved.
+//  Created by Rootstrap on 15/2/16.
+//  Copyright © 2016 Rootstrap. All rights reserved.
 //
 
 import Foundation

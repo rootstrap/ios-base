@@ -1,9 +1,9 @@
 //
 //  UIViewControllerExtension.swift
-//  swift-base
+//  ios-base
 //
 //  Created by ignacio chiazzo Cardarello on 10/20/16.
-//  Copyright © 2016 TopTier labs. All rights reserved.
+//  Copyright © 2016 Rootstrap. All rights reserved.
 //
 
 import Foundation

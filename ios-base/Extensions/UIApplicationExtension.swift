@@ -3,7 +3,7 @@
 //  ios-base
 //
 //  Created by Agustina Chaer on 24/10/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import Foundation

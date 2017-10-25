@@ -1,9 +1,9 @@
 //
 //  StringExtension.swift
-//  swift-base
+//  ios-base
 //
 //  Created by Juan Pablo Mazza on 9/9/16.
-//  Copyright © 2016 TopTier labs. All rights reserved.
+//  Copyright © 2016 Rootstrap. All rights reserved.
 //
 
 import Foundation

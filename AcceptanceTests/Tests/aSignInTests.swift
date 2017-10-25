@@ -1,9 +1,9 @@
 //
 //  SignInTests.swift
-//  swift-base
+//  ios-base
 //
-//  Created by TopTier labs on 5/15/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Created by Rootstrap on 5/15/17.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import OHHTTPStubs

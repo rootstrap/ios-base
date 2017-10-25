@@ -1,9 +1,9 @@
 /* 
   Localizable.strings
-  swift-base
+  ios-base
 
   Created by Eric Pintos on 10/4/17.
-  Copyright © 2017 TopTier labs. All rights reserved.
+  Copyright © 2017 Rootstrap. All rights reserved.
 */
 
 "Try Facebook Login" = "Inicia sesión con Facebook";

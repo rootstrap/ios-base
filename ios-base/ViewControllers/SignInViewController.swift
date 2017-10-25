@@ -1,9 +1,9 @@
 //
 //  SignInViewController.swift
-//  swift-base
+//  ios-base
 //
-//  Created by TopTier labs on 5/22/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Created by Rootstrap on 5/22/17.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ class SignInViewController: UIViewController {
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    UserAPI.login("toptier@mail.com", password: "123456789", success: { _ in
+    UserAPI.login("rootstrap@gmail.com", password: "123456789", success: { _ in
       UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in

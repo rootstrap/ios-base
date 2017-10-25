@@ -1,9 +1,9 @@
 //
 //  ConfigurationManager.swift
-//  swift-base
+//  ios-base
 //
 //  Created by Camila Moscatelli on 6/2/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class ConfigurationManager: NSObject {
       return configDict[Bundle.main.object(forInfoDictionaryKey: "ConfigurationName") as? String ?? ""] as? String
     }
     
-    print("ThirdPartyKeys.plist NOT FOUND - Please check your project configuration in: \n https://github.com/toptier/swift-base")
+    print("ThirdPartyKeys.plist NOT FOUND - Please check your project configuration in: \n https://github.com/rootstrap/ios-base")
     return nil
   }
 }

@@ -1,9 +1,9 @@
 //
 //  User.swift
-//  swift-base
+//  ios-base
 //
-//  Created by TopTier labs on 1/18/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Created by Rootstrap on 1/18/17.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import Foundation

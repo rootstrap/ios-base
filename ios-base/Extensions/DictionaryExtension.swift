@@ -1,9 +1,9 @@
 //
 //  DictionaryExtension.swift
-//  swift-base
+//  ios-base
 //
 //  Created by German on 6/26/17.
-//  Copyright © 2017 TopTier labs. All rights reserved.
+//  Copyright © 2017 Rootstrap. All rights reserved.
 //
 
 import Foundation
