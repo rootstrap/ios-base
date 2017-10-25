@@ -12,13 +12,13 @@ class UserDataManager: NSObject {
   
   class func storeUserObject(_ user: User) {
     let defaults = UserDefaults.standard
-    defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "seatmate-user")
+    defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "\(targetName)-user")
   }
   
   class func getUserObject() -> User? {
     let defaults = UserDefaults.standard
     
-    if let data = defaults.object(forKey: "seatmate-user") as? Data {
+    if let data = defaults.object(forKey: "\(targetName)-user") as? Data {
       let unarc = NSKeyedUnarchiver(forReadingWith: data)
       return unarc.decodeObject(forKey: "root") as? User
     }
@@ -28,7 +28,7 @@ class UserDataManager: NSObject {
   
   class func deleteUserObject() {
     let defaults = UserDefaults.standard
-    defaults.removeObject(forKey: "seatmate-user")
+    defaults.removeObject(forKey: "\(targetName)-user")
   }
   
   class func checkSignin() -> Bool {

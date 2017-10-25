@@ -12,13 +12,12 @@ class SessionDataManager: NSObject {
 
   class func storeSessionObject(_ session: Session) {
     let defaults = UserDefaults.standard
-    defaults.set(NSKeyedArchiver.archivedData(withRootObject: session), forKey: "toptier-session")
+    defaults.set(NSKeyedArchiver.archivedData(withRootObject: session), forKey: "\(targetName)-session")
   }
 
   class func getSessionObject() -> Session? {
     let defaults = UserDefaults.standard
-
-    if let data = defaults.object(forKey: "toptier-session") as? Data {
+    if let data = defaults.object(forKey: "\(targetName)-session") as? Data {
       let unarc = NSKeyedUnarchiver(forReadingWith: data)
       return unarc.decodeObject(forKey: "root") as? Session
     }
@@ -28,7 +27,7 @@ class SessionDataManager: NSObject {
   
   class func deleteSessionObject() {
     let defaults = UserDefaults.standard
-    defaults.removeObject(forKey: "toptier-session")
+    defaults.removeObject(forKey: "\(targetName)-session")
   }
   
   class func checkSession() -> Bool {
