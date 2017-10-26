@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
 
-  // MARK: Lifecycle
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setUI()
@@ -30,21 +30,25 @@ class FirstViewController: UIViewController {
   // MARK: - Setters
   func setUI() {
     facebookSign.setTitle("FACEBOOK CONNECT".localized, for: .normal)
-    signIn.setTitle("LOG IN".localized, for: .normal)
+    signIn.setTitle("SIGN IN".localized, for: .normal)
     signUp.setTitle("Don’t have an account? Let’s create one".localized, for: .normal)
 
     [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
 
-  // MARK: Actions
+  // MARK: - Actions
   @IBAction func facebookLogin() {
+    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
+    guard  facebookKey != nil, facebookKey != "XXXXXX" else {
+      return
+    }
     UIApplication.showNetworkActivity()
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
-        self.showMessageError(title: "Oops..", errorMessage: "Something went wrong, try again later.")
+        self.showMessage(title: "Oops..", message: "Something went wrong, try again later.")
         UIApplication.hideNetworkActivity()
         return
       }
@@ -52,7 +56,7 @@ class FirstViewController: UIViewController {
         UIApplication.hideNetworkActivity()
       } else if !(result?.grantedPermissions.contains("email"))! {
         UIApplication.hideNetworkActivity()
-        self.showMessageError(title: "Oops..", errorMessage: "It seems that you haven't allowed Facebook to provide your email address.")
+        self.showMessage(title: "Oops..", message: "It seems that you haven't allowed Facebook to provide your email address.")
       } else {
         self.facebookLoginCallback()
       }
@@ -71,7 +75,7 @@ class FirstViewController: UIViewController {
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessageError(title: "Error", errorMessage: error._domain)
+      self.showMessage(title: "Error", message: error._domain)
     })
   }
 }

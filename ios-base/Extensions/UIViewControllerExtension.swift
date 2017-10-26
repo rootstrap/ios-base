@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-  //MARK: Message Error
-  func showMessageError(title: String, errorMessage: String, handler: ((_ action: UIAlertAction) -> Void)? = nil) {
-    let alert = UIAlertController(title: title, message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+  // MARK: - Message Error
+  func showMessage(title: String, message: String, handler: ((_ action: UIAlertAction) -> Void)? = nil) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: handler))
     present(alert, animated: true, completion: nil)
   }

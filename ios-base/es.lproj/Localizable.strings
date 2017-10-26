@@ -9,6 +9,7 @@
 // MARK: - Welcome Screen Strings
 "FACEBOOK CONNECT" = "CONECTA CON FACEBOOK";
 "Don’t have an account? Let’s create one" = "No tienes una cuenta? Creemos una";
-"LOG IN" = "INICIA SESIÓN";
+"You are signed in/up" = "Has iniciado session o creado una cuenta";
+"SIGN IN" = "INICIA SESIÓN";
 "SIGN UP" = "REGISTRARSE";
-"LOG OUT" = "CERRAR SESIÓN";
+"SIGN OUT" = "CERRAR SESIÓN";

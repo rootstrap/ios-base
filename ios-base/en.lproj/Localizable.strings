@@ -9,6 +9,7 @@
 // MARK: - Welcome Screen Strings
 "FACEBOOK CONNECT" = "FACEBOOK CONNECT";
 "Don’t have an account? Let’s create one" = "Don’t have an account? Let’s create one";
-"LOG IN" = "LOG IN";
+"You are signed in/up" = "You are signed in/up";
+"SIGN IN" = "SIGN IN";
 "SIGN UP" = "SIGN UP";
-"LOG OUT" = "LOG OUT";
+"SIGN OUT" = "SIGN OUT";

@@ -39,7 +39,7 @@ class bSignUpTests: KIFTestCase {
     UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
   }
   
-  // MARK: Tests
+  // MARK: - Tests
   
   func test00SignUpEmptyUsernameError() {
     stub(condition: isPath("/api/v1/users")) { _ in
@@ -93,7 +93,7 @@ class bSignUpTests: KIFTestCase {
     XCTAssertEqual(SessionDataManager.checkSession(), true)
   }
   
-  //MARK: Helper method
+  // MARK: - Helper method
   
   func showErrorMessage() {
     tester().waitForView(withAccessibilityLabel: "Error")

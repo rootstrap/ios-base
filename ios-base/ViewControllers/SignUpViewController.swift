@@ -28,16 +28,16 @@ class SignUpViewController: UIViewController {
   
   // MARK: - Actions
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    showSpinner(message: "Signing Up")
-    let email = emailField.text!.isEmpty ? "\(randomName())@gmail.com" : emailField.text
-    let password = passwordField.text!.isEmpty ? "123456789" : passwordField.text
+    UIApplication.showNetworkActivity()
+    let email = emailField.text ?? "\(randomName())@gmail.com"
+    let password = passwordField.text ?? "123456789"
     
-    UserAPI.signup(email!, password: password!, avatar64: randomImage(), success: { (_) in
-      self.hideSpinner()
+    UserAPI.signup(email, password: password, avatar64: randomImage(), success: { (_) in
+      UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
+      self.showMessage(title: "Error", message: error.localizedDescription)
       print(error)
     })
   }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-bX-pA7">
-                                <rect key="frame" x="86.5" y="490" width="201" height="45"/>
+                                <rect key="frame" x="86.5" y="474" width="201" height="45"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.76094285102739723" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignInButton"/>
                                 <constraints>
@@ -54,25 +55,11 @@
                                     <segue destination="8qd-iW-5fg" kind="show" id="gzI-wi-lZU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0t-Ld-GB4">
-                                <rect key="frame" x="66" y="549" width="243" height="45"/>
-                                <color key="backgroundColor" red="0.031372549019607843" green="0.22352941176470587" blue="0.47843137254901957" alpha="0.72792701198630139" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" identifier="GoToSignUpButton"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="1hW-be-JGu"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="243" id="ayA-LR-p4a"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <inset key="contentEdgeInsets" minX="18" minY="14" maxX="18" maxY="13"/>
-                                <state key="normal" title="FACEBOOK CONNECT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebookLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="pWh-NK-vLy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-2n-nei">
                                 <rect key="frame" x="12" y="604" width="351" height="45"/>
+                                <accessibility key="accessibilityConfiguration" identifier="GoToSignUpButton">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="DCe-Ah-qyc"/>
                                 </constraints>
@@ -86,26 +73,37 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMy-eR-RsW">
-                                <rect key="frame" x="32" y="92" width="232.5" height="76.5"/>
+                                <rect key="frame" x="32" y="92" width="189.5" height="77"/>
                                 <string key="text">Welcome to
-RS SWIFT BASE.</string>
+RS iOS BASE.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.45508993310866014" green="0.41961441863798504" blue="0.40671423155773956" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3he-61-Jm3">
+                                <rect key="frame" x="62" y="539" width="251" height="45"/>
+                                <color key="backgroundColor" red="0.031372549020000001" green="0.22352941179999999" blue="0.47843137250000001" alpha="0.72792701199999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="CaE-LB-M3o"/>
+                                </constraints>
+                                <state key="normal" title="FACEBOOK CONNECT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95331488715277779" green="0.95331488715277779" blue="0.95331488715277779" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="StartView"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="18" id="0uu-hu-FDa"/>
-                            <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="Z0t-Ld-GB4" secondAttribute="bottom" constant="10" id="DnK-6O-sU8"/>
+                            <constraint firstItem="3he-61-Jm3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BEE-Zm-ac7"/>
+                            <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="3he-61-Jm3" secondAttribute="bottom" constant="20" id="DTg-CJ-II7"/>
                             <constraint firstItem="nMy-eR-RsW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Gwo-18-Uld"/>
                             <constraint firstItem="nMy-eR-RsW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="QWv-2L-MoY"/>
+                            <constraint firstItem="3he-61-Jm3" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="20" id="Tg0-h2-Y9E"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="12" id="Vzk-Jr-A7g"/>
-                            <constraint firstItem="Z0t-Ld-GB4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e4x-XW-qf0"/>
                             <constraint firstAttribute="trailing" secondItem="EN8-2n-nei" secondAttribute="trailing" constant="12" id="fep-Rk-VcS"/>
                             <constraint firstItem="OVq-bX-pA7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j0q-ZA-Sud"/>
-                            <constraint firstItem="Z0t-Ld-GB4" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="14" id="xVC-tZ-tgI"/>
+                            <constraint firstItem="3he-61-Jm3" firstAttribute="width" secondItem="OVq-bX-pA7" secondAttribute="width" multiplier="1.25" id="znp-RY-UmS"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -113,7 +111,7 @@ RS SWIFT BASE.</string>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="facebookSign" destination="Z0t-Ld-GB4" id="ZqD-sN-E64"/>
+                        <outlet property="facebookSign" destination="3he-61-Jm3" id="tz3-o6-lDl"/>
                         <outlet property="signIn" destination="OVq-bX-pA7" id="PMG-yl-8ea"/>
                         <outlet property="signUp" destination="EN8-2n-nei" id="mGt-dJ-RXu"/>
                     </connections>
@@ -172,8 +170,8 @@ RS SWIFT BASE.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeJ-D0-ol5">
-                                <rect key="frame" x="32" y="104" width="84" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeJ-D0-ol5">
+                                <rect key="frame" x="32" y="104" width="94" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.45508993310000001" green="0.41961441859999998" blue="0.40671423159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -217,8 +215,8 @@ RS SWIFT BASE.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged in/signed up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-Nf-PW5">
-                                <rect key="frame" x="32" y="92" width="299" height="76.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in/up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-Nf-PW5">
+                                <rect key="frame" x="32" y="92" width="299" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -264,6 +262,7 @@ RS SWIFT BASE.</string>
                     </view>
                     <connections>
                         <outlet property="logOut" destination="aMM-gP-X0k" id="jXY-nY-53e"/>
+                        <outlet property="welcomeLabel" destination="deB-Nf-PW5" id="vQb-ZK-INh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCL-Vt-8BE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,8 +341,8 @@ RS SWIFT BASE.</string>
                                     <action selector="tapOnSignUpButton:" destination="1Oa-ww-vdW" eventType="touchUpInside" id="4ez-s0-Fo5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaK-dC-F7z">
-                                <rect key="frame" x="32" y="104" width="181" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaK-dC-F7z">
+                                <rect key="frame" x="32" y="104" width="109.5" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.45508993310000001" green="0.41961441859999998" blue="0.40671423159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -382,7 +381,7 @@ RS SWIFT BASE.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWL-0F-Lip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="1201"/>
+            <point key="canvasLocation" x="951" y="1179"/>
         </scene>
     </scenes>
 </document>

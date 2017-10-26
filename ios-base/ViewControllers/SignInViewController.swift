@@ -18,7 +18,7 @@ class SignInViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
-    logIn.setTitle("LOG IN".localized, for: .normal)
+    logIn.setTitle("SIGN IN".localized, for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -28,16 +28,16 @@ class SignInViewController: UIViewController {
   
   // MARK: - Actions
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    view.showSpinner(message: "Logging In")
-    let email = emailField.text!.isEmpty ? "rootstrap@gmail.com" : emailField.text
-    let password = passwordField.text!.isEmpty ? "123456789" : passwordField.text
+    UIApplication.showNetworkActivity()
+    let email = emailField.text ?? "rootstrap@gmail.com"
+    let password = passwordField.text ?? "123456789"
     
-    UserAPI.login(email!, password: password!, success: { _ in
-      self.hideSpinner()
+    UserAPI.login(email, password: password, success: { _ in
+      UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
+      self.showMessage(title: "Error", message: error.localizedDescription)
       print(error)
     })
   }

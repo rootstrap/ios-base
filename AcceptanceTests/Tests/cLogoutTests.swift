@@ -36,7 +36,7 @@ class cLogoutTests: KIFTestCase {
     }
   }
   
-  // MARK: Tests
+  // MARK: - Tests
   
   func test00LogoutSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_out")) { _ in
