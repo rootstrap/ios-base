@@ -18,7 +18,6 @@ class SignInViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
-    logIn.setTitle("SIGN IN".localized, for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {

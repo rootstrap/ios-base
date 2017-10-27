@@ -95,6 +95,7 @@ RS iOS BASE.</string>
                         <accessibility key="accessibilityConfiguration" identifier="StartView"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="18" id="0uu-hu-FDa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nMy-eR-RsW" secondAttribute="trailing" constant="20" symbolic="YES" id="A5X-Hs-TIn"/>
                             <constraint firstItem="3he-61-Jm3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BEE-Zm-ac7"/>
                             <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="3he-61-Jm3" secondAttribute="bottom" constant="20" id="DTg-CJ-II7"/>
                             <constraint firstItem="nMy-eR-RsW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Gwo-18-Uld"/>
@@ -188,6 +189,7 @@ RS iOS BASE.</string>
                             <constraint firstItem="VXP-E8-PA8" firstAttribute="leading" secondItem="SGW-mB-J78" secondAttribute="leading" id="Hge-vc-1aT"/>
                             <constraint firstItem="SGW-mB-J78" firstAttribute="centerX" secondItem="NDI-Z9-Roh" secondAttribute="centerX" id="Q6H-0y-kDJ"/>
                             <constraint firstItem="oeJ-D0-ol5" firstAttribute="leading" secondItem="NDI-Z9-Roh" secondAttribute="leading" constant="32" id="Whe-rl-a1q"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oeJ-D0-ol5" secondAttribute="trailing" constant="20" symbolic="YES" id="fmB-Xm-8C4"/>
                             <constraint firstItem="SGW-mB-J78" firstAttribute="leading" secondItem="oeJ-D0-ol5" secondAttribute="leading" id="p5i-L3-O28"/>
                             <constraint firstItem="SGW-mB-J78" firstAttribute="centerY" secondItem="NDI-Z9-Roh" secondAttribute="centerY" constant="-24" id="qrd-tZ-QOH"/>
                         </constraints>

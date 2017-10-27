@@ -17,13 +17,7 @@ class HomeViewController: UIViewController {
   // MARK: - Lifecycle Events
   override func viewDidLoad() {
     super.viewDidLoad()
-    setUI()
-  }
-  
-  func setUI() {
-    logOut.setTitle("SIGN OUT".localized, for: .normal)
     logOut.setRoundBorders(22)
-    welcomeLabel.text = "You are signed in/up".localized
   }
   
   // MARK: - Actions

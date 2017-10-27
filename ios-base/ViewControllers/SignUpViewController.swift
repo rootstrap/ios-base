@@ -18,7 +18,6 @@ class SignUpViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     signUp.setRoundBorders(22)
-    signUp.setTitle("SIGN UP".localized, for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {

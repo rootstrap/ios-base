@@ -19,21 +19,12 @@ class FirstViewController: UIViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setUI()
+    [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
-  }
-
-  // MARK: - Setters
-  func setUI() {
-    facebookSign.setTitle("FACEBOOK CONNECT".localized, for: .normal)
-    signIn.setTitle("SIGN IN".localized, for: .normal)
-    signUp.setTitle("Don’t have an account? Let’s create one".localized, for: .normal)
-
-    [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
 
   // MARK: - Actions
