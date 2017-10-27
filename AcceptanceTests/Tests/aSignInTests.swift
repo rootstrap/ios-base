@@ -75,8 +75,8 @@ class aSignInTests: KIFTestCase {
       return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json", "uid": ""]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
-    tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
+    tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "UsernameTextField")
+    tester().enterText("123456789", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionDataManager.checkSession(), true)

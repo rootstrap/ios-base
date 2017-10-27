@@ -34,4 +34,23 @@ class Session: NSObject, NSCoding {
     aCoder.encode(self.accessToken, forKey: "session-token")
     aCoder.encode(self.expiry, forKey: "session-expiry")
   }
+  
+  // MARK: - Parser
+  class func parse(from headers: [String: Any]) -> Session {
+    var loweredHeaders = headers
+    loweredHeaders.lowercaseKeys()
+    var expiry: Date?
+    if let loweredHeaders = loweredHeaders as? [String: String] {
+      if let expiryString = loweredHeaders[APIClient.HTTPHeader.expiry.rawValue],
+         let expiryNumber = Double(expiryString) {
+        expiry = Date(timeIntervalSince1970: expiryNumber)
+      }
+      return Session(uid:     loweredHeaders[APIClient.HTTPHeader.uid.rawValue],
+                     client:  loweredHeaders[APIClient.HTTPHeader.client.rawValue],
+                     token:   loweredHeaders[APIClient.HTTPHeader.token.rawValue],
+                     expires: expiry
+      )
+    }
+    return Session()
+  }
 }
