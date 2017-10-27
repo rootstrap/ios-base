@@ -35,7 +35,7 @@ class aSignInTests: KIFTestCase {
     UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
   }
   
-  // MARK: Tests
+  // MARK: - Tests
   
   func test00SignInEmptyPasswordError() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
@@ -82,7 +82,7 @@ class aSignInTests: KIFTestCase {
     XCTAssertEqual(SessionDataManager.checkSession(), true)
   }
   
-  //MARK: Helper method
+  // MARK: - Helper method
   
   func showErrorMessage() {
     tester().waitForView(withAccessibilityLabel: "Error")

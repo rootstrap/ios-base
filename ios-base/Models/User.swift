@@ -36,7 +36,7 @@ class User: NSObject, NSCoding {
     aCoder.encode(self.image?.absoluteString, forKey: "user-image")
   }
   
-  //MARK Parser
+  // MARK: - Parser
   class func parse(fromJSON json: JSON) -> User {
     let user = json["user"]
     

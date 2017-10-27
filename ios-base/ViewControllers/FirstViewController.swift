@@ -15,29 +15,31 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setText()
+    [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
   
-  // MARK: - Setters
-  func setText() {
-    facebookSign.setTitle("Try Facebook Login".localized, for: .normal)
-    signUp.setTitle("Try Sign up".localized, for: .normal)
-    signIn.setTitle("Try Sign in".localized, for: .normal)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
-  //MARK: Actions
+  // MARK: - Actions
   @IBAction func facebookLogin() {
+    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
+    guard  facebookKey != nil, facebookKey != "XXXXXX" else {
+      return
+    }
     UIApplication.showNetworkActivity()
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
     fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
       guard error == nil else {
-        self.showMessageError(title: "Oops..", errorMessage: "Something went wrong, try again later.")
+        self.showMessage(title: "Oops..", message: "Something went wrong, try again later.")
         UIApplication.hideNetworkActivity()
         return
       }
@@ -45,14 +47,14 @@ class FirstViewController: UIViewController {
         UIApplication.hideNetworkActivity()
       } else if !(result?.grantedPermissions.contains("email"))! {
         UIApplication.hideNetworkActivity()
-        self.showMessageError(title: "Oops..", errorMessage: "It seems that you haven't allowed Facebook to provide your email address.")
+        self.showMessage(title: "Oops..", message: "It seems that you haven't allowed Facebook to provide your email address.")
       } else {
         self.facebookLoginCallback()
       }
     }
   }
 
-  //MARK: Facebook callback methods
+  // MARK: Facebook callback methods
   func facebookLoginCallback() {
     //Optionally store params (facebook user data) locally.
     guard FBSDKAccessToken.current() != nil else {
@@ -64,7 +66,7 @@ class FirstViewController: UIViewController {
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessageError(title: "Error", errorMessage: error._domain)
+      self.showMessage(title: "Error", message: error._domain)
     })
   }
 }

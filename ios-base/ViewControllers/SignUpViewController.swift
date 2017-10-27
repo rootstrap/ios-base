@@ -9,20 +9,39 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+  // MARK: - Outlets
+  @IBOutlet weak var signUp: UIButton!
+  @IBOutlet weak var emailField: UITextField!
+  @IBOutlet weak var passwordField: UITextField!
   
+  // MARK: - Lifecycle Events
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    signUp.setRoundBorders(22)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: true)
+  }
+  
+  // MARK: - Actions
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    UserAPI.signup("\(randomName())@gmail.com", password: "123456789", avatar64: randomImage(), success: { (_) in
+    let email = emailField.text ?? "\(randomName())@gmail.com"
+    let password = passwordField.text ?? "123456789"
+    
+    UserAPI.signup(email, password: password, avatar64: randomImage(), success: { (_) in
       UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessageError(title: "Error", errorMessage: error.localizedDescription)
+      self.showMessage(title: "Error", message: error.localizedDescription)
       print(error)
     })
   }
   
-  //Helper methods for test purposes
+  // Helper methods for test purposes
   func randomImage() -> UIImage {
     let square = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     let rr = CGFloat(arc4random_uniform(255))

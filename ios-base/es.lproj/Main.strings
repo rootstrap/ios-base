@@ -1,0 +1,51 @@
+
+/* Class = "UIButton"; normalTitle = "FACEBOOK CONNECT"; ObjectID = "3he-61-Jm3"; */
+"3he-61-Jm3.normalTitle" = "CONECTA CON FACEBOOK";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "AaK-dC-F7z"; */
+"AaK-dC-F7z.text" = "Registrate";
+
+/* Class = "UIButton"; normalTitle = "Don’t have an account? Let’s create one ►"; ObjectID = "EN8-2n-nei"; */
+"EN8-2n-nei.normalTitle" = "No tienes una cuenta? Creemos una ►";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "GqP-oe-fcZ"; */
+"GqP-oe-fcZ.placeholder" = "Contraseña";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "NTe-Xk-BrH"; */
+"NTe-Xk-BrH.placeholder" = "Nombre";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "OVq-bX-pA7"; */
+"OVq-bX-pA7.normalTitle" = "INICIA SESIÓN";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "SGW-mB-J78"; */
+"SGW-mB-J78.placeholder" = "Correo";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "VXP-E8-PA8"; */
+"VXP-E8-PA8.placeholder" = "Contraseña";
+
+/* Class = "UIButton"; normalTitle = "LOG OUT"; ObjectID = "aMM-gP-X0k"; */
+"aMM-gP-X0k.normalTitle" = "CIERRA SESIÓN";
+
+/* Class = "UILabel"; text = "You are signed in/up"; ObjectID = "deB-Nf-PW5"; */
+"deB-Nf-PW5.text" = "Has iniciado session o creado una cuenta";
+
+/* Class = "UILabel"; text = "Welcome to\nRS iOS BASE."; ObjectID = "nMy-eR-RsW"; */
+"nMy-eR-RsW.text" = "Bienvendio/a a\nRS iOS BASE.";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "oRD-MA-2oV"; */
+"oRD-MA-2oV.normalTitle" = "REGISTRATE";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "oeJ-D0-ol5"; */
+"oeJ-D0-ol5.text" = "Inicia sesión";
+
+/* Class = "UIButton"; normalTitle = "Get my profile"; ObjectID = "sla-gz-amO"; */
+"sla-gz-amO.normalTitle" = "Ver mi perfil";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "v9r-co-4vM"; */
+"v9r-co-4vM.placeholder" = "Confirmar contraseña";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "xYV-eE-Ila"; */
+"xYV-eE-Ila.placeholder" = "Correo";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "zbs-uB-Nr7"; */
+"zbs-uB-Nr7.normalTitle" = "INICIA SESIÓN";

@@ -9,4 +9,3 @@
 import Foundation
 
 //Add global constants here
-let targetName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""

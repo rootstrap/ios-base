@@ -1,0 +1,51 @@
+
+/* Class = "UIButton"; normalTitle = "FACEBOOK CONNECT"; ObjectID = "3he-61-Jm3"; */
+"3he-61-Jm3.normalTitle" = "FACEBOOK CONNECT";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "AaK-dC-F7z"; */
+"AaK-dC-F7z.text" = "Sign Up";
+
+/* Class = "UIButton"; normalTitle = "Don’t have an account? Let’s create one ►"; ObjectID = "EN8-2n-nei"; */
+"EN8-2n-nei.normalTitle" = "Don’t have an account? Let’s create one ►";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "GqP-oe-fcZ"; */
+"GqP-oe-fcZ.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "NTe-Xk-BrH"; */
+"NTe-Xk-BrH.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "OVq-bX-pA7"; */
+"OVq-bX-pA7.normalTitle" = "LOG IN";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "SGW-mB-J78"; */
+"SGW-mB-J78.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "VXP-E8-PA8"; */
+"VXP-E8-PA8.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "LOG OUT"; ObjectID = "aMM-gP-X0k"; */
+"aMM-gP-X0k.normalTitle" = "LOG OUT";
+
+/* Class = "UILabel"; text = "You are signed in/up"; ObjectID = "deB-Nf-PW5"; */
+"deB-Nf-PW5.text" = "You are signed in/up";
+
+/* Class = "UILabel"; text = "Welcome to\nRS iOS BASE."; ObjectID = "nMy-eR-RsW"; */
+"nMy-eR-RsW.text" = "Welcome to\nRS iOS BASE.";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "oRD-MA-2oV"; */
+"oRD-MA-2oV.normalTitle" = "SIGN UP";
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "oeJ-D0-ol5"; */
+"oeJ-D0-ol5.text" = "Sign In";
+
+/* Class = "UIButton"; normalTitle = "Get my profile"; ObjectID = "sla-gz-amO"; */
+"sla-gz-amO.normalTitle" = "Get my profile";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "v9r-co-4vM"; */
+"v9r-co-4vM.placeholder" = "Confirm Password";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "xYV-eE-Ila"; */
+"xYV-eE-Ila.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "zbs-uB-Nr7"; */
+"zbs-uB-Nr7.normalTitle" = "LOG IN";
