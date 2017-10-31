@@ -21,7 +21,7 @@ public enum SwiftBaseErrorCode: Int {
   case propertyListSerializationFailed = -6007
 }
 
-public typealias SuccessCallback = (_ responseObject: [String: Any]) -> Void
+public typealias SuccessCallback = (_ responseObject: [String: Any], _ responseHeaders: [AnyHashable: Any]) -> Void
 public typealias FailureCallback = (_ error: Error) -> Void
 
 class APIClient {
@@ -52,49 +52,6 @@ class APIClient {
   
   fileprivate class func getBaseUrl() -> String {
     return Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
-  }
-  
-  fileprivate class func updateSessionData(_ responseHeaders: [AnyHashable: Any]) {
-    let session = Session()
-    var changed = false
-    for (key, value) in responseHeaders {
-      if let keyString = key as? String {
-        if let header = HTTPHeader(rawValue: keyString.lowercased()) {
-          switch header {
-          case .uid:
-            if let uid = value as? String {
-              session.uid = uid
-              changed = true
-            }
-            break
-          case .client:
-            if let client = value as? String {
-              session.client = client
-              changed = true
-            }
-            break
-          case .token:
-            if let token = value as? String {
-              session.accessToken = token
-              changed = true
-            }
-            break
-          case .expiry:
-            if let expiry = value as? String {
-              if let expiryNumber = Double(expiry) {
-                session.expiry = Date(timeIntervalSince1970: expiryNumber)
-                changed = true
-              }
-            }
-            break
-          default: break
-          }
-        }
-      }
-      if changed {
-        SessionDataManager.storeSessionObject(session)
-      }
-    }
   }
   
   //Recursively build multipart params to send along with media in upload requests.
@@ -153,9 +110,8 @@ class APIClient {
             switch response.result {
             case .success(let dictionary):
               if let urlResponse = response.response {
-                updateSessionData(urlResponse.allHeaderFields)
+                success(dictionary, urlResponse.allHeaderFields)
               }
-              success(dictionary)
               return
             case .failure(let error):
               failure(error)
@@ -192,9 +148,8 @@ class APIClient {
         switch response.result {
         case .success(let dictionary):
           if let urlResponse = response.response {
-            updateSessionData(urlResponse.allHeaderFields)
+            success(dictionary, urlResponse.allHeaderFields)
           }
-          success(dictionary as [String : AnyObject])
           return
         case .failure(let error):
           failure(error)

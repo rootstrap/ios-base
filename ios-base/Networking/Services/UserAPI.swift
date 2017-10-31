@@ -14,7 +14,7 @@ class UserAPI {
   fileprivate static let usersUrl = "/users/"
   fileprivate static let currentUserUrl = "/user/"
 
-  class func login(_ email: String, password: String, success: @escaping (_ responseObject: String?) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func login(_ email: String, password: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -22,13 +22,15 @@ class UserAPI {
         "password": password
       ]
     ]
-    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { response in
-        let json = JSON(response)
-        UserDataManager.storeUserObject(User.parse(fromJSON: json))
-        success("")
+    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { response, headers in
+      let json = JSON(response)
+      UserDataManager.storeUserObject(User.parse(fromJSON: json))
+      if let headers = headers as? [String: Any] {
+        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+      }
+      success()
     }, failure: { error in
-        failure(error)
+      failure(error)
     })
   }
 
@@ -46,7 +48,12 @@ class UserAPI {
     let image = MultipartMedia(key: "user[avatar]", data: picData)
     //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
     //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
-    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { (response) in
+    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { response, headers in
+      let responseJson = JSON(response)
+      UserDataManager.storeUserObject(User.parse(fromJSON: responseJson))
+      if let headers = headers as? [String: Any] {
+        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+      }
       success(response)
     }, failure: { (error) in
       failure(error)
@@ -65,11 +72,13 @@ class UserAPI {
       ]
     ]
     
-    APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?,
-                              success: { response in
-                                let json = JSON(response)
-                                UserDataManager.storeUserObject(User.parse(fromJSON: json))
-                                success(response)
+    APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?, success: { response, headers in
+      let responseJson = JSON(response)
+      UserDataManager.storeUserObject(User.parse(fromJSON: responseJson))
+      if let headers = headers as? [String: Any] {
+        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+      }
+      success(response)
     }, failure: { error in
       failure(error)
     })
@@ -90,11 +99,13 @@ class UserAPI {
     let parameters = [
       "access_token": token
       ] as [String : Any]
-    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?,
-      success: { responseObject in
-        let json = JSON(responseObject)
-        UserDataManager.storeUserObject(User.parse(fromJSON: json))
-        success()
+    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { responseObject, headers in
+      let json = JSON(responseObject)
+      UserDataManager.storeUserObject(User.parse(fromJSON: json))
+      if let headers = headers as? [String: Any] {
+        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+      }
+      success()
     }, failure: { error in
       failure(error)
     })
