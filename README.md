@@ -15,9 +15,9 @@ This template comes with:
  This App Template also contains other branches with specific features that may be of use to you:
 
 - [**feature/observe_root_vc**](https://github.com/rootstrap/ios-base/tree/feature/observe_root_vc): Detecting when **rootViewController** gets loaded.
-- [**util_gradients**](https://github.com/rootstrap/ios-base/tree/util_gradients): Helper methods to easily add **color gradients**.
-- [**paginated_collections**](https://github.com/rootstrap/ios-base/tree/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
-- [**rx_swift**](https://github.com/rootstrap/ios-base/tree/rx_swift) in case you want to work with **RxSwift** or **MVVM**.
+- [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
+- [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
+- [**feature/RX_Swift**](https://github.com/rootstrap/ios-base/tree/feature/RX_Swift) in case you want to work with **RxSwift** or **MVVM**.
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 
@@ -39,6 +39,8 @@ To use them simply download the branch and locally rebase against master/develop
 15. Delete the `*.workspace` file.
 16. Run `pod install`.
 17. Done :)
+
+To manage user and session persistence after the original sign in/up we store that information in the native UserDefaults. The parameters that we save are due to the usage of [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for authentication on the server side. Suffice to say that this can be modified to be on par with the server authentication of your choice.
 
 ## Pods
 #### Main
@@ -76,6 +78,10 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 3. Go to **Product** -> **Scheme** -> **Edit scheme**. Then select **Pre-actions** for the Build stage and make sure that the `Provided build setting` is set to your current target.
 **Repeat this step for the Post-actions script.**
 4. Done :)
+
+## License
+
+iOS-Base is available under the MIT license. See the LICENSE file for more info.
 
 ## Credits
 
