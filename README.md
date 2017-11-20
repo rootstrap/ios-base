@@ -1,3 +1,6 @@
+[![Build Status](https://img.shields.io/travis/rootstrap/ios-base/master.svg))](https://travis-ci.org/rootstrap/ios-base)
+[![License](https://img.shields.io/github/license/rootstrap/ios-base.svg)](https://github.com/rootstrap/ios-base/blob/master/LICENSE.md)
+
 # iOS Base Template
 **iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 3.2. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
 
@@ -69,7 +72,7 @@ To manage user and session persistence after the original sign in/up we store th
 ## Security recommendations
 #### Third Party Keys
 
-We strongly recommend that all private keys be added to a `.plist` file that will remain localy and not be commited to your project repo. An example file is already provided, these are the final steps to set it up:
+We strongly recommend that all private keys be added to a `.plist` file that will remain locally and not be committed to your project repo. An example file is already provided, these are the final steps to set it up:
 
 1. Rename the `ThirdPartyKeys.example.plist` file on your project so that it is called `ThirdPartyKeys.plist`.
   To add a set of keys simply add a dictionary with the name you want the key to have and add the corresponding **Debug**, **Staging** and **Release** keys as items.
