@@ -69,7 +69,7 @@ To manage user and session persistence after the original sign in/up we store th
 ## Security recommendations
 #### Third Party Keys
 
-We strongly recommend that all private keys be added to a `.plist` file that will remain localy and not be commited to your project repo. An example file is already provided, this are the final steps to setting it up:
+We strongly recommend that all private keys be added to a `.plist` file that will remain localy and not be commited to your project repo. An example file is already provided, these are the final steps to set it up:
 
 1. Rename the `ThirdPartyKeys.example.plist` file on your project so that it is called `ThirdPartyKeys.plist`.
   To add a set of keys simply add a dictionary with the name you want the key to have and add the corresponding **Debug**, **Staging** and **Release** keys as items.
