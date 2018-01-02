@@ -10,28 +10,31 @@ import UIKit
 
 class UserDataManager: NSObject {
   
-  class func storeUserObject(_ user: User) {
-    let defaults = UserDefaults.standard
-    defaults.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: "ios-base-user")
-  }
-  
-  class func getUserObject() -> User? {
-    let defaults = UserDefaults.standard
-    
-    if let data = defaults.object(forKey: "ios-base-user") as? Data {
-      let unarc = NSKeyedUnarchiver(forReadingWith: data)
-      return unarc.decodeObject(forKey: "root") as? User
+  static var currentUser: User? {
+    get {
+      let defaults = UserDefaults.standard
+      
+      if let data = defaults.object(forKey: "ios-base-user") as? Data {
+        let unarc = NSKeyedUnarchiver(forReadingWith: data)
+        return unarc.decodeObject(forKey: "root") as? User
+      }
+      
+      return nil
     }
     
-    return nil
+    set {
+      let defaults = UserDefaults.standard
+      let object = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
+      defaults.set(object, forKey: "ios-base-user")
+    }
   }
   
-  class func deleteUserObject() {
+  class func deleteUser() {
     let defaults = UserDefaults.standard
     defaults.removeObject(forKey: "ios-base-user")
   }
   
-  class func checkSignin() -> Bool {
-    return self.getUserObject() != nil
+  static var isUserLogged: Bool {
+    return currentUser != nil
   }
 }

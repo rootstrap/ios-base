@@ -23,7 +23,7 @@ class bSignUpTests: KIFTestCase {
   override func afterEach() {
     super.afterEach()
     
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController, !SessionDataManager.checkSession() {
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController, !SessionManager.checkSession() {
       navigationController.popViewController(animated: true)
     }
   }
@@ -31,7 +31,7 @@ class bSignUpTests: KIFTestCase {
   override func afterAll() {
     super.afterAll()
     
-    SessionDataManager.deleteSessionObject()
+    SessionManager.deleteSessionObject()
     if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
       navigationController.popToRootViewController(animated: true)
     }
@@ -51,7 +51,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.checkSession(), false)
   }
   
   func test01SignUpMatchPasswordError() {
@@ -65,7 +65,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("differentPassword", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.checkSession(), false)
   }
   
   func test02SignUpEmptyFieldsError() {
@@ -75,7 +75,7 @@ class bSignUpTests: KIFTestCase {
     
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.checkSession(), false)
   }
   
   func test03SignUpSuccessfully() {
@@ -90,7 +90,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
-    XCTAssertEqual(SessionDataManager.checkSession(), true)
+    XCTAssertEqual(SessionManager.checkSession(), true)
   }
   
   // MARK: - Helper method

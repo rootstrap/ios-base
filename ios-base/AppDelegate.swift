@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     IQKeyboardManager.sharedManager().enable = true
     
-    if SessionDataManager.checkSession() {
+    if SessionManager.checkSession() {
       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
       self.window?.rootViewController = vc
     }
@@ -40,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+  }
+  
+  func unexpectedLogout() {
+    UserDataManager.deleteUser()
   }
   
   func applicationWillResignActive(_ application: UIApplication) {
