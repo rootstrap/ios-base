@@ -168,8 +168,8 @@ class APIClient {
     if let messageDict = dictionary["errors"] as? [String: [String]] {
       let errorsList = messageDict[messageDict.keys.first!]!
       return NSError(domain: "\(messageDict.keys.first!) \(errorsList.first!)", code: code ?? 500, userInfo: nil)
-    } else if let errors = dictionary["errors"] as? [String] {
-      return NSError(domain: errors[0], code:code ?? 500, userInfo: nil)
+    } else if let error = dictionary["error"] as? String {
+      return NSError(domain: error, code: code ?? 500, userInfo: nil)
     } else if let errors = dictionary["errors"] as? [String: Any] {
       let errorDesc = errors[errors.keys.first!]!
       return NSError(domain: "\(errors.keys.first!) " + "\(errorDesc)", code:code ?? 500, userInfo: nil)
