@@ -24,8 +24,8 @@ class UserDataManager: NSObject {
     
     set {
       let defaults = UserDefaults.standard
-      let object = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
-      defaults.set(object, forKey: "ios-base-user")
+      let user = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
+      defaults.set(user, forKey: "ios-base-user")
     }
   }
   

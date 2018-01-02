@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     IQKeyboardManager.sharedManager().enable = true
     
-    if SessionManager.checkSession() {
+    if SessionManager.validSession {
       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
       self.window?.rootViewController = vc
     }
@@ -44,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func unexpectedLogout() {
     UserDataManager.deleteUser()
+    SessionManager.deleteSession()
+    //Clear any local data if needed
+    //Take user to onboarding if needed
+    if window?.rootViewController is HomeViewController {
+      window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+    }
   }
   
   func applicationWillResignActive(_ application: UIApplication) {

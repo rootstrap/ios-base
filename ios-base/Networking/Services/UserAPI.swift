@@ -26,7 +26,7 @@ class UserAPI {
       let json = JSON(response)
       UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {
-        SessionManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success()
     }, failure: { error in
@@ -52,7 +52,7 @@ class UserAPI {
       let responseJson = JSON(response)
       UserDataManager.currentUser = User.parse(fromJSON: responseJson)
       if let headers = headers as? [String: Any] {
-        SessionManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success(response)
     }, failure: { (error) in
@@ -76,7 +76,7 @@ class UserAPI {
       let responseJson = JSON(response)
       UserDataManager.currentUser = User.parse(fromJSON: responseJson)
       if let headers = headers as? [String: Any] {
-        SessionManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success(response)
     }, failure: { error in
@@ -103,7 +103,7 @@ class UserAPI {
       let json = JSON(responseObject)
       UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {
-        SessionManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success()
     }, failure: { error in
@@ -114,7 +114,8 @@ class UserAPI {
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
     APIClient.sendDeleteRequest(url, success: { _ in
-      SessionManager.deleteSessionObject()
+      UserDataManager.deleteUser()
+      SessionManager.deleteSession()
       success()
     }, failure: { error in
       failure(error)

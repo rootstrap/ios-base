@@ -23,7 +23,7 @@ class SessionManager: NSObject {
     
     set {
       let defaults = UserDefaults.standard
-      let session = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: session!)
+      let session = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
       defaults.set(session, forKey: "ios-base-session")
     }
   }
@@ -34,6 +34,10 @@ class SessionManager: NSObject {
   }
   
   static var validSession: Bool {
-    return currentSession != nil
+    if let session = currentSession, let uid = session.uid,
+       let tkn = session.accessToken, let client = session.client {
+      return !uid.isEmpty && !tkn.isEmpty && !client.isEmpty
+    }
+    return false
   }
 }
