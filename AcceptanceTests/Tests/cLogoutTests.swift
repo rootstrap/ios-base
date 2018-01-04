@@ -15,7 +15,7 @@ class cLogoutTests: KIFTestCase {
   override func beforeAll() {
     super.beforeAll()
     
-    SessionDataManager.storeSessionObject(Session()) //Simulates the login
+    SessionManager.currentSession = Session(uid: "rootstrap@gmail.com", client: "client", token: "token", expires: Date(timeIntervalSinceNow: 3.15576E+07)) //Simulates the login
     if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController,
       let vc = navigationController.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") {
       navigationController.pushViewController(vc, animated: true)
@@ -45,6 +45,6 @@ class cLogoutTests: KIFTestCase {
     
     tester().tapView(withAccessibilityIdentifier: "LogoutButton")
     tester().waitForView(withAccessibilityIdentifier: "StartView")
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
 }

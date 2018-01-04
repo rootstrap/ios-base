@@ -23,7 +23,7 @@ class bSignUpTests: KIFTestCase {
   override func afterEach() {
     super.afterEach()
     
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController, !SessionDataManager.checkSession() {
+    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController, !SessionManager.validSession {
       navigationController.popViewController(animated: true)
     }
   }
@@ -31,7 +31,7 @@ class bSignUpTests: KIFTestCase {
   override func afterAll() {
     super.afterAll()
     
-    SessionDataManager.deleteSessionObject()
+    SessionManager.deleteSession()
     if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
       navigationController.popToRootViewController(animated: true)
     }
@@ -51,7 +51,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test01SignUpMatchPasswordError() {
@@ -65,7 +65,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("differentPassword", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test02SignUpEmptyFieldsError() {
@@ -75,13 +75,15 @@ class bSignUpTests: KIFTestCase {
     
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test03SignUpSuccessfully() {
     stub(condition: isPath("/api/v1/users")) { _ in
       let stubPath = OHPathForFile("SignUpSuccessfully.json", type(of: self))
-      return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json", "uid": ""]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json",
+                                                                 "uid": "rootstrap@gmail.com",
+                                                                 "client": "client", "access-token": "token"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
@@ -90,7 +92,7 @@ class bSignUpTests: KIFTestCase {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
-    XCTAssertEqual(SessionDataManager.checkSession(), true)
+    XCTAssertEqual(SessionManager.validSession, true)
   }
   
   // MARK: - Helper method

@@ -27,7 +27,7 @@ class aSignInTests: KIFTestCase {
   override func afterAll() {
     super.afterAll()
     
-    SessionDataManager.deleteSessionObject()
+    SessionManager.deleteSession()
     if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
       navigationController.popToRootViewController(animated: true)
     }
@@ -45,7 +45,7 @@ class aSignInTests: KIFTestCase {
     tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test01SignInEmptyUsernameError() {
@@ -56,7 +56,7 @@ class aSignInTests: KIFTestCase {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test02SignInEmptyFieldsError() {
@@ -66,20 +66,22 @@ class aSignInTests: KIFTestCase {
     
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     showErrorMessage()
-    XCTAssertEqual(SessionDataManager.checkSession(), false)
+    XCTAssertEqual(SessionManager.validSession, false)
   }
   
   func test03SignInSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
       let stubPath = OHPathForFile("SignInSuccessfully.json", type(of: self))
-      return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json", "uid": ""]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json",
+                                                                 "uid": "rootstrap@gmail.com",
+                                                                 "client": "client", "access-token": "token"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "UsernameTextField")
     tester().enterText("123456789", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
-    XCTAssertEqual(SessionDataManager.checkSession(), true)
+    XCTAssertEqual(SessionManager.validSession, true)
   }
   
   // MARK: - Helper method

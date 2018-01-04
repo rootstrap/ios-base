@@ -40,7 +40,7 @@ class APIClient {
                                               HTTPHeader.contentType.rawValue: "application/json"]
   
   fileprivate class func getHeader() -> [String: String]? {
-    if let session = SessionDataManager.getSessionObject() {
+    if let session = SessionManager.currentSession {
       return baseHeaders + [
         HTTPHeader.uid.rawValue: session.uid ?? "",
         HTTPHeader.client.rawValue: session.client ?? "",
@@ -115,6 +115,9 @@ class APIClient {
               return
             case .failure(let error):
               failure(error)
+              if (error as NSError).code == 401 { //Unauthorized user
+                AppDelegate.shared.unexpectedLogout()
+              }
             }
         }
       case .failure(let encodingError):
@@ -153,6 +156,9 @@ class APIClient {
           return
         case .failure(let error):
           failure(error)
+          if (error as NSError).code == 401 { //Unauthorized user
+            AppDelegate.shared.unexpectedLogout()
+          }
         }
     }
   }

@@ -24,9 +24,9 @@ class UserAPI {
     ]
     APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { response, headers in
       let json = JSON(response)
-      UserDataManager.storeUserObject(User.parse(fromJSON: json))
+      UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {
-        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success()
     }, failure: { error in
@@ -50,9 +50,9 @@ class UserAPI {
     //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
     APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { response, headers in
       let responseJson = JSON(response)
-      UserDataManager.storeUserObject(User.parse(fromJSON: responseJson))
+      UserDataManager.currentUser = User.parse(fromJSON: responseJson)
       if let headers = headers as? [String: Any] {
-        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success(response)
     }, failure: { (error) in
@@ -74,9 +74,9 @@ class UserAPI {
     
     APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?, success: { response, headers in
       let responseJson = JSON(response)
-      UserDataManager.storeUserObject(User.parse(fromJSON: responseJson))
+      UserDataManager.currentUser = User.parse(fromJSON: responseJson)
       if let headers = headers as? [String: Any] {
-        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success(response)
     }, failure: { error in
@@ -101,9 +101,9 @@ class UserAPI {
       ] as [String : Any]
     APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { responseObject, headers in
       let json = JSON(responseObject)
-      UserDataManager.storeUserObject(User.parse(fromJSON: json))
+      UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {
-        SessionDataManager.storeSessionObject(Session.parse(from: headers))
+        SessionManager.currentSession = Session.parse(from: headers)
       }
       success()
     }, failure: { error in
@@ -114,7 +114,8 @@ class UserAPI {
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
     APIClient.sendDeleteRequest(url, success: { _ in
-      SessionDataManager.deleteSessionObject()
+      UserDataManager.deleteUser()
+      SessionManager.deleteSession()
       success()
     }, failure: { error in
       failure(error)
