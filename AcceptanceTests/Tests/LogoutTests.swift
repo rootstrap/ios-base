@@ -10,7 +10,7 @@ import KIF
 import OHHTTPStubs
 @testable import ios_base
 
-class cLogoutTests: KIFTestCase {
+class LogoutTests: KIFTestCase {
   
   override func beforeAll() {
     super.beforeAll()
@@ -38,7 +38,7 @@ class cLogoutTests: KIFTestCase {
   
   // MARK: - Tests
   
-  func test00LogoutSuccessfully() {
+  func testLogoutSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_out")) { _ in
       return fixture(filePath: "", status: 200, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
