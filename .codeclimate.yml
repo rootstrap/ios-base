@@ -1,0 +1,5 @@
+#CodeClimate config file
+
+plugins:
+  swiftlint:
+    enabled: true
