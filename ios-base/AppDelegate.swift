@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UserDataManager.deleteUser()
     SessionManager.deleteSession()
     //Clear any local data if needed
-    //Take user to onboarding if needed
+    //Take user to onboarding if needed, do NOT redirect the user if is already in the landing
+    // to avoid losing the current VC stack state.
     if window?.rootViewController is HomeViewController {
       window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
     }

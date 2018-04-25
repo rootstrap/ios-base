@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/travis/rootstrap/ios-base/master.svg)](https://travis-ci.org/rootstrap/ios-base)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/rootstrap/ios-base.svg)](https://codeclimate.com/github/rootstrap/ios-base)
 [![License](https://img.shields.io/github/license/rootstrap/ios-base.svg)](https://github.com/rootstrap/ios-base/blob/master/LICENSE.md)
 
 # iOS Base Template
