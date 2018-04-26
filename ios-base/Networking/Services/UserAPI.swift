@@ -22,7 +22,7 @@ class UserAPI {
         "password": password
       ]
     ]
-    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { response, headers in
+    APIClient.sendPostRequest(url, params: parameters, success: { response, headers in
       let json = JSON(response)
       UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {
@@ -72,7 +72,7 @@ class UserAPI {
       ]
     ]
     
-    APIClient.sendPostRequest(usersUrl, params: parameters as [String : AnyObject]?, success: { response, headers in
+    APIClient.sendPostRequest(usersUrl, params: parameters, success: { response, headers in
       let responseJson = JSON(response)
       UserDataManager.currentUser = User.parse(fromJSON: responseJson)
       if let headers = headers as? [String: Any] {
@@ -98,8 +98,8 @@ class UserAPI {
     let url = currentUserUrl + "facebook"
     let parameters = [
       "access_token": token
-      ] as [String : Any]
-    APIClient.sendPostRequest(url, params: parameters as [String : AnyObject]?, success: { responseObject, headers in
+    ]
+    APIClient.sendPostRequest(url, params: parameters, success: { responseObject, headers in
       let json = JSON(responseObject)
       UserDataManager.currentUser = User.parse(fromJSON: json)
       if let headers = headers as? [String: Any] {

@@ -45,9 +45,9 @@ class Session: NSObject, NSCoding {
          let expiryNumber = Double(expiryString) {
         expiry = Date(timeIntervalSince1970: expiryNumber)
       }
-      return Session(uid:     loweredHeaders[APIClient.HTTPHeader.uid.rawValue],
-                     client:  loweredHeaders[APIClient.HTTPHeader.client.rawValue],
-                     token:   loweredHeaders[APIClient.HTTPHeader.token.rawValue],
+      return Session(uid: loweredHeaders[APIClient.HTTPHeader.uid.rawValue],
+                     client: loweredHeaders[APIClient.HTTPHeader.client.rawValue],
+                     token: loweredHeaders[APIClient.HTTPHeader.token.rawValue],
                      expires: expiry
       )
     }

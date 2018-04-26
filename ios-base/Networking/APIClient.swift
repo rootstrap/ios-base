@@ -63,19 +63,16 @@ class APIClient {
         let forwardRootKey = rootKey.isEmpty ? "array[]" : rootKey + "[]"
         multipartFormData(multipartForm, params: val, rootKey: forwardRootKey)
       }
-      break
     case let dict as [String: Any]:
       for (k, v) in dict {
         let forwardRootKey = rootKey.isEmpty ? k : rootKey + "[\(k)]"
         multipartFormData(multipartForm, params: v, rootKey: forwardRootKey)
       }
-      break
     default:
       if let uploadData = "\(params)".data(using: String.Encoding.utf8, allowLossyConversion: false) {
         let forwardRootKey = rootKey.isEmpty ? "\(type(of: params))".lowercased() : rootKey
         multipartForm.append(uploadData, withName: forwardRootKey)
       }
-      break
     }
   }
   
@@ -126,23 +123,23 @@ class APIClient {
     })
   }
   
-  class func sendPostRequest(_ url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func sendPostRequest(_ url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
     sendBaseRequest(.post, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendGetRequest(_ url: String, params: [String: AnyObject]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func sendGetRequest(_ url: String, params: [String: Any]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
     sendBaseRequest(.get, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendPutRequest(_ url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func sendPutRequest(_ url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
     sendBaseRequest(.put, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendDeleteRequest(_ url: String, params: [String: AnyObject]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func sendDeleteRequest(_ url: String, params: [String: Any]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
     sendBaseRequest(.delete, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
   }
   
-  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: AnyObject]?, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
     let header = APIClient.getHeader()
     let requestUrl = getBaseUrl() + url
     Alamofire.request(requestUrl, method: method, parameters: params, encoding: paramsEncoding, headers: header)
@@ -172,9 +169,9 @@ class APIClient {
       return NSError(domain: error, code: code ?? 500, userInfo: nil)
     } else if let errors = dictionary["errors"] as? [String: Any] {
       let errorDesc = errors[errors.keys.first!]!
-      return NSError(domain: "\(errors.keys.first!) " + "\(errorDesc)", code:code ?? 500, userInfo: nil)
+      return NSError(domain: "\(errors.keys.first!) " + "\(errorDesc)", code: code ?? 500, userInfo: nil)
     } else if dictionary["errors"] != nil || dictionary["error"] != nil {
-      return NSError(domain: "Something went wrong. Try again later.", code:code ?? 500, userInfo: nil)
+      return NSError(domain: "Something went wrong. Try again later.", code: code ?? 500, userInfo: nil)
     }
     return nil
   }
@@ -182,8 +179,8 @@ class APIClient {
 
 extension DataRequest {
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
-    return DataResponseSerializer { _, response, data, error in
-      guard data != nil else {
+    return DataResponseSerializer { _, response, data, requestError in
+      guard let data = data else {
         let failureReason = "Data could not be serialized. Input data was nil."
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         let error = NSError(domain: "\(Bundle.main.bundleIdentifier!).error", code: SwiftBaseErrorCode.dataSerializationFailed.rawValue, userInfo: userInfo)
@@ -191,24 +188,14 @@ extension DataRequest {
       }
       
       var anError: NSError?
-      let json = JSON.init(data: data!, options: .allowFragments, error: &anError)
-      if json.type != .null {
-        if let dictionary = json.dictionaryObject {
-          if let customError = APIClient.handleCustomError(response?.statusCode, dictionary: dictionary as [String : AnyObject]) {
-            return .failure(customError)
-          }
-          guard error == nil else {
-            return .failure(error!)
-          }
-          return .success(dictionary)
-        }
-        return .success(["": ""])
+      let json = JSON.init(data: data, options: .allowFragments, error: &anError)
+      
+      let requestOrSerialiationError = anError ?? requestError
+      //There was an error in validate(), JSON serialization or an API error
+      if let errorOcurred = APIClient.handleCustomError(response?.statusCode, dictionary: json.dictionaryObject ?? [:]) ?? requestOrSerialiationError {
+        return .failure(errorOcurred)
       }
-      //There was no error in validate()
-      if let err = error {
-        return .failure(err)
-      }
-      return .success(["": ""])
+      return .success(json.dictionaryObject ?? ["": ""])
     }
   }
   

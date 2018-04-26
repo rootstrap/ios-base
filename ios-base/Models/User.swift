@@ -40,10 +40,10 @@ class User: NSObject, NSCoding {
   class func parse(fromJSON json: JSON) -> User {
     let user = json["user"]
     
-    return User(id:       user["id"].intValue,
+    return User(id: user["id"].intValue,
                 username: user["username"].stringValue,
-                email:    user["email"].stringValue,
-                image:    user["profile_picture"].stringValue
+                email: user["email"].stringValue,
+                image: user["profile_picture"].stringValue
     )
   }
 }
