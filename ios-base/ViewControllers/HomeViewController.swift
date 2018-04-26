@@ -22,8 +22,7 @@ class HomeViewController: UIViewController {
   
   // MARK: - Actions
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
-    UserAPI.getMyProfile({ (json) in
-      let user = User.parse(fromJSON: json)
+    UserAPI.getMyProfile({ user in
       self.showMessage(title: "Profile", message: "email: \(user.email)")
     }, failure: { error in
       print(error)

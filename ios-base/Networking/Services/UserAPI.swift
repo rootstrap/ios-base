@@ -23,11 +23,7 @@ class UserAPI {
       ]
     ]
     APIClient.sendPostRequest(url, params: parameters, success: { response, headers in
-      let json = JSON(response)
-      UserDataManager.currentUser = User.parse(fromJSON: json)
-      if let headers = headers as? [String: Any] {
-        SessionManager.currentSession = Session.parse(from: headers)
-      }
+      UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success()
     }, failure: { error in
       failure(error)
@@ -49,11 +45,7 @@ class UserAPI {
     //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
     //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
     APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { response, headers in
-      let responseJson = JSON(response)
-      UserDataManager.currentUser = User.parse(fromJSON: responseJson)
-      if let headers = headers as? [String: Any] {
-        SessionManager.currentSession = Session.parse(from: headers)
-      }
+      UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success(response)
     }, failure: { (error) in
       failure(error)
@@ -73,22 +65,18 @@ class UserAPI {
     ]
     
     APIClient.sendPostRequest(usersUrl, params: parameters, success: { response, headers in
-      let responseJson = JSON(response)
-      UserDataManager.currentUser = User.parse(fromJSON: responseJson)
-      if let headers = headers as? [String: Any] {
-        SessionManager.currentSession = Session.parse(from: headers)
-      }
+      UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success(response)
     }, failure: { error in
       failure(error)
     })
   }
 
-  class func getMyProfile(_ success: @escaping (_ json: JSON) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func getMyProfile(_ success: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = currentUserUrl + "profile"
-    APIClient.sendGetRequest(url, success: { (responseObject) in
-      let json = JSON(responseObject)
-      success(json)
+    APIClient.sendGetRequest(url, success: { response, _ in
+      let json = JSON(response)
+      success(User(json: json["user"]))
     }, failure: { error in
       failure(error)
     })
@@ -99,16 +87,20 @@ class UserAPI {
     let parameters = [
       "access_token": token
     ]
-    APIClient.sendPostRequest(url, params: parameters, success: { responseObject, headers in
-      let json = JSON(responseObject)
-      UserDataManager.currentUser = User.parse(fromJSON: json)
-      if let headers = headers as? [String: Any] {
-        SessionManager.currentSession = Session.parse(from: headers)
-      }
+    APIClient.sendPostRequest(url, params: parameters, success: { response, headers in
+      UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success()
     }, failure: { error in
       failure(error)
     })
+  }
+  
+  class func saveUserSession(fromResponse response: [String: Any], headers: [AnyHashable: Any]) {
+    let json = JSON(response)
+    UserDataManager.currentUser = User(json: json["user"])
+    if let headers = headers as? [String: Any] {
+      SessionManager.currentSession = Session.parse(from: headers)
+    }
   }
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {

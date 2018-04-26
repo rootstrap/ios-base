@@ -93,6 +93,8 @@ class SignUpTests: KIFTestCase {
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionManager.validSession, true)
+    XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
+    XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
   }
   
   // MARK: - Helper method

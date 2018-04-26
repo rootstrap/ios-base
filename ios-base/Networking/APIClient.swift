@@ -187,15 +187,13 @@ extension DataRequest {
         return .failure(error)
       }
       
-      var anError: NSError?
-      let json = JSON.init(data: data, options: .allowFragments, error: &anError)
-      
-      let requestOrSerialiationError = anError ?? requestError
+      var serializationError: NSError?
+      let json = JSON(data: data, options: .allowFragments, error: &serializationError)
       //There was an error in validate(), JSON serialization or an API error
-      if let errorOcurred = APIClient.handleCustomError(response?.statusCode, dictionary: json.dictionaryObject ?? [:]) ?? requestOrSerialiationError {
+      if let errorOcurred = requestError ?? APIClient.handleCustomError(response?.statusCode, dictionary: json.dictionaryObject ?? [:]) {
         return .failure(errorOcurred)
       }
-      return .success(json.dictionaryObject ?? ["": ""])
+      return !data.isEmpty && serializationError != nil ? .failure(serializationError!) : .success(json.dictionaryObject ?? [:])
     }
   }
   
