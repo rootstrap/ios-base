@@ -12,6 +12,8 @@ import KIF
 
 class SignUpTests: KIFTestCase {
   
+  let unauthorizedStubPath = OHPathForFile("Unauthorized.json", SignUpTests.self)!
+  
   override func beforeEach() {
     super.beforeEach()
     
@@ -43,7 +45,7 @@ class SignUpTests: KIFTestCase {
   
   func testSignUpEmptyUsernameError() {
     stub(condition: isPath("/api/v1/users")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
@@ -56,7 +58,7 @@ class SignUpTests: KIFTestCase {
   
   func testSignUpMatchPasswordError() {
     stub(condition: isPath("/api/v1/users")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
@@ -70,7 +72,7 @@ class SignUpTests: KIFTestCase {
   
   func testSignUpEmptyFieldsError() {
     stub(condition: isPath("/api/v1/users")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().tapView(withAccessibilityIdentifier: "SignUpButton")

@@ -177,23 +177,28 @@ class APIClient {
   }
 }
 
+private let emptyDataStatusCodes: Set<Int> = [204, 205]
+
 extension DataRequest {
   public static func responseDictionary() -> DataResponseSerializer<[String: Any]> {
     return DataResponseSerializer { _, response, data, requestError in
-      guard let data = data else {
-        let failureReason = "Data could not be serialized. Input data was nil."
-        let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
-        let error = NSError(domain: "\(Bundle.main.bundleIdentifier!).error", code: SwiftBaseErrorCode.dataSerializationFailed.rawValue, userInfo: userInfo)
-        return .failure(error)
+      let emptyResponseAllowed = emptyDataStatusCodes.contains(response?.statusCode ?? 0)
+      guard let data = data, !data.isEmpty else {
+        return emptyResponseAllowed ? .success([:]) : .failure(AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength))
       }
-      
+      var dictionary: [String: Any]?
       var serializationError: NSError?
-      let json = JSON(data: data, options: .allowFragments, error: &serializationError)
-      //There was an error in validate(), JSON serialization or an API error
-      if let errorOcurred = requestError ?? APIClient.handleCustomError(response?.statusCode, dictionary: json.dictionaryObject ?? [:]) {
+      do {
+        dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+      } catch let exceptionError as NSError {
+        serializationError = exceptionError
+      }
+      //Check for errors in validate() or API
+      if let errorOcurred = APIClient.handleCustomError(response?.statusCode, dictionary: dictionary ?? [:]) ?? requestError {
         return .failure(errorOcurred)
       }
-      return !data.isEmpty && serializationError != nil ? .failure(serializationError!) : .success(json.dictionaryObject ?? [:])
+      //Check for JSON serialization errors if any data received
+      return serializationError == nil ? .success(dictionary ?? [:]) : .failure(serializationError!)
     }
   }
   
