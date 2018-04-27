@@ -6,7 +6,7 @@ disabled_rules: # rule identifiers to exclude from running
   - cyclomatic_complexity
   - todo
   - mark
-  - variable_name
+  - identifier_name
 opt_in_rules: # some rules are only opt-in
   - empty_count
   # Find all the available rules by running:
