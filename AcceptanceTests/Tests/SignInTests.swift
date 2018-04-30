@@ -12,6 +12,8 @@ import KIF
 
 class SignInTests: KIFTestCase {
   
+  let unauthorizedStubPath = OHPathForFile("Unauthorized.json", SignInTests.self)!
+  
   override func beforeEach() {
     super.beforeEach()
 
@@ -43,7 +45,7 @@ class SignInTests: KIFTestCase {
   
   func testSignInEmptyPasswordError() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     
     tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
@@ -54,7 +56,7 @@ class SignInTests: KIFTestCase {
   
   func testSignInEmptyUsernameError() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
 
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
@@ -65,7 +67,7 @@ class SignInTests: KIFTestCase {
 
   func testSignInEmptyFieldsError() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: "", status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
 
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
@@ -86,6 +88,8 @@ class SignInTests: KIFTestCase {
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionManager.validSession, true)
+    XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
+    XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
   }
   
   // MARK: - Helper method
