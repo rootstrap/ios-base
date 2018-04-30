@@ -36,25 +36,32 @@ class FirstViewController: UIViewController {
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
-    fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
-      guard error == nil else {
-        self.showMessage(title: "Oops..", message: "Something went wrong, try again later.")
-        UIApplication.hideNetworkActivity()
-        return
-      }
-      if result?.grantedPermissions == nil || result?.isCancelled ?? true {
-        UIApplication.hideNetworkActivity()
-      } else if !(result?.grantedPermissions.contains("email"))! {
-        UIApplication.hideNetworkActivity()
-        self.showMessage(title: "Oops..", message: "It seems that you haven't allowed Facebook to provide your email address.")
-      } else {
-        self.facebookLoginCallback()
-      }
+    fbLoginManager.logIn(withPublishPermissions: ["email"], from: self, handler: checkFacebookLoginRequest)
+  }
+  
+  func checkFacebookLoginRequest(result: FBSDKLoginManagerLoginResult?, error: Error?) {
+    guard let result = result, error == nil else {
+      facebookLoginRequestFailed(reason: error!.localizedDescription)
+      return
     }
+    if result.isCancelled {
+      self.facebookLoginRequestFailed(reason: "User cancelled", cancelled: true)
+    } else if !result.grantedPermissions.contains("email") {
+      facebookLoginRequestFailed(reason: "It seems that you haven't allowed Facebook to provide your email address.")
+    } else {
+      facebookLoginRequestSucceded()
+    }
+  }
+  
+  func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
+    if !cancelled {
+      self.showMessage(title: "Oops..", message: reason)
+    }
+    UIApplication.hideNetworkActivity()
   }
 
   // MARK: Facebook callback methods
-  func facebookLoginCallback() {
+  func facebookLoginRequestSucceded() {
     //Optionally store params (facebook user data) locally.
     guard FBSDKAccessToken.current() != nil else {
       return
