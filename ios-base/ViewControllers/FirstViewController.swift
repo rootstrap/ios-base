@@ -30,9 +30,8 @@ class FirstViewController: UIViewController {
   // MARK: - Actions
   @IBAction func facebookLogin() {
     let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
-    guard  facebookKey != nil, facebookKey != "XXXXXX" else {
-      return
-    }
+    assert(facebookKey?.isEmpty ?? false, "Value for FacebookKey not found")
+    
     UIApplication.showNetworkActivity()
     let fbLoginManager = FBSDKLoginManager()
     //Logs out before login, in case user changes facebook accounts
