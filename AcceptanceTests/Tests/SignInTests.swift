@@ -44,9 +44,7 @@ class SignInTests: KIFTestCase {
   // MARK: - Tests
   
   func testSignInEmptyPasswordError() {
-    stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
-    }
+    stubUnauthorizedUser()
     
     tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
@@ -55,9 +53,7 @@ class SignInTests: KIFTestCase {
   }
   
   func testSignInEmptyUsernameError() {
-    stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
-    }
+    stubUnauthorizedUser()
 
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
@@ -66,9 +62,7 @@ class SignInTests: KIFTestCase {
   }
 
   func testSignInEmptyFieldsError() {
-    stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
-    }
+   stubUnauthorizedUser()
 
     tester().tapView(withAccessibilityIdentifier: "SignInButton")
     showErrorMessage()
@@ -77,10 +71,8 @@ class SignInTests: KIFTestCase {
   
   func testSignInSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
-      let stubPath = OHPathForFile("SignInSuccessfully.json", type(of: self))
-      return fixture(filePath: stubPath!, status: 200, headers: ["Content-Type": "application/json",
-                                                                 "uid": "rootstrap@gmail.com",
-                                                                 "client": "client", "access-token": "token"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      let signInJSONPath = OHPathForFile("SignInSuccessfully.json", type(of: self))
+      return fixture(filePath: signInJSONPath!, status: 200, headers: Test.validUserHeaders)
     }
 
     tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "UsernameTextField")
@@ -97,5 +89,11 @@ class SignInTests: KIFTestCase {
   func showErrorMessage() {
     tester().waitForView(withAccessibilityLabel: "Error")
     tester().tapView(withAccessibilityLabel: "Ok")
+  }
+  
+  func stubUnauthorizedUser() {
+    stub(condition: isPath("/api/v1/users/sign_in")) { _ in
+      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+    }
   }
 }

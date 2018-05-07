@@ -5,11 +5,11 @@
 	<key>FacebookKey</key>
 	<dict>
 		<key>Release</key>
-		<string>XXXXXX</string>
+		<string></string>
 		<key>Staging</key>
-		<string>XXXXXX</string>
+		<string></string>
 		<key>Debug</key>
-		<string>XXXXXX</string>
+		<string></string>
 	</dict>
 </dict>
 </plist>

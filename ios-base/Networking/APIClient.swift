@@ -79,14 +79,14 @@ class APIClient {
   //Multipart-form base request. Used to upload media along with desired params.
   //Note: Multipart request does not support Content-Type = application/json.
   //If your API requires this header do not use this method or change backend to skip this validation.
-  class func sendMultipartRequest(_ method: HTTPMethod = .post,
-                                  url: String,
-                                  headers: [String: String]? = nil,
-                                  params: [String: Any]?,
-                                  paramsRootKey: String,
-                                  media: [MultipartMedia],
-                                  success: @escaping SuccessCallback,
-                                  failure: @escaping FailureCallback) {
+  class func multipartRequest(_ method: HTTPMethod = .post,
+                              url: String,
+                              headers: [String: String]? = nil,
+                              params: [String: Any]?,
+                              paramsRootKey: String,
+                              media: [MultipartMedia],
+                              success: @escaping SuccessCallback,
+                              failure: @escaping FailureCallback) {
     
     let header = APIClient.getHeader()
     let requestUrl = getBaseUrl() + url
@@ -103,19 +103,8 @@ class APIClient {
       switch encodingResult {
       case .success(let upload, _, _):
         upload.validate()
-          .responseDictionary { (response) -> Void in
-            switch response.result {
-            case .success(let dictionary):
-              if let urlResponse = response.response {
-                success(dictionary, urlResponse.allHeaderFields)
-              }
-              return
-            case .failure(let error):
-              failure(error)
-              if (error as NSError).code == 401 { //Unauthorized user
-                AppDelegate.shared.unexpectedLogout()
-              }
-            }
+          .responseDictionary { response in
+            validateResult(ofResponse: response, success: success, failure: failure)
         }
       case .failure(let encodingError):
         failure(encodingError)
@@ -123,40 +112,40 @@ class APIClient {
     })
   }
   
-  class func sendPostRequest(_ url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
-    sendBaseRequest(.post, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
+  class func defaultEncoding(forMethod method: HTTPMethod) -> ParameterEncoding {
+    switch method {
+    case .post, .put:
+      return JSONEncoding.default
+    default:
+      return URLEncoding.default
+    }
   }
   
-  class func sendGetRequest(_ url: String, params: [String: Any]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
-    sendBaseRequest(.get, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
-  }
-  
-  class func sendPutRequest(_ url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = JSONEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
-    sendBaseRequest(.put, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
-  }
-  
-  class func sendDeleteRequest(_ url: String, params: [String: Any]? = nil, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
-    sendBaseRequest(.delete, url: url, params: params, paramsEncoding: paramsEncoding, success: success, failure: failure)
-  }
-  
-  class func sendBaseRequest(_ method: HTTPMethod, url: String, params: [String: Any]?, paramsEncoding: ParameterEncoding = URLEncoding.default, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+  class func request(_ method: HTTPMethod, url: String, params: [String: Any]? = nil, paramsEncoding: ParameterEncoding? = nil, success: @escaping SuccessCallback, failure: @escaping FailureCallback) {
+    let encoding = paramsEncoding ?? defaultEncoding(forMethod: method)
     let header = APIClient.getHeader()
     let requestUrl = getBaseUrl() + url
-    Alamofire.request(requestUrl, method: method, parameters: params, encoding: paramsEncoding, headers: header)
+    Alamofire.request(requestUrl, method: method, parameters: params, encoding: encoding, headers: header)
       .validate()
-      .responseDictionary { (response) -> Void in
-        switch response.result {
-        case .success(let dictionary):
-          if let urlResponse = response.response {
-            success(dictionary, urlResponse.allHeaderFields)
-          }
-          return
-        case .failure(let error):
-          failure(error)
-          if (error as NSError).code == 401 { //Unauthorized user
-            AppDelegate.shared.unexpectedLogout()
-          }
-        }
+      .responseDictionary { response in
+        validateResult(ofResponse: response, success: success, failure: failure)
+    }
+  }
+  
+  fileprivate class func validateResult(ofResponse response: DataResponse<[String: Any]>,
+                                        success: @escaping SuccessCallback,
+                                        failure: @escaping FailureCallback) {
+    switch response.result {
+    case .success(let dictionary):
+      if let urlResponse = response.response {
+        success(dictionary, urlResponse.allHeaderFields)
+      }
+      return
+    case .failure(let error):
+      failure(error)
+      if (error as NSError).code == 401 { //Unauthorized user
+        AppDelegate.shared.unexpectedLogout()
+      }
     }
   }
   

@@ -22,7 +22,7 @@ class UserAPI {
         "password": password
       ]
     ]
-    APIClient.sendPostRequest(url, params: parameters, success: { response, headers in
+    APIClient.request(.post, url: url, params: parameters, success: { response, headers in
       UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success()
     }, failure: { error in
@@ -31,7 +31,7 @@ class UserAPI {
   }
 
   //Example method that uploads an image using multipart-form.
-  class func signup(_ email: String, password: String, avatar: UIImage, success: @escaping (_ responseObject: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func signup(_ email: String, password: String, avatar: UIImage, success: @escaping (_ response: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let parameters = [
       "user": [
         "email": email,
@@ -44,7 +44,7 @@ class UserAPI {
     let image = MultipartMedia(key: "user[avatar]", data: picData)
     //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
     //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
-    APIClient.sendMultipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { response, headers in
+    APIClient.multipartRequest(url: usersUrl, params: parameters, paramsRootKey: "", media: [image], success: { response, headers in
       UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success(response)
     }, failure: { (error) in
@@ -53,7 +53,7 @@ class UserAPI {
   }
 
   //Example method that uploads base64 encoded image.
-  class func signup(_ email: String, password: String, avatar64: UIImage, success: @escaping (_ responseObject: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  class func signup(_ email: String, password: String, avatar64: UIImage, success: @escaping (_ response: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let picData = UIImageJPEGRepresentation(avatar64, 0.75)
     let parameters = [
       "user": [
@@ -64,7 +64,7 @@ class UserAPI {
       ]
     ]
     
-    APIClient.sendPostRequest(usersUrl, params: parameters, success: { response, headers in
+    APIClient.request(.post, url: usersUrl, params: parameters, success: { response, headers in
       UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success(response)
     }, failure: { error in
@@ -74,7 +74,7 @@ class UserAPI {
 
   class func getMyProfile(_ success: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = currentUserUrl + "profile"
-    APIClient.sendGetRequest(url, success: { response, _ in
+    APIClient.request(.get, url: url, success: { response, _ in
       let json = JSON(response)
       success(User(json: json["user"]))
     }, failure: { error in
@@ -87,7 +87,7 @@ class UserAPI {
     let parameters = [
       "access_token": token
     ]
-    APIClient.sendPostRequest(url, params: parameters, success: { response, headers in
+    APIClient.request(.post, url: url, params: parameters, success: { response, headers in
       UserAPI.saveUserSession(fromResponse: response, headers: headers)
       success()
     }, failure: { error in
@@ -105,7 +105,7 @@ class UserAPI {
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    APIClient.sendDeleteRequest(url, success: { _ in
+    APIClient.request(.delete, url: url, success: { _ in
       UserDataManager.deleteUser()
       SessionManager.deleteSession()
       success()
