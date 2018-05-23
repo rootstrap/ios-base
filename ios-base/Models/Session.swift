@@ -8,11 +8,18 @@
 
 import Foundation
 
-class Session: NSObject, NSCoding {
+class Session: Codable {
   var uid: String?
   var client: String?
   var accessToken: String?
   var expiry: Date?
+  
+  private enum CodingKeys: String, CodingKey {
+    case uid
+    case client
+    case accessToken = "access-token"
+    case expiry
+  }
 
   init(uid: String? = nil, client: String? = nil, token: String? = nil, expires: Date? = nil) {
     self.uid = uid
@@ -20,37 +27,42 @@ class Session: NSObject, NSCoding {
     self.accessToken = token
     self.expiry = expires
   }
-
-  required init(coder aDecoder: NSCoder) {
-    self.uid = aDecoder.decodeObject(forKey: "session-uid") as? String
-    self.client = aDecoder.decodeObject(forKey: "session-client") as? String
-    self.accessToken = aDecoder.decodeObject(forKey: "session-token") as? String
-    self.expiry = aDecoder.decodeObject(forKey: "session-expiry") as? Date
-  }
-
-  func encode(with aCoder: NSCoder) {
-    aCoder.encode(self.uid, forKey: "session-uid")
-    aCoder.encode(self.client, forKey: "session-client")
-    aCoder.encode(self.accessToken, forKey: "session-token")
-    aCoder.encode(self.expiry, forKey: "session-expiry")
-  }
   
-  // MARK: - Parser
-  class func parse(from headers: [String: Any]) -> Session {
+  init?(headers: [String: Any]) {
     var loweredHeaders = headers
     loweredHeaders.lowercaseKeys()
-    var expiry: Date?
-    if let loweredHeaders = loweredHeaders as? [String: String] {
-      if let expiryString = loweredHeaders[APIClient.HTTPHeader.expiry.rawValue],
-         let expiryNumber = Double(expiryString) {
-        expiry = Date(timeIntervalSince1970: expiryNumber)
-      }
-      return Session(uid: loweredHeaders[APIClient.HTTPHeader.uid.rawValue],
-                     client: loweredHeaders[APIClient.HTTPHeader.client.rawValue],
-                     token: loweredHeaders[APIClient.HTTPHeader.token.rawValue],
-                     expires: expiry
-      )
+    guard let stringHeaders = loweredHeaders as? [String: String] else {
+      return nil
     }
-    return Session()
+    if let expiryString = stringHeaders[APIClient.HTTPHeader.expiry.rawValue],
+      let expiryNumber = Double(expiryString) {
+      expiry = Date(timeIntervalSince1970: expiryNumber)
+    }
+    uid = stringHeaders[APIClient.HTTPHeader.uid.rawValue]
+    client = stringHeaders[APIClient.HTTPHeader.client.rawValue]
+    accessToken = stringHeaders[APIClient.HTTPHeader.token.rawValue]
+  }
+  
+  //MARK: Codable
+  
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(uid, forKey: .uid)
+    try container.encode(client, forKey: .client)
+    try container.encode(accessToken, forKey: .accessToken)
+    try container.encode(expiry?.timeIntervalSince1970, forKey: .expiry)
+  }
+  
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    uid = try container.decode(String.self, forKey: .uid)
+    client = try container.decode(String.self, forKey: .client)
+    accessToken = try container.decode(String.self, forKey: .accessToken)
+    do {
+      let value = try container.decode(Double.self, forKey: .expiry)
+      expiry = Date(timeIntervalSince1970: value)
+    } catch {
+      //Do nothing, expiry can be nil
+    }
   }
 }

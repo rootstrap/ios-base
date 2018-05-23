@@ -7,13 +7,19 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class User: NSObject, NSCoding {
+class User: Codable {
   var id: String
   var username: String
   var email: String
   var image: URL?
+  
+  private enum CodingKeys: String, CodingKey {
+    case id
+    case username
+    case email
+    case image = "profile_picture"
+  }
   
   init(id: String, username: String = "", email: String, image: String = "") {
     self.id = id
@@ -22,24 +28,25 @@ class User: NSObject, NSCoding {
     self.image = URL(string: image)
   }
   
-  convenience init(json: JSON) {
-    self.init(id: json["id"].stringValue,
-              username: json["username"].stringValue,
-              email: json["email"].stringValue,
-              image: json["profile_picture"].stringValue)
+  //MARK: Codable
+
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(id, forKey: .id)
+    try container.encode(username, forKey: .username)
+    try container.encode(email, forKey: .email)
+    try container.encode(image?.absoluteString, forKey: .image)
   }
   
-  required init(coder aDecoder: NSCoder) {
-    self.id = aDecoder.decodeObject(forKey: "user-id") as? String ?? ""
-    self.username = aDecoder.decodeObject(forKey: "user-username") as? String ?? ""
-    self.email = aDecoder.decodeObject(forKey: "user-email") as? String ?? ""
-    self.image = URL(string: aDecoder.decodeObject(forKey: "user-image") as? String ?? "")
-  }
-  
-  func encode(with aCoder: NSCoder) {
-    aCoder.encode(self.id, forKey: "user-id")
-    aCoder.encode(self.username, forKey: "user-username")
-    aCoder.encode(self.email, forKey: "user-email")
-    aCoder.encode(self.image?.absoluteString, forKey: "user-image")
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    do {
+      id = try container.decode(String.self, forKey: .id)
+    } catch {
+      id = String(try container.decode(Int.self, forKey: .id))
+    }
+    username = try container.decode(String.self, forKey: .username)
+    email = try container.decode(String.self, forKey: .email)
+    image = URL(string: try container.decodeIfPresent(String.self, forKey: .image) ?? "")
   }
 }

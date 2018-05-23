@@ -6,8 +6,7 @@
 //  Copyright © 2016 Rootstrap. All rights reserved.
 //
 
-import Foundation
-import SwiftyJSON
+import UIKit
 
 class UserAPI {
   
@@ -75,8 +74,12 @@ class UserAPI {
   class func getMyProfile(_ success: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = currentUserUrl + "profile"
     APIClient.request(.get, url: url, success: { response, _ in
-      let json = JSON(response)
-      success(User(json: json["user"]))
+      do {
+        let user = try JSONDecoder().decode(User.self, from: response["user"] as? [String: Any] ?? [:])
+        success(user)
+      } catch {
+        failure(App.error(domain: .parsing, localizedDescription: "Could not parse a valid user".localized))
+      }
     }, failure: { error in
       failure(error)
     })
@@ -96,16 +99,15 @@ class UserAPI {
   }
   
   class func saveUserSession(fromResponse response: [String: Any], headers: [AnyHashable: Any]) {
-    let json = JSON(response)
-    UserDataManager.currentUser = User(json: json["user"])
+    UserDataManager.currentUser = try? JSONDecoder().decode(User.self, from: response["user"] as? [String: Any] ?? [:])
     if let headers = headers as? [String: Any] {
-      SessionManager.currentSession = Session.parse(from: headers)
+      SessionManager.currentSession = Session(headers: headers)
     }
   }
   
   class func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
     let url = usersUrl + "sign_out"
-    APIClient.request(.delete, url: url, success: { _ in
+    APIClient.request(.delete, url: url, success: {_, _ in 
       UserDataManager.deleteUser()
       SessionManager.deleteSession()
       success()

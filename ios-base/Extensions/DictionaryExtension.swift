@@ -23,6 +23,7 @@ func += <K, V> (left: inout [K: V], right: [K: V]) {
 }
 
 extension Dictionary where Key: ExpressibleByStringLiteral {
+  
   mutating func lowercaseKeys() {
     for key in self.keys {
       if let loweredKey = String(describing: key).lowercased() as? Key {

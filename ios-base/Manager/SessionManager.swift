@@ -12,25 +12,20 @@ class SessionManager: NSObject {
 
   static var currentSession: Session? {
     get {
-      let defaults = UserDefaults.standard
-      if let data = defaults.object(forKey: "ios-base-session") as? Data {
-        let unarc = NSKeyedUnarchiver(forReadingWith: data)
-        return unarc.decodeObject(forKey: "root") as? Session
+      if let data = UserDefaults.standard.data(forKey: "ios-base-session"), let session = try? JSONDecoder().decode(Session.self, from: data) {
+        return session
       }
-      
       return nil
     }
     
     set {
-      let defaults = UserDefaults.standard
-      let session = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
-      defaults.set(session, forKey: "ios-base-session")
+      let session = try? JSONEncoder().encode(newValue)
+      UserDefaults.standard.set(session, forKey: "ios-base-session")
     }
   }
   
   class func deleteSession() {
-    let defaults = UserDefaults.standard
-    defaults.removeObject(forKey: "ios-base-session")
+    UserDefaults.standard.removeObject(forKey: "ios-base-session")
   }
   
   static var validSession: Bool {
