@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey"))
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     
-    IQKeyboardManager.sharedManager().enable = true
+    IQKeyboardManager.shared.enable = true
     
     if SessionManager.validSession {
       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")

@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 public enum SwiftBaseErrorCode: Int {
   case inputStreamReadFailed           = -6000

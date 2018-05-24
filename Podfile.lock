@@ -1,56 +1,53 @@
 PODS:
-  - Alamofire (4.5.1)
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Alamofire (4.7.2)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.23.0):
+  - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.33.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.23.0):
+  - FBSDKLoginKit (4.33.0):
     - FBSDKCoreKit
-  - IQKeyboardManagerSwift (5.0.4)
-  - KIF (3.5.2):
-    - KIF/Core (= 3.5.2)
-  - KIF/Core (3.5.2)
-  - KIF/IdentifierTests (3.5.2):
+  - IQKeyboardManagerSwift (6.0.2)
+  - KIF (3.7.3):
+    - KIF/Core (= 3.7.3)
+  - KIF/Core (3.7.3)
+  - KIF/IdentifierTests (3.7.3):
     - KIF/Core
-  - OHHTTPStubs/Core (6.0.0)
-  - OHHTTPStubs/Default (6.0.0):
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (6.0.0):
+  - OHHTTPStubs/JSON (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (6.0.0):
+  - OHHTTPStubs/NSURLSession (6.1.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (6.0.0)
-  - OHHTTPStubs/Swift (6.0.0):
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
     - OHHTTPStubs/Default
-  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5.1)
-  - FBSDKCoreKit
-  - FBSDKLoginKit
-  - IQKeyboardManagerSwift (~> 5.0.4)
-  - KIF (~> 3.5.2)
-  - KIF/IdentifierTests (~> 3.5.2)
-  - OHHTTPStubs/Swift (~> 6.0.0)
-  - SwiftyJSON (~> 3.1.3)
+  - Alamofire (~> 4.7.2)
+  - FBSDKCoreKit (~> 4.33.0)
+  - FBSDKLoginKit (~> 4.33.0)
+  - IQKeyboardManagerSwift (~> 6.0.1)
+  - KIF (~> 3.7.3)
+  - KIF/IdentifierTests (~> 3.7.3)
+  - OHHTTPStubs/Swift (~> 6.1.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
-  FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
-  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
-  KIF: f2a6025bb3f11692df675054a134d43a9ec2d7db
-  OHHTTPStubs: 752f9b11fd810a15162d50f11c06ff94f8e012eb
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
+  FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
+  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
+  KIF: 4c23b5d24dba24d3cb6dbb9c7d325b31e526ba4a
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
 
-PODFILE CHECKSUM: c5995125dd1d13229716ff73a4a13ab8242bebfd
+PODFILE CHECKSUM: 0527ff32463e2a5aaa27bb9fbe2a20f886651d9f
 
 COCOAPODS: 1.3.1
