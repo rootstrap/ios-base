@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/rootstrap/ios-base.svg)](https://github.com/rootstrap/ios-base/blob/master/LICENSE.md)
 
 # iOS Base Template
-**iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 3.2. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
+**iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 4.1. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
 
 ## Features
 This template comes with:
@@ -49,7 +49,6 @@ To manage user and session persistence after the original sign in/up we store th
 ## Pods
 #### Main
  - [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
- - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for easy JSON parsing.
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
 
