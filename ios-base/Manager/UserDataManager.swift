@@ -13,25 +13,20 @@ class UserDataManager: NSObject {
   static var currentUser: User? {
     get {
       let defaults = UserDefaults.standard
-      
-      if let data = defaults.object(forKey: "ios-base-user") as? Data {
-        let unarc = NSKeyedUnarchiver(forReadingWith: data)
-        return unarc.decodeObject(forKey: "root") as? User
+      if let data = defaults.data(forKey: "ios-base-user"), let user = try? JSONDecoder().decode(User.self, from: data) {
+        return user
       }
-      
       return nil
     }
     
     set {
-      let defaults = UserDefaults.standard
-      let user = newValue == nil ? nil : NSKeyedArchiver.archivedData(withRootObject: newValue!)
-      defaults.set(user, forKey: "ios-base-user")
+      let user = try? JSONEncoder().encode(newValue)
+      UserDefaults.standard.set(user, forKey: "ios-base-user")
     }
   }
   
   class func deleteUser() {
-    let defaults = UserDefaults.standard
-    defaults.removeObject(forKey: "ios-base-user")
+    UserDefaults.standard.removeObject(forKey: "ios-base-user")
   }
   
   static var isUserLogged: Bool {

@@ -8,7 +8,6 @@
 
 import UIKit
 import FBSDKLoginKit
-import SwiftyJSON
 
 class FirstViewController: UIViewController {
   // MARK: - Outlets
@@ -67,7 +66,7 @@ class FirstViewController: UIViewController {
       return
     }
     UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
-     success: { _ in
+     success: { 
       UIApplication.hideNetworkActivity()
       self.performSegue(withIdentifier: "goToMainView", sender: nil)
     }, failure: { error in

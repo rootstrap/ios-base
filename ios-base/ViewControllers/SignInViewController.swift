@@ -31,7 +31,7 @@ class SignInViewController: UIViewController {
     let email = !emailField.text!.isEmpty ? emailField.text : "rootstrap@gmail.com"
     let password = !passwordField.text!.isEmpty ? passwordField.text : "123456789"
     
-    UserAPI.login(email!, password: password!, success: { _ in
+    UserAPI.login(email!, password: password!, success: { 
       UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
     }, failure: { error in

@@ -13,7 +13,7 @@ class UIHelper {
   // MARK: - Customize Views
   class func stylizePlaceholdersFor(_ targets: [UITextField], color: UIColor = UIColor.lightGray) {
     for textField in targets {
-      textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "", attributes: [NSForegroundColorAttributeName: color])
+      textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder ?? "", attributes: [NSAttributedStringKey.foregroundColor: color])
     }
   }
 }
