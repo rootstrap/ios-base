@@ -12,12 +12,12 @@ var currentFolder: String {
 }
 
 enum SetupStep: Int {
-  case nameEnty = 1
+  case nameEntry = 1
   case bundleDomainEntry
   
   var question: String {
     switch self {
-    case .nameEnty: return "Enter name for the project."
+    case .nameEntry: return "Enter name for the project."
     case .bundleDomainEntry: return "Enter the reversed domain of your organization."
     }
   }
@@ -98,7 +98,7 @@ print("""
 +-----------------------------------------+
 """)
 
-projectName = setup(step: .nameEnty, defaultValue: projectName)
+projectName = setup(step: .nameEntry, defaultValue: projectName)
 bundleDomain = setup(step: .bundleDomainEntry, defaultValue: baseDomain)
 
 //Remove current git tracking
