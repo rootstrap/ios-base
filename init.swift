@@ -102,7 +102,7 @@ projectName = setup(step: .nameEnty, defaultValue: projectName)
 bundleDomain = setup(step: .bundleDomainEntry, defaultValue: baseDomain)
 
 //Remove current git tracking
-let _ = shell("rm", "-rf", ".git")
+_ = shell("rm", "-rf", ".git")
 
 print("\nRenaming to '\(projectName)'...")
 let enumerator = fileManager.enumerator(at: URL(fileURLWithPath: currentFolder), includingPropertiesForKeys: [.nameKey, .isDirectoryKey])!
@@ -124,8 +124,8 @@ let currentURL = URL(fileURLWithPath: currentFolder)
 currentURL.rename(from: baseProjectName, to: projectName)
 
 print("Installing pods...")
-let _ = shell("pod", "install")
+_ = shell("pod", "install")
 print("Opening new project...")
-let _ = shell("open", "\(projectName).xcworkspace")
+_ = shell("open", "\(projectName).xcworkspace")
 // Initialization Done!
 print("************** ALL SET! *******************")
