@@ -33,11 +33,11 @@ func prompt(message: String) -> String? {
 
 func setup(step: SetupStep, defaultValue: String) -> String {
   let result = prompt(message: "\(step.rawValue). " + step.question + "(Leave blank for \(defaultValue))")
-  if result == nil {
+  guard let res = result else {
     print(defaultValue)
     return defaultValue
   }
-  return result!
+  return res
 }
 
 func shell(_ args: String...) -> (output: String, exitCode: Int32) {
