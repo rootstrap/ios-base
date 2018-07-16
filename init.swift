@@ -17,8 +17,8 @@ enum SetupStep: Int {
   
   var question: String {
     switch self {
-    case .nameEntry: return "Enter name for the project."
-    case .bundleDomainEntry: return "Enter the reversed domain of your organization."
+    case .nameEntry: return "Enter a name for the project"
+    case .bundleDomainEntry: return "Enter the reversed domain of your organization"
     }
   }
 }
@@ -32,7 +32,7 @@ func prompt(message: String) -> String? {
 }
 
 func setup(step: SetupStep, defaultValue: String) -> String {
-  let result = prompt(message: "\(step.rawValue). " + step.question + "(Leave blank for \(defaultValue))")
+  let result = prompt(message: "\(step.rawValue). " + step.question + " (leave blank for \(defaultValue)).")
   guard let res = result else {
     print(defaultValue)
     return defaultValue
