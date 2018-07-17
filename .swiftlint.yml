@@ -17,6 +17,7 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   - Source/ExcludedFolder
   - Source/ExcludedFile.swift
+  - init.swift
 force_cast: error
 force_try:
   severity: warning # explicitly
