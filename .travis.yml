@@ -1,10 +1,11 @@
+os: osx
 language: swift
-xcode_workspace: swift-base.xcworkspace
-xcode_scheme: swift-base
+xcode_workspace: ios-base.xcworkspace
+xcode_scheme: ios-base
 osx_image: xcode9
 xcode_sdk: iphonesimulator11
-install: true
 cache: cocoapods
+install: true
 before_install:
 - bundle install
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (10.2" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
