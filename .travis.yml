@@ -1,20 +1,16 @@
-os: osx
 language: swift
 xcode_workspace: ios-base.xcworkspace
 xcode_scheme: ios-base
-osx_image: xcode9
-xcode_sdk: iphonesimulator11
-cache: cocoapods
-install: true
+osx_image: xcode9.4
+cache: 
+  - bundler
+  - cocoapods
 before_install:
-- bundle install
-- export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (10.2" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
-- echo $IOS_SIMULATOR_UDID
-- open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-before_script:
-- pod repo update
-- pod install
-- chmod u+x ./scripts/acceptance-tests.sh
-- bundle exec danger
+  - pod repo update
+install:
+  - bundle install 
+  - pod install
 script:
-- travis_retry ./scripts/acceptance-tests.sh
+  - set -o pipefail
+  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' build test | xcpretty --test --color
+  - bundle exec danger
