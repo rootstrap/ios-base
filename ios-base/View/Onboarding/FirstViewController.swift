@@ -10,12 +10,15 @@ import UIKit
 import FBSDKLoginKit
 
 class FirstViewController: UIViewController {
+  
   // MARK: - Outlets
+  
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
 
   // MARK: - Lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
@@ -27,6 +30,7 @@ class FirstViewController: UIViewController {
   }
 
   // MARK: - Actions
+  
   @IBAction func facebookLogin() {
     let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
     assert(facebookKey?.isEmpty ?? false, "Value for FacebookKey not found")
@@ -51,15 +55,9 @@ class FirstViewController: UIViewController {
       facebookLoginRequestSucceded()
     }
   }
-  
-  func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
-    if !cancelled {
-      self.showMessage(title: "Oops..", message: reason)
-    }
-    UIApplication.hideNetworkActivity()
-  }
 
   // MARK: Facebook callback methods
+  
   func facebookLoginRequestSucceded() {
     //Optionally store params (facebook user data) locally.
     guard FBSDKAccessToken.current() != nil else {
@@ -73,5 +71,12 @@ class FirstViewController: UIViewController {
       UIApplication.hideNetworkActivity()
       self.showMessage(title: "Error", message: error._domain)
     })
+  }
+  
+  func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
+    if !cancelled {
+      self.showMessage(title: "Oops..", message: reason)
+    }
+    UIApplication.hideNetworkActivity()
   }
 }

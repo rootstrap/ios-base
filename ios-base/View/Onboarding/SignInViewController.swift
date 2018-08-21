@@ -9,15 +9,23 @@
 import UIKit
 
 class SignInViewController: UIViewController {
+  
   // MARK: - Outlets
+  
   @IBOutlet weak var logIn: UIButton!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
   
-  // MARK: - Lifecycle Event
+  var viewModel = SignInViewModelWithCredentials()
+  
+  // MARK: - Lifecycle Events
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
+    viewModel.onCredentialsChange = { [unowned self] in
+      self.logIn.isEnabled = self.viewModel.hasValidCredentials
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -26,18 +34,28 @@ class SignInViewController: UIViewController {
   }
   
   // MARK: - Actions
+  
+  @IBAction func credentialsChanged(_ sender: UITextField) {
+    let newValue = sender.text ?? ""
+    switch sender {
+    case emailField:
+      viewModel.email = newValue
+    case passwordField:
+      viewModel.password = newValue
+    default: break
+    }
+  }
+  
   @IBAction func tapOnSignInButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    let email = !emailField.text!.isEmpty ? emailField.text : "rootstrap@gmail.com"
-    let password = !passwordField.text!.isEmpty ? passwordField.text : "123456789"
     
-    UserAPI.login(email!, password: password!, success: { 
+    viewModel.login(success: {
       UIApplication.hideNetworkActivity()
-      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+      let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
+      UIApplication.shared.keyWindow?.rootViewController = homeVC
     }, failure: { error in
       UIApplication.hideNetworkActivity()
-      self.showMessage(title: "Error", message: error.localizedDescription)
-      print(error)
+      self.showMessage(title: "Error", message: error)
     })
   }
 }
