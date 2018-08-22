@@ -27,9 +27,7 @@ class SignInViewModelWithCredentials {
   }
   
   func login(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.login(email, password: password, success: {
-      success()
-    }, failure: { error in
+    UserAPI.login(email, password: password, success: success, failure: { error in
       failure(error.localizedDescription)
     })
   }

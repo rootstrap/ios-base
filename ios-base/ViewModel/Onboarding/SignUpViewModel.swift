@@ -33,8 +33,10 @@ class SignUpViewModelWithEmail {
   }
   
   func signup(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.signup(email, password: password, avatar64: UIImage.random(), success: { reponse in
-      success()
+    UserAPI.signup(email, password: password,
+                   avatar64: UIImage.random(),
+                   success: { _ in
+                    success()
     }, failure: { error in
       failure(error.localizedDescription)
     })

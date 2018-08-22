@@ -75,7 +75,7 @@ class FirstViewController: UIViewController {
   
   func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
     if !cancelled {
-      self.showMessage(title: "Oops..", message: reason)
+      showMessage(title: "Oops..", message: reason)
     }
     UIApplication.hideNetworkActivity()
   }

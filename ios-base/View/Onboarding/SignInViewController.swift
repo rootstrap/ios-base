@@ -49,11 +49,11 @@ class SignInViewController: UIViewController {
   @IBAction func tapOnSignInButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
     
-    viewModel.login(success: {
+    viewModel.login(success: { [unowned self] in
       UIApplication.hideNetworkActivity()
       let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
       UIApplication.shared.keyWindow?.rootViewController = homeVC
-    }, failure: { error in
+    }, failure: { [unowned self] error in
       UIApplication.hideNetworkActivity()
       self.showMessage(title: "Error", message: error)
     })

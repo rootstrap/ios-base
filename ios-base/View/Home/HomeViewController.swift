@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
   // MARK: - Actions
   
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
-    viewModel.loadUserProfile(success: { email in
+    viewModel.loadUserProfile(success: { [unowned self] email in
       self.showMessage(title: "My Profile", message: "email: \(email)")
     }, failure: { error in
       print("User Profile Error: " + error)
@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    viewModel.logoutUser(success: {
+    viewModel.logoutUser(success: { [unowned self] in
       UIApplication.hideNetworkActivity()
       UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }, failure: { error in

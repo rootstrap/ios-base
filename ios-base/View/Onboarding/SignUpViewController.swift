@@ -51,11 +51,11 @@ class SignUpViewController: UIViewController {
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    viewModel.signup(success: {
+    viewModel.signup(success: { [unowned self] in
       UIApplication.hideNetworkActivity()
       let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
       UIApplication.shared.keyWindow?.rootViewController = homeVC
-    }, failure: { failureReason in
+    }, failure: { [unowned self] failureReason in
       UIApplication.hideNetworkActivity()
       self.showMessage(title: "Error", message: failureReason)
     })

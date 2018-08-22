@@ -19,9 +19,7 @@ class HomeViewModel {
   }
   
   func logoutUser(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.logout({
-      success()
-    }, failure: { error in
+    UserAPI.logout(success, failure: { error in
       failure(error.localizedDescription)
     })
   }
