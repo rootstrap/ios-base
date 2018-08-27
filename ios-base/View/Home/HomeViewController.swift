@@ -9,10 +9,13 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+  
   // MARK: - Outlets
   
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var logOut: UIButton!
+  
+  var viewModel = HomeViewModel()
   
   // MARK: - Lifecycle Events
   override func viewDidLoad() {
@@ -21,26 +24,23 @@ class HomeViewController: UIViewController {
   }
   
   // MARK: - Actions
+  
   @IBAction func tapOnGetMyProfile(_ sender: Any) {
-    UserAPI.getMyProfile({ user in
-      self.showMessage(title: "Profile", message: "email: \(user.email)")
+    viewModel.loadUserProfile(success: { [unowned self] email in
+      self.showMessage(title: "My Profile", message: "email: \(email)")
     }, failure: { error in
-      print(error)
+      print("User Profile Error: " + error)
     })
   }
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     UIApplication.showNetworkActivity()
-    UserAPI.logout({
-      self.logOutResponse()
+    viewModel.logoutUser(success: { [unowned self] in
+      UIApplication.hideNetworkActivity()
+      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }, failure: { error in
-      self.logOutResponse()
-      print(error)
+      UIApplication.hideNetworkActivity()
+      print("User Logout Error: " + error)
     })
-  }
-  
-  func logOutResponse() {
-    UIApplication.hideNetworkActivity()
-    UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
   }
 }
