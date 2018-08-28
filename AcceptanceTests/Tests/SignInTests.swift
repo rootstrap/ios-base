@@ -43,30 +43,19 @@ class SignInTests: KIFTestCase {
   
   // MARK: - Tests
   
-  func testSignInEmptyPasswordError() {
-    stubUnauthorizedUser()
-    
-    tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignInButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
-  }
-  
-  func testSignInEmptyUsernameError() {
-    stubUnauthorizedUser()
-
+  func testSignInFormValidation() {
+    //Empty form
+    checkControl(withID: "SignInButton", enabled: false)
+    //Bad email
+    tester().enterText("user@email", intoViewWithAccessibilityIdentifier: "EmailTextField")
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignInButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
-  }
-
-  func testSignInEmptyFieldsError() {
-   stubUnauthorizedUser()
-
-    tester().tapView(withAccessibilityIdentifier: "SignInButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
+    checkControl(withID: "SignInButton", enabled: false)
+    //Good email - Bad password
+    tester().clearTextFromView(withAccessibilityIdentifier: "EmailTextField")
+    tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
+    tester().clearTextFromView(withAccessibilityIdentifier: "PasswordTextField")
+//    tester().enterText("", intoViewWithAccessibilityIdentifier: "PasswordTextField")
+    checkControl(withID: "SignInButton", enabled: false)
   }
   
   func testSignInSuccessfully() {
@@ -75,25 +64,38 @@ class SignInTests: KIFTestCase {
       return fixture(filePath: signInJSONPath!, status: 200, headers: Test.validUserHeaders)
     }
 
-    tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "UsernameTextField")
-    tester().enterText("123456789", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignInButton")
+    proceedToLogin()
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionManager.validSession, true)
     XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
     XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
   }
   
-  // MARK: - Helper method
-  
-  func showErrorMessage() {
-    tester().waitForView(withAccessibilityLabel: "Error")
-    tester().tapView(withAccessibilityLabel: "Ok")
+  func testSignInFailure() {
+    stubUnauthorizedUser()
+    
+    proceedToLogin()
+    modalMessageAppears()
+    XCTAssertEqual(SessionManager.validSession, false)
+    XCTAssertNil(UserDataManager.currentUser, "Stored user should be nil.")
   }
+  
+  // MARK: - Helper method
   
   func stubUnauthorizedUser() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
       return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
+  }
+  
+  func fillFormCorrectly() {
+    tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
+    tester().enterText("123456789", intoViewWithAccessibilityIdentifier: "PasswordTextField")
+  }
+  
+  func proceedToLogin() {
+    fillFormCorrectly()
+    checkControl(withID: "SignInButton", enabled: true)
+    tester().tapView(withAccessibilityIdentifier: "SignInButton")
   }
 }

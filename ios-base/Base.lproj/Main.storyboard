@@ -155,7 +155,7 @@ RS iOS BASE.</string>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SGW-mB-J78">
                                 <rect key="frame" x="32" y="289.5" width="311" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UsernameTextField"/>
+                                <accessibility key="accessibilityConfiguration" identifier="EmailTextField"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="f8Y-z2-1Kg"/>
                                 </constraints>
@@ -345,7 +345,7 @@ RS iOS BASE.</string>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYV-eE-Ila">
                                 <rect key="frame" x="32" y="253.5" width="311" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UsernameTextField"/>
+                                <accessibility key="accessibilityConfiguration" identifier="EmailTextField"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bSN-Vc-jOG"/>
                                 </constraints>

@@ -43,35 +43,23 @@ class SignUpTests: KIFTestCase {
   
   // MARK: - Tests
   
-  func testSignUpEmptyUsernameError() {
-    stubUnauthorizedNewUser()
-    
-    tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
+  func testSignUpFormEmailFormatting() {
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignUpButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
+    checkControl(withID: "SignUpButton", enabled: false)
+    tester().enterText("notan@email", intoViewWithAccessibilityIdentifier: "EmailTextField")
+    checkControl(withID: "SignUpButton", enabled: false)
   }
   
-  func testSignUpMatchPasswordError() {
-    stubUnauthorizedNewUser()
-    
-    tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
-    tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
+  func testSignUpFormUnmatchingPassword() {
+    tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
     tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     tester().enterText("differentPassword", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignUpButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
+    checkControl(withID: "SignUpButton", enabled: false)
   }
   
   func testSignUpEmptyFieldsError() {
-    stubUnauthorizedNewUser()
-    
-    tester().tapView(withAccessibilityIdentifier: "SignUpButton")
-    showErrorMessage()
-    XCTAssertEqual(SessionManager.validSession, false)
+    checkControl(withID: "SignUpButton", enabled: false)
   }
   
   func testSignUpSuccessfully() {
@@ -80,27 +68,39 @@ class SignUpTests: KIFTestCase {
       return fixture(filePath: signUpJSONPath!, status: 200, headers: Test.validUserHeaders)
     }
     
-    tester().enterText("name", intoViewWithAccessibilityIdentifier: "NameTextField")
-    tester().enterText("username", intoViewWithAccessibilityIdentifier: "UsernameTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
-    tester().tapView(withAccessibilityIdentifier: "SignUpButton")
+    proceedToSignUp()
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionManager.validSession, true)
     XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
     XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
   }
   
-  // MARK: - Helper method
-  
-  func showErrorMessage() {
-    tester().waitForView(withAccessibilityLabel: "Error")
-    tester().tapView(withAccessibilityLabel: "Ok")
+  func testSignUpFailure() {
+    stubUnauthorizedNewUser()
+    
+    proceedToSignUp()
+    modalMessageAppears()
+    XCTAssertEqual(SessionManager.validSession, false)
+    XCTAssertNil(UserDataManager.currentUser, "Stored user should be nil.")
   }
+  
+  // MARK: - Helper method
   
   func stubUnauthorizedNewUser() {
     stub(condition: isPath("/api/v1/users")) { _ in
       return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
+  }
+  
+  func fillFormCorrectly() {
+    tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
+    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
+    tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
+  }
+  
+  func proceedToSignUp() {
+    fillFormCorrectly()
+    checkControl(withID: "SignUpButton", enabled: true)
+    tester().tapView(withAccessibilityIdentifier: "SignUpButton")
   }
 }

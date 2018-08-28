@@ -15,4 +15,14 @@ extension KIFTestActorDelegate {
   func system(file: String = #file, line: Int = #line) -> KIFSystemTestActor {
     return KIFSystemTestActor(inFile: file, atLine: line, delegate: self)
   }
+  
+  func checkControl(withID identifier: String, enabled: Bool) {
+    let control = tester().waitForView(withAccessibilityIdentifier: identifier) as? UIControl
+    XCTAssert(control?.isEnabled == enabled)
+  }
+  
+  func modalMessageAppears(withLabel label: String = "Error", defaultOptionLabel: String = "Ok") {
+    tester().waitForView(withAccessibilityLabel: label)
+    tester().tapView(withAccessibilityLabel: defaultOptionLabel)
+  }
 }
