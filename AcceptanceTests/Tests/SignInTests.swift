@@ -54,7 +54,6 @@ class SignInTests: KIFTestCase {
     tester().clearTextFromView(withAccessibilityIdentifier: "EmailTextField")
     tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
     tester().clearTextFromView(withAccessibilityIdentifier: "PasswordTextField")
-//    tester().enterText("", intoViewWithAccessibilityIdentifier: "PasswordTextField")
     checkControl(withID: "SignInButton", enabled: false)
   }
   
