@@ -30,7 +30,8 @@ To use them simply download the branch and locally rebase against master/develop
 1. Clone repo.
 2. Install desired extensions from their branches.
 3. Run `swift init.swift` from the recently created folder.
-4. Done!
+4. Initialize a new git repo and add your remote url.
+5. Done!
 
 To manage user and session persistence after the original sign in/up we store that information in the native UserDefaults. The parameters that we save are due to the usage of [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for authentication on the server side. Suffice to say that this can be modified to be on par with the server authentication of your choice.
 
