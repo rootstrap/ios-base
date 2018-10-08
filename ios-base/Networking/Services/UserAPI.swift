@@ -39,7 +39,7 @@ class UserAPI {
       ]
     ]
     
-    let picData = UIImageJPEGRepresentation(avatar, 0.75)!
+    let picData = avatar.jpegData(compressionQuality: 0.75)!
     let image = MultipartMedia(key: "user[avatar]", data: picData)
     //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
     //Example: let image2 = Base64Media(key: "user[image]", data: picData) Then: media [image, image2]
@@ -53,7 +53,7 @@ class UserAPI {
 
   //Example method that uploads base64 encoded image.
   class func signup(_ email: String, password: String, avatar64: UIImage, success: @escaping (_ response: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    let picData = UIImageJPEGRepresentation(avatar64, 0.75)
+    let picData = avatar64.jpegData(compressionQuality: 0.75)
     let parameters = [
       "user": [
         "email": email,
