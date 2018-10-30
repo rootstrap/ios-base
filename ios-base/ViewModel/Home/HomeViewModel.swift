@@ -8,19 +8,56 @@
 
 import Foundation
 
+enum HomeViewModelState: Equatable {
+  case loading
+  case error(String)
+  case idle
+  case loggedOut
+  
+  static func == (lhs: HomeViewModelState, rhs: HomeViewModelState) -> Bool {
+    switch (lhs, rhs) {
+    case (.loading, .loading), (.idle, .idle), (.loggedOut, .loggedOut):
+      return true
+    case (let .error(lhsError), let .error(rhsError)):
+      return lhsError == rhsError
+    default:
+      return false
+    }
+  }
+}
+
+protocol HomeViewModelDelegate: class {
+  func didUpdateState()
+}
+
 class HomeViewModel {
   
-  func loadUserProfile(success: @escaping (String) -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.getMyProfile({ user in
-      success(user.email)
-    }, failure: { error in
-      failure(error.localizedDescription)
+  weak var delegate: HomeViewModelDelegate?
+  
+  var userEmail: String?
+  
+  var state: HomeViewModelState = .idle {
+    didSet {
+        delegate?.didUpdateState()
+    }
+  }
+  
+  func loadUserProfile() {
+    state = .loading
+    UserAPI.getMyProfile({ [weak self] user in
+      self?.userEmail = user.email
+      self?.state = .idle
+    }, failure: { [weak self] error in
+      self?.state = .error(error.localizedDescription)
     })
   }
   
-  func logoutUser(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.logout(success, failure: { error in
-      failure(error.localizedDescription)
+  func logoutUser() {
+    state = .loading
+    UserAPI.logout({ [weak self] in
+      self?.state = .loggedOut
+    }, failure: { [weak self] error in
+      self?.state = .error(error.localizedDescription)
     })
   }
 }
