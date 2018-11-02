@@ -23,9 +23,8 @@ class SignInViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
-    viewModel.onCredentialsChange = { [unowned self] in
-      self.logIn.isEnabled = self.viewModel.hasValidCredentials
-    }
+    viewModel.delegate = self
+    enableLoginButton(false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -47,15 +46,37 @@ class SignInViewController: UIViewController {
   }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
-    UIApplication.showNetworkActivity()
-    
-    viewModel.login(success: { [unowned self] in
+    viewModel.login()
+  }
+  
+  func setLoggedInRoot() {
+    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
+    UIApplication.shared.keyWindow?.rootViewController = homeVC
+  }
+  
+  func enableLoginButton(_ enabled: Bool) {
+    logIn.alpha = enabled ? 1 : 0.5
+    logIn.isEnabled = enabled
+  }
+}
+
+extension SignInViewController: SignInViewModelDelegate {
+  func didUpdateCredentials() {
+    enableLoginButton(viewModel.hasValidCredentials)
+  }
+  
+  func didUpdateState() {
+    switch viewModel.state {
+    case .loading:
+      UIApplication.showNetworkActivity()
+    case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
-      UIApplication.shared.keyWindow?.rootViewController = homeVC
-    }, failure: { [unowned self] error in
+      showMessage(title: "Error", message: errorDescription)
+    case .loggedIn:
       UIApplication.hideNetworkActivity()
-      self.showMessage(title: "Error", message: error)
-    })
+      setLoggedInRoot()
+    case .idle:
+      UIApplication.hideNetworkActivity()
+    }
   }
 }

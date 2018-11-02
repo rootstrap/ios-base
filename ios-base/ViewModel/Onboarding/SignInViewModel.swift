@@ -8,27 +8,53 @@
 
 import Foundation
 
+enum SignInViewModelState: Equatable {
+  case loading
+  case idle
+  case error(String)
+  case loggedIn
+}
+
+protocol SignInViewModelDelegate: class {
+  func didUpdateCredentials()
+  func didUpdateState()
+}
+
 class SignInViewModelWithCredentials {
+  
+  var state: SignInViewModelState = .idle {
+    didSet {
+      delegate?.didUpdateState()
+    }
+  }
+  
+  weak var delegate: SignInViewModelDelegate?
   
   var email = "" {
     didSet {
-      onCredentialsChange?()
+      delegate?.didUpdateCredentials()
     }
   }
+  
   var password = "" {
     didSet {
-      onCredentialsChange?()
+      delegate?.didUpdateCredentials()
     }
   }
-  var onCredentialsChange: (() -> Void)?
   
   var hasValidCredentials: Bool {
     return email.isEmailFormatted() && !password.isEmpty
   }
   
-  func login(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
-    UserAPI.login(email, password: password, success: success, failure: { error in
-      failure(error.localizedDescription)
-    })
+  func login() {
+    state = .loading
+    UserAPI.login(email,
+                  password: password,
+                  success: { [weak self] in
+                    self?.state = .loggedIn
+                  },
+                  failure: { [weak self] error in
+                    self?.state = .error(error.localizedDescription)
+                  })
   }
 }
