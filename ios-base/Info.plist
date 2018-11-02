@@ -23,18 +23,24 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbXXXXXXXXXXX</string>
+				<string>fb703804262984729</string>
 			</array>
 		</dict>
+		<dict/>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>ConfigurationName</key>
 	<string>Debug</string>
 	<key>FacebookDisplayName</key>
-	<string>APP-NAME</string>
+	<string>LogTestApp</string>
+	<key>FacebookKey</key>
+	<string>703804262984729</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

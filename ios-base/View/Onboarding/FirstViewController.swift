@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FBSDKLoginKit
 
 class FirstViewController: UIViewController {
   
@@ -16,11 +15,14 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
+  
+  var viewModel = FirstViewModel()
 
   // MARK: - Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewModel.delegate = self
     [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
   
@@ -32,51 +34,23 @@ class FirstViewController: UIViewController {
   // MARK: - Actions
   
   @IBAction func facebookLogin() {
-    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
-    assert(facebookKey?.isEmpty ?? false, "Value for FacebookKey not found")
-    
-    UIApplication.showNetworkActivity()
-    let fbLoginManager = FBSDKLoginManager()
-    //Logs out before login, in case user changes facebook accounts
-    fbLoginManager.logOut()
-    fbLoginManager.logIn(withPublishPermissions: ["email"], from: self, handler: checkFacebookLoginRequest)
+    viewModel.facebookLogin()
   }
-  
-  func checkFacebookLoginRequest(result: FBSDKLoginManagerLoginResult?, error: Error?) {
-    guard let result = result, error == nil else {
-      facebookLoginRequestFailed(reason: error!.localizedDescription)
-      return
-    }
-    if result.isCancelled {
-      self.facebookLoginRequestFailed(reason: "User cancelled", cancelled: true)
-    } else if !result.grantedPermissions.contains("email") {
-      facebookLoginRequestFailed(reason: "It seems that you haven't allowed Facebook to provide your email address.")
-    } else {
-      facebookLoginRequestSucceded()
-    }
-  }
+}
 
-  // MARK: Facebook callback methods
-  
-  func facebookLoginRequestSucceded() {
-    //Optionally store params (facebook user data) locally.
-    guard FBSDKAccessToken.current() != nil else {
-      return
-    }
-    UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
-     success: { 
+extension FirstViewController: FirstViewModelDelegate {
+  func didUpdateState() {
+    switch viewModel.state {
+    case .loading:
+      UIApplication.showNetworkActivity()
+    case .idle:
       UIApplication.hideNetworkActivity()
-      self.performSegue(withIdentifier: "goToMainView", sender: nil)
-    }, failure: { error in
+    case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      self.showMessage(title: "Error", message: error._domain)
-    })
-  }
-  
-  func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
-    if !cancelled {
-      showMessage(title: "Oops..", message: reason)
+      showMessage(title: "Oops", message: errorDescription)
+    case .facebookLoggedIn:
+      UIApplication.hideNetworkActivity()
+      performSegue(withIdentifier: "goToMainView", sender: nil)
     }
-    UIApplication.hideNetworkActivity()
   }
 }
