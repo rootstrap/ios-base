@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb703804262984729</string>
+				<string>fbXXXXXXXXXXXXXXX</string>
 			</array>
 		</dict>
 		<dict/>
@@ -38,9 +38,9 @@
 	<key>ConfigurationName</key>
 	<string>Debug</string>
 	<key>FacebookDisplayName</key>
-	<string>LogTestApp</string>
+	<string></string>
 	<key>FacebookKey</key>
-	<string>703804262984729</string>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
