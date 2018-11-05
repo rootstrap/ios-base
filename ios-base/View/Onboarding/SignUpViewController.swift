@@ -25,7 +25,7 @@ class SignUpViewController: UIViewController {
     super.viewDidLoad()
     signUp.setRoundBorders(22)
     viewModel.delegate = self
-    enableSignUpButton(false)
+    setSignUpButton(enabled: false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -57,15 +57,15 @@ class SignUpViewController: UIViewController {
     UIApplication.shared.keyWindow?.rootViewController = homeVC
   }
   
-  func enableSignUpButton(_ enable: Bool) {
-    signUp.alpha = enable ? 1 : 0.5
-    signUp.isEnabled = enable
+  func setSignUpButton(enabled: Bool) {
+    signUp.alpha = enabled ? 1 : 0.5
+    signUp.isEnabled = enabled
   }
 }
 
 extension SignUpViewController: SignUpViewModelDelegate {
   func formDidChange() {
-    enableSignUpButton(viewModel.hasValidData)
+    setSignUpButton(enabled: viewModel.hasValidData)
   }
   
   func didUpdateState() {

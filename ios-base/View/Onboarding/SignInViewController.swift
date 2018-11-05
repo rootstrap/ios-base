@@ -24,7 +24,7 @@ class SignInViewController: UIViewController {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
     viewModel.delegate = self
-    enableLoginButton(false)
+    setLoginButton(enabled: false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +54,7 @@ class SignInViewController: UIViewController {
     UIApplication.shared.keyWindow?.rootViewController = homeVC
   }
   
-  func enableLoginButton(_ enabled: Bool) {
+  func setLoginButton(enabled: Bool) {
     logIn.alpha = enabled ? 1 : 0.5
     logIn.isEnabled = enabled
   }
@@ -62,7 +62,7 @@ class SignInViewController: UIViewController {
 
 extension SignInViewController: SignInViewModelDelegate {
   func didUpdateCredentials() {
-    enableLoginButton(viewModel.hasValidCredentials)
+    setLoginButton(enabled: viewModel.hasValidCredentials)
   }
   
   func didUpdateState() {
