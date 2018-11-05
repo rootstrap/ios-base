@@ -9,36 +9,59 @@
 import Foundation
 import UIKit
 
+enum SignUpViewModelState {
+  case loading
+  case idle
+  case error(String)
+  case signedUp
+}
+
+protocol SignUpViewModelDelegate: class {
+  func formDidChange()
+  func didUpdateState()
+}
+
 class SignUpViewModelWithEmail {
+  
+  var state: SignUpViewModelState = .idle {
+    didSet {
+      delegate?.didUpdateState()
+    }
+  }
+  
+  weak var delegate: SignUpViewModelDelegate?
   
   var email = "" {
     didSet {
-      onFormChange?()
+      delegate?.formDidChange()
     }
   }
+  
   var password = "" {
     didSet {
-      onFormChange?()
+      delegate?.formDidChange()
     }
   }
+  
   var passwordConfirmation = "" {
     didSet {
-      onFormChange?()
+      delegate?.formDidChange()
     }
   }
-  var onFormChange: (() -> Void)?
   
   var hasValidData: Bool {
     return email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
-  func signup(success: @escaping () -> Void, failure: @escaping (String) -> Void) {
+  func signup() {
+    state = .loading
     UserAPI.signup(email, password: password,
                    avatar64: UIImage.random(),
-                   success: { _ in
-                    success()
-    }, failure: { error in
-      failure(error.localizedDescription)
-    })
+                   success: { [weak self] _ in
+                    self?.state = .signedUp
+                   },
+                   failure: { [weak self] error in
+                    self?.state = .error(error.localizedDescription)
+                  })
   }
 }

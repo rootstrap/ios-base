@@ -13,17 +13,6 @@ enum HomeViewModelState: Equatable {
   case error(String)
   case idle
   case loggedOut
-  
-  static func == (lhs: HomeViewModelState, rhs: HomeViewModelState) -> Bool {
-    switch (lhs, rhs) {
-    case (.loading, .loading), (.idle, .idle), (.loggedOut, .loggedOut):
-      return true
-    case (let .error(lhsError), let .error(rhsError)):
-      return lhsError == rhsError
-    default:
-      return false
-    }
-  }
 }
 
 protocol HomeViewModelDelegate: class {

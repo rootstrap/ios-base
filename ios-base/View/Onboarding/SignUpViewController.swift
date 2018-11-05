@@ -24,9 +24,8 @@ class SignUpViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     signUp.setRoundBorders(22)
-    viewModel.onFormChange = { [unowned self] in
-      self.signUp.isEnabled = self.viewModel.hasValidData
-    }
+    viewModel.delegate = self
+    enableSignUpButton(false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -50,14 +49,37 @@ class SignUpViewController: UIViewController {
   }
   
   @IBAction func tapOnSignUpButton(_ sender: Any) {
-    UIApplication.showNetworkActivity()
-    viewModel.signup(success: { [unowned self] in
+    viewModel.signup()
+  }
+  
+  func setSignedUpRoot() {
+    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
+    UIApplication.shared.keyWindow?.rootViewController = homeVC
+  }
+  
+  func enableSignUpButton(_ enable: Bool) {
+    signUp.alpha = enable ? 1 : 0.5
+    signUp.isEnabled = enable
+  }
+}
+
+extension SignUpViewController: SignUpViewModelDelegate {
+  func formDidChange() {
+    enableSignUpButton(viewModel.hasValidData)
+  }
+  
+  func didUpdateState() {
+    switch viewModel.state {
+    case .loading:
+      UIApplication.showNetworkActivity()
+    case .signedUp:
       UIApplication.hideNetworkActivity()
-      let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
-      UIApplication.shared.keyWindow?.rootViewController = homeVC
-    }, failure: { [unowned self] failureReason in
+      setSignedUpRoot()
+    case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
-      self.showMessage(title: "Error", message: failureReason)
-    })
+      showMessage(title: "Error", message: errorDescription)
+    case .idle:
+      UIApplication.hideNetworkActivity()
+    }
   }
 }
