@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     // -Facebook
-    FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey"))
+    FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey", on: "Info"))
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     
     IQKeyboardManager.shared.enable = true
