@@ -16,9 +16,9 @@ before_install:
 install:
   - bundle install
   - pod install
-after_install:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 script:
   - set -o pipefail
   - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' build test | xcpretty --test --color
   - bundle exec danger
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
