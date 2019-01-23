@@ -1,0 +1,5 @@
+coverage_service: cobertura_xml
+workspace: ios-base.workspece
+xcodeproj: ios-base.xcodeproj
+scheme: ios_base
+output_directory: cobertura.xml
