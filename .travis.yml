@@ -24,4 +24,4 @@ script:
 after_script:
   - slather coverage -s --scheme ios-base ios-base.xcodeproj
   - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
-  - ./cc-test-reporter after-build -t cobertura --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --debug -t cobertura --exit-code $TRAVIS_TEST_RESULT
