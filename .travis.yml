@@ -1,6 +1,7 @@
 env:
   global:
     - CC_TEST_REPORTER_ID: ecb24ed0e4ed09f50a512e0b9490e0caa3e2409bb5f1220af8935514279293d9
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 language: swift
 xcode_workspace: ios-base.xcworkspace
 xcode_scheme: ios-base
@@ -24,4 +25,4 @@ script:
 after_script:
   - slather coverage -s --scheme ios-base ios-base.xcodeproj
   - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X coveragepy -X gcov -X xcode
-  - ./cc-test-reporter after-build --debug -t cobertura --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -d -t cobertura --exit-code $TRAVIS_TEST_RESULT
