@@ -1,0 +1,71 @@
+PODS:
+  - Alamofire (4.7.3)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - Device (3.1.2)
+  - FBSDKCoreKit (4.33.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.33.0):
+    - FBSDKCoreKit
+  - IQKeyboardManagerSwift (6.1.1)
+  - KIF (3.7.4):
+    - KIF/Core (= 3.7.4)
+  - KIF/Core (3.7.4)
+  - KIF/IdentifierTests (3.7.4):
+    - KIF/Core
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
+  - RSFontSizes (1.0.2):
+    - Device (~> 3.1.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7.3)
+  - FBSDKCoreKit (~> 4.33.0)
+  - FBSDKLoginKit (~> 4.33.0)
+  - IQKeyboardManagerSwift (~> 6.1.1)
+  - KIF (~> 3.7.4)
+  - KIF/IdentifierTests (~> 3.7.3)
+  - OHHTTPStubs/Swift (~> 6.1.0)
+  - RSFontSizes (= 1.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Bolts
+    - Device
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - IQKeyboardManagerSwift
+    - KIF
+    - OHHTTPStubs
+    - RSFontSizes
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Device: 62242076214c30fb5760174b3601cefafa70a481
+  FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
+  FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  KIF: f3d01c109ee9d1cfe6b0f2bb2aa278e807e971e2
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
+
+PODFILE CHECKSUM: 611d5e2d103df726c4a2a805e7909a7ce08ad4fa
+
+COCOAPODS: 1.5.3

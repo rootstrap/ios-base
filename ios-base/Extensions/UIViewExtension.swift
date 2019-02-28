@@ -21,6 +21,26 @@ extension UIView {
     clipsToBounds = true
     layer.cornerRadius = cornerRadius
   }
+  
+  var typeName: String {
+    return String(describing: type(of: self))
+  }
+  
+  func instanceFromNib(withName name: String) -> UIView? {
+    return UINib(nibName: name,
+                 bundle: nil).instantiate(withOwner: self,
+                                          options: nil).first as? UIView
+  }
+  
+  func addNibView(withName nibName: String? = nil) -> UIView? {
+    guard let view = instanceFromNib(withName: nibName ?? typeName)
+      else { return nil }
+    
+    view.frame = bounds
+    view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    addSubview(view)
+    return view
+  }
 }
 
 extension Array where Element: UIView {

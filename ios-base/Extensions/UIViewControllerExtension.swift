@@ -16,4 +16,25 @@ extension UIViewController {
     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: handler))
     present(alert, animated: true, completion: nil)
   }
+  
+  func goToScreen(withIdentifier identifier: String,
+                  storyboardId: String? = nil,
+                  modally: Bool = false) {
+    var storyboard = self.storyboard
+    
+    if let storyboardId = storyboardId {
+      storyboard = UIStoryboard(name: storyboardId, bundle: nil)
+    }
+    
+    guard let viewController =
+      storyboard?.instantiateViewController(withIdentifier: identifier) else {
+        return
+    }
+    
+    if modally {
+      present(viewController, animated: true)
+    } else {
+      navigationController?.pushViewController(viewController, animated: true)
+    }
+  }
 }
