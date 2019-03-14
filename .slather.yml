@@ -2,4 +2,5 @@ coverage_service: cobertura_xml
 workspace: ios-base.xcworkspace
 xcodeproj: ios-base.xcodeproj
 scheme: ios-base
-output_directory: ./slather-reports
+ignore:
+  - Pods/*
