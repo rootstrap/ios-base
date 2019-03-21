@@ -19,7 +19,8 @@ extension UIViewController {
   
   func goToScreen(withIdentifier identifier: String,
                   storyboardId: String? = nil,
-                  modally: Bool = false) {
+                  modally: Bool = false,
+                  viewControllerConfigurationBlock: ((UIViewController) -> Void)? = nil) {
     var storyboard = self.storyboard
     
     if let storyboardId = storyboardId {
@@ -28,12 +29,16 @@ extension UIViewController {
     
     guard let viewController =
       storyboard?.instantiateViewController(withIdentifier: identifier) else {
+        assert(false, "No view controller found with that identifier")
         return
     }
+    
+    viewControllerConfigurationBlock?(viewController)
     
     if modally {
       present(viewController, animated: true)
     } else {
+      assert(navigationController != nil, "navigation controller is nil")
       navigationController?.pushViewController(viewController, animated: true)
     }
   }

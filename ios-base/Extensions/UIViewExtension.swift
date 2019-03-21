@@ -32,14 +32,23 @@ extension UIView {
                                           options: nil).first as? UIView
   }
   
-  func addNibView(withName nibName: String? = nil) -> UIView? {
-    guard let view = instanceFromNib(withName: nibName ?? typeName)
-      else { return nil }
+  func addNibView(withAutoresixingMasks masks: AutoresizingMask = [.flexibleWidth, .flexibleHeight]) -> UIView {
+    let name = String(describing: type(of: self))
+    let selfNib = UINib(nibName: name, bundle: nil)
+    guard let view = selfNib.instantiate(withOwner: self, options: nil).first
+      as? UIView else { return UIView() }
     
     view.frame = bounds
-    view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    view.autoresizingMask = masks
     addSubview(view)
     return view
+  }
+  
+  func animateChangeInLayout(withDuration duration: TimeInterval = 0.2) {
+    setNeedsLayout()
+    UIView.animate(withDuration: duration, animations: { [weak self] in
+      self?.layoutIfNeeded()
+    })
   }
 }
 
