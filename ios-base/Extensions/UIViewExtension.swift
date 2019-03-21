@@ -32,12 +32,13 @@ extension UIView {
                                           options: nil).first as? UIView
   }
   
-  func addNibView(withAutoresixingMasks masks: AutoresizingMask = [.flexibleWidth, .flexibleHeight]) -> UIView {
+  func addNibView(withNibName nibName: String? = nil,
+                  withAutoresizingMasks masks: AutoresizingMask = [.flexibleWidth, .flexibleHeight]) -> UIView {
     let name = String(describing: type(of: self))
-    let selfNib = UINib(nibName: name, bundle: nil)
-    guard let view = selfNib.instantiate(withOwner: self, options: nil).first
-      as? UIView else { return UIView() }
-    
+    guard let view = instanceFromNib(withName: nibName ?? name) else {
+        assert(false, "No nib found with that name")
+        return UIView()
+    }
     view.frame = bounds
     view.autoresizingMask = masks
     addSubview(view)
