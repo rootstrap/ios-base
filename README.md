@@ -76,6 +76,8 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 
 iOS-Base is available under the MIT license. See the LICENSE file for more info.
 
+**NOTE:** Remove the free LICENSE file for private projects or replace it with the corresponding license.
+
 ## Credits
 
 **iOS Base** is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our [contributors](https://github.com/rootstrap/ios-base/contributors).
