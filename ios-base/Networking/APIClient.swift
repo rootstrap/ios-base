@@ -113,7 +113,7 @@ class APIClient {
   
   class func defaultEncoding(forMethod method: HTTPMethod) -> ParameterEncoding {
     switch method {
-    case .post, .put:
+    case .post, .put, .patch:
       return JSONEncoding.default
     default:
       return URLEncoding.default
