@@ -94,7 +94,7 @@
 		9B3AA3981ED35007005A4D26 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9B3AA3A01ED4D014005A4D26 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		9B5AFADA1C7205EC002347D6 /* ios-base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-base.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B5AFADA1C7205EC002347D6 /* ios-base-Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-base-Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B715A451E28083600C0C039 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9B71D69F20976E6800DCBBBD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9B766D322092536000A28FFA /* LogoutSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LogoutSuccess.json; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 		9B5AFADB1C7205EC002347D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B5AFADA1C7205EC002347D6 /* ios-base.app */,
+				9B5AFADA1C7205EC002347D6 /* ios-base-Debug.app */,
 				9B2BF7291EBB9AB5001638C4 /* AcceptanceTests.xctest */,
 			);
 			name = Products;
@@ -481,7 +481,7 @@
 			);
 			name = "ios-base";
 			productName = "delfie-ios";
-			productReference = 9B5AFADA1C7205EC002347D6 /* ios-base.app */;
+			productReference = 9B5AFADA1C7205EC002347D6 /* ios-base-Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -930,8 +930,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "${PROJECT_BASE_NAME}/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}";
-				PRODUCT_NAME = "${PROJECT_BASE_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}-${CONFIGURATION}";
+				PRODUCT_NAME = "${PROJECT_BASE_NAME}-${CONFIGURATION}";
 				PROJECT_BASE_NAME = "ios-base";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1038,8 +1038,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "${PROJECT_BASE_NAME}/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}";
-				PRODUCT_NAME = "${PROJECT_BASE_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}-${CONFIGURATION}";
+				PRODUCT_NAME = "${PROJECT_BASE_NAME}-${CONFIGURATION}";
 				PROJECT_BASE_NAME = "ios-base";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
