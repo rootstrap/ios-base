@@ -633,7 +633,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base.app/ios-base";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base-Debug.app/ios-base-Debug";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -653,7 +653,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base.app/ios-base";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base-Debug.app/ios-base-Debug";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Staging;
@@ -673,7 +673,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/AcceptanceTests/AcceptanceTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base.app/ios-base";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-base-Debug.app/ios-base-Debug";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
