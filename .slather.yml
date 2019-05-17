@@ -1,6 +1,6 @@
 coverage_service: cobertura_xml
 workspace: ios-base.xcworkspace
 xcodeproj: ios-base.xcodeproj
-scheme: ios-base
+scheme: ios-base-develop
 ignore:
   - Pods/*

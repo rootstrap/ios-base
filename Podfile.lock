@@ -41,7 +41,7 @@ DEPENDENCIES:
   - KIF (~> 3.7.4)
   - KIF/IdentifierTests (~> 3.7.3)
   - OHHTTPStubs/Swift (~> 6.1.0)
-  - RSFontSizes (= 1.0.2)
+  - RSFontSizes (~> 1.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -66,6 +66,6 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
 
-PODFILE CHECKSUM: 611d5e2d103df726c4a2a805e7909a7ce08ad4fa
+PODFILE CHECKSUM: edc6ece8b71e7bcc4182239ed262da592ddda11b
 
 COCOAPODS: 1.5.3
