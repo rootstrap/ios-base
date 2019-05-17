@@ -18,9 +18,11 @@ func + <K, V> (left: [K: V], right: [K: V]) -> [K: V] {
   return merge
 }
 
+// swiftlint:disable shorthand_operator
 func += <K, V> (left: inout [K: V], right: [K: V]) {
-  left += right
+  left = left + right
 }
+// swiftlint:enable shorthand_operator
 
 extension Dictionary where Key: ExpressibleByStringLiteral {
   
