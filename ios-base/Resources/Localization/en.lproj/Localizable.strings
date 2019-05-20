@@ -5,3 +5,6 @@
   Created by German on 5/15/18.
   Copyright © 2018 TopTier labs. All rights reserved.
 */
+
+"PARSING_ERROR" = "Couldn't read a valid %@.";
+"GENERIC_ERROR" = "There was an error. Please try again later.";

@@ -1,0 +1,14 @@
+/* 
+  Localization.strings
+  ios-base
+
+  Created by German on 5/15/18.
+  Copyright © 2018 TopTier labs. All rights reserved.
+*/
+
+"PARSING_ERROR" = "No se pudo leer un %@ válido.";
+"GENERIC_ERROR" = "Hubo un error. Por favor inténtalo de nuevo.";
+
+// MARK: Model translations
+
+"User" = "Usuario";

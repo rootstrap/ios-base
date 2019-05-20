@@ -78,7 +78,7 @@ class UserAPI {
         let user = try JSONDecoder().decode(User.self, from: response["user"] as? [String: Any] ?? [:])
         success(user)
       } catch {
-        failure(App.error(domain: .parsing, localizedDescription: "Could not parse a valid user".localized))
+        failure(App.error(domain: .parsing(User.self)))
       }
     }, failure: { error in
       failure(error)
