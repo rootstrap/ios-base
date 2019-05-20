@@ -7,4 +7,5 @@
 */
 
 "PARSING_ERROR" = "Couldn't read a valid %@.";
+"NETWORK_FAILURE" = "There was an error communicating with the server";
 "GENERIC_ERROR" = "There was an error. Please try again later.";

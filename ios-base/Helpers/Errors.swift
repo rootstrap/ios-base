@@ -15,17 +15,20 @@ import Foundation
 enum ErrorDomain {
   case generic
   case parsing(_: Localizable.Type)
+  case networkRequest
   
   var name: String {
     switch self {
-    case .parsing: return "ParsingError"
-    default: return "GenericError"
+    case .parsing: return "PARSING_ERROR"
+    case .networkRequest: return "NETWORK_FAILURE"
+    default: return "GENERIC_ERROR"
     }
   }
   
   var defaultCode: ErrorCode {
     switch self {
     case .parsing: return .invalidData
+    case .networkRequest: return .badNetworkRequest
     default: return .generic
     }
   }
@@ -33,8 +36,8 @@ enum ErrorDomain {
   var localizedDescription: String {
     switch self {
     case .parsing(let objectClass):
-      return String(format: "PARSING_ERROR".localized, objectClass.localized)
-    default: return "GENERIC_ERROR".localized
+      return String(format: name.localized, objectClass.localized)
+    default: return name.localized
     }
   }
 }
@@ -42,6 +45,7 @@ enum ErrorDomain {
 enum ErrorCode: Int {
   case generic = 18190
   case invalidData = 18191
+  case badNetworkRequest = 400
 }
 
 protocol Localizable {

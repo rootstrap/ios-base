@@ -7,6 +7,7 @@
 */
 
 "PARSING_ERROR" = "No se pudo leer un %@ válido.";
+"NETWORK_FAILURE" = "Error en la comunicación con el servidor.";
 "GENERIC_ERROR" = "Hubo un error. Por favor inténtalo de nuevo.";
 
 // MARK: Model translations

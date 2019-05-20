@@ -149,17 +149,20 @@ class APIClient {
   }
   
   //Handle rails-API-base errors if any
-  class func handleCustomError(_ code: Int?, dictionary: [String: Any]) -> NSError? {
-    if let messageDict = dictionary["errors"] as? [String: [String]] {
-      let errorsList = messageDict[messageDict.keys.first!]!
-      return NSError(domain: "\(messageDict.keys.first!) \(errorsList.first!)", code: code ?? 500, userInfo: nil)
-    } else if let error = dictionary["error"] as? String {
-      return NSError(domain: error, code: code ?? 500, userInfo: nil)
-    } else if let errors = dictionary["errors"] as? [String: Any] {
-      let errorDesc = errors[errors.keys.first!]!
-      return NSError(domain: "\(errors.keys.first!) " + "\(errorDesc)", code: code ?? 500, userInfo: nil)
-    } else if dictionary["errors"] != nil || dictionary["error"] != nil {
-      return NSError(domain: "Something went wrong. Try again later.", code: code ?? 500, userInfo: nil)
+  class func findError(inResponse response: [String: Any], code: Int?) -> NSError? {
+    var errorFound = ""
+    if let keyedErrors = response["errors"] as? [String: Any],
+      let firstKey = keyedErrors.keys.first,
+      let errorsValue = keyedErrors[firstKey] {
+      let errorDescription = (errorsValue as? [String])?.first ?? errorsValue
+      errorFound = "\(firstKey) \(errorDescription)"
+    } else if let error = response["error"] as? String ?? response["base"] as? String {
+      errorFound = error
+    }
+    if response["errors"] != nil || response["error"] != nil || !errorFound.isEmpty {
+      return App.error(domain: .networkRequest,
+                       code: code,
+                       localizedDescription: errorFound)
     }
     return nil
   }
@@ -182,7 +185,7 @@ extension DataRequest {
         serializationError = exceptionError
       }
       //Check for errors in validate() or API
-      if let errorOcurred = APIClient.handleCustomError(response?.statusCode, dictionary: dictionary ?? [:]) ?? requestError {
+      if let errorOcurred = APIClient.findError(inResponse: dictionary ?? [:], code: response?.statusCode) ?? requestError {
         return .failure(errorOcurred)
       }
       //Check for JSON serialization errors if any data received
