@@ -49,12 +49,12 @@ class SignInViewModelWithCredentials {
   func login() {
     state = .loading
     UserService.login(email,
-                  password: password,
-                  success: { [weak self] in
-                    self?.state = .loggedIn
-                  },
-                  failure: { [weak self] error in
-                    self?.state = .error(error.localizedDescription)
-                  })
+                      password: password,
+                      success: { [weak self] in
+                        self?.state = .loggedIn
+                      },
+                      failure: { [weak self] error in
+                        self?.state = .error(error.localizedDescription)
+                      })
   }
 }
