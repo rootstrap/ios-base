@@ -50,17 +50,17 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
   private var sharedProvider: MoyaProvider<T>!
 
+  private var plugins: [PluginType] {
+    return [NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)]
+  }
+
   /**
    Default provider implementation as a singleton. It provides networking
    loggin out of the box and you can override it if you want to add more middleware.
    */
   open var provider: MoyaProvider<T> {
     guard let provider = sharedProvider else {
-      self.sharedProvider = MoyaProvider<T>(
-        plugins: [
-          NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)
-        ]
-      )
+      sharedProvider = MoyaProvider<T>(plugins: plugins)
       return sharedProvider
     }
     return provider
@@ -95,7 +95,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
       switch result {
       case let .success(moyaResponse):
-        self.handleSuccess(with: moyaResponse, at: keyPath, onSuccess, onFailure)
+        self.handleSuccess(with: moyaResponse, at: keyPath, onSuccess: onSuccess, onFailure: onFailure)
       case let .failure(error):
         self.handleError(with: error, onFailure)
       }
@@ -122,8 +122,8 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
   private func handleSuccess<T>(with response: Response,
                                 at keyPath: String? = nil,
-                                _ onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
-                                _ onFailure: ((Error, Response?) -> Void)? = nil) where T: Decodable {
+                                onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
+                                onFailure: ((Error, Response?) -> Void)? = nil) where T: Decodable {
     do {
       let filteredResponse = try response.filterSuccessfulStatusCodes()
       let decodedResult = try filteredResponse.map(T.self,
@@ -143,27 +143,21 @@ open class BaseApiService<T>: APIService where T: TargetType {
       return
     }
     switch moyaError {
-    case .imageMapping(let response):
-      onFailure?(error, response)
-    case .jsonMapping(let response):
-      onFailure?(error, response)
     case .statusCode(let response):
       if response.statusCode == StatusCode.unauthorized {
         AppDelegate.shared.unexpectedLogout()
       }
       let decodedError = APIError.from(response: response)
       onFailure?(decodedError ?? error, response)
-    case .stringMapping(let response):
+    case .stringMapping(let response), .jsonMapping(let response), .imageMapping(let response):
       onFailure?(error, response)
-    case .objectMapping(let error, let response):
-      onFailure?(error, response)
-    case .encodableMapping(let error):
+    case .objectMapping(let mappingError, let response):
+      onFailure?(mappingError, response)
+    case .encodableMapping(let error), .parameterEncoding(let error):
       onFailure?(error, nil)
-    case .underlying(let error, let response):
-      onFailure?(error, response)
+    case .underlying(let underlyingError, let response):
+      onFailure?(underlyingError, response)
     case .requestMapping:
-      onFailure?(error, nil)
-    case .parameterEncoding(let error):
       onFailure?(error, nil)
     }
   }

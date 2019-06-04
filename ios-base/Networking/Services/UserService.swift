@@ -9,17 +9,31 @@
 import Foundation
 import Moya
 
+enum UserServiceError: Error {
+  case noResponse
+
+  var localizedDescription: String {
+    return String(describing: self)
+  }
+}
+
 class UserService: BaseApiService<UserResource> {
   static let sharedInstance = UserService()
 
-  static func login(_ email: String, password: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
-    sharedInstance.request(for: .login(email, password), at: "user", onSuccess: { (result: User, response) -> Void in
-      guard let headers = response.response?.allHeaderFields else {
-        return
-      }
-      saveUserSession(user: result, headers: headers)
-      success()
-    })
+  static func login(_ email: String,
+                    password: String,
+                    success: @escaping () -> Void,
+                    failure: @escaping (_ error: Error) -> Void) {
+    sharedInstance.request(for: .login(email, password),
+                           at: "user",
+                           onSuccess: { (result: User, response) -> Void in
+                            guard let headers = response.response?.allHeaderFields else {
+                              failure(UserServiceError.noResponse)
+                              return
+                            }
+                            saveUserSession(user: result, headers: headers)
+                            success()
+                          })
   }
 
   static func saveUserSession(user: User, headers: [AnyHashable: Any]) {
