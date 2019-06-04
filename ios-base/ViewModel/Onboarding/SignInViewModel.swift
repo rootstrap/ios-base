@@ -48,7 +48,7 @@ class SignInViewModelWithCredentials {
   
   func login() {
     state = .loading
-    UserAPI.login(email,
+    UserService.login(email,
                   password: password,
                   success: { [weak self] in
                     self?.state = .loggedIn

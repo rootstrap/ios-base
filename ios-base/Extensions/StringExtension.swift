@@ -23,7 +23,7 @@ extension String {
   
   @available(iOS, deprecated: 3.2, message: "Use String.count instead")
   var length: Int {
-    return characters.count
+    return count
   }
   
   var localized: String {

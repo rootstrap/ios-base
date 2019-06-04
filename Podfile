@@ -3,7 +3,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'ios-base' do
-  pod 'Alamofire', '~> 4.7.3'
+  pod 'Alamofire', '~> 4.8.1'
+  pod 'Moya', '~> 13.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
   pod 'RSFontSizes', '~> 1.0.2'
 
