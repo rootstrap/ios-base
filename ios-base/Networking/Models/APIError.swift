@@ -24,4 +24,23 @@ struct APIError: Error {
 struct RailsError: Decodable {
   let errors: [String: [String]]?
   let error: String?
+
+  enum CodingKeys: String, CodingKey {
+    case errors
+    case error
+  }
+
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    if let errors = try? values.decode([String: [String]].self, forKey: .errors) {
+      self.errors = errors
+      self.error = nil
+    } else if let error = try? values.decode(String.self, forKey: .errors) {
+      self.error = error
+      self.errors = nil
+    } else {
+      error = try? values.decode(String.self, forKey: .error)
+      errors = nil
+    }
+  }
 }
