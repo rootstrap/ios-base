@@ -52,7 +52,7 @@ class FirstViewModel {
       return
     }
     //This fails with 404 since this endpoint is not implemented in the API base
-    UserAPI.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
+    UserService.sharedInstance.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
                               success: { [weak self] in
                                 self?.state = .facebookLoggedIn
                               },

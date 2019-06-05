@@ -49,4 +49,18 @@ extension TargetType {
   public func requestParameters(parameters: [String: Any]) -> Task {
     return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
   }
+
+  public func multipartData(from parameters: [String: Any]) -> [MultipartFormData] {
+    return parameters.map { (key: String, value: Any) -> MultipartFormData? in
+      let value = value
+      let key = "user[\(key)]"
+      if let value = value as? Data {
+        return MultipartFormData(provider: .data(value), name: key)
+      } else if let data = "\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false) {
+        return MultipartFormData(provider: .data(data), name: key)
+      }
+      return nil
+    }.compactMap { $0 }
+  }
+
 }
