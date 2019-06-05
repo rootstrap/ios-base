@@ -27,9 +27,8 @@ struct APIError: Error {
   /// Returns an array containing all error values returned from the API
   var errors: [String] {
     var flattenedErrors = error.errors?
-      .reduce(into: [], { accum, error in
-        error.value.forEach { accum.append($0) }
-      })
+      .compactMap { $0.value }
+      .flatMap { $0 }
 
     if let errorString = error.error {
       flattenedErrors?.append(errorString)
