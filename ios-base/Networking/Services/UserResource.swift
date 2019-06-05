@@ -48,36 +48,26 @@ enum UserResource: TargetType {
     }
   }
 
+  var headers: [String: String]? {
+    switch  self {
+    case .signupMultipart:
+      return [:]
+    default:
+      return getHeaders()
+    }
+  }
+
   var task: Task {
     switch self {
     case .login(let email, let password):
-      return requestParameters(
-        parameters: [
-          "user": [
-            "email": email,
-            "password": password
-          ]
-        ]
-      )
+      let parameters = getLoginParams(email: email, password: password)
+      return requestParameters(parameters: parameters)
     case .signup(let email, let password, let avatar64):
-      let picData = avatar64.jpegData(compressionQuality: 0.75) ?? Data()
-      let parameters = [
-        "user": [
-          "email": email,
-          "password": password,
-          "password_confirmation": password,
-          "image": picData.asBase64Param()
-        ]
-      ]
+      let parameters = getSignUpParams(email: email, password: password, avatar: avatar64)
       return requestParameters(parameters: parameters)
     case .signupMultipart(let email, let password, let avatar):
-      let parameters: [String: Any] = [
-        "email": email,
-        "password": password,
-        "password_confirmation": password,
-        "image": avatar.jpegData(compressionQuality: 0.75) ?? Data()
-      ]
-      return .uploadMultipart(multipartData(from: parameters))
+      let parameters = getSignUpMultipartParams(email: email, password: password, avatar: avatar)
+      return .uploadMultipart(multipartData(from: parameters, rootKey: "user"))
     case .fbLogin(let token):
       let parameters = [
         "access_token": token
@@ -86,5 +76,35 @@ enum UserResource: TargetType {
     default:
       return .requestPlain
     }
+  }
+
+  private func getLoginParams(email: String, password: String) -> [String: Any] {
+    return [
+      "user": [
+        "email": email,
+        "password": password
+      ]
+    ]
+  }
+
+  private func getSignUpParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+    let picData = avatar.jpegData(compressionQuality: 0.75) ?? Data()
+    return [
+      "user": [
+        "email": email,
+        "password": password,
+        "password_confirmation": password,
+        "image": picData.asBase64Param()
+      ]
+    ]
+  }
+
+  private func getSignUpMultipartParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+    return [
+      "email": email,
+      "password": password,
+      "password_confirmation": password,
+      "image": avatar.jpegData(compressionQuality: 0.75) ?? Data()
+    ]
   }
 }

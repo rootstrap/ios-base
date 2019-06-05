@@ -61,10 +61,8 @@ class SignUpViewModelWithEmail {
                     self?.state = .signedUp
                    },
                    failure: { [weak self] error in
-                    if let apiError = error as? APIError,
-                      let errors = apiError.error.errors,
-                      let firstMessage = errors.first {
-                      self?.state = .error("\(firstMessage.key) \(firstMessage.value.first ?? "")") // show the first error
+                    if let apiError = error as? APIError {
+                      self?.state = .error(apiError.firstError ?? "") // show the first error
                     } else {
                       self?.state = .error(error.localizedDescription)
                     }

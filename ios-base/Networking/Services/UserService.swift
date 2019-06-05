@@ -52,7 +52,7 @@ class UserService: BaseApiService<UserResource> {
               }
               self?.saveUserSession(user: result, headers: headers)
               success()
-            }, onFailure: { error, _ in
+            }, onFailure: { error, response in
               failure(error)
             })
   }
