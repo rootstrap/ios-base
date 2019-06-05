@@ -22,18 +22,18 @@ PODS:
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
-  - OHHTTPStubs/Core (6.1.0)
-  - OHHTTPStubs/Default (6.1.0):
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (6.1.0):
+  - OHHTTPStubs/JSON (8.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (6.1.0):
+  - OHHTTPStubs/NSURLSession (8.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (6.1.0)
-  - OHHTTPStubs/Swift (6.1.0):
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
     - OHHTTPStubs/Default
   - Result (4.1.0)
   - RSFontSizes (1.0.2):
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - KIF (~> 3.7.4)
   - KIF/IdentifierTests (~> 3.7.3)
   - Moya (~> 13.0)
-  - OHHTTPStubs/Swift (~> 6.1.0)
+  - OHHTTPStubs/Swift (~> 8.0.0)
   - RSFontSizes (~> 1.0.2)
 
 SPEC REPOS:
@@ -73,10 +73,10 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   KIF: f3d01c109ee9d1cfe6b0f2bb2aa278e807e971e2
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
-  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
 
-PODFILE CHECKSUM: c7a31d2b9c687187708cdc768886c25856b1c150
+PODFILE CHECKSUM: 3fadfefc2991956beb7118188d3a9a6e90a729f7
 
 COCOAPODS: 1.7.1

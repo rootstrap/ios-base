@@ -13,6 +13,30 @@ struct APIError: Error {
   let statusCode: Int
   let error: RailsError
 
+  /// Returns the first error returned by the API
+  var firstError: String? {
+    if let errors = error.errors, let firstMessage = errors.first {
+        return "\(firstMessage.key) \(firstMessage.value.first ?? "")"
+    } else if let errorString = error.error {
+      return errorString
+    }
+
+    return nil
+  }
+
+  /// Returns an array containing all error values returned from the API
+  var errors: [String] {
+    var flattenedErrors = error.errors?
+      .compactMap { $0.value }
+      .flatMap { $0 }
+
+    if let errorString = error.error {
+      flattenedErrors?.append(errorString)
+    }
+
+    return flattenedErrors ?? []
+  }
+
   static func from(response: Response) -> APIError? {
     guard let decodedError = try? response.map(RailsError.self) else {
       return nil

@@ -17,5 +17,5 @@ end
 target 'AcceptanceTests' do
   pod 'KIF', '~> 3.7.4', :configurations => ['Debug']
   pod 'KIF/IdentifierTests', '~> 3.7.3', :configurations => ['Debug']
-  pod 'OHHTTPStubs/Swift', '~> 6.1.0', :configurations => ['Debug']
+  pod 'OHHTTPStubs/Swift', '~> 8.0.0', :configurations => ['Debug']
 end

@@ -34,13 +34,13 @@ class Session: Codable {
     guard let stringHeaders = loweredHeaders as? [String: String] else {
       return nil
     }
-    if let expiryString = stringHeaders[APIClient.HTTPHeader.expiry.rawValue],
+    if let expiryString = stringHeaders[HTTPHeader.expiry.rawValue],
       let expiryNumber = Double(expiryString) {
       expiry = Date(timeIntervalSince1970: expiryNumber)
     }
-    uid = stringHeaders[APIClient.HTTPHeader.uid.rawValue]
-    client = stringHeaders[APIClient.HTTPHeader.client.rawValue]
-    accessToken = stringHeaders[APIClient.HTTPHeader.token.rawValue]
+    uid = stringHeaders[HTTPHeader.uid.rawValue]
+    client = stringHeaders[HTTPHeader.client.rawValue]
+    accessToken = stringHeaders[HTTPHeader.token.rawValue]
   }
   
   //MARK: Codable

@@ -12,40 +12,99 @@ import Moya
 enum UserResource: TargetType {
 
   case login(String, String)
+  case signup(String, String, UIImage)
+  case signupMultipart(String, String, UIImage)
+  case profile
+  case fbLogin(String)
   case logout
 
   var path: String {
-    let basePath = "/users/"
+    let authBasePath = "/users"
+    let userBasePath = "/user"
     switch self {
     case .login:
-      return "\(basePath)/sign_in"
+      return "\(authBasePath)/sign_in"
+    case .signup:
+      return authBasePath
+    case .signupMultipart:
+      return authBasePath
+    case .profile:
+      return "\(userBasePath)/profile"
+    case .fbLogin:
+      return "\(userBasePath)/facebook"
     case .logout:
-      return "\(basePath)/sign_out"
+      return "\(authBasePath)/sign_out"
     }
   }
 
   var method: Moya.Method {
     switch self {
-    case .login:
+    case .signupMultipart, .signup, .login, .fbLogin:
       return .post
+    case .profile:
+      return .get
     case .logout:
       return .delete
+    }
+  }
+
+  var headers: [String: String]? {
+    switch  self {
+    case .signupMultipart:
+      return [:]
+    default:
+      return getHeaders()
     }
   }
 
   var task: Task {
     switch self {
     case .login(let email, let password):
-      return requestParameters(
-        parameters: [
-          "user": [
-            "email": email,
-            "password": password
-          ]
-        ]
-      )
-    case .logout:
+      let parameters = getLoginParams(email: email, password: password)
+      return requestParameters(parameters: parameters)
+    case .signup(let email, let password, let avatar64):
+      let parameters = getSignUpParams(email: email, password: password, avatar: avatar64)
+      return requestParameters(parameters: parameters)
+    case .signupMultipart(let email, let password, let avatar):
+      let parameters = getSignUpMultipartParams(email: email, password: password, avatar: avatar)
+      return .uploadMultipart(multipartData(from: parameters, rootKey: "user"))
+    case .fbLogin(let token):
+      let parameters = [
+        "access_token": token
+      ]
+      return requestParameters(parameters: parameters)
+    default:
       return .requestPlain
     }
+  }
+
+  private func getLoginParams(email: String, password: String) -> [String: Any] {
+    return [
+      "user": [
+        "email": email,
+        "password": password
+      ]
+    ]
+  }
+
+  private func getSignUpParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+    let picData = avatar.jpegData(compressionQuality: 0.75) ?? Data()
+    return [
+      "user": [
+        "email": email,
+        "password": password,
+        "password_confirmation": password,
+        "image": picData.asBase64Param()
+      ]
+    ]
+  }
+
+  private func getSignUpMultipartParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+    return [
+      "email": email,
+      "password": password,
+      "password_confirmation": password,
+      "image": avatar.jpegData(compressionQuality: 0.75) ?? Data()
+    ]
   }
 }

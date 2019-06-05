@@ -33,7 +33,7 @@ class HomeViewModel {
   
   func loadUserProfile() {
     state = .loading
-    UserAPI.getMyProfile({ [weak self] user in
+    UserService.sharedInstance.getMyProfile({ [weak self] user in
       self?.userEmail = user.email
       self?.state = .idle
     }, failure: { [weak self] error in
@@ -43,7 +43,7 @@ class HomeViewModel {
   
   func logoutUser() {
     state = .loading
-    UserAPI.logout({ [weak self] in
+    UserService.sharedInstance.logout({ [weak self] in
       self?.state = .loggedOut
     }, failure: { [weak self] error in
       self?.state = .error(error.localizedDescription)
