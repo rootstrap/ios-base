@@ -176,7 +176,6 @@
 				6B0B36F23ABAD9DD55BB0118 /* Pods-ios-base.staging.xcconfig */,
 				B230F0CD884215D10B00A171 /* Pods-ios-base.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1014,7 +1013,7 @@
 				PROJECT_BASE_NAME = "ios-base";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCHEME_NAME = Debug;
+				SCHEME_NAME = "$(CONFIGURATION)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1042,7 +1041,7 @@
 				PROJECT_BASE_NAME = "ios-base";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCHEME_NAME = Release;
+				SCHEME_NAME = "$(CONFIGURATION)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1126,7 +1125,7 @@
 				PROJECT_BASE_NAME = "ios-base";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCHEME_NAME = Staging;
+				SCHEME_NAME = "$(CONFIGURATION)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
