@@ -55,13 +55,17 @@ class SignUpViewModelWithEmail {
   
   func signup() {
     state = .loading
-    UserAPI.signup(email, password: password,
+    UserService.sharedInstance.signup(email, password: password,
                    avatar64: UIImage.random(),
-                   success: { [weak self] _ in
+                   success: { [weak self] in
                     self?.state = .signedUp
                    },
                    failure: { [weak self] error in
-                    self?.state = .error(error.localizedDescription)
+                    if let apiError = error as? APIError {
+                      self?.state = .error(apiError.firstError ?? "") // show the first error
+                    } else {
+                      self?.state = .error(error.localizedDescription)
+                    }
                   })
   }
 }

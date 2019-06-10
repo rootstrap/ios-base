@@ -3,7 +3,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'ios-base' do
-  pod 'Alamofire', '~> 4.7.3'
+  pod 'Alamofire', '~> 4.8.1'
+  pod 'Moya', '~> 13.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
   pod 'RSFontSizes', '~> 1.0.2'
 
@@ -16,5 +17,5 @@ end
 target 'AcceptanceTests' do
   pod 'KIF', '~> 3.7.4', :configurations => ['Debug']
   pod 'KIF/IdentifierTests', '~> 3.7.3', :configurations => ['Debug']
-  pod 'OHHTTPStubs/Swift', '~> 6.1.0', :configurations => ['Debug']
+  pod 'OHHTTPStubs/Swift', '~> 8.0.0', :configurations => ['Debug']
 end

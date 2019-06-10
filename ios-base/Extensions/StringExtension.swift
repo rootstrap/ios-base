@@ -21,11 +21,6 @@ extension String {
     return rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
   }
   
-  @available(iOS, deprecated: 3.2, message: "Use String.count instead")
-  var length: Int {
-    return characters.count
-  }
-  
   var localized: String {
     return self.localize()
   }
