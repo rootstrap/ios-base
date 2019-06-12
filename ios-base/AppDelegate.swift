@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    setupFirebase()
+    AnalyticsManager.shared.setup()
     // -Facebook
     FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey", on: "Info"))
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -52,16 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if window?.rootViewController is HomeViewController {
       window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
     }
-  }
-
-  private func setupFirebase() {
-    guard let googleServicesPath = Bundle.main.object(forInfoDictionaryKey: "GoogleServicesFileName") as? String,
-      let filePath = Bundle.main.path(forResource: googleServicesPath, ofType: "plist"),
-      let firebaseOptions = FirebaseOptions(contentsOfFile: filePath) else {
-        print("Failed to initialize firebase options, please check your configuration settings")
-        return
-    }
-    FirebaseApp.configure(options: firebaseOptions)
   }
   
   func applicationWillResignActive(_ application: UIApplication) {

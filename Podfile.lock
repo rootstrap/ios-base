@@ -98,7 +98,7 @@ DEPENDENCIES:
   - Fabric (~> 1.9.0)
   - FBSDKCoreKit (~> 4.33.0)
   - FBSDKLoginKit (~> 4.33.0)
-  - Firebase/Core
+  - Firebase/Core (~> 6.1.0)
   - IQKeyboardManagerSwift (~> 6.1.1)
   - KIF (~> 3.7.4)
   - KIF/IdentifierTests (~> 3.7.3)
@@ -151,6 +151,6 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
 
-PODFILE CHECKSUM: def5c05a1f5bb721d6e6aa789bcfbd6bd7677277
+PODFILE CHECKSUM: ca8eb04dd82c59a9e52628b89e470ad4bac96879
 
 COCOAPODS: 1.7.1

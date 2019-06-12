@@ -52,7 +52,10 @@ class SignInViewModelWithCredentials {
       .login(email,
              password: password,
              success: { [weak self] in
-               self?.state = .loggedIn
+              guard let self = self else { return }
+              self.state = .loggedIn
+              AnalyticsManager.shared.identifyUser(with: self.email)
+              AnalyticsManager.shared.log(event: Event.login)
              },
              failure: { [weak self] error in
                self?.state = .error(error.localizedDescription)
