@@ -11,19 +11,19 @@ import KIF
 @testable import ios_base_Debug
 
 class SignInTests: KIFTestCase {
-  
+
   let unauthorizedStubPath = OHPathForFile("Unauthorized.json", SignInTests.self)!
-  
+
   override func beforeEach() {
     super.beforeEach()
-    
+
     AppNavigator.shared.pop()
 
     tester().waitForView(withAccessibilityIdentifier: "StartView")
     tester().tapView(withAccessibilityIdentifier: "GoToSignInButton")
     tester().waitForView(withAccessibilityIdentifier: "SignInView")
   }
-  
+
   override func afterEach() {
     super.afterEach()
 
@@ -37,7 +37,7 @@ class SignInTests: KIFTestCase {
   }
 
   // MARK: - Tests
-  
+
   func testSignInFormValidation() {
     //Empty form
     checkControl(withID: "SignInButton", enabled: false)
@@ -51,7 +51,7 @@ class SignInTests: KIFTestCase {
     tester().clearTextFromView(withAccessibilityIdentifier: "PasswordTextField")
     checkControl(withID: "SignInButton", enabled: false)
   }
-  
+
   func testSignInSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
       let signInJSONPath = OHPathForFile("SignInSuccessfully.json", type(of: self))
@@ -64,29 +64,29 @@ class SignInTests: KIFTestCase {
     XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
     XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
   }
-  
+
   func testSignInFailure() {
     stubUnauthorizedUser()
-    
+
     proceedToLogin()
     modalMessageAppears()
     XCTAssertEqual(SessionManager.validSession, false)
     XCTAssertNil(UserDataManager.currentUser, "Stored user should be nil.")
   }
-  
+
   // MARK: - Helper method
-  
+
   func stubUnauthorizedUser() {
     stub(condition: isPath("/api/v1/users/sign_in")) { _ in
       return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
   }
-  
+
   func fillFormCorrectly() {
     tester().enterText("rootstrap@gmail.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
     tester().enterText("123456789", intoViewWithAccessibilityIdentifier: "PasswordTextField")
   }
-  
+
   func proceedToLogin() {
     fillFormCorrectly()
     checkControl(withID: "SignInButton", enabled: true)

@@ -187,7 +187,6 @@ public extension Route {
 
 /// Available Transition types for navigation actions.
 public enum TransitionType {
-
   /// Presents the screen modally on top of the current ViewController
   case modal
 
