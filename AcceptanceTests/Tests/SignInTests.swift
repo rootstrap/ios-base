@@ -28,7 +28,7 @@ class SignInTests: KIFTestCase {
     super.afterEach()
 
     SessionManager.deleteSession()
-    AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false)
+    AppNavigator.shared.popToRoot()
   }
 
   override func afterAll() {
