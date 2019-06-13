@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
   
-  var viewModel = FirstViewModel()
+  var viewModel: FirstViewModel!
 
   // MARK: - Lifecycle
   
@@ -36,6 +36,14 @@ class FirstViewController: UIViewController {
   @IBAction func facebookLogin() {
     viewModel.facebookLogin()
   }
+
+  @IBAction func signInTapped() {
+    viewModel.signIn()
+  }
+
+  @IBAction func signUpTapped() {
+    viewModel.signUp()
+  }
 }
 
 extension FirstViewController: FirstViewModelDelegate {
@@ -48,9 +56,6 @@ extension FirstViewController: FirstViewModelDelegate {
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
       showMessage(title: "Oops", message: errorDescription)
-    case .facebookLoggedIn:
-      UIApplication.hideNetworkActivity()
-      performSegue(withIdentifier: "goToMainView", sender: nil)
     }
   }
 }

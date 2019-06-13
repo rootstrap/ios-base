@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     
     IQKeyboardManager.shared.enable = true
-    
-    if SessionManager.validSession {
-      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
-      self.window?.rootViewController = vc
-    }
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+    let rootVC = AppNavigator.shared.rootViewController
+    window?.rootViewController = rootVC
+    window?.makeKeyAndVisible()
     
     return true
   }

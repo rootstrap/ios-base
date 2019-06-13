@@ -8,13 +8,6 @@
 
 import Foundation
 
-enum SignInViewModelState: Equatable {
-  case loading
-  case idle
-  case error(String)
-  case loggedIn
-}
-
 protocol SignInViewModelDelegate: class {
   func didUpdateCredentials()
   func didUpdateState()
@@ -22,7 +15,7 @@ protocol SignInViewModelDelegate: class {
 
 class SignInViewModelWithCredentials {
   
-  var state: SignInViewModelState = .idle {
+  var state: ViewModelState = .idle {
     didSet {
       delegate?.didUpdateState()
     }
@@ -53,9 +46,10 @@ class SignInViewModelWithCredentials {
              password: password,
              success: { [weak self] in
               guard let self = self else { return }
-              self.state = .loggedIn
+              self.state = .idle
               AnalyticsManager.shared.identifyUser(with: self.email)
               AnalyticsManager.shared.log(event: Event.login)
+              AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
              },
              failure: { [weak self] error in
                self?.state = .error(error.localizedDescription)

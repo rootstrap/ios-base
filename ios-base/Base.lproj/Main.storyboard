@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +28,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="FirstViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="FirstViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -39,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-bX-pA7">
-                                <rect key="frame" x="86.5" y="474" width="201" height="45"/>
+                                <rect key="frame" x="87" y="474" width="201" height="45"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.76094285102739723" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GoToSignInButton"/>
                                 <constraints>
@@ -52,7 +51,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="8qd-iW-5fg" kind="show" id="gzI-wi-lZU"/>
+                                    <action selector="signInTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOB-TC-Gqv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-2n-nei">
@@ -69,7 +68,7 @@
                                     <color key="titleColor" red="0.21931966145833334" green="0.21931966145833334" blue="0.21931966145833334" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1Oa-ww-vdW" kind="show" id="RSH-lc-RaH"/>
+                                    <action selector="signUpTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="ujP-qo-Kgd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMy-eR-RsW">
@@ -127,7 +126,7 @@ RS iOS BASE.</string>
         <!--Sign In View Controller-->
         <scene sceneID="ZQL-UK-H2d">
             <objects>
-                <viewController id="8qd-iW-5fg" customClass="SignInViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8qd-iW-5fg" customClass="SignInViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dm9-Bd-t2A"/>
                         <viewControllerLayoutGuide type="bottom" id="uJs-A0-SPi"/>
@@ -217,7 +216,7 @@ RS iOS BASE.</string>
         <!--Home View Controller-->
         <scene sceneID="qZP-Pf-s6w">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="K4y-mn-w4p" customClass="HomeViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="K4y-mn-w4p" customClass="HomeViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b07-nt-cIs"/>
                         <viewControllerLayoutGuide type="bottom" id="gRs-YP-uAr"/>
@@ -233,7 +232,7 @@ RS iOS BASE.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
-                                <rect key="frame" x="87" y="570" width="200" height="45"/>
+                                <rect key="frame" x="87.5" y="570" width="200" height="45"/>
                                 <color key="backgroundColor" red="0.69471571180555558" green="0.27205175823635525" blue="0.35792462901418848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
                                 <constraints>
@@ -283,7 +282,7 @@ RS iOS BASE.</string>
         <!--Sign Up View Controller-->
         <scene sceneID="D1s-zu-Y9Z">
             <objects>
-                <viewController id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Oa-ww-vdW" customClass="SignUpViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XMA-3Z-CBb"/>
                         <viewControllerLayoutGuide type="bottom" id="sxg-nY-nv5"/>
@@ -337,7 +336,7 @@ RS iOS BASE.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaK-dC-F7z">
-                                <rect key="frame" x="32" y="104" width="109.5" height="38.5"/>
+                                <rect key="frame" x="32" y="104" width="109" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.45508993310000001" green="0.41961441859999998" blue="0.40671423159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
