@@ -41,6 +41,8 @@
 	<string></string>
 	<key>FacebookKey</key>
 	<string></string>
+	<key>GoogleServicesFileName</key>
+	<string>$(GOOGLE_SERVICES_FILE)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

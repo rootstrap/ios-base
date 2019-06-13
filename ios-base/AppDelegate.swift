@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import Firebase
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-
+    AnalyticsManager.shared.setup()
     // -Facebook
     FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey", on: "Info"))
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

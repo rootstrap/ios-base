@@ -58,7 +58,10 @@ class SignUpViewModelWithEmail {
     UserService.sharedInstance.signup(email, password: password,
                    avatar64: UIImage.random(),
                    success: { [weak self] in
-                    self?.state = .signedUp
+                    guard let self = self else { return }
+                    self.state = .signedUp
+                    AnalyticsManager.shared.identifyUser(with: self.email)
+                    AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
                    },
                    failure: { [weak self] error in
                     if let apiError = error as? APIError {
