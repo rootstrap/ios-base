@@ -23,9 +23,7 @@ open class BaseNavigator: Navigator {
   }
 
   public required init(with route: Route) {
-    let screen = route.screen
-    let navigation = screen.embedInNavigationController()
-    rootViewController = navigation
+    rootViewController = route.screen.embedInNavigationController()
   }
 }
 
