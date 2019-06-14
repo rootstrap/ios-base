@@ -18,18 +18,14 @@ import UIKit
  */
 open class BaseNavigator: Navigator {
   open var rootViewController: UINavigationController?
-  open var currentViewController: UIViewController?
+  open var currentViewController: UIViewController? {
+    return rootViewController?.visibleViewController ?? rootViewController?.topViewController
+  }
 
   public required init(with route: Route) {
     let screen = route.screen
-    if let navigation = screen as? UINavigationController {
-      rootViewController = navigation
-    } else {
-      let viewController = screen
-      rootViewController = UINavigationController(rootViewController: viewController)
-      rootViewController?.isNavigationBarHidden = true
-      currentViewController = viewController
-    }
+    let navigation = screen.embedInNavigationController()
+    rootViewController = navigation
   }
 }
 
@@ -45,7 +41,7 @@ public protocol Navigator: class {
   var rootViewController: UINavigationController? { get set }
 
   /// The currently visible ViewController
-  var currentViewController: UIViewController? { get set }
+  var currentViewController: UIViewController? { get }
 
   /// Convencience init to set your application starting screen.
   init(with route: Route)
@@ -104,27 +100,19 @@ public extension Navigator {
     let viewController = route.screen
     switch transition {
     case .modal:
+      route.transitionConfigurator?(currentViewController, viewController)
       currentViewController?.present(viewController, animated: animated, completion: completion)
-      currentViewController = viewController
     case .push:
+      route.transitionConfigurator?(currentViewController, viewController)
       rootViewController?.pushViewController(viewController, animated: animated)
-      currentViewController = viewController
     case .reset:
+      route.transitionConfigurator?(nil, viewController)
       rootViewController?.setViewControllers([viewController], animated: animated)
-      currentViewController = viewController
     case .changeRoot:
       UIView.animate(withDuration: 0.3) { [weak self] in
-        if let navigation = (viewController as? UINavigationController) {
-          UIApplication.shared.keyWindow?.rootViewController = navigation
-          self?.rootViewController = navigation
-          self?.currentViewController = self?.rootViewController?.topViewController
-        } else {
-          let navigationController = UINavigationController(rootViewController: viewController)
-          UIApplication.shared.keyWindow?.rootViewController = navigationController
-          self?.rootViewController = navigationController
-          self?.rootViewController?.isNavigationBarHidden = true
-          self?.currentViewController = viewController
-        }
+        let navigation = viewController.embedInNavigationController()
+        UIApplication.shared.keyWindow?.rootViewController = navigation
+        self?.rootViewController = navigation
       }
     }
   }
@@ -136,12 +124,10 @@ public extension Navigator {
     }
 
     currentViewController?.present(viewController, animated: animated, completion: completion)
-    currentViewController = viewController
   }
 
   func pop(animated: Bool = true) {
     rootViewController?.popViewController(animated: animated)
-    currentViewController = rootViewController?.visibleViewController
   }
 
   func popToRoot(animated: Bool = true) {
@@ -152,10 +138,9 @@ public extension Navigator {
     guard
       let viewControllers = rootViewController?.viewControllers,
       viewControllers.count > index
-      else { return }
+    else { return }
     let viewController = viewControllers[index]
     rootViewController?.popToViewController(viewController, animated: animated)
-    currentViewController = viewController
   }
 
   func popTo(route: Route, animated: Bool = true) {
@@ -164,15 +149,12 @@ public extension Navigator {
       let viewController = viewControllers.first(where: {
         type(of: $0) == type(of: route.screen)
       })
-      else { return }
+    else { return }
     rootViewController?.popToViewController(viewController, animated: true)
-    currentViewController = viewController
   }
 
   func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
-    let presentingViewController = currentViewController?.presentingViewController
     currentViewController?.dismiss(animated: animated, completion: completion)
-    currentViewController = presentingViewController
   }
 }
 
@@ -184,12 +166,30 @@ public extension Navigator {
  information that it's passed to the Route.
  */
 public protocol Route {
-  // The screen that should be returned for that Route.
+  typealias TransitionConfigurator = (_ sourceVc: UIViewController?, _ destinationVc: UIViewController) -> Void
+
+  /// The screen that should be returned for that Route.
   var screen: UIViewController { get }
+
+  /**
+   Configuration callback executed just before pushing/presenting modally.
+   Use this to set up any custom transition delegate, presentationStyle, etc.
+   - Parameters:
+   - sourceVc: The currently visible viewController, if any.
+   - destinationVc: The (fully intialized) viewController to present.
+   */
+  var transitionConfigurator: TransitionConfigurator? { get }
+}
+
+public extension Route {
+  var transitionConfigurator: TransitionConfigurator? {
+    return nil
+  }
 }
 
 /// Available Transition types for navigation actions.
 public enum TransitionType {
+
   /// Presents the screen modally on top of the current ViewController
   case modal
 
@@ -201,4 +201,16 @@ public enum TransitionType {
 
   /// Replaces the key window's Root view controller with the Route's screen.
   case changeRoot
+}
+
+public extension UIViewController {
+  func embedInNavigationController() -> UINavigationController {
+    if let navigation = (self as? UINavigationController) {
+      return navigation
+    } else {
+      let navigationController = UINavigationController(rootViewController: self)
+      navigationController.isNavigationBarHidden = true
+      return navigationController
+    }
+  }
 }

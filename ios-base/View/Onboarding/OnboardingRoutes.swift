@@ -17,29 +17,41 @@ enum OnboardingRoutes: Route {
   var screen: UIViewController {
     switch self {
     case .firstScreen:
-      guard let first = UIStoryboard
-        .instantiateViewController(FirstViewController.self)
-      else {
-        return UIViewController()
-      }
-      first.viewModel = FirstViewModel()
-      return first
+      return buildFirstViewController()
     case .signIn:
-      guard let signIn = UIStoryboard
-        .instantiateViewController(SignInViewController.self)
-      else {
-        return UIViewController()
-      }
-      signIn.viewModel = SignInViewModelWithCredentials()
-      return signIn
+      return buildSignInViewController()
     case .signUp:
-      guard let signUp = UIStoryboard
-        .instantiateViewController(SignUpViewController.self)
+      return buildSignUpViewController()
+    }
+  }
+
+  private func buildSignInViewController() -> UIViewController {
+    guard let signIn = UIStoryboard
+      .instantiateViewController(SignInViewController.self)
       else {
         return UIViewController()
-      }
-      signUp.viewModel = SignUpViewModelWithEmail()
-      return signUp
     }
+    signIn.viewModel = SignInViewModelWithCredentials()
+    return signIn
+  }
+
+  private func buildSignUpViewController() -> UIViewController {
+    guard let signUp = UIStoryboard
+      .instantiateViewController(SignUpViewController.self)
+      else {
+        return UIViewController()
+    }
+    signUp.viewModel = SignUpViewModelWithEmail()
+    return signUp
+  }
+
+  private func buildFirstViewController() -> UIViewController {
+    guard let first = UIStoryboard
+      .instantiateViewController(FirstViewController.self)
+      else {
+        return UIViewController()
+    }
+    first.viewModel = FirstViewModel()
+    return first
   }
 }
