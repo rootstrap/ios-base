@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import RxSwift
 
 enum HTTPHeader: String {
   case uid = "uid"
@@ -48,6 +49,8 @@ public protocol APIService {
 open class BaseApiService<T>: APIService where T: TargetType {
   public typealias ProviderType = T
 
+  var disposeBag = DisposeBag()
+
   private var sharedProvider: MoyaProvider<T>!
 
   private var plugins: [PluginType] {
@@ -82,66 +85,50 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
   /**
    Makes a request to the provided target and tries to decode its response
-   using the provided keyPath and return type and returning it on the onSuccess callback.
+   using the provided keyPath and return type and returning it as an Observable.
    - Parameters:
    - target: The TargetType used to make the request.
    - keyPath: The keypath used to decode from JSON (if passed nil, it will try to decode from the root).
    */
-  open func request<T>(for target: ProviderType,
-                       at keyPath: String? = nil,
-                       onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
-                       onFailure: ((Error, Response?) -> Void)? = nil) where T: Codable {
-    provider.request(target, completion: { [weak self] result in
-      guard let self = self else { return }
-
-      switch result {
-      case let .success(moyaResponse):
-        self.handleSuccess(with: moyaResponse, at: keyPath, onSuccess: onSuccess, onFailure: onFailure)
-      case let .failure(error):
-        self.handleError(with: error, onFailure)
+  open func request<T>(for target: ProviderType, at keyPath: String? = nil) -> Observable<(T, Response)> where T: Codable {
+    return provider.rx.request(target)
+      .filterSuccessfulStatusCodes()
+      .flatMap { [weak self] response in
+        let decodedValue = try response.map(T.self,
+                                atKeyPath: keyPath,
+                                using: self?.jsonDecoder ?? JSONDecoder(),
+                                failsOnEmptyData: true)
+        return .just((decodedValue, response))
       }
-    })
+      .asObservable()
+      .catchError { [weak self] error in
+        guard let self = self else {
+          return Observable.error(error)
+        }
+        return Observable.error(self.handleError(with: error))
+      }
   }
 
   /**
-   Makes a request to the provided target
+   Makes a request to the provided target and returns as an Obserbable
+   - Parameters:
+   - target: The TargetType used to make the request.
    */
-  open func request(for target: ProviderType,
-                    onSuccess: @escaping (_ response: Response) -> Void,
-                    onFailure: ((Error, Response?) -> Void)? = nil) {
-    provider.request(target, completion: { [weak self] result in
-      guard let self = self else { return }
-
-      switch result {
-      case let .success(moyaResponse):
-        onSuccess(moyaResponse)
-      case let .failure(error):
-        self.handleError(with: error, onFailure)
+  open func request(for target: ProviderType) -> Observable<Response> {
+    return provider.rx.request(target)
+      .filterSuccessfulStatusCodes()
+      .asObservable()
+      .catchError { [weak self] error in
+        guard let self = self else {
+          return Observable.error(error)
+        }
+        return Observable.error(self.handleError(with: error))
       }
-    })
   }
 
-  private func handleSuccess<T>(with response: Response,
-                                at keyPath: String? = nil,
-                                onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
-                                onFailure: ((Error, Response?) -> Void)? = nil) where T: Decodable {
-    do {
-      let filteredResponse = try response.filterSuccessfulStatusCodes()
-      let decodedResult = try filteredResponse.map(T.self,
-                                                   atKeyPath: keyPath,
-                                                   using: jsonDecoder,
-                                                   failsOnEmptyData: true)
-
-      onSuccess(decodedResult, filteredResponse)
-    } catch (let error) {
-      handleError(with: error, onFailure)
-    }
-  }
-
-  private func handleError(with error: Error, _ onFailure: ((Error, Response?) -> Void)? = nil) {
+  private func handleError(with error: Error) -> Error {
     guard let moyaError = error as? MoyaError else {
-      onFailure?(error, nil)
-      return
+      return error
     }
     switch moyaError {
     case .statusCode(let response):
@@ -149,17 +136,19 @@ open class BaseApiService<T>: APIService where T: TargetType {
         AppDelegate.shared.unexpectedLogout()
       }
       let decodedError = APIError.from(response: response)
-      onFailure?(decodedError ?? error, response)
-    case .stringMapping(let response), .jsonMapping(let response), .imageMapping(let response):
-      onFailure?(error, response)
-    case .objectMapping(let mappingError, let response):
-      onFailure?(mappingError, response)
+      return decodedError ?? error
+    case .stringMapping,
+         .jsonMapping,
+         .imageMapping:
+      return error
+    case .objectMapping(let mappingError, _):
+      return mappingError
     case .encodableMapping(let error), .parameterEncoding(let error):
-      onFailure?(error, nil)
-    case .underlying(let underlyingError, let response):
-      onFailure?(underlyingError, response)
+      return error
+    case .underlying(let underlyingError, _):
+      return underlyingError
     case .requestMapping:
-      onFailure?(error, nil)
+      return error
     }
   }
 

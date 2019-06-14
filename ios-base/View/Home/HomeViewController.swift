@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class HomeViewController: UIViewController {
+  let disposeBag = DisposeBag()
   
   // MARK: - Outlets
   
@@ -20,8 +23,26 @@ class HomeViewController: UIViewController {
   // MARK: - Lifecycle Events
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.delegate = self
+
+    bindToViewModel()
     logOut.setRoundBorders(22)
+  }
+
+  private func bindToViewModel() {
+    viewModel.state.asObservable()
+      .subscribe(onNext: { state in
+        if state == .loading {
+          UIApplication.showNetworkActivity()
+        } else {
+          UIApplication.hideNetworkActivity()
+        }
+      }).disposed(by: disposeBag)
+
+    viewModel.userEmail.asObservable()
+      .subscribe(onNext: { [weak self] email in
+        guard let email = email else { return }
+        self?.showMessage(title: "My Profile", message: "email: \(email)")
+      }).disposed(by: disposeBag)
   }
   
   // MARK: - Actions
@@ -32,20 +53,5 @@ class HomeViewController: UIViewController {
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     viewModel.logoutUser()
-  }
-}
-
-extension HomeViewController: HomeViewModelDelegate {
-  func didUpdateState() {
-    switch viewModel.state {
-    case .idle:
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "My Profile", message: "email: \(viewModel.userEmail ?? "")")
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      print(errorDescription)
-    }
   }
 }

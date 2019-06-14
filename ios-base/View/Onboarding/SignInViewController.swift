@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class SignInViewController: UIViewController {
   
@@ -17,13 +19,15 @@ class SignInViewController: UIViewController {
   @IBOutlet weak var passwordField: UITextField!
   
   var viewModel: SignInViewModelWithCredentials!
+
+  let disposeBag = DisposeBag()
   
   // MARK: - Lifecycle Events
   
   override func viewDidLoad() {
     super.viewDidLoad()
     logIn.setRoundBorders(22)
-    viewModel.delegate = self
+    bindToViewModel()
     setLoginButton(enabled: false)
   }
   
@@ -31,19 +35,25 @@ class SignInViewController: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: true)
   }
+
+  private func bindToViewModel() {
+    viewModel.hasValidCredentials.asObservable()
+      .subscribe(onNext: { [weak self] isValid in
+        self?.setLoginButton(enabled: isValid)
+      }).disposed(by: disposeBag)
+
+    viewModel.state.asObservable()
+      .subscribe(onNext: { [weak self] state in
+        self?.handleStateChange(state: state)
+      }).disposed(by: disposeBag)
+
+    emailField.rx.text.bind(to: viewModel.email)
+      .disposed(by: disposeBag)
+    passwordField.rx.text.bind(to: viewModel.password)
+      .disposed(by: disposeBag)
+  }
   
   // MARK: - Actions
-  
-  @IBAction func credentialsChanged(_ sender: UITextField) {
-    let newValue = sender.text ?? ""
-    switch sender {
-    case emailField:
-      viewModel.email = newValue
-    case passwordField:
-      viewModel.password = newValue
-    default: break
-    }
-  }
   
   @IBAction func tapOnSignInButton(_ sender: Any) {
     viewModel.login()
@@ -53,15 +63,9 @@ class SignInViewController: UIViewController {
     logIn.alpha = enabled ? 1 : 0.5
     logIn.isEnabled = enabled
   }
-}
 
-extension SignInViewController: SignInViewModelDelegate {
-  func didUpdateCredentials() {
-    setLoginButton(enabled: viewModel.hasValidCredentials)
-  }
-  
-  func didUpdateState() {
-    switch viewModel.state {
+  private func handleStateChange(state: ViewModelState) {
+    switch state {
     case .loading:
       UIApplication.showNetworkActivity()
     case .error(let errorDescription):

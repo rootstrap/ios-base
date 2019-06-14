@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class FirstViewController: UIViewController {
   
@@ -18,17 +20,30 @@ class FirstViewController: UIViewController {
   
   var viewModel: FirstViewModel!
 
+  let disposeBag = DisposeBag()
+
   // MARK: - Lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.delegate = self
+    bindToViewModel()
     [signIn, facebookSign].forEach({ $0?.setRoundBorders(22) })
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
+  }
+
+  private func bindToViewModel() {
+    viewModel.state.asObservable()
+      .subscribe(onNext: { state in
+        if state == .loading {
+          UIApplication.showNetworkActivity()
+        } else {
+          UIApplication.hideNetworkActivity()
+        }
+      }).disposed(by: disposeBag)
   }
 
   // MARK: - Actions
@@ -43,19 +58,5 @@ class FirstViewController: UIViewController {
 
   @IBAction func signUpTapped() {
     viewModel.signUp()
-  }
-}
-
-extension FirstViewController: FirstViewModelDelegate {
-  func didUpdateState() {
-    switch viewModel.state {
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .idle:
-      UIApplication.hideNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Oops", message: errorDescription)
-    }
   }
 }

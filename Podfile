@@ -4,12 +4,14 @@ inhibit_all_warnings!
 
 target 'ios-base' do
   pod 'Alamofire', '~> 4.8.1'
-  pod 'Moya', '~> 13.0'
+  pod 'Moya/RxSwift', '~> 13.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
   pod 'RSFontSizes', '~> 1.0.2'
   pod 'Firebase/Core', '~> 6.1.0'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
+  pod 'RxSwift', '~> 4.5.0'
+  pod 'RxCocoa', '~> 4.5.0'
 
   # FB SDK ---
   pod 'FBSDKCoreKit', '~> 4.33.0'

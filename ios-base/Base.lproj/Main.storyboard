@@ -161,9 +161,6 @@ RS iOS BASE.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
-                                <connections>
-                                    <action selector="credentialsChanged:" destination="8qd-iW-5fg" eventType="editingChanged" id="p9X-w6-WzA"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXP-E8-PA8">
                                 <rect key="frame" x="32" y="347.5" width="311" height="40"/>
@@ -175,9 +172,6 @@ RS iOS BASE.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="credentialsChanged:" destination="8qd-iW-5fg" eventType="editingChanged" id="Lc3-Nd-DrC"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeJ-D0-ol5">
                                 <rect key="frame" x="32" y="104" width="93.5" height="38.5"/>
@@ -301,9 +295,6 @@ RS iOS BASE.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                <connections>
-                                    <action selector="formEditingChange:" destination="1Oa-ww-vdW" eventType="editingChanged" id="NhF-34-0KU"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9r-co-4vM">
                                 <rect key="frame" x="32" y="373.5" width="311" height="40"/>
@@ -315,9 +306,6 @@ RS iOS BASE.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="formEditingChange:" destination="1Oa-ww-vdW" eventType="editingChanged" id="mMg-xq-3Hm"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-MA-2oV">
                                 <rect key="frame" x="87" y="570" width="201" height="45"/>
@@ -351,9 +339,6 @@ RS iOS BASE.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
-                                <connections>
-                                    <action selector="formEditingChange:" destination="1Oa-ww-vdW" eventType="editingChanged" id="v4I-9n-a3M"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.95331488720000002" green="0.95331488720000002" blue="0.95331488720000002" alpha="1" colorSpace="calibratedRGB"/>

@@ -7,40 +7,35 @@
 //
 
 import Foundation
-
-protocol HomeViewModelDelegate: class {
-  func didUpdateState()
-}
+import RxCocoa
+import RxSwift
 
 class HomeViewModel {
+  var userEmail = BehaviorRelay<String?>(value: nil)
   
-  weak var delegate: HomeViewModelDelegate?
-  
-  var userEmail: String?
-  
-  var state: ViewModelState = .idle {
-    didSet {
-      delegate?.didUpdateState()
-    }
-  }
+  var state = BehaviorRelay<ViewModelState>(value: .idle)
+
+  let disposeBag = DisposeBag()
   
   func loadUserProfile() {
-    state = .loading
-    UserService.sharedInstance.getMyProfile({ [weak self] user in
-      self?.userEmail = user.email
-      self?.state = .idle
-    }, failure: { [weak self] error in
-      self?.state = .error(error.localizedDescription)
-    })
+    state.accept(.loading)
+    UserService.sharedInstance.getMyProfile()
+      .subscribe(onNext: { [weak self] user in
+        self?.userEmail.accept(user.email)
+        self?.state.accept(.idle)
+      }, onError: { [weak self] error in
+        self?.state.accept(.error(error.localizedDescription))
+      }).disposed(by: disposeBag)
   }
   
   func logoutUser() {
-    state = .loading
-    UserService.sharedInstance.logout({ [weak self] in
-      self?.state = .idle
-      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
-    }, failure: { [weak self] error in
-      self?.state = .error(error.localizedDescription)
-    })
+    state.accept(.loading)
+    UserService.sharedInstance.logout()
+      .subscribe(onNext: { [weak self] in
+          self?.state.accept(.idle)
+          AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
+        }, onError: { [weak self] error in
+          self?.state.accept(.error(error.localizedDescription))
+      }).disposed(by: disposeBag)
   }
 }

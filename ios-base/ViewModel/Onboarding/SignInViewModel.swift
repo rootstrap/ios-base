@@ -7,52 +7,41 @@
 //
 
 import Foundation
-
-protocol SignInViewModelDelegate: class {
-  func didUpdateCredentials()
-  func didUpdateState()
-}
+import RxCocoa
+import RxSwift
 
 class SignInViewModelWithCredentials {
+  let disposeBag = DisposeBag()
   
-  var state: ViewModelState = .idle {
-    didSet {
-      delegate?.didUpdateState()
-    }
-  }
+  var state = BehaviorRelay(value: ViewModelState.idle)
   
-  weak var delegate: SignInViewModelDelegate?
+  var email = BehaviorRelay<String?>(value: "")
   
-  var email = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
-    }
-  }
+  var password = BehaviorRelay<String?>(value: "")
   
-  var password = "" {
-    didSet {
-      delegate?.didUpdateCredentials()
-    }
-  }
-  
-  var hasValidCredentials: Bool {
-    return email.isEmailFormatted() && !password.isEmpty
+  var hasValidCredentials = BehaviorRelay(value: false)
+
+  init() {
+    Observable.combineLatest(email, password)
+      .map { email, password in
+        return (email ?? "").isEmailFormatted() && !(password ?? "").isEmpty
+      }
+      .bind(to: hasValidCredentials)
+      .disposed(by: disposeBag)
   }
   
   func login() {
-    state = .loading
-    UserService.sharedInstance
-      .login(email,
-             password: password,
-             success: { [weak self] in
-              guard let self = self else { return }
-              self.state = .idle
-              AnalyticsManager.shared.identifyUser(with: self.email)
-              AnalyticsManager.shared.log(event: Event.login)
-              AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-             },
-             failure: { [weak self] error in
-               self?.state = .error(error.localizedDescription)
-             })
+    state.accept(.loading)
+    guard let email = email.value, let password = password.value else { return }
+    UserService.sharedInstance.login(email, password: password)
+      .subscribe(onNext: { [weak self] user in
+        guard let self = self else { return }
+        self.state.accept(.idle)
+        AnalyticsManager.shared.identifyUser(with: user.email)
+        AnalyticsManager.shared.log(event: Event.login)
+        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
+      }, onError: { [weak self] error in
+        self?.state.accept(.error(error.localizedDescription))
+      }).disposed(by: disposeBag)
   }
 }

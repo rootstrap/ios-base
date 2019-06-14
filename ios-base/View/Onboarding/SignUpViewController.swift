@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class SignUpViewController: UIViewController {
   
@@ -18,13 +20,15 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var passwordConfirmationField: UITextField!
   
   var viewModel: SignUpViewModelWithEmail!
+
+  let disposeBag = DisposeBag()
   
   // MARK: - Lifecycle Events
   
   override func viewDidLoad() {
     super.viewDidLoad()
     signUp.setRoundBorders(22)
-    viewModel.delegate = self
+    bindToViewModel()
     setSignUpButton(enabled: false)
   }
   
@@ -32,39 +36,30 @@ class SignUpViewController: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: true)
   }
-  
-  // MARK: - Actions
-  
-  @IBAction func formEditingChange(_ sender: UITextField) {
-    let newValue = sender.text ?? ""
-    switch sender {
-    case emailField:
-      viewModel.email = newValue
-    case passwordField:
-      viewModel.password = newValue
-    case passwordConfirmationField:
-      viewModel.passwordConfirmation = newValue
-    default: break
-    }
+
+  private func bindToViewModel() {
+    viewModel.hasValidData.asObservable()
+      .subscribe(onNext: { [weak self] isValid in
+        self?.setSignUpButton(enabled: isValid)
+      }).disposed(by: disposeBag)
+    
+    viewModel.state.asObservable()
+      .subscribe(onNext: { [weak self] state in
+        self?.handleStateChange(state: state)
+      }).disposed(by: disposeBag)
+
+    emailField.rx.text.bind(to: viewModel.email).disposed(by: disposeBag)
+    passwordField.rx.text.bind(to: viewModel.password).disposed(by: disposeBag)
+    passwordConfirmationField.rx.text.bind(to: viewModel.passwordConfirmation).disposed(by: disposeBag)
   }
-  
-  @IBAction func tapOnSignUpButton(_ sender: Any) {
-    viewModel.signup()
-  }
-  
-  func setSignUpButton(enabled: Bool) {
+
+  private func setSignUpButton(enabled: Bool) {
     signUp.alpha = enabled ? 1 : 0.5
     signUp.isEnabled = enabled
   }
-}
 
-extension SignUpViewController: SignUpViewModelDelegate {
-  func formDidChange() {
-    setSignUpButton(enabled: viewModel.hasValidData)
-  }
-  
-  func didUpdateState() {
-    switch viewModel.state {
+  private func handleStateChange(state: ViewModelState) {
+    switch state {
     case .loading:
       UIApplication.showNetworkActivity()
     case .error(let errorDescription):
@@ -73,5 +68,9 @@ extension SignUpViewController: SignUpViewModelDelegate {
     case .idle:
       UIApplication.hideNetworkActivity()
     }
+  }
+  
+  @IBAction func tapOnSignUpButton(_ sender: Any) {
+    viewModel.signup()
   }
 }

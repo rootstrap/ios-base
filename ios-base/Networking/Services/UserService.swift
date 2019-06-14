@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import RxSwift
 
 enum UserServiceError: Error {
   case noResponse
@@ -21,66 +22,44 @@ class UserService: BaseApiService<UserResource> {
   static let sharedInstance = UserService()
 
   func login(_ email: String,
-             password: String,
-             success: @escaping () -> Void,
-             failure: @escaping (_ error: Error) -> Void) {
-    request(for: .login(email, password),
-            at: "user",
-            onSuccess: { [weak self] (result: User, response) -> Void in
-              guard let headers = response.response?.allHeaderFields else {
-                failure(UserServiceError.noResponse)
-                return
-              }
-              self?.saveUserSession(user: result, headers: headers)
-              success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+             password: String) -> Observable<User> {
+    return request(for: .login(email, password), at: "user")
+      .map { [weak self] (user: User, response: Response) in
+        guard let headers = response.response?.allHeaderFields else {
+          throw UserServiceError.noResponse
+        }
+        self?.saveUserSession(user: user, headers: headers)
+        return user
+      }
   }
 
-  func signup(_ email: String,
-              password: String,
-              avatar64: UIImage,
-              success: @escaping () -> Void,
-              failure: @escaping (_ error: Error) -> Void) {
-    request(for: .signup(email, password, avatar64),
-            at: "user",
-            onSuccess: { [weak self] (result: User, response) -> Void in
-              guard let headers = response.response?.allHeaderFields else {
-                failure(UserServiceError.noResponse)
-                return
-              }
-              self?.saveUserSession(user: result, headers: headers)
-              success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+  func signup(_ email: String, password: String, avatar64: UIImage) -> Observable<User> {
+    return request(for: .signup(email, password, avatar64), at: "user")
+      .map { [weak self] (user: User, response: Response) in
+        guard let headers = response.response?.allHeaderFields else {
+          throw UserServiceError.noResponse
+        }
+        self?.saveUserSession(user: user, headers: headers)
+        return user
+      }
   }
 
-  func getMyProfile(_ success: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error) -> Void) {
-    request(for: .profile,
-            at: "user",
-            onSuccess: { (result: User, _) -> Void in
-              success(result)
-            },
-            onFailure: { error, _ in
-              failure(error)
-            })
+  func getMyProfile() -> Observable<User> {
+    return request(for: .profile, at: "user")
+      .map { (user: User, response: Response) in
+        return user
+      }
   }
 
-  func loginWithFacebook(token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
-    request(for: .fbLogin(token),
-            onSuccess: { [weak self] (result: User, response) -> Void in
-              guard let headers = response.response?.allHeaderFields else {
-                failure(UserServiceError.noResponse)
-                return
-              }
-              self?.saveUserSession(user: result, headers: headers)
-              success()
-            },
-            onFailure: { error, _ in
-              failure(error)
-            })
+  func loginWithFacebook(token: String) -> Observable<User> {
+    return request(for: .fbLogin(token))
+      .map { [weak self] (user: User, response: Response) in
+        guard let headers = response.response?.allHeaderFields else {
+          throw UserServiceError.noResponse
+        }
+        self?.saveUserSession(user: user, headers: headers)
+        return user
+    }
   }
 
   func saveUserSession(user: User, headers: [AnyHashable: Any]) {
@@ -90,14 +69,11 @@ class UserService: BaseApiService<UserResource> {
     }
   }
 
-  func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
-    request(for: UserResource.logout,
-            onSuccess: { _ in
-              UserDataManager.deleteUser()
-              SessionManager.deleteSession()
-              success()
-            }, onFailure: { error, _ in
-              failure(error)
-            })
+  func logout() -> Observable<Void> {
+    return request(for: UserResource.logout)
+      .map { _ in
+        UserDataManager.deleteUser()
+        SessionManager.deleteSession()
+      }
   }
 }
