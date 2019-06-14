@@ -205,12 +205,11 @@ public enum TransitionType {
 
 public extension UIViewController {
   func embedInNavigationController() -> UINavigationController {
-    if let navigation = (self as? UINavigationController) {
+    if let navigation = self as? UINavigationController {
       return navigation
-    } else {
-      let navigationController = UINavigationController(rootViewController: self)
-      navigationController.isNavigationBarHidden = true
-      return navigationController
     }
+    let navigationController = UINavigationController(rootViewController: self)
+    navigationController.isNavigationBarHidden = true
+    return navigationController
   }
 }
