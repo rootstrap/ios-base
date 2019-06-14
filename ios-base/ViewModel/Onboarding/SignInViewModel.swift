@@ -31,8 +31,8 @@ class SignInViewModelWithCredentials {
   }
   
   func login() {
-    state.accept(.loading)
     guard let email = email.value, let password = password.value else { return }
+    state.accept(.loading)
     UserService.sharedInstance.login(email, password: password)
       .subscribe(onNext: { [weak self] user in
         guard let self = self else { return }

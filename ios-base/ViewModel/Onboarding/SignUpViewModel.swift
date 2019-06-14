@@ -41,11 +41,11 @@ class SignUpViewModelWithEmail {
   }
   
   func signup() {
-    state.accept(.loading)
     guard let email = email.value, let password = password.value else {
       return
     }
-
+    state.accept(.loading)
+    
     UserService.sharedInstance
       .signup(email, password: password, avatar64: UIImage.random())
       .subscribe(onNext: { user in
