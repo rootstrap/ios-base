@@ -23,7 +23,13 @@ open class BaseNavigator: Navigator {
   }
 
   public required init(with route: Route) {
+<<<<<<< HEAD
     rootViewController = route.screen.embedInNavigationController()
+=======
+    let screen = route.screen
+    let navigation = screen.embedInNavigationController()
+    rootViewController = navigation
+>>>>>>> Code improvements
   }
 }
 
@@ -187,6 +193,7 @@ public extension Route {
 
 /// Available Transition types for navigation actions.
 public enum TransitionType {
+
   /// Presents the screen modally on top of the current ViewController
   case modal
 
