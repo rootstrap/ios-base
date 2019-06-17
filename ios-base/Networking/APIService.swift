@@ -95,9 +95,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
       .filterSuccessfulStatusCodes()
       .flatMap { [weak self] response in
         let decodedValue = try response.map(T.self,
-                                atKeyPath: keyPath,
-                                using: self?.jsonDecoder ?? JSONDecoder(),
-                                failsOnEmptyData: true)
+                                            atKeyPath: keyPath,
+                                            using: self?.jsonDecoder ?? JSONDecoder(),
+                                            failsOnEmptyData: true)
         return .just((decodedValue, response))
       }
       .asObservable()
