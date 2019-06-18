@@ -9,7 +9,7 @@
 ## Features
 This template comes with:
 #### Main
-- Complete **API client** class to easily communicate with **REST services**.
+- Complete **API service** class to easily communicate with **REST services**.
 - Examples for **account creation** and **Facebook integration**.
 - Useful classes to **manage User and Session data**.
 - **Secure** way to store keys of your **third party integrations**.
@@ -22,7 +22,7 @@ This template comes with:
 - [**feature/observe_root_vc**](https://github.com/rootstrap/ios-base/tree/feature/observe_root_vc): Detecting when **rootViewController** gets loaded.
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
 - [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
-- [**feature/RX_Swift**](https://github.com/rootstrap/ios-base/tree/feature/RX_Swift) in case you want to work with **RxSwift** or **MVVM**.
+- [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
