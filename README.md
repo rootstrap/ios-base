@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/rootstrap/ios-base.svg)](https://github.com/rootstrap/ios-base/blob/master/LICENSE.md)
 
 # iOS Base Template
-**iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 4.2. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
+**iOS base** is a boilerplate project created by Rootstrap for new projects using Swift 5. The main objective is helping any new projects jump start into feature development by providing a handful of functionalities.
 
 ## Features
 This template comes with:
