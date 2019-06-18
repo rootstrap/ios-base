@@ -16,7 +16,7 @@ class SignInViewController: UIViewController {
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
   
-  var viewModel = SignInViewModelWithCredentials()
+  var viewModel: SignInViewModelWithCredentials!
   
   // MARK: - Lifecycle Events
   
@@ -49,11 +49,6 @@ class SignInViewController: UIViewController {
     viewModel.login()
   }
   
-  func setLoggedInRoot() {
-    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
-    UIApplication.shared.keyWindow?.rootViewController = homeVC
-  }
-  
   func setLoginButton(enabled: Bool) {
     logIn.alpha = enabled ? 1 : 0.5
     logIn.isEnabled = enabled
@@ -72,9 +67,6 @@ extension SignInViewController: SignInViewModelDelegate {
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
       showMessage(title: "Error", message: errorDescription)
-    case .loggedIn:
-      UIApplication.hideNetworkActivity()
-      setLoggedInRoot()
     case .idle:
       UIApplication.hideNetworkActivity()
     }

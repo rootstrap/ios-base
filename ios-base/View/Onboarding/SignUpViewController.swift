@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var passwordConfirmationField: UITextField!
   
-  var viewModel = SignUpViewModelWithEmail()
+  var viewModel: SignUpViewModelWithEmail!
   
   // MARK: - Lifecycle Events
   
@@ -52,11 +52,6 @@ class SignUpViewController: UIViewController {
     viewModel.signup()
   }
   
-  func setSignedUpRoot() {
-    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
-    UIApplication.shared.keyWindow?.rootViewController = homeVC
-  }
-  
   func setSignUpButton(enabled: Bool) {
     signUp.alpha = enabled ? 1 : 0.5
     signUp.isEnabled = enabled
@@ -72,9 +67,6 @@ extension SignUpViewController: SignUpViewModelDelegate {
     switch viewModel.state {
     case .loading:
       UIApplication.showNetworkActivity()
-    case .signedUp:
-      UIApplication.hideNetworkActivity()
-      setSignedUpRoot()
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
       showMessage(title: "Error", message: errorDescription)

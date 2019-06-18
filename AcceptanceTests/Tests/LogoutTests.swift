@@ -16,10 +16,7 @@ class LogoutTests: KIFTestCase {
     super.beforeAll()
     
     SessionManager.currentSession = Session(uid: "rootstrap@gmail.com", client: "client", token: "token", expires: Date(timeIntervalSinceNow: 3.15576E+07)) //Simulates the login
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController,
-      let vc = navigationController.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") {
-      navigationController.pushViewController(vc, animated: true)
-    }
+    AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot, animated: false)
   }
   
   override func beforeEach() {
@@ -31,9 +28,7 @@ class LogoutTests: KIFTestCase {
   override func afterAll() {
     super.afterAll()
     
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      navigationController.popToRootViewController(animated: true)
-    }
+    AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false)
   }
   
   // MARK: - Tests

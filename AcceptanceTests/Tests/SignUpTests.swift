@@ -25,20 +25,14 @@ class SignUpTests: KIFTestCase {
   override func afterEach() {
     super.afterEach()
     
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController, !SessionManager.validSession {
-      navigationController.popViewController(animated: true)
-    }
+    AppNavigator.shared.pop()
   }
   
   override func afterAll() {
     super.afterAll()
     
     SessionManager.deleteSession()
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      navigationController.popToRootViewController(animated: true)
-    }
-    
-    UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+    AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false)
   }
   
   // MARK: - Tests

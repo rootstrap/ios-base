@@ -9,20 +9,13 @@
 import Foundation
 import FBSDKLoginKit
 
-enum FirstViewModelState {
-  case loading
-  case error(String)
-  case idle
-  case facebookLoggedIn
-}
-
 protocol FirstViewModelDelegate: class {
   func didUpdateState()
 }
 
 class FirstViewModel {
   
-  var state: FirstViewModelState = .idle {
+  var state: ViewModelState = .idle {
     didSet {
       delegate?.didUpdateState()
     }
@@ -43,6 +36,14 @@ class FirstViewModel {
                          from: viewController,
                          handler: checkFacebookLoginRequest)
   }
+
+  func signIn() {
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)
+  }
+
+  func signUp() {
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
+  }
   
   // MARK: Facebook callback methods
   
@@ -54,7 +55,8 @@ class FirstViewModel {
     //This fails with 404 since this endpoint is not implemented in the API base
     UserService.sharedInstance.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
                               success: { [weak self] in
-                                self?.state = .facebookLoggedIn
+                                self?.state = .idle
+                                AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
                               },
                               failure: { [weak self] error in
                                 self?.state = .error(error.localizedDescription)

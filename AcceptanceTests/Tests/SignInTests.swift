@@ -16,11 +16,9 @@ class SignInTests: KIFTestCase {
   
   override func beforeEach() {
     super.beforeEach()
-
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      navigationController.popViewController(animated: true)
-    }
     
+    AppNavigator.shared.pop()
+
     tester().waitForView(withAccessibilityIdentifier: "StartView")
     tester().tapView(withAccessibilityIdentifier: "GoToSignInButton")
     tester().waitForView(withAccessibilityIdentifier: "SignInView")
@@ -30,17 +28,14 @@ class SignInTests: KIFTestCase {
     super.afterEach()
 
     SessionManager.deleteSession()
-    if let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      navigationController.popToRootViewController(animated: true)
-    }
+    AppNavigator.shared.popToRoot()
   }
-  
+
   override func afterAll() {
     super.afterAll()
-    
-    UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+    AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false)
   }
-  
+
   // MARK: - Tests
   
   func testSignInFormValidation() {

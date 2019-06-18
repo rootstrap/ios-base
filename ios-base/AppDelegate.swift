@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     return appD
   }()
+
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -30,12 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     
     IQKeyboardManager.shared.enable = true
-    
-    if SessionManager.validSession {
-      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
-      self.window?.rootViewController = vc
-    }
-    
+
+    let rootVC = AppNavigator.shared.rootViewController
+    window?.rootViewController = rootVC
+
     return true
   }
   
@@ -50,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Take user to onboarding if needed, do NOT redirect the user if is already in the landing
     // to avoid losing the current VC stack state.
     if window?.rootViewController is HomeViewController {
-      window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
     }
   }
   

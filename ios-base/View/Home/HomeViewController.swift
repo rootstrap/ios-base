@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var logOut: UIButton!
   
-  var viewModel = HomeViewModel()
+  var viewModel: HomeViewModel!
   
   // MARK: - Lifecycle Events
   override func viewDidLoad() {
@@ -46,9 +46,6 @@ extension HomeViewController: HomeViewModelDelegate {
     case .error(let errorDescription):
       UIApplication.hideNetworkActivity()
       print(errorDescription)
-    case .loggedOut:
-      UIApplication.hideNetworkActivity()
-      UIApplication.shared.keyWindow?.rootViewController = self.storyboard?.instantiateInitialViewController()
     }
   }
 }

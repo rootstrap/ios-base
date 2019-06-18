@@ -8,13 +8,6 @@
 
 import Foundation
 
-enum HomeViewModelState: Equatable {
-  case loading
-  case error(String)
-  case idle
-  case loggedOut
-}
-
 protocol HomeViewModelDelegate: class {
   func didUpdateState()
 }
@@ -25,9 +18,9 @@ class HomeViewModel {
   
   var userEmail: String?
   
-  var state: HomeViewModelState = .idle {
+  var state: ViewModelState = .idle {
     didSet {
-        delegate?.didUpdateState()
+      delegate?.didUpdateState()
     }
   }
   
@@ -44,7 +37,8 @@ class HomeViewModel {
   func logoutUser() {
     state = .loading
     UserService.sharedInstance.logout({ [weak self] in
-      self?.state = .loggedOut
+      self?.state = .idle
+      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
     }, failure: { [weak self] error in
       self?.state = .error(error.localizedDescription)
     })
