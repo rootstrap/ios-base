@@ -74,6 +74,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
   open var jsonDecoder: JSONDecoder {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
+    decoder.dateDecodingStrategy = .millisecondsSince1970
     return decoder
   }
 
