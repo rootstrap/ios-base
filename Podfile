@@ -10,6 +10,7 @@ target 'ios-base' do
   pod 'Firebase/Core', '~> 6.1.0'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
+  pod 'R.swift', '~> 5.0.3'
 
   # FB SDK ---
   pod 'FBSDKCoreKit', '~> 4.33.0'

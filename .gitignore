@@ -63,3 +63,5 @@ fastlane/screenshots
 # Private keys
 **/ThirdPartyKeys.plist
 GoogleService*.plist
+
+R.generated.swift
