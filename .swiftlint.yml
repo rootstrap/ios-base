@@ -29,7 +29,7 @@ type_body_length:
   - 400 # error
 file_length:
   - 500 # warning
-  - 1200 # error
+  - 850 # error
 function_parameter_count:
   - 6 # warning
   - 8 # error
