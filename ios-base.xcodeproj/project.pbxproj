@@ -176,6 +176,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		078642EA22E668120027BF11 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				078642F122E668C70027BF11 /* View */,
+				078642F022E668BF0027BF11 /* ViewModel */,
+				078642EF22E668B70027BF11 /* Route */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		078642EB22E668520027BF11 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				078642EE22E6688F0027BF11 /* Route */,
+				078642ED22E6686C0027BF11 /* ViewModel */,
+				078642EC22E6685E0027BF11 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		078642EC22E6685E0027BF11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B3AA3A01ED4D014005A4D26 /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		078642ED22E6686C0027BF11 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		078642EE22E6688F0027BF11 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				FE4D635F22B2CB3800685161 /* HomeRoutes.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		078642EF22E668B70027BF11 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				FE4D636122B2CBB000685161 /* OnboardingRoutes.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		078642F022E668BF0027BF11 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				07741D71218CDED600DB3B97 /* FirstViewModel.swift */,
+				9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */,
+				9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		078642F122E668C70027BF11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */,
+				9B3AA3981ED35007005A4D26 /* SignInViewController.swift */,
+				FA54D5871E11C59600F0DBEA /* FirstViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		078642F222E6691B0027BF11 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				078642F322E669270027BF11 /* View */,
+				9BFA84EE1C7767D9009F64E4 /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		078642F322E669270027BF11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B715A451E28083600C0C039 /* PlaceholderTextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		506A29AE0C7D2BF634BD7D7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,11 +281,11 @@
 		9B0C72511C738C3100BAF3B1 /* ios-base */ = {
 			isa = PBXGroup;
 			children = (
+				078642F222E6691B0027BF11 /* Common */,
+				078642EB22E668520027BF11 /* Home */,
+				078642EA22E668120027BF11 /* Onboarding */,
 				FE4D635A22B2C74700685161 /* Navigators */,
 				FE583F0822AFC9D300EF3CDA /* Analytics */,
-				9BFA84EE1C7767D9009F64E4 /* Model */,
-				9BAFB7BC2114CA8D0099DC61 /* View */,
-				9BAFB7BD2114CA9E0099DC61 /* ViewModel */,
 				9B8D306720AB45160050697F /* Resources */,
 				E8290BFC1D832D6400599960 /* Extensions */,
 				9BFA84EF1C7767DD009F64E4 /* Helpers */,
@@ -297,26 +386,6 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		9B8574DA212C8BF10063A3E2 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				FA54D5871E11C59600F0DBEA /* FirstViewController.swift */,
-				9B3AA3981ED35007005A4D26 /* SignInViewController.swift */,
-				9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */,
-				FE4D636122B2CBB000685161 /* OnboardingRoutes.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		9B8574DB212C8C330063A3E2 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				9B3AA3A01ED4D014005A4D26 /* HomeViewController.swift */,
-				FE4D635F22B2CB3800685161 /* HomeRoutes.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		9B8D306720AB45160050697F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,44 +410,6 @@
 				9B90C3A31ECB4A8A00FBE2FB /* LogoutTests.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		9BAFB7BC2114CA8D0099DC61 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9B8574DB212C8C330063A3E2 /* Home */,
-				9B8574DA212C8BF10063A3E2 /* Onboarding */,
-				E8290BFB1D832D4100599960 /* CustomControls */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		9BAFB7BD2114CA9E0099DC61 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9BAFB7C12114E3A80099DC61 /* Home */,
-				9BAFB7C02114E39C0099DC61 /* Onboarding */,
-				FE4D636322B2CDF700685161 /* ViewModelState.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		9BAFB7C02114E39C0099DC61 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */,
-				9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */,
-				07741D71218CDED600DB3B97 /* FirstViewModel.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		9BAFB7C12114E3A80099DC61 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		9BDA91DF1C7390C10003877D /* Networking */ = {
@@ -415,6 +446,7 @@
 		9BFA84EE1C7767D9009F64E4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FE4D636322B2CDF700685161 /* ViewModelState.swift */,
 				E8FBB1BE1DD21A32000D6740 /* Session.swift */,
 				9B77E0721E2FB6350020E450 /* User.swift */,
 			);
@@ -446,14 +478,6 @@
 				AB8D84D08CE7E8109E57D429 /* Pods_ios_base.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E8290BFB1D832D4100599960 /* CustomControls */ = {
-			isa = PBXGroup;
-			children = (
-				9B715A451E28083600C0C039 /* PlaceholderTextView.swift */,
-			);
-			path = CustomControls;
 			sourceTree = "<group>";
 		};
 		E8290BFC1D832D6400599960 /* Extensions */ = {
