@@ -15,9 +15,7 @@ enum HomeRoutes: Route {
   var screen: UIViewController {
     switch self {
     case .home:
-      guard let home = UIStoryboard
-        .instantiateViewController(HomeViewController.self)
-      else {
+      guard let home = R.storyboard.main.homeViewController() else {
         return UIViewController()
       }
       home.viewModel = HomeViewModel()
