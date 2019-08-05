@@ -27,4 +27,8 @@ class FirebaseAnalyticsService: AnalyticsService {
   func log(event: AnalyticsEvent) {
     Analytics.logEvent(event.name, parameters: event.parameters)
   }
+  
+  func reset() {
+    Analytics.resetAnalyticsData()
+  }
 }

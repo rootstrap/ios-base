@@ -33,4 +33,8 @@ class AnalyticsManager: AnalyticsService {
   public func log(event: AnalyticsEvent) {
     services.forEach { $0.log(event: event) }
   }
+  
+  func reset() {
+    services.forEach { $0.reset() }
+  }
 }
