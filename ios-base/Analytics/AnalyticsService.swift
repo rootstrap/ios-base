@@ -20,4 +20,7 @@ protocol AnalyticsService {
 
   /// Logs an event with it's associated metadata
   func log(event: AnalyticsEvent)
+  
+  /// Resets all stored data and user identification
+  func reset()
 }

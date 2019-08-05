@@ -39,6 +39,7 @@ class HomeViewModel {
     UserService.sharedInstance.logout({ [weak self] in
       self?.state = .idle
       AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
+      AnalyticsManager.shared.reset()
     }, failure: { [weak self] error in
       self?.state = .error(error.localizedDescription)
     })
