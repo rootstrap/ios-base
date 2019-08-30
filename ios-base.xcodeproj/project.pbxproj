@@ -634,7 +634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif test -f \"$PODS_ROOT/R.swift/rswift\"; then\n    \"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\nelse\n    echo \"Missing pod instalation, please run pod install on your root directory\"\n    exit 1\nfi\n";
 		};
 		FE583F0222AEDC6F00EF3CDA /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
