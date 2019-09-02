@@ -20,7 +20,7 @@ install:
   - pod install
 script:
   - set -o pipefail
-  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base-develop -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' build test | xcpretty --test --color
+  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base-develop -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4' build test | xcpretty --test --color
 after_script:
   - slather coverage
   - ./cc-test-reporter after-build -t cobertura --exit-code $TRAVIS_TEST_RESULT

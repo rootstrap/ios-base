@@ -38,7 +38,7 @@ To manage user and session persistence after the original sign in/up we store th
 
 ## Pods
 #### Main
- - [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
+ - [Moya](https://github.com/Moya/Moya) + [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
 

@@ -630,7 +630,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -768,7 +768,7 @@
 					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
 				);
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -789,7 +789,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -809,7 +809,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = 2R9P8RBGBJ;
 				INFOPLIST_FILE = AcceptanceTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AcceptanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -942,6 +942,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GOOGLE_SERVICES_FILE = "GoogleService-Debug-Info";
 				INFOPLIST_FILE = "${PROJECT_BASE_NAME}/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}-${CONFIGURATION}";
 				PRODUCT_NAME = "${PROJECT_BASE_NAME}-${CONFIGURATION}";
@@ -969,6 +970,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GOOGLE_SERVICES_FILE = "GoogleService-Info";
 				INFOPLIST_FILE = "${PROJECT_BASE_NAME}/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}";
 				PRODUCT_NAME = "${PROJECT_BASE_NAME}";
@@ -1052,6 +1054,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GOOGLE_SERVICES_FILE = "GoogleService-Staging-Info";
 				INFOPLIST_FILE = "${PROJECT_BASE_NAME}/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_DOMAIN}.${PROJECT_BASE_NAME}-${CONFIGURATION}";
 				PRODUCT_NAME = "${PROJECT_BASE_NAME}-${CONFIGURATION}";
