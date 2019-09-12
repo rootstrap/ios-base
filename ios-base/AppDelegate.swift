@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     AnalyticsManager.shared.setup()
     // -Facebook
-    FBSDKSettings.setAppID(ConfigurationManager.getValue(for: "FacebookKey", on: "Info"))
-    FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    Settings.appID = ConfigurationManager.getValue(for: "FacebookKey")
+    ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     
     IQKeyboardManager.shared.enable = true
 
@@ -39,7 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    return ApplicationDelegate.shared.application(application, open: url,
+                                                  sourceApplication: sourceApplication,
+                                                  annotation: annotation)
   }
   
   func unexpectedLogout() {

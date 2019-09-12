@@ -25,14 +25,14 @@ class FirstViewModel {
   
   func facebookLogin() {
     guard let viewController = delegate as? UIViewController else { return }
-    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey", on: "Info")
+    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
     assert(!(facebookKey?.isEmpty ?? false), "Value for FacebookKey not found")
     
     state = .loading
-    let fbLoginManager = FBSDKLoginManager()
+    let fbLoginManager = LoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
-    fbLoginManager.logIn(withReadPermissions: ["email"],
+    fbLoginManager.logIn(permissions: ["email"],
                          from: viewController,
                          handler: checkFacebookLoginRequest)
   }
@@ -49,11 +49,11 @@ class FirstViewModel {
   
   func facebookLoginRequestSucceded() {
     //Optionally store params (facebook user data) locally.
-    guard FBSDKAccessToken.current() != nil else {
+    guard let token = AccessToken.current else {
       return
     }
     //This fails with 404 since this endpoint is not implemented in the API base
-    UserService.sharedInstance.loginWithFacebook(token: FBSDKAccessToken.current().tokenString,
+    UserService.sharedInstance.loginWithFacebook(token: token.tokenString,
                               success: { [weak self] in
                                 self?.state = .idle
                                 AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
@@ -67,7 +67,7 @@ class FirstViewModel {
     state = cancelled ? .idle : .error(reason)
   }
   
-  func checkFacebookLoginRequest(result: FBSDKLoginManagerLoginResult?, error: Error?) {
+  func checkFacebookLoginRequest(result: LoginManagerLoginResult?, error: Error?) {
     guard let result = result, error == nil else {
       facebookLoginRequestFailed(reason: error!.localizedDescription)
       return

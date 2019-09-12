@@ -13,8 +13,8 @@ target 'ios-base' do
   pod 'R.swift', '~> 5.0.3'
 
   # FB SDK ---
-  pod 'FBSDKCoreKit', '~> 4.33.0'
-  pod 'FBSDKLoginKit', '~> 4.33.0'
+  pod 'FBSDKCoreKit', '~> 5.5.0'
+  pod 'FBSDKLoginKit', '~> 5.5.0'
   # ------
 end
 
