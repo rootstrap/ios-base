@@ -42,8 +42,9 @@ class LogoutTests: KIFTestCase {
   func testLogoutSuccessfully() {
     stub(condition: isPath("/api/v1/users/sign_out")) { _ in
       let stubPath = OHPathForFile("LogoutSuccess.json", type(of: self))
-      return fixture(filePath: stubPath!, status: 200,
-              headers: ["Content-Type": "application/json"]
+      return fixture(
+        filePath: stubPath!, status: 200,
+        headers: ["Content-Type": "application/json"]
       ).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
     

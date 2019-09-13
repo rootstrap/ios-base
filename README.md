@@ -59,6 +59,14 @@ To manage user and session persistence after the original sign in/up we store th
 3. Change the `FacebookDisplayName` value for the name of the app on Facebook.
 4. Done :)
 
+## Code Quality Standards
+In order to meet the required code quality standards,  this project runs [SwiftLint](https://github.com/realm/SwiftLint ) 
+during the build phase and reports warnings/errors directly through XCode.
+The current SwiftLint rule configuration is based on [Rootstrap's Swift style guides](https://rootstrap.github.io/swift) and is synced with 
+the CodeCliemate's configuration file.
+ 
+**NOTE:** Make sure you have SwiftLint version 0.35.0 or greater installed to avoid known false-positives with some of the rules.
+
 ## Security recommendations
 #### Third Party Keys
 

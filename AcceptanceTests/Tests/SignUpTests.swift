@@ -97,8 +97,9 @@ class SignUpTests: KIFTestCase {
   
   func stubUnauthorizedNewUser() {
     stub(condition: isPath("/api/v1/users")) { _ in
-      return fixture(filePath: self.unauthorizedStubPath, status: 401,
-              headers: ["Content-Type": "application/json"]
+      return fixture(
+        filePath: self.unauthorizedStubPath, status: 401,
+        headers: ["Content-Type": "application/json"]
       ).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
   }
