@@ -12,8 +12,8 @@ import Foundation
 
 func + <K, V> (left: [K: V], right: [K: V]) -> [K: V] {
   var merge = left
-  for (k, v) in right {
-    merge[k] = v
+  for (key, value) in right {
+    merge[key] = value
   }
   return merge
 }

@@ -11,9 +11,16 @@ import UIKit
 
 extension UIViewController {
   // MARK: - Message Error
-  func showMessage(title: String, message: String, handler: ((_ action: UIAlertAction) -> Void)? = nil) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: handler))
+  func showMessage(
+    title: String, message: String,
+    handler: ((_ action: UIAlertAction) -> Void)? = nil
+  ) {
+    let alert = UIAlertController(
+      title: title, message: message, preferredStyle: UIAlertController.Style.alert
+    )
+    alert.addAction(
+      UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: handler)
+    )
     present(alert, animated: true, completion: nil)
   }
   

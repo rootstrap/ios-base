@@ -10,7 +10,10 @@ import Foundation
 
 extension String {
   var isAlphanumericWithNoSpaces: Bool {
-    return rangeOfCharacter(from: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").inverted) == nil
+    let alphaNumSet = CharacterSet(
+      charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    )
+    return rangeOfCharacter(from: alphaNumSet.inverted) == nil
   }
   
   var hasPunctuationCharacters: Bool {
@@ -36,7 +39,10 @@ extension String {
   
   //Regex fulfill RFC 5322 Internet Message format
   func isEmailFormatted() -> Bool {
-    let predicate = NSPredicate(format: "SELF MATCHES %@", "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?")
+    // swiftlint:disable line_length
+    let emailRegex = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?"
+    // swiftlint:enable line_length
+    let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
     return predicate.evaluate(with: self)
   }
 }

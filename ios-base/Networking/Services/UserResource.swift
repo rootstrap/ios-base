@@ -66,7 +66,9 @@ enum UserResource: TargetType {
       let parameters = getSignUpParams(email: email, password: password, avatar: avatar64)
       return requestParameters(parameters: parameters)
     case .signupMultipart(let email, let password, let avatar):
-      let parameters = getSignUpMultipartParams(email: email, password: password, avatar: avatar)
+      let parameters = getSignUpMultipartParams(
+        email: email, password: password, avatar: avatar
+      )
       return .uploadMultipart(multipartData(from: parameters, rootKey: "user"))
     case .fbLogin(let token):
       let parameters = [
@@ -87,7 +89,9 @@ enum UserResource: TargetType {
     ]
   }
 
-  private func getSignUpParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+  private func getSignUpParams(
+    email: String, password: String, avatar: UIImage
+  ) -> [String: Any] {
     let picData = avatar.jpegData(compressionQuality: 0.75) ?? Data()
     return [
       "user": [
@@ -99,7 +103,9 @@ enum UserResource: TargetType {
     ]
   }
 
-  private func getSignUpMultipartParams(email: String, password: String, avatar: UIImage) -> [String: Any] {
+  private func getSignUpMultipartParams(
+    email: String, password: String, avatar: UIImage
+  ) -> [String: Any] {
     return [
       "email": email,
       "password": password,

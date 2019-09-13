@@ -32,23 +32,35 @@ class SignUpTests: KIFTestCase {
     super.afterAll()
     
     SessionManager.deleteSession()
-    AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false)
+    AppNavigator.shared.navigate(
+      to: OnboardingRoutes.firstScreen, with: .changeRoot, animated: false
+    )
   }
   
   // MARK: - Tests
   
   func testSignUpFormEmailFormatting() {
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
+    tester().enterText(
+      "password", intoViewWithAccessibilityIdentifier: "PasswordTextField"
+    )
+    tester().enterText(
+      "password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField"
+    )
     checkControl(withID: "SignUpButton", enabled: false)
     tester().enterText("notan@email", intoViewWithAccessibilityIdentifier: "EmailTextField")
     checkControl(withID: "SignUpButton", enabled: false)
   }
   
   func testSignUpFormUnmatchingPassword() {
-    tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().enterText("differentPassword", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
+    tester().enterText(
+      "user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField"
+    )
+    tester().enterText(
+      "password", intoViewWithAccessibilityIdentifier: "PasswordTextField"
+    )
+    tester().enterText(
+      "differentPassword", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField"
+    )
     checkControl(withID: "SignUpButton", enabled: false)
   }
   
@@ -66,7 +78,10 @@ class SignUpTests: KIFTestCase {
     tester().waitForView(withAccessibilityIdentifier: "AfterLoginSignupView")
     XCTAssertEqual(SessionManager.validSession, true)
     XCTAssertNotNil(UserDataManager.currentUser, "Stored user should NOT be nil.")
-    XCTAssertEqual(UserDataManager.currentUser!.email, "test@test.com", "Stored user data is not correct.")
+    XCTAssertEqual(
+      UserDataManager.currentUser!.email,
+      "test@test.com", "Stored user data is not correct."
+    )
   }
   
   func testSignUpFailure() {
@@ -82,14 +97,22 @@ class SignUpTests: KIFTestCase {
   
   func stubUnauthorizedNewUser() {
     stub(condition: isPath("/api/v1/users")) { _ in
-      return fixture(filePath: self.unauthorizedStubPath, status: 401, headers: ["Content-Type": "application/json"]).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
+      return fixture(filePath: self.unauthorizedStubPath, status: 401,
+              headers: ["Content-Type": "application/json"]
+      ).requestTime(0, responseTime: OHHTTPStubsDownloadSpeedWifi)
     }
   }
   
   func fillFormCorrectly() {
-    tester().enterText("user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "PasswordTextField")
-    tester().enterText("password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField")
+    tester().enterText(
+      "user@email.com", intoViewWithAccessibilityIdentifier: "EmailTextField"
+    )
+    tester().enterText(
+      "password", intoViewWithAccessibilityIdentifier: "PasswordTextField"
+    )
+    tester().enterText(
+      "password", intoViewWithAccessibilityIdentifier: "ConfirmPasswordTextField"
+    )
   }
   
   func proceedToSignUp() {

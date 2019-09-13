@@ -9,7 +9,8 @@
 import Foundation
 /**
  Base component in charge of logging events on the application.
- The goal of this class is to act as a proxy between the app and all the analytics services that are integrated.
+ The goal of this class is to act as a proxy
+ between the app and all the analytics services that are integrated.
  Broadcast every event to all of it associated services.
 */
 class AnalyticsManager: AnalyticsService {

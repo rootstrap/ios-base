@@ -19,7 +19,8 @@ import UIKit
 open class BaseNavigator: Navigator {
   open var rootViewController: UINavigationController?
   open var currentViewController: UIViewController? {
-    return rootViewController?.visibleViewController ?? rootViewController?.topViewController
+    return
+      rootViewController?.visibleViewController ?? rootViewController?.topViewController
   }
 
   public required init(with route: Route) {
@@ -52,10 +53,15 @@ public protocol Navigator: class {
    - animated: Animate the transition or not.
    - completion: Completion handler.
    */
-  func navigate(to route: Route, with transition: TransitionType, animated: Bool, completion: (() -> Void)?)
+  func navigate(
+    to route: Route, with transition: TransitionType,
+    animated: Bool, completion: (() -> Void)?
+  )
 
   /**
-   Navigate from your current screen to a new entire navigator. Can only push a router as a modal. Afterwards, other controllers can be pushed inside the presented Navigator.
+   Navigate from your current screen to a new entire navigator.
+   Can only push a router as a modal.
+   Afterwards, other controllers can be pushed inside the presented Navigator.
    - Parameters:
    - Navigator: The destination navigator that you want to navigate to
    - animated: Animate the transition or not.
@@ -94,12 +100,17 @@ public protocol Navigator: class {
 }
 
 public extension Navigator {
-  func navigate(to route: Route, with transition: TransitionType, animated: Bool = true, completion: (() -> Void)? = nil) {
+  func navigate(
+    to route: Route, with transition: TransitionType,
+    animated: Bool = true, completion: (() -> Void)? = nil
+  ) {
     let viewController = route.screen
     switch transition {
     case .modal:
       route.transitionConfigurator?(currentViewController, viewController)
-      currentViewController?.present(viewController, animated: animated, completion: completion)
+      currentViewController?.present(
+        viewController, animated: animated, completion: completion
+      )
     case .push:
       route.transitionConfigurator?(currentViewController, viewController)
       rootViewController?.pushViewController(viewController, animated: animated)
@@ -121,7 +132,9 @@ public extension Navigator {
       return
     }
 
-    currentViewController?.present(viewController, animated: animated, completion: completion)
+    currentViewController?.present(
+      viewController, animated: animated, completion: completion
+    )
   }
 
   func pop(animated: Bool = true) {
@@ -164,7 +177,9 @@ public extension Navigator {
  information that it's passed to the Route.
  */
 public protocol Route {
-  typealias TransitionConfigurator = (_ sourceVc: UIViewController?, _ destinationVc: UIViewController) -> Void
+  typealias TransitionConfigurator = (
+    _ sourceVc: UIViewController?, _ destinationVc: UIViewController
+  ) -> Void
 
   /// The screen that should be returned for that Route.
   var screen: UIViewController { get }
@@ -194,7 +209,8 @@ public enum TransitionType {
   /// Pushes the next screen to the rootViewController navigation Stack.
   case push
 
-  /// Resets the rootViewController navitationStack and set's the Route's screen as the initial view controller of the stack.
+  /// Resets the rootViewController navitationStack and set's the Route's screen
+  /// as the initial view controller of the stack.
   case reset
 
   /// Replaces the key window's Root view controller with the Route's screen.

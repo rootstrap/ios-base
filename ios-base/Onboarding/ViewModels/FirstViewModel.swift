@@ -53,14 +53,15 @@ class FirstViewModel {
       return
     }
     //This fails with 404 since this endpoint is not implemented in the API base
-    UserService.sharedInstance.loginWithFacebook(token: token.tokenString,
-                              success: { [weak self] in
-                                self?.state = .idle
-                                AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-                              },
-                              failure: { [weak self] error in
-                                self?.state = .error(error.localizedDescription)
-                              })
+    UserService.sharedInstance.loginWithFacebook(
+      token: token.tokenString,
+      success: { [weak self] in
+        self?.state = .idle
+        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
+      },
+      failure: { [weak self] error in
+        self?.state = .error(error.localizedDescription)
+    })
   }
   
   func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
@@ -75,7 +76,11 @@ class FirstViewModel {
     if result.isCancelled {
       facebookLoginRequestFailed(reason: "User cancelled", cancelled: true)
     } else if !result.grantedPermissions.contains("email") {
-      facebookLoginRequestFailed(reason: "It seems that you haven't allowed Facebook to provide your email address.")
+      facebookLoginRequestFailed(
+        reason: """
+          It seems that you haven't allowed Facebook to provide your email address.
+        """
+      )
     } else {
       facebookLoginRequestSucceded()
     }

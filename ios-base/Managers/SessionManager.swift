@@ -12,7 +12,10 @@ class SessionManager: NSObject {
 
   static var currentSession: Session? {
     get {
-      if let data = UserDefaults.standard.data(forKey: "ios-base-session"), let session = try? JSONDecoder().decode(Session.self, from: data) {
+      if
+        let data = UserDefaults.standard.data(forKey: "ios-base-session"),
+        let session = try? JSONDecoder().decode(Session.self, from: data)
+      {
         return session
       }
       return nil

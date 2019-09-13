@@ -13,7 +13,9 @@ import Moya
 extension TargetType {
 
   var baseURL: URL {
-    let baseUrlString = Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
+    let baseUrlString = Bundle.main.object(
+      forInfoDictionaryKey: "Base URL"
+    ) as? String ?? ""
     return URL(string: baseUrlString)!
   }
 
@@ -50,16 +52,21 @@ extension TargetType {
     return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
   }
 
-  public func multipartData(from parameters: [String: Any], rootKey: String? = nil) -> [MultipartFormData] {
+  public func multipartData(
+    from parameters: [String: Any], rootKey: String? = nil
+  ) -> [MultipartFormData] {
     return parameters.map { (key: String, value: Any) -> [MultipartFormData]? in
-      return formData(from: value, key: key, rootKey: rootKey)?.compactMap { $0 }
+      formData(from: value, key: key, rootKey: rootKey)?.compactMap { $0 }
     }.compactMap { $0 }.flatMap { $0 }
   }
 
-  private func formData(from value: Any, key: String, rootKey: String? = nil) -> [MultipartFormData]? {
+  private func formData(
+    from value: Any, key: String, rootKey: String? = nil
+  ) -> [MultipartFormData]? {
     var name = key
+    // uses the rootkey if present, otherwise every param goes separate.
     if let rootKey = rootKey {
-      name = "\(rootKey)[\(key)]" // uses the rootkey if present, otherwise every param goes separate.
+      name = "\(rootKey)[\(key)]"
     }
 
     if let value = value as? Data {
@@ -70,7 +77,9 @@ extension TargetType {
         .compactMap { $0 }
         .flatMap { $0 }
       return values
-    } else if let data = "\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false) {
+    } else if
+      let data = "\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)
+    {
       return [MultipartFormData(provider: .data(data), name: name)]
     }
     return nil

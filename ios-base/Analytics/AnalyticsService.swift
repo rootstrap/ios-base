@@ -9,7 +9,8 @@
 import Foundation
 /**
  Protocol that defines the minimum API that an AnalyticsService should expose.
- The AnalyticsService is in charge of handling event logging for a specific analytics platform.
+ The AnalyticsService is in charge of handling event logging
+ for a specific analytics platform.
 */
 protocol AnalyticsService {
   /// Sets up the underlying service. Eg: FirebaseApp.configure()

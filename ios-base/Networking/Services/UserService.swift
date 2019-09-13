@@ -57,7 +57,10 @@ class UserService: BaseApiService<UserResource> {
             })
   }
 
-  func getMyProfile(_ success: @escaping (_ user: User) -> Void, failure: @escaping (_ error: Error) -> Void) {
+  func getMyProfile(
+    _ success: @escaping (_ user: User) -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     request(for: .profile,
             at: "user",
             onSuccess: { (result: User, _) -> Void in
@@ -68,7 +71,9 @@ class UserService: BaseApiService<UserResource> {
             })
   }
 
-  func loginWithFacebook(token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
+  func loginWithFacebook(
+    token: String, success: @escaping () -> Void, failure: @escaping (_ error: Error)
+  -> Void) {
     request(for: .fbLogin(token),
             onSuccess: { [weak self] (result: User, response) -> Void in
               guard let headers = response.response?.allHeaderFields else {
@@ -90,7 +95,9 @@ class UserService: BaseApiService<UserResource> {
     }
   }
 
-  func logout(_ success: @escaping () -> Void, failure: @escaping (_ error: Error) -> Void) {
+  func logout(
+    _ success: @escaping () -> Void, failure: @escaping (_ error: Error)
+  -> Void) {
     request(for: UserResource.logout,
             onSuccess: { _ in
               UserDataManager.deleteUser()
