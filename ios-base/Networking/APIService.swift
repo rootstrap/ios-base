@@ -51,7 +51,11 @@ open class BaseApiService<T>: APIService where T: TargetType {
   private var sharedProvider: MoyaProvider<T>!
 
   private var plugins: [PluginType] {
-    return [NetworkLoggerPlugin(verbose: true, responseDataFormatter: JSONResponseDataFormatter)]
+    return [
+      NetworkLoggerPlugin(
+        verbose: true, responseDataFormatter: JSONResponseDataFormatter
+      )
+    ]
   }
 
   /**
@@ -85,7 +89,8 @@ open class BaseApiService<T>: APIService where T: TargetType {
    using the provided keyPath and return type and returning it on the onSuccess callback.
    - Parameters:
    - target: The TargetType used to make the request.
-   - keyPath: The keypath used to decode from JSON (if passed nil, it will try to decode from the root).
+   - keyPath: The keypath used to decode from JSON (if passed nil,
+   it will try to decode from the root).
    */
   open func request<T>(for target: ProviderType,
                        at keyPath: String? = nil,
@@ -96,7 +101,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
       switch result {
       case let .success(moyaResponse):
-        self.handleSuccess(with: moyaResponse, at: keyPath, onSuccess: onSuccess, onFailure: onFailure)
+        self.handleSuccess(
+          with: moyaResponse, at: keyPath, onSuccess: onSuccess, onFailure: onFailure
+        )
       case let .failure(error):
         self.handleError(with: error, onFailure)
       }
@@ -121,10 +128,12 @@ open class BaseApiService<T>: APIService where T: TargetType {
     })
   }
 
-  private func handleSuccess<T>(with response: Response,
-                                at keyPath: String? = nil,
-                                onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
-                                onFailure: ((Error, Response?) -> Void)? = nil) where T: Decodable {
+  private func handleSuccess<T>(
+    with response: Response,
+    at keyPath: String? = nil,
+    onSuccess: @escaping (_ result: T, _ response: Response) -> Void,
+    onFailure: ((Error, Response?) -> Void)? = nil)
+  where T: Decodable {
     do {
       let filteredResponse = try response.filterSuccessfulStatusCodes()
       let decodedResult = try filteredResponse.map(T.self,
@@ -138,7 +147,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
     }
   }
 
-  private func handleError(with error: Error, _ onFailure: ((Error, Response?) -> Void)? = nil) {
+  private func handleError(
+    with error: Error, _ onFailure: ((Error, Response?) -> Void)? = nil
+  ) {
     guard let moyaError = error as? MoyaError else {
       onFailure?(error, nil)
       return
@@ -150,7 +161,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
       }
       let decodedError = APIError.from(response: response)
       onFailure?(decodedError ?? error, response)
-    case .stringMapping(let response), .jsonMapping(let response), .imageMapping(let response):
+    case .stringMapping(let response),
+         .jsonMapping(let response),
+         .imageMapping(let response):
       onFailure?(error, response)
     case .objectMapping(let mappingError, let response):
       onFailure?(mappingError, response)
@@ -166,7 +179,9 @@ open class BaseApiService<T>: APIService where T: TargetType {
   private func JSONResponseDataFormatter(_ data: Data) -> Data {
     do {
       let dataAsJSON = try JSONSerialization.jsonObject(with: data)
-      let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+      let prettyData = try JSONSerialization.data(
+        withJSONObject: dataAsJSON, options: .prettyPrinted
+      )
       return prettyData
     } catch {
       return data

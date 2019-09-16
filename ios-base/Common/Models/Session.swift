@@ -21,7 +21,10 @@ struct Session: Codable {
     case expiry
   }
 
-  init(uid: String? = nil, client: String? = nil, token: String? = nil, expires: Date? = nil) {
+  init(
+    uid: String? = nil, client: String? = nil,
+    token: String? = nil, expires: Date? = nil
+  ) {
     self.uid = uid
     self.client = client
     self.accessToken = token

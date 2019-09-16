@@ -1,36 +1,51 @@
 disabled_rules: # rule identifiers to exclude from running
-  - control_statement
+  - todo
   - trailing_whitespace
   - type_name # deactivated because swift3 need lowercase enums
-  - nesting
-  - cyclomatic_complexity
-  - todo
-  - mark
-  - identifier_name
 opt_in_rules: # some rules are only opt-in
+  - array_init
   - empty_count
+  - contains_over_first_not_nil
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - joined_default_parameter
+  - literal_expression_end_indentation
+  - operator_usage_whitespace
+  - overridden_super_call
+  - yoda_condition
   # Find all the available rules by running:
   # swiftlint rules
 whitelist_rules:
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
-  - Source/ExcludedFolder
-  - Source/ExcludedFile.swift
   - init.swift
+  - R.generated.swift
 force_cast: error
 force_try:
   severity: warning # explicitly
 line_length:
-  - 230
-  - 500
+  warning: 90
+  error: 100
 type_body_length:
-  - 300 # warning
-  - 400 # error
+  warning: 300
+  error: 400
 file_length:
-  - 500 # warning
-  - 850 # error
+  warning: 500
+  error: 850
 function_parameter_count:
-  - 6 # warning
-  - 8 # error
+  warning: 6
+  error: 8
+cyclomatic_complexity:
+  ignores_case_statements: true
+  warning: 5
+  error: 7
+function_body_length:
+  warning: 25
+  error: 32
+identifier_name:
+  excluded: ["id"]
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
