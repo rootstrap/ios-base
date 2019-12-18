@@ -13,7 +13,6 @@
 		0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFB8921FA366D90098F751 /* Main.storyboard */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
-		9B12AF6C1F269B03005FD465 /* ThirdPartyKeys.example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B12AF6B1F269B03005FD465 /* ThirdPartyKeys.example.plist */; };
 		9B2BF7381EBB9B21001638C4 /* SignInSuccessfully.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BF7371EBB9B21001638C4 /* SignInSuccessfully.json */; };
 		9B2BF73A1EBB9B45001638C4 /* SignUpSuccessfully.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2BF7391EBB9B45001638C4 /* SignUpSuccessfully.json */; };
 		9B2BF73C1EBBA30B001638C4 /* KIFExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2BF73B1EBBA30B001638C4 /* KIFExtensions.swift */; };
@@ -35,7 +34,6 @@
 		9B90C3A61ECB4A8A00FBE2FB /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A31ECB4A8A00FBE2FB /* LogoutTests.swift */; };
 		9B90C3A71ECB4A8A00FBE2FB /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A41ECB4A8A00FBE2FB /* SignInTests.swift */; };
 		9B90C3A81ECB4A8A00FBE2FB /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C3A51ECB4A8A00FBE2FB /* SignUpTests.swift */; };
-		9B9C6BFE20C7160700EB0523 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B9C6BFD20C7160700EB0523 /* README.md */; };
 		9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */; };
 		9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */; };
 		9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD01E351F01641E007255E3 /* DictionaryExtension.swift */; };
@@ -591,12 +589,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9C6BFE20C7160700EB0523 /* README.md in Resources */,
 				0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */,
 				9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */,
 				9B8D306B20AB456C0050697F /* Localization.strings in Resources */,
 				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
-				9B12AF6C1F269B03005FD465 /* ThirdPartyKeys.example.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
