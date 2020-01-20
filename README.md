@@ -60,11 +60,11 @@ To manage user and session persistence after the original sign in/up we store th
 4. Done :)
 
 ## Code Quality Standards
-In order to meet the required code quality standards,  this project runs [SwiftLint](https://github.com/realm/SwiftLint ) 
+In order to meet the required code quality standards,  this project runs [SwiftLint](https://github.com/realm/SwiftLint )
 during the build phase and reports warnings/errors directly through XCode.
-The current SwiftLint rule configuration is based on [Rootstrap's Swift style guides](https://rootstrap.github.io/swift) and is synced with 
+The current SwiftLint rule configuration is based on [Rootstrap's Swift style guides](https://rootstrap.github.io/swift) and is synced with
 the CodeCliemate's configuration file.
- 
+
 **NOTE:** Make sure you have SwiftLint version 0.35.0 or greater installed to avoid known false-positives with some of the rules.
 
 ## Security recommendations
@@ -79,6 +79,20 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 3. Go to **Product** -> **Scheme** -> **Edit scheme**. Then select **Pre-actions** for the Build stage and make sure that the `Provided build setting` is set to your current target.
 **Repeat this step for the Post-actions script.**
 4. Done :)
+
+## CD using Fastlane
+Lanes for each deployment target are provided with some basic behavior:
+- Each target has two options: `build_x` and `release_x`.
+- The `build` lane will just archive the app and leave the `.ipa` ready for upload.
+- The `release` lane will:
+  - Check the repo status (it has to be clean, with no pending changes)
+  - Increment the build number.
+  - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
+  - Build the app.
+  - Generate a changelog from the commit diff between this new version and the previous.
+  - Upload to testflight and wait until it's processed.
+
+Check the `Appfile` and `Fastfile` for more information.
 
 ## License
 
