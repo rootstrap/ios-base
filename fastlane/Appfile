@@ -1,0 +1,32 @@
+# app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
+# apple_id("[[APPLE_ID]]") # Your Apple email address
+
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+for_platform :ios do
+  for_lane :release_develop do
+    app_identifier('com.rootstrap.ios-base-Debug')
+  end
+
+  for_lane :build_develop do
+    app_identifier('com.rootstrap.ios-base-Debug')
+  end
+
+  for_lane :release_staging do
+    app_identifier('com.rootstrap.ios-base-Staging')
+  end
+
+  for_lane :build_staging do
+    app_identifier('com.rootstrap.ios-base-Staging')
+  end
+
+  for_lane :release_production do
+    app_identifier('com.rootstrap.ios-base')
+  end
+
+  for_lane :build_production do
+    app_identifier('com.rootstrap.ios-base')
+  end
+end

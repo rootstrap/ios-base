@@ -1,0 +1,209 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# CONFIG VARIABLES
+username = 'toptiertest@gmail.com' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+xcodeproj = 'ios-base.xcodeproj' # The xcodeproj name eg: ReactNativeBase.xcodeproj
+workspace =  'ios-base.xcworkspace' # The xworkspace name here eg: ReactNativeBase.xcworkspace
+certificates_git_url = '' # The repo to store and sync certs and provisioning profiles. Eg: git@github.com:rootstrap/cafe-infinity-certificates.git
+team_id = ''  # The organization's team id (you can leave this empty and select it on the CLI on each run)
+distribute_external = false # Change this to true if you want the build to be distributed to external testers as well.
+notify_external_testers = false
+skip_waiting_for_build_processing = false # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
+
+platform :ios do
+  lane :release_develop do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'develop')
+
+    build_app(
+      scheme: 'ios-base-develop',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog = changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(
+      username: username,
+      team_id: team_id,
+      changelog: changelog,
+      distribute_external: distribute_external,
+      notify_external_testers: notify_external_testers,
+      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    )
+  end
+
+  lane :release_staging do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'develop')
+
+    build_app(
+      scheme: 'ios-base-staging',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog = changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(
+      username: username,
+      team_id: team_id,
+      changelog: changelog,
+      distribute_external: distribute_external,
+      notify_external_testers: notify_external_testers,
+      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    )
+  end
+
+  lane :release_production do
+    sync_code_signing(
+      git_url: prod_certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'master')
+
+    build_app(
+      scheme: 'ios-base',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog = changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(
+      username: "mauricio.cousillas@rootstrap.com",
+      team_id: team_id,
+      changelog: changelog,
+      distribute_external: distribute_external,
+      notify_external_testers: notify_external_testers,
+      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    )
+  end
+
+  lane :build_develop do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ios-base-develop',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+
+  lane :build_staging do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ios-base-staging',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+
+  lane :build_production do
+    sync_code_signing(
+      git_url: prod_certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ios-base',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+end
+
