@@ -10,13 +10,6 @@ import XCTest
 
 extension XCUIElement {
   
-  func swipeAround() {
-    swipeUp()
-    swipeUp()
-    swipeDown()
-    swipeDown()
-  }
-  
   func clearText(text: String? = nil) {
     guard let stringValue = value as? String ?? text else {
       return

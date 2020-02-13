@@ -18,7 +18,7 @@ extension XCUIApplication {
   
   func clearText(on fieldName: String) {
     let field = textFields[fieldName]
-    field.tap()
+    field.forceTap()
     field.clearText()
   }
 }
