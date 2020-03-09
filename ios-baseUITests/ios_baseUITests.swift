@@ -66,8 +66,15 @@ class ios_baseUITests: XCTestCase {
                       with: "automation@test.com",
                       password: "holahola")
     
+    //TODO: TEST TO SEE WERE IS FAILING
+    let alert = app.alerts.allElementsBoundByIndex.first!
+    waitFor(element: alert, timeOut: 10)
+    XCTAssertTrue(alert.label == "Error")
+      
+    alert.buttons.allElementsBoundByIndex.first?.forceTap()
+    //-------------------------
     let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 30)
+    waitFor(element: logOutButton, timeOut: 10)
     
     logOutButton.forceTap()
     
