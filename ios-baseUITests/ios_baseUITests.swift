@@ -31,7 +31,6 @@ class ios_baseUITests: XCTestCase {
     XCTAssertFalse(signUpButton.isEnabled)
     
     app.type(text: "automation@test", on: "EmailTextField")
-    XCTAssertFalse(signUpButton.isEnabled)
     
     toolbarDoneButton.tap()
     app.type(text: "holahola",
@@ -54,5 +53,72 @@ class ios_baseUITests: XCTestCase {
              on: "ConfirmPasswordTextField",
              isSecure: true)
     XCTAssertFalse(signUpButton.isEnabled)
+  }
+  
+  func testSignInSuccess() {
+    app.launch()
+    
+    app.logOutIfNeeded(in: self)
+    
+    app.attemptSignIn(in: self,
+                      with: "automation@test.com",
+                      password: "holahola")
+    
+    let logOutButton = app.buttons["LogoutButton"]
+    waitFor(element: logOutButton, timeOut: 5)
+    
+    logOutButton.tap()
+    
+    let goToSignInButton = app.buttons["GoToSignInButton"]
+    waitFor(element: goToSignInButton, timeOut: 2)
+  }
+  
+  func testSignInFailure() {
+    app.launch()
+    
+    app.logOutIfNeeded(in: self)
+    
+    app.attemptSignIn(in: self,
+                      with: "automation@test.com",
+                      password: "incorrect password")
+    
+    if let alert = app.alerts.allElementsBoundByIndex.first {
+      waitFor(element: alert, timeOut: 2)
+      XCTAssertTrue(alert.label == "Error")
+      
+      alert.buttons.allElementsBoundByIndex.first?.tap()
+    }
+    
+    let signInButton = app.buttons["SignInButton"]
+    waitFor(element: signInButton, timeOut: 2)
+  }
+  
+  func testSignInValidations() {
+    app.launch()
+    
+    app.logOutIfNeeded(in: self)
+    
+    app.buttons["GoToSignInButton"].tap()
+    
+    let toolbarDoneButton = app.buttons["Toolbar Done Button"]
+    let signInButton = app.buttons["SignInButton"]
+    
+    waitFor(element: signInButton, timeOut: 2)
+    
+    XCTAssertFalse(signInButton.isEnabled)
+    
+    app.type(text: "automation@test", on: "EmailTextField")
+    
+    toolbarDoneButton.tap()
+    app.type(text: "holahola",
+             on: "PasswordTextField",
+             isSecure: true)
+              
+    XCTAssertFalse(signInButton.isEnabled)
+    
+    toolbarDoneButton.tap()
+    app.type(text: ".com", on: "EmailTextField")
+    
+    XCTAssert(signInButton.isEnabled)
   }
 }
