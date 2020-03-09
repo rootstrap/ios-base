@@ -67,12 +67,12 @@ class ios_baseUITests: XCTestCase {
                       password: "holahola")
     
     let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 5)
+    waitFor(element: logOutButton, timeOut: 10)
     
     logOutButton.forceTap()
     
     let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 5)
+    waitFor(element: goToSignInButton, timeOut: 10)
   }
   
   func testSignInFailure() {
