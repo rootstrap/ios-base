@@ -67,7 +67,7 @@ class ios_baseUITests: XCTestCase {
                       password: "holahola")
     
     let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 10)
+    waitFor(element: logOutButton, timeOut: 30)
     
     logOutButton.forceTap()
     
