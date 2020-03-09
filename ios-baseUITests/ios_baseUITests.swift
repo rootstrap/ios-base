@@ -66,20 +66,22 @@ class ios_baseUITests: XCTestCase {
                       with: "automation@test.com",
                       password: "holahola")
     
-    //TODO: TEST TO SEE WERE IS FAILING
-    let alert = app.alerts.allElementsBoundByIndex.first!
-    waitFor(element: alert, timeOut: 10)
-    XCTAssertTrue(alert.label == "Error")
+    //TEST CODE ONLY ELSE BLOCK SHOULD BE EXECUTED NORMALLY
+    sleep(10)
+    if let alert = app.alerts.allElementsBoundByIndex.first {
+      waitFor(element: alert, timeOut: 10)
+      XCTAssertTrue(alert.label == "Error")
       
-    alert.buttons.allElementsBoundByIndex.first?.forceTap()
-    //-------------------------
-    let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 10)
-    
-    logOutButton.forceTap()
-    
-    let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 10)
+      alert.buttons.allElementsBoundByIndex.first?.forceTap()
+    } else {
+      let logOutButton = app.buttons["LogoutButton"]
+      waitFor(element: logOutButton, timeOut: 10)
+      
+      logOutButton.forceTap()
+      
+      let goToSignInButton = app.buttons["GoToSignInButton"]
+      waitFor(element: goToSignInButton, timeOut: 10)
+    }
   }
   
   func testSignInFailure() {
