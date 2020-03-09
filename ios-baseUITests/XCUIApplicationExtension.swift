@@ -27,7 +27,7 @@ extension XCUIApplication {
     let goToSignInButton = buttons["GoToSignInButton"]
     
     if logOutButton.exists {
-      logOutButton.tap()
+      logOutButton.forceTap()
       testCase.waitFor(element: goToSignInButton, timeOut: 5)
     }
   }
@@ -38,7 +38,7 @@ extension XCUIApplication {
     let goToSignInButton = buttons["GoToSignInButton"]
     let toolbarDoneButton = buttons["Toolbar Done Button"]
     
-    goToSignInButton.tap()
+    goToSignInButton.forceTap()
     
     let signInButton = buttons["SignInButton"]
     
@@ -50,6 +50,6 @@ extension XCUIApplication {
     
     type(text: password, on: "PasswordTextField", isSecure: true)
     
-    signInButton.tap()
+    signInButton.forceTap()
   }
 }

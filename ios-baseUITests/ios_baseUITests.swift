@@ -22,7 +22,9 @@ class ios_baseUITests: XCTestCase {
   func testCreateAccountValidations() {
     app.launch()
     
-    app.buttons["GoToSignUpButton"].tap()
+    app.logOutIfNeeded(in: self)
+    
+    app.buttons["GoToSignUpButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]
     let signUpButton = app.buttons["SignUpButton"]
@@ -32,22 +34,22 @@ class ios_baseUITests: XCTestCase {
     
     app.type(text: "automation@test", on: "EmailTextField")
     
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     app.type(text: "holahola",
              on: "PasswordTextField",
              isSecure: true)
     XCTAssertFalse(signUpButton.isEnabled)
     
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     app.type(text: "holahola",
              on: "ConfirmPasswordTextField",
              isSecure: true)
     XCTAssertFalse(signUpButton.isEnabled)
     
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     app.type(text: ".com", on: "EmailTextField")
     XCTAssert(signUpButton.isEnabled)
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     
     app.type(text: "holahol",
              on: "ConfirmPasswordTextField",
@@ -67,7 +69,7 @@ class ios_baseUITests: XCTestCase {
     let logOutButton = app.buttons["LogoutButton"]
     waitFor(element: logOutButton, timeOut: 5)
     
-    logOutButton.tap()
+    logOutButton.forceTap()
     
     let goToSignInButton = app.buttons["GoToSignInButton"]
     waitFor(element: goToSignInButton, timeOut: 2)
@@ -86,7 +88,7 @@ class ios_baseUITests: XCTestCase {
       waitFor(element: alert, timeOut: 2)
       XCTAssertTrue(alert.label == "Error")
       
-      alert.buttons.allElementsBoundByIndex.first?.tap()
+      alert.buttons.allElementsBoundByIndex.first?.forceTap()
     }
     
     let signInButton = app.buttons["SignInButton"]
@@ -98,7 +100,7 @@ class ios_baseUITests: XCTestCase {
     
     app.logOutIfNeeded(in: self)
     
-    app.buttons["GoToSignInButton"].tap()
+    app.buttons["GoToSignInButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]
     let signInButton = app.buttons["SignInButton"]
@@ -109,14 +111,14 @@ class ios_baseUITests: XCTestCase {
     
     app.type(text: "automation@test", on: "EmailTextField")
     
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     app.type(text: "holahola",
              on: "PasswordTextField",
              isSecure: true)
               
     XCTAssertFalse(signInButton.isEnabled)
     
-    toolbarDoneButton.tap()
+    toolbarDoneButton.forceTap()
     app.type(text: ".com", on: "EmailTextField")
     
     XCTAssert(signInButton.isEnabled)
