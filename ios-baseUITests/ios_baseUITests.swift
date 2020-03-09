@@ -72,7 +72,7 @@ class ios_baseUITests: XCTestCase {
     logOutButton.forceTap()
     
     let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 2)
+    waitFor(element: goToSignInButton, timeOut: 5)
   }
   
   func testSignInFailure() {
