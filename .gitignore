@@ -57,6 +57,8 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+report.html
+report.junit
 
 **/.DS_Store
 
@@ -65,3 +67,7 @@ fastlane/screenshots
 GoogleService*.plist
 
 R.generated.swift
+
+# Gem dependencies
+vendor/
+Gemfile.lock
