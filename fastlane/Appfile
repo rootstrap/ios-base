@@ -6,11 +6,8 @@
 #     https://docs.fastlane.tools/advanced/#appfile
 
 for_platform :ios do
-  for_lane :release_develop do
-    app_identifier('com.rootstrap.ios-base-Debug')
-  end
 
-  for_lane :build_develop do
+  for_lane :build_qa do
     app_identifier('com.rootstrap.ios-base-Debug')
   end
 
