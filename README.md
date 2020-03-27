@@ -80,19 +80,76 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 **Repeat this step for the Post-actions script.**
 4. Done :)
 
-## CD using Fastlane
+
+## Continuous Deployment using Fastlane and Jenkins
+
+We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
+The included Fastfile and Appfile have been generated for the ios-base application name under the Rootstrap Developer account, and can be used as a reference.
+
+### New Project Setup
+
+When setting up a new project on top of this, some steps are performed once
+
+  1. Install latest Xcode command line tools
+```
+xcode-select --install
+```
+  2. Install latest Fastlane 
+```
+# Using RubyGems
+sudo gem install fastlane -NV
+# Alternatively using Homebrew
+brew install fastlane
+```
+  3. If needed, create App Ids in the Apple Developer Portal and App Store Connect using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
+```
+fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
+```
+  4. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
+```
+fastlane match init 
+```
+  select `git` as storage mode and specify the URL of an empty private git repo to store certificates and profiles (we use 'git@github.com:rootstrap/ios-base-certificates.git')
+
+  5. Generate required certificates and profiles and store into certificates repo
+```
+fastlane match adhoc -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap.ios-base 
+fastlane match appstore -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap.ios-base
+```
+ 
+### Fastfile
 Lanes for each deployment target are provided with some basic behavior:
-- Each target has two options: `build_x` and `release_x`.
-- The `build` lane will just archive the app and leave the `.ipa` ready for upload.
-- The `release` lane will:
+- Lane `test` will simply run the configured tests, it is used for Continuous Integration
+- Lane `build_qa` will just build and archive the app and leave the `.ipa` ready for upload (`adhoc` mode) 
+- The `release_*` lanes will:
   - Check the repo status (it has to be clean, with no pending changes)
+  - Download/validate code signing certificates with the certificates repo.
   - Increment the build number.
-  - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
-  - Build the app.
+  - Tag the new release and push it to the set branch (`_staging` pushes to develop and `_production` to master by default, but it's configurable).
+  - Build the app (`appstore` mode)
   - Generate a changelog from the commit diff between this new version and the previous.
   - Upload to testflight and wait until it's processed.
 
-Check the `Appfile` and `Fastfile` for more information.
+Before using for a new project, check and modify `fastlane/Appfile` and `fastlane/Fastfile` according to the project parameters.
+
+### Jenkins Integration
+
+A Jenkinsfile is also provided in `fastlane/Jenkinsfile` containing the pipeline definition for setting this project in a [Jenkins](https://jenkins.io) server. A Multibranch Pipeline job in Jenkins can be set to trigger upon commits to the project repo.
+- Job is set to run on MacOS agents tagged as `mac` which should meet the requirements for building and releasing
+  - MacOS 10.12: Sierra or later
+  - Ruby 2.6+
+  - Bundler 1.x
+  - CocoaPods 1.9+
+  - Xcode CLI 
+  - Fastlane
+- The two main stages in the pipeline are:
+  - **`CI`**: installs gem dependencies and runs the `test` and (by default) `build_qa` fastlane lanes.  
+  - **`Release`**: runs `release_staging` upon commits to `develop` branch, and `release_production` upon commits to `master` branch (according to the flow specified in Fastfile).
+
+*Note*: Job as-is should not be configured to trigger builds on tags since it would trigger an endlees loop of tagging and building on `develop` or `master`. If modified to build Production upon tags, the Fastfile should be modified too to avoid creating the tags from it.
+
+.
+
 
 ## License
 

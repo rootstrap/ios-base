@@ -40,7 +40,6 @@ pipeline {
                 stage('release Beta') {
                     when {
                         branch 'develop'
-                        expression { TARGET == 'staging'}
                     }
                     steps {
                         sh 'fastlane ios release_staging'
@@ -49,12 +48,7 @@ pipeline {
                 }
                 stage('release Production') {
                     when {
-                        anyOf {
-                            branch 'develop'
-                            branch 'master'
-                            tag "release-*"
-                        }
-                        expression { TARGET == 'prod' }
+                        branch 'master'
                     }
                     steps {
                         sh 'fastlane ios release_production'
