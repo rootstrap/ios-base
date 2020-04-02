@@ -117,39 +117,69 @@ fastlane match adhoc -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap
 fastlane match appstore -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap.ios-base
 ```
  
-### Fastfile
+## Automated build and deployment using Fastlane
 Lanes for each deployment target are provided with some basic behavior:
-- Lane `test` will simply run the configured tests, it is used for Continuous Integration
-- Lane `build_qa` will just build and archive the app and leave the `.ipa` ready for upload (`adhoc` mode) 
-- The `release_*` lanes will:
-  - Check the repo status (it has to be clean, with no pending changes)
-  - Download/validate code signing certificates with the certificates repo.
-  - Increment the build number.
-  - Tag the new release and push it to the set branch (`_staging` pushes to develop and `_production` to master by default, but it's configurable).
-  - Build the app (`appstore` mode)
-  - Generate a changelog from the commit diff between this new version and the previous.
-  - Upload to testflight and wait until it's processed.
 
-Before using for a new project, check and modify `fastlane/Appfile` and `fastlane/Fastfile` according to the project parameters.
+- Each target has two options: `build_x` and `release_x`.
+  - The `build` lane will build the application signed with an **Ad Hoc** certificate and keep the `.ipa` in the local folder for upload.
+  - The `release` lane will:
+    - Check the repo status (it has to be clean, with no pending changes)
+    - Increment the build number.
+    - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
+    - Build the app signed with an **App Store** certificate
+    - Generate a changelog from the commit diff between this new version and the previous.
+    - Upload to testflight and wait until it's processed.
 
-### Jenkins Integration
+- In addition lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
 
-A Jenkinsfile is also provided in `fastlane/Jenkinsfile` containing the pipeline definition for setting this project in a [Jenkins](https://jenkins.io) server. A Multibranch Pipeline job in Jenkins can be set to trigger upon commits to the project repo.
-- Job is set to run on MacOS agents tagged as `mac` which should meet the requirements for building and releasing
+- Fastlane's code signing module ([match](https://docs.fastlane.tools/actions/match/)) generates distribution profiles if missing and stores them in the Git repository specified 
+
+- In order to use these lanes the application IDs for each target need to have been generated in the Apple Developer Portal.
+  - These can also be generated using Fastlane (do the same for `-Debug` and `-Staging` app names if using them):
+  ```
+  fastlane produce \
+    -u {{username}} --team-id {{team_id}} --itc_team_id {{itc_team_id}} \
+    --app-name {{app_name}} --app-identifier com.{{company}}.{{app_name}}
+  ```
+
+- Project should have Apple Generic Versioning enabled on XCode
+    - see https://developer.apple.com/library/archive/qa/qa1827/_index.html
+
+- The following values need to be set on the `Fastfile` before use:
+  - `app_name`              # this will match with application name in App Store and target schemes in the project
+  - `username`              # The apple id used to manage the certificates
+  - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
+  - `team_id`               # The organization's team id 
+  - `itc_team_id`           # App Store Connect team id
+
+Check the `fastlane/Appfile` and `fastlane/Fastfile` for more information.
+
+### CD with Jenkins
+
+Two Jenkinsfiles are provided under `jenkins` folder to automatically trigger Fastlane and archive the application builds from a [Jenkins](https://jenkins.io) server:
+- `CI/Jenkinsfile` : Multibranch Pipeline job, set to trigger upon commits to the project repo
+  - Runs the following steps:
+    - Install gem dependencies
+    - Runs `test_develop` lane
+    - Run `build_develop` lane and store the IPA file on the specified location in AWS S3
+    - Run `build_staging` when branch is `develop` and store the IPA file on the specified location in AWS S3
+  - `master` branch should be excluded from repo scan
+- `Release/Jenkinsfile`: Pipeline job that should be triggered on demand and receive the target branch (develop/master)
+  - Runs the following steps:
+    - Install gem dependencies
+    - Run `release_staging` if branch is `develop`
+    - Run `release_production` if branch is `master`
+  - This job currently does not support automatic triggers as it pushes the version bump into the same branch, which would cause an endless loop of runs
+  - *TO DO*: Set to run automatically upon merges to `master` when commit is not an automated version bump
+- Jobs are set to run on MacOS agents tagged as `mac` which should meet the requirements for building and releasing
   - MacOS 10.12: Sierra or later
   - Ruby 2.6+
   - Bundler 1.x
   - CocoaPods 1.9+
   - Xcode CLI 
   - Fastlane
-- The two main stages in the pipeline are:
-  - **`CI`**: installs gem dependencies and runs the `test` and (by default) `build_qa` fastlane lanes.  
-  - **`Release`**: runs `release_staging` upon commits to `develop` branch, and `release_production` upon commits to `master` branch (according to the flow specified in Fastfile).
-
-*Note*: Job as-is should not be configured to trigger builds on tags since it would trigger an endlees loop of tagging and building on `develop` or `master`. If modified to build Production upon tags, the Fastfile should be modified too to avoid creating the tags from it.
-
-.
-
+- Jenkins instance is expected to have credentials for AWS with privileges to upload files to the specified bucket (stored with id `aws-s3-access-key`)
+- Slack integration is expected to be configured on the Jenkins instance (set the right channel name for `SLACK_CHANNEL` variable in both Jenkinsfiles)
 
 ## License
 
