@@ -84,41 +84,65 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 ## Continuous Deployment using Fastlane and Jenkins
 
 We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
-The included Fastfile and Appfile have been generated for the ios-base application name under the Rootstrap Developer account, and can be used as a reference.
+
 
 ### New Project Setup
 
-When setting up a new project on top of this, some steps are performed once
+Several steps need to be executed before before building a project for the first time.
 
   1. Install latest Xcode command line tools
-```
-xcode-select --install
-```
-  2. Install latest Fastlane 
-```
-# Using RubyGems
-sudo gem install fastlane -NV
-# Alternatively using Homebrew
-brew install fastlane
-```
-  3. If needed, create App Ids in the Apple Developer Portal and App Store Connect using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
-```
-fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
-```
-  4. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
-```
-fastlane match init 
-```
-  select `git` as storage mode and specify the URL of an empty private git repo to store certificates and profiles (we use 'git@github.com:rootstrap/ios-base-certificates.git')
+  ```
+  xcode-select --install
+  ```
 
-  5. Generate required certificates and profiles and store into certificates repo
-```
-fastlane match adhoc -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap.ios-base 
-fastlane match appstore -u devs@rootstrap.com --team-id WNU857N39T -a com.rootstrap.ios-base
-```
+  2. Install latest Fastlane 
+  ```
+  # Using RubyGems
+  sudo gem install fastlane -NV
+  # Alternatively using Homebrew
+  brew install fastlane
+  ```
+
+  3. Create required App Ids in the Apple Developer Portal and App Store Connect 
+  This can be done on the Portal itself or using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
+  ```
+  fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
+  ```
+  4. Create private empty repository to store signing certificates, eg. `git@github.com:rootstrap/{app_name}-certificates.git`
+
+  5. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
+  ```
+  fastlane match init 
+  ```
+  select `git` as storage mode and specify the URL of the certificates git repo
+
+  6. **optional** If the Developer account has old/invalid certificates which are not shared, it is recommended to use the `nuke` action to clear the existing certificates (*use with caution*):
+  ```
+  fastlane match nuke development
+  fastlane match nuke distribution
+  ```
+
+  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action (fastlane will prompt for location of the `.cer` and `.p12` files):
+  ```
+  fastlane match import \
+    --username {{username}} \
+    --git_url {{certificates_git_url}} \
+    --team_id {{team_id}} \
+    --type appstore  \
+    --app_identifier com.{{company}}.{{app_name}} \
+  ```
+
+  8. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the following values before use:
+    - `app_name`              # this will match with application name in App Store and target schemes in the project
+    - `username`              # The apple id used to manage the certificates
+    - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
+    - `team_id`               # The organization's team id 
+    - `itc_team_id`           # App Store Connect team id
+    - `devices`               # List of devices to launch simulators for running tests on
+
  
-## Automated build and deployment using Fastlane
-Lanes for each deployment target are provided with some basic behavior:
+### Fastlane usage
+Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
 
 - Each target has two options: `build_x` and `release_x`.
   - The `build` lane will build the application signed with an **Ad Hoc** certificate and keep the `.ipa` in the local folder for upload.
@@ -130,33 +154,23 @@ Lanes for each deployment target are provided with some basic behavior:
     - Generate a changelog from the commit diff between this new version and the previous.
     - Upload to testflight and wait until it's processed.
 
-- In addition lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
+- Additionally, lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
 
-- Fastlane's code signing module ([match](https://docs.fastlane.tools/actions/match/)) generates distribution profiles if missing and stores them in the Git repository specified 
 
-- In order to use these lanes the application IDs for each target need to have been generated in the Apple Developer Portal.
-  - These can also be generated using Fastlane (do the same for `-Debug` and `-Staging` app names if using them):
+### Jenkins Integration
+
+Two Jenkinsfiles are provided under `jenkins` folder to automatically trigger Fastlane and archive the application builds from a [Jenkins](https://jenkins.io) server.
+- These needs to be updated before use with the proper values for the project in the `environment` section:
   ```
-  fastlane produce \
-    -u {{username}} --team-id {{team_id}} --itc_team_id {{itc_team_id}} \
-    --app-name {{app_name}} --app-identifier com.{{company}}.{{app_name}}
+    environment {
+        APP_NAME = 'ios-base'
+        SLACK_CHANNEL = '#ios-base'
+        S3_BUCKET = 'ios-base-files'
+        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_ACCESS_KEY = credentials('aws-s3-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-s3-secret-access-key')
+    }
   ```
-
-- Project should have Apple Generic Versioning enabled on XCode
-    - see https://developer.apple.com/library/archive/qa/qa1827/_index.html
-
-- The following values need to be set on the `Fastfile` before use:
-  - `app_name`              # this will match with application name in App Store and target schemes in the project
-  - `username`              # The apple id used to manage the certificates
-  - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
-  - `team_id`               # The organization's team id 
-  - `itc_team_id`           # App Store Connect team id
-
-Check the `fastlane/Appfile` and `fastlane/Fastfile` for more information.
-
-### CD with Jenkins
-
-Two Jenkinsfiles are provided under `jenkins` folder to automatically trigger Fastlane and archive the application builds from a [Jenkins](https://jenkins.io) server:
 - `CI/Jenkinsfile` : Multibranch Pipeline job, set to trigger upon commits to the project repo
   - Runs the following steps:
     - Install gem dependencies
@@ -171,15 +185,20 @@ Two Jenkinsfiles are provided under `jenkins` folder to automatically trigger Fa
     - Run `release_production` if branch is `master`
   - This job currently does not support automatic triggers as it pushes the version bump into the same branch, which would cause an endless loop of runs
   - *TO DO*: Set to run automatically upon merges to `master` when commit is not an automated version bump
-- Jobs are set to run on MacOS agents tagged as `mac` which should meet the requirements for building and releasing
+
+#### Jenkins server requirements:
+  - Jenkins 2.164+
+  - [MultiBranch Pipeline plugin](https://plugins.jenkins.io/workflow-multibranch/)
+  - [Slack Notification plugin](https://plugins.jenkins.io/slack/) -set the right channel name for `SLACK_CHANNEL` variable in both Jenkinsfiles.
+  - Valid credentials for AWS with privileges to upload files to the specified bucket -stored in Credentials store with id `aws-s3-access-key`
+
+#### Jenkins agent requirements
   - MacOS 10.12: Sierra or later
   - Ruby 2.6+
   - Bundler 1.x
   - CocoaPods 1.9+
   - Xcode CLI 
   - Fastlane
-- Jenkins instance is expected to have credentials for AWS with privileges to upload files to the specified bucket (stored with id `aws-s3-access-key`)
-- Slack integration is expected to be configured on the Jenkins instance (set the right channel name for `SLACK_CHANNEL` variable in both Jenkinsfiles)
 
 ## License
 

@@ -17,18 +17,19 @@ default_platform(:ios)
 
 # CONFIG VARIABLES
 app_name = 'ios-base'
-username = 'devs@rootstrap.com' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+username = '' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
 xcodeproj = 'ios-base.xcodeproj' # The xcodeproj name eg: ReactNativeBase.xcodeproj
 workspace =  'ios-base.xcworkspace' # The xworkspace name here eg: ReactNativeBase.xcworkspace
 certificates_git_url = 'git@github.com:rootstrap/ios-base-certificates.git' # The repo to store and sync certs and provisioning profiles. Eg: git@github.com:rootstrap/cafe-infinity-certificates.git
-team_id = 'WNU857N39T'  # The organization's team id (you can leave this empty and select it on the CLI on each run)
-itc_team_id = '118555473' # App Store Connect team id
+team_id = ''  # The organization's team id (you can leave this empty and select it on the CLI on each run)
+itc_team_id = '' # App Store Connect team id
 distribute_external = false # Change this to true if you want the build to be distributed to external testers as well.
 notify_external_testers = false
 skip_waiting_for_build_processing = true # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
 devices = 'platform=iOS Simulator,name=iPhone 11,OS=13.2' # Replace with proper array of devices to run the tests on
 
 platform :ios do
+  
   lane :release_develop do
     sync_code_signing(
       git_url: certificates_git_url,
@@ -131,7 +132,7 @@ platform :ios do
     push_to_git_remote(remote_branch: 'master')
 
     build_app(
-      scheme: app_name,
+      scheme: app_name + '-production',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
@@ -201,7 +202,7 @@ platform :ios do
     increment_build_number(xcodeproj: xcodeproj)
 
     build_app(
-      scheme: app_name,
+      scheme: app_name + '-production',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
