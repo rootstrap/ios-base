@@ -26,7 +26,7 @@ itc_team_id = '' # App Store Connect team id
 distribute_external = false # Change this to true if you want the build to be distributed to external testers as well.
 notify_external_testers = false
 skip_waiting_for_build_processing = true # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
-devices = 'platform=iOS Simulator,name=iPhone 11,OS=13.2' # Replace with proper array of devices to run the tests on
+devices = 'platform=iOS Simulator,OS=9.2' # Replace with proper array of devices to run the tests on
 
 platform :ios do
   
