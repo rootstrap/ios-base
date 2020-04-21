@@ -23,6 +23,7 @@ This template comes with:
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
 - [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
+- [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) to integrate build and release with **Jenkins**.
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
