@@ -23,6 +23,7 @@ This template comes with:
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
 - [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
+- [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) to integrate build and release with **Jenkins**.
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
@@ -81,7 +82,7 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 4. Done :)
 
 
-## Continuous Deployment using Fastlane and Jenkins
+## Automated Build and Deployment using Fastlane
 
 We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
 
@@ -156,49 +157,6 @@ Lanes for each deployment target are provided with some basic behavior, which ca
 
 - Additionally, lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
 
-
-### Jenkins Integration
-
-Two Jenkinsfiles are provided under `jenkins` folder to automatically trigger Fastlane and archive the application builds from a [Jenkins](https://jenkins.io) server.
-- These needs to be updated before use with the proper values for the project in the `environment` section:
-  ```
-    environment {
-        APP_NAME = 'ios-base'
-        SLACK_CHANNEL = '#ios-base'
-        S3_BUCKET = 'ios-base-files'
-        AWS_DEFAULT_REGION = 'us-east-1'
-        AWS_ACCESS_KEY = credentials('aws-s3-access-key')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-s3-secret-access-key')
-    }
-  ```
-- `CI/Jenkinsfile` : Multibranch Pipeline job, set to trigger upon commits to the project repo
-  - Runs the following steps:
-    - Install gem dependencies
-    - Runs `test_develop` lane
-    - Run `build_develop` lane and store the IPA file on the specified location in AWS S3
-    - Run `build_staging` when branch is `develop` and store the IPA file on the specified location in AWS S3
-  - `master` branch should be excluded from repo scan
-- `Release/Jenkinsfile`: Pipeline job that should be triggered on demand and receive the target branch (develop/master)
-  - Runs the following steps:
-    - Install gem dependencies
-    - Run `release_staging` if branch is `develop`
-    - Run `release_production` if branch is `master`
-  - This job currently does not support automatic triggers as it pushes the version bump into the same branch, which would cause an endless loop of runs
-  - *TO DO*: Set to run automatically upon merges to `master` when commit is not an automated version bump
-
-#### Jenkins server requirements:
-  - Jenkins 2.164+
-  - [MultiBranch Pipeline plugin](https://plugins.jenkins.io/workflow-multibranch/)
-  - [Slack Notification plugin](https://plugins.jenkins.io/slack/) -set the right channel name for `SLACK_CHANNEL` variable in both Jenkinsfiles.
-  - Valid credentials for AWS with privileges to upload files to the specified bucket -stored in Credentials store with id `aws-s3-access-key`
-
-#### Jenkins agent requirements
-  - MacOS 10.12: Sierra or later
-  - Ruby 2.6+
-  - Bundler 1.x
-  - CocoaPods 1.9+
-  - Xcode CLI 
-  - Fastlane
 
 ## License
 
