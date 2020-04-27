@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ios_base_Debug
+@testable import ios_base
 
 class ios_baseUITests: XCTestCase {
 
