@@ -1,6 +1,6 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID: ecb24ed0e4ed09f50a512e0b9490e0caa3e2409bb5f1220af8935514279293d9
+    - CC_TEST_REPORTER_ID: 8454035bac667725e88752aa44de9ee72dc53982138c3d0c3def3843b9191568
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 language: swift
 xcode_workspace: ios-base.xcworkspace
