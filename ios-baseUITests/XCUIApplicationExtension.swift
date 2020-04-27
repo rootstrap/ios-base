@@ -32,9 +32,11 @@ extension XCUIApplication {
     }
   }
   
-  func attemptSignIn(in testCase: XCTestCase,
-                     with email: String,
-                     password: String) {
+  func attemptSignIn(
+    in testCase: XCTestCase,
+    with email: String,
+    password: String
+  ) {
     let goToSignInButton = buttons["GoToSignInButton"]
     let toolbarDoneButton = buttons["Toolbar Done Button"]
     
@@ -42,7 +44,7 @@ extension XCUIApplication {
     
     let signInButton = buttons["SignInButton"]
     
-    testCase.waitFor(element: signInButton, timeOut: 2)
+    testCase.waitFor(element: signInButton)
     
     type(text: email, on: "EmailTextField")
     

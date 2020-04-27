@@ -94,7 +94,7 @@ class ios_baseUITests: XCTestCase {
                       password: "incorrect password")
     
     if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 2)
+      waitFor(element: alert)
       XCTAssertTrue(alert.label == "Error")
       
       alert.buttons.allElementsBoundByIndex.first?.forceTap()
@@ -114,7 +114,7 @@ class ios_baseUITests: XCTestCase {
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]
     let signInButton = app.buttons["SignInButton"]
     
-    waitFor(element: signInButton, timeOut: 2)
+    waitFor(element: signInButton)
     
     XCTAssertFalse(signInButton.isEnabled)
     
