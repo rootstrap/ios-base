@@ -70,7 +70,7 @@ class FirstViewModel {
   
   func checkFacebookLoginRequest(result: LoginManagerLoginResult?, error: Error?) {
     guard let result = result, error == nil else {
-      facebookLoginRequestFailed(reason: error!.localizedDescription)
+      facebookLoginRequestFailed(reason: error?.localizedDescription ?? "")
       return
     }
     if result.isCancelled {

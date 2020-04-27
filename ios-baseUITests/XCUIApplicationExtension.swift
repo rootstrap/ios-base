@@ -21,4 +21,37 @@ extension XCUIApplication {
     field.forceTap()
     field.clearText()
   }
+  
+  func logOutIfNeeded(in testCase: XCTestCase) {
+    let logOutButton = buttons["LogoutButton"]
+    let goToSignInButton = buttons["GoToSignInButton"]
+    
+    if logOutButton.exists {
+      logOutButton.forceTap()
+      testCase.waitFor(element: goToSignInButton, timeOut: 5)
+    }
+  }
+  
+  func attemptSignIn(in testCase: XCTestCase,
+                     with email: String,
+                     password: String) {
+    let goToSignInButton = buttons["GoToSignInButton"]
+    let toolbarDoneButton = buttons["Toolbar Done Button"]
+    
+    goToSignInButton.forceTap()
+    
+    let signInButton = buttons["SignInButton"]
+    
+    testCase.waitFor(element: signInButton, timeOut: 2)
+    
+    type(text: email, on: "EmailTextField")
+    
+    toolbarDoneButton.forceTap()
+    
+    type(text: password, on: "PasswordTextField", isSecure: true)
+    
+    toolbarDoneButton.forceTap()
+    
+    signInButton.forceTap()
+  }
 }
