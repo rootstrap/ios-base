@@ -50,6 +50,8 @@ extension XCUIApplication {
     
     type(text: password, on: "PasswordTextField", isSecure: true)
     
+    toolbarDoneButton.forceTap()
+    
     signInButton.forceTap()
   }
 }
