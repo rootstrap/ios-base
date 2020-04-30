@@ -11,9 +11,9 @@ import XCTest
 
 class StringExtensionUnitTests: XCTestCase {
   func testEmailValidation() {
-    XCTAssertFalse("german".isEmailFormatted())
-    XCTAssertFalse("german@test".isEmailFormatted())
-    XCTAssert("german@test.com".isEmailFormatted())
-    XCTAssert("german.stabile+2@gmail.com".isEmailFormatted())
+    XCTAssertFalse("username".isEmailFormatted())
+    XCTAssertFalse("username@test".isEmailFormatted())
+    XCTAssert("username@test.com".isEmailFormatted())
+    XCTAssert("username.alias+2@gmail.com".isEmailFormatted())
   }
 }

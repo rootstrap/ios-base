@@ -5,3 +5,6 @@ scheme: ios-base-develop
 binary_basename: ios-base-Debug
 ignore:
   - Pods/*
+  - ios-base/Extensions/UIImageExtension.swift
+  - R.generated.swift
+  - ios-base/AppDelegate.swift
