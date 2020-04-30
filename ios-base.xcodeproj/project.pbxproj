@@ -610,7 +610,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = "TopTier labs";
+				ORGANIZATIONNAME = "Rootstrap Inc.";
 				TargetAttributes = {
 					07276EAF23F5CC460089C0AD = {
 						CreatedOnToolsVersion = 11.2.1;

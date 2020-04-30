@@ -3,7 +3,7 @@
 //  ios-base
 //
 //  Created by Mauricio Cousillas on 6/5/19.
-//  Copyright © 2019 TopTier labs. All rights reserved.
+//  Copyright © 2019 Rootstrap Inc. All rights reserved.
 //
 
 import Foundation
