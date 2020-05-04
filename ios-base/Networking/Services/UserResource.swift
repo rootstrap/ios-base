@@ -17,6 +17,7 @@ enum UserResource: TargetType {
   case profile
   case fbLogin(String)
   case logout
+  case deleteAccount
 
   var path: String {
     let authBasePath = "/users"
@@ -34,6 +35,8 @@ enum UserResource: TargetType {
       return "\(userBasePath)/facebook"
     case .logout:
       return "\(authBasePath)/sign_out"
+    case .deleteAccount:
+      return "\(userBasePath)/delete_account"
     }
   }
 
@@ -43,7 +46,7 @@ enum UserResource: TargetType {
       return .post
     case .profile:
       return .get
-    case .logout:
+    case .logout, .deleteAccount:
       return .delete
     }
   }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -222,17 +222,43 @@ RS iOS BASE.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in/up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-Nf-PW5">
-                                <rect key="frame" x="32" y="72" width="277.5" height="38.5"/>
+                                <rect key="frame" x="49" y="72" width="277.5" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
-                                <rect key="frame" x="75" y="570" width="225" height="45"/>
-                                <color key="backgroundColor" red="0.69471571180555558" green="0.27205175823635525" blue="0.35792462901418848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03z-HI-tG7">
+                                <rect key="frame" x="75" y="583" width="225" height="44"/>
+                                <color key="backgroundColor" red="0.69471571180000002" green="0.27205175819999999" blue="0.35792462899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="8xm-R0-ZOt"/>
+                                    <constraint firstAttribute="height" constant="44" id="GFl-9u-Vux"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="DELETE ACCOUNT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapOnDeleteAccount:" destination="K4y-mn-w4p" eventType="touchUpInside" id="PvN-DK-BxP"/>
+                                    <action selector="tapOnLogOutButton:" destination="K4y-mn-w4p" eventType="touchUpInside" id="gCc-47-Ziz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-gz-amO">
+                                <rect key="frame" x="75" y="317.5" width="225" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Get my profile">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapOnGetMyProfile:" destination="K4y-mn-w4p" eventType="touchUpInside" id="HQj-iH-IxE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
+                                <rect key="frame" x="75" y="524" width="225" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8xm-R0-ZOt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="LOG OUT">
@@ -242,31 +268,28 @@ RS iOS BASE.</string>
                                     <action selector="tapOnLogOutButton:" destination="K4y-mn-w4p" eventType="touchUpInside" id="7k9-jn-HZL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-gz-amO">
-                                <rect key="frame" x="136.5" y="514" width="102" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Get my profile">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapOnGetMyProfile:" destination="K4y-mn-w4p" eventType="touchUpInside" id="HQj-iH-IxE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95331488720000002" green="0.95331488720000002" blue="0.95331488720000002" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="AfterLoginSignupView"/>
                         <constraints>
-                            <constraint firstItem="deB-Nf-PW5" firstAttribute="leading" secondItem="YnO-i4-MwY" secondAttribute="leading" constant="32" id="FiE-id-ex3"/>
+                            <constraint firstItem="03z-HI-tG7" firstAttribute="width" secondItem="aMM-gP-X0k" secondAttribute="width" id="2pu-9r-RmA"/>
+                            <constraint firstItem="sla-gz-amO" firstAttribute="centerY" secondItem="YnO-i4-MwY" secondAttribute="centerY" id="8N9-aS-plH"/>
+                            <constraint firstItem="sla-gz-amO" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="FHY-9p-b9J"/>
+                            <constraint firstItem="03z-HI-tG7" firstAttribute="top" secondItem="aMM-gP-X0k" secondAttribute="bottom" constant="15" id="Fcf-yj-QwV"/>
+                            <constraint firstItem="deB-Nf-PW5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YnO-i4-MwY" secondAttribute="leading" constant="20" id="FiE-id-ex3"/>
                             <constraint firstItem="aMM-gP-X0k" firstAttribute="width" secondItem="YnO-i4-MwY" secondAttribute="width" multiplier="0.6" id="KPU-cF-icn"/>
-                            <constraint firstItem="aMM-gP-X0k" firstAttribute="top" secondItem="sla-gz-amO" secondAttribute="bottom" constant="24" id="Nt1-9I-wPr"/>
+                            <constraint firstItem="03z-HI-tG7" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="KXa-jh-Vyd"/>
+                            <constraint firstItem="gRs-YP-uAr" firstAttribute="top" secondItem="03z-HI-tG7" secondAttribute="bottom" constant="40" id="PAz-Ar-RVt"/>
                             <constraint firstItem="deB-Nf-PW5" firstAttribute="top" secondItem="b07-nt-cIs" secondAttribute="bottom" constant="72" id="WXh-be-LfA"/>
-                            <constraint firstItem="gRs-YP-uAr" firstAttribute="top" secondItem="aMM-gP-X0k" secondAttribute="bottom" constant="52" id="anW-vP-uEH"/>
                             <constraint firstItem="aMM-gP-X0k" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="fmE-ac-Poo"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deB-Nf-PW5" secondAttribute="trailing" constant="44" id="nuh-nK-gKC"/>
+                            <constraint firstItem="sla-gz-amO" firstAttribute="width" secondItem="aMM-gP-X0k" secondAttribute="width" id="hh9-wD-xFh"/>
+                            <constraint firstItem="deB-Nf-PW5" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="lU9-l9-VKr"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="deB-Nf-PW5" secondAttribute="trailing" constant="20" id="nuh-nK-gKC"/>
                             <constraint firstItem="sla-gz-amO" firstAttribute="centerX" secondItem="YnO-i4-MwY" secondAttribute="centerX" id="oiT-yw-cnD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteAccountButton" destination="03z-HI-tG7" id="UXu-M7-no3"/>
                         <outlet property="logOut" destination="aMM-gP-X0k" id="jXY-nY-53e"/>
                         <outlet property="welcomeLabel" destination="deB-Nf-PW5" id="vQb-ZK-INh"/>
                     </connections>
