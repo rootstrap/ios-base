@@ -3,7 +3,7 @@
 //  ios-baseUITests
 //
 //  Created by Germán Stábile on 2/13/20.
-//  Copyright © 2020 Rootstrap. All rights reserved.
+//  Copyright © 2020 Rootstrap Inc. All rights reserved.
 //
 
 import XCTest

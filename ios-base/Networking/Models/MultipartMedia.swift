@@ -3,7 +3,7 @@
 //  ios-base
 //
 //  Created by German on 7/7/17.
-//  Copyright © 2017 Rootstrap. All rights reserved.
+//  Copyright © 2017 Rootstrap Inc. All rights reserved.
 //
 
 import Foundation
