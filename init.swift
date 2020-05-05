@@ -4,6 +4,8 @@ let baseProjectName = "ios-base"
 var projectName = "RSDemoProject"
 let baseDomain = "com.rootstrap"
 var bundleDomain = baseDomain
+let baseCompany = "Rootstrap Inc."
+var companyName = baseCompany
 
 let whiteList: [String] = [".DS_Store", "UserInterfaceState.xcuserstate", "init.swift"]
 let fileManager = FileManager.default
@@ -14,11 +16,13 @@ var currentFolder: String {
 enum SetupStep: Int {
   case nameEntry = 1
   case bundleDomainEntry
+  case companyNameEntry
   
   var question: String {
     switch self {
     case .nameEntry: return "Enter a name for the project"
     case .bundleDomainEntry: return "Enter the reversed domain of your organization"
+    case .companyNameEntry: return "Enter the Company name to use on file's headers"
     }
   }
 }
@@ -84,6 +88,7 @@ extension URL {
   func setupForNewProject() {
     replaceOccurrences(of: baseProjectName, with: projectName)
     replaceOccurrences(of: baseDomain, with: bundleDomain)
+    replaceOccurrences(of: baseCompany, with: companyName)
     rename(from: baseProjectName, to: projectName)
   }
 }
@@ -100,6 +105,7 @@ print("""
 
 projectName = setup(step: .nameEntry, defaultValue: projectName)
 bundleDomain = setup(step: .bundleDomainEntry, defaultValue: baseDomain)
+companyName = setup(step: .companyNameEntry, defaultValue: baseCompany)
 
 //Remove current git tracking
 _ = shell("rm", "-rf", ".git")
