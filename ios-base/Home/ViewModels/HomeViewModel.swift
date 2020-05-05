@@ -37,11 +37,26 @@ class HomeViewModel {
   func logoutUser() {
     state = .loading
     UserService.sharedInstance.logout({ [weak self] in
-      self?.state = .idle
-      AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)
-      AnalyticsManager.shared.reset()
+      self?.didlogOutAccount()
     }, failure: { [weak self] error in
       self?.state = .error(error.localizedDescription)
     })
+  }
+  
+  func deleteAccount() {
+    state = .loading
+    UserService.sharedInstance.deleteAccount({ [weak self] in
+      self?.didlogOutAccount()
+    }, failure: { [weak self] error in
+      self?.state = .error(error.localizedDescription)
+    })
+  }
+  
+  private func didlogOutAccount() {
+    AppNavigator.shared.navigate(
+      to: OnboardingRoutes.firstScreen,
+      with: .changeRoot
+    )
+    AnalyticsManager.shared.reset()
   }
 }
