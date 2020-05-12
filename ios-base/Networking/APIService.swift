@@ -121,7 +121,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
 
       switch result {
       case let .success(moyaResponse):
-        onSuccess(moyaResponse)
+        self.handleSuccess(with: moyaResponse, onSuccess: onSuccess, onFailure: onFailure)
       case let .failure(error):
         self.handleError(with: error, onFailure)
       }
@@ -142,6 +142,19 @@ open class BaseApiService<T>: APIService where T: TargetType {
                                                    failsOnEmptyData: true)
 
       onSuccess(decodedResult, filteredResponse)
+    } catch let error {
+      handleError(with: error, onFailure)
+    }
+  }
+  
+  private func handleSuccess(
+    with response: Response,
+    onSuccess: @escaping (_ response: Response) -> Void,
+    onFailure: ((Error, Response?) -> Void)? = nil
+  ) {
+    do {
+      let filteredResponse = try response.filterSuccessfulStatusCodes()
+      onSuccess(filteredResponse)
     } catch let error {
       handleError(with: error, onFailure)
     }
