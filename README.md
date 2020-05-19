@@ -86,7 +86,6 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 
 We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
 
-
 ### New Project Setup
 
 Several steps need to be executed before before building a project for the first time.
