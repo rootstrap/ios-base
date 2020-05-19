@@ -28,7 +28,7 @@ class ConfigurationManager: NSObject {
     }
     
     print("""
-      ThirdPartyKeys.plist NOT FOUND -
+      \(propertyList).plist NOT FOUND -
       Please check your project configuration in: \n https://github.com/rootstrap/ios-base
     """)
     return nil

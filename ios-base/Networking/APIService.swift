@@ -142,7 +142,7 @@ open class BaseApiService<T>: APIService where T: TargetType {
                                                    failsOnEmptyData: true)
 
       onSuccess(decodedResult, filteredResponse)
-    } catch (let error) {
+    } catch let error {
       handleError(with: error, onFailure)
     }
   }

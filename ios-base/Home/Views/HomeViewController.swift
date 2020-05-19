@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
   
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var logOut: UIButton!
+  @IBOutlet weak var deleteAccountButton: UIButton!
   
   var viewModel: HomeViewModel!
   
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController {
     super.viewDidLoad()
     viewModel.delegate = self
     logOut.setRoundBorders(22)
+    deleteAccountButton.setRoundBorders(22)
   }
   
   // MARK: - Actions
@@ -32,6 +34,10 @@ class HomeViewController: UIViewController {
 
   @IBAction func tapOnLogOutButton(_ sender: Any) {
     viewModel.logoutUser()
+  }
+  
+  @IBAction func tapOnDeleteAccount(_ sender: Any) {
+    viewModel.deleteAccount()
   }
 }
 
