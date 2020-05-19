@@ -23,6 +23,9 @@ pipeline {
             }
         }
         stage('package Debug'){
+            when {
+                branch 'qa' or branch 'develop'
+            }            
             steps {
                 sh 'fastlane ios build_develop'
                 sh "aws s3 cp ${env.APP_NAME}.ipa s3://${env.S3_BUCKET}/develop/${env.GIT_COMMIT}/${env.APP_NAME}-Debug.ipa"
@@ -31,12 +34,21 @@ pipeline {
         }
         stage('package Staging'){
             when {
-                branch 'develop'
+                branch 'staging'
+            }            
+            steps {
+                sh 'fastlane ios release_staging'
+                sh "aws s3 cp ${env.APP_NAME}.ipa s3://${env.S3_BUCKET}/staging/${env.GIT_COMMIT}/${env.APP_NAME}-Staging.ipa"
+                slackSend channel: "${env.SLACK_CHANNEL}", message: "A new Beta build was pushed to TestFlight for ${env.GIT_COMMIT}-${env.GIT_BRANCH}. See ${env.BUILD_URL}/console for detailed output"
+            }
+        }
+        stage('release Production') {
+            when {
+                branch 'master'
             }
             steps {
-                sh 'fastlane ios build_staging'
-                sh "aws s3 cp ${env.APP_NAME}.ipa s3://${env.S3_BUCKET}/staging/${env.GIT_COMMIT}/${env.APP_NAME}-Staging.ipa"
-                slackSend channel: "${env.SLACK_CHANNEL}", message: "A new Staging build was completed for ${env.GIT_COMMIT}-${env.GIT_BRANCH}. IPA file has been uploaded for QA: https://s3.us-east-1.amazonaws.com/${env.S3_BUCKET}/staging/${env.GIT_COMMIT}/${env.APP_NAME}-Staging.ipa"
+                sh 'fastlane ios release_production'
+                slackSend channel: "${env.SLACK_CHANNEL}", message: "A new Production build was pushed to TestFlight for ${env.GIT_COMMIT}-${env.GIT_BRANCH}. See ${env.BUILD_URL}/console for detailed output"
             }
         }
     }
