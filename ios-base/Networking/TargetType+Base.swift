@@ -48,7 +48,10 @@ extension TargetType {
     return Self.baseHeaders
   }
 
-  public func requestParameters(parameters: [String: Any], encoding: ParameterEncoding = JSONEncoding.default) -> Task {
+  public func requestParameters(
+    parameters: [String: Any],
+    encoding: ParameterEncoding = JSONEncoding.default
+  ) -> Task {
     return .requestParameters(parameters: parameters, encoding: encoding)
   }
 
