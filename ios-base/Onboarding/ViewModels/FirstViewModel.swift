@@ -9,40 +9,30 @@
 import Foundation
 import FBSDKLoginKit
 
-protocol FirstViewModelDelegate: class {
-  func didUpdateState()
-}
-
 class FirstViewModel {
   
-  var state: ViewModelState = .idle {
+  var state: SignInViewModelState = .network(state: .idle) {
     didSet {
-      delegate?.didUpdateState()
+      delegate?.didUpdateState(to: state)
     }
   }
   
-  weak var delegate: FirstViewModelDelegate?
+  weak var delegate: SignInStateDelegate?
   
   func facebookLogin() {
     guard let viewController = delegate as? UIViewController else { return }
     let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
     assert(!(facebookKey?.isEmpty ?? false), "Value for FacebookKey not found")
     
-    state = .loading
+    state = .network(state: .loading)
     let fbLoginManager = LoginManager()
     //Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
-    fbLoginManager.logIn(permissions: ["email"],
-                         from: viewController,
-                         handler: checkFacebookLoginRequest)
-  }
-
-  func signIn() {
-    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)
-  }
-
-  func signUp() {
-    AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
+    fbLoginManager.logIn(
+      permissions: ["email"],
+      from: viewController,
+      handler: checkFacebookLoginRequest
+    )
   }
   
   // MARK: Facebook callback methods
@@ -56,16 +46,16 @@ class FirstViewModel {
     UserService.sharedInstance.loginWithFacebook(
       token: token.tokenString,
       success: { [weak self] in
-        self?.state = .idle
+        self?.state = .network(state: .idle)
         AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
       },
       failure: { [weak self] error in
-        self?.state = .error(error.localizedDescription)
+        self?.state = .network(state: .error(error.localizedDescription))
     })
   }
   
   func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {
-    state = cancelled ? .idle : .error(reason)
+    state = .network(state: cancelled ? .idle : .error(reason))
   }
   
   func checkFacebookLoginRequest(result: LoginManagerLoginResult?, error: Error?) {

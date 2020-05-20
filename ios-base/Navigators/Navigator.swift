@@ -118,11 +118,13 @@ public extension Navigator {
       route.transitionConfigurator?(nil, viewController)
       rootViewController?.setViewControllers([viewController], animated: animated)
     case .changeRoot(let transitionType, let transitionSubtype):
+      let navigationController = viewController.embedInNavigationController()
       animateRootReplacementTransition(
-        to: viewController,
+        to: navigationController,
         withTransitionType: transitionType,
         andTransitionSubtype: transitionSubtype
       )
+      rootViewController = navigationController
     }
   }
 
@@ -182,9 +184,8 @@ public extension Navigator {
     transition.type = type
     transition.subtype = subtype
     window?.layer.add(transition, forKey: kCATransition)
-    
-    let navigation = viewController.embedInNavigationController()
-    window?.rootViewController = navigation
+  
+    window?.rootViewController = viewController
   }
 }
 
@@ -233,7 +234,10 @@ public enum TransitionType {
   case reset
 
   /// Replaces the key window's Root view controller with the Route's screen.
-  case changeRoot(transitionType: CATransitionType, transitionSubtype: CATransitionSubtype)
+  case changeRoot(
+    transitionType: CATransitionType,
+    transitionSubtype: CATransitionSubtype
+  )
   
   /// Allows to use the changeRoot transition type with default parameters
   static let changeRoot: TransitionType = .changeRoot(

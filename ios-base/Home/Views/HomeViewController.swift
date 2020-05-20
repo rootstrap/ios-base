@@ -42,16 +42,27 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewModelDelegate {
-  func didUpdateState() {
-    switch viewModel.state {
-    case .idle:
+  func didUpdateState(to state: HomeViewModelState) {
+    switch state {
+    case .network(let networkStatus):
+      switch networkStatus {
+      case .loading:
+        UIApplication.showNetworkActivity()
+      case .error(let errorDescription):
+        showMessage(title: "Error", message: errorDescription)
+        fallthrough
+      default:
+        UIApplication.hideNetworkActivity()
+      }
+    case .loadedProfile:
       UIApplication.hideNetworkActivity()
       showMessage(title: "My Profile", message: "email: \(viewModel.userEmail ?? "")")
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
+    case .loggedOut:
       UIApplication.hideNetworkActivity()
-      print(errorDescription)
+      AppNavigator.shared.navigate(
+        to: OnboardingRoutes.firstScreen,
+        with: .changeRoot
+      )
     }
   }
 }

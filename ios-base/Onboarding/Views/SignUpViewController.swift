@@ -62,16 +62,4 @@ extension SignUpViewController: SignUpViewModelDelegate {
   func formDidChange() {
     setSignUpButton(enabled: viewModel.hasValidData)
   }
-  
-  func didUpdateState() {
-    switch viewModel.state {
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Error", message: errorDescription)
-    case .idle:
-      UIApplication.hideNetworkActivity()
-    }
-  }
 }

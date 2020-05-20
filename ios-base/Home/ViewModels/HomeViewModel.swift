@@ -9,7 +9,13 @@
 import Foundation
 
 protocol HomeViewModelDelegate: class {
-  func didUpdateState()
+  func didUpdateState(to state: HomeViewModelState)
+}
+
+enum HomeViewModelState {
+  case loggedOut
+  case loadedProfile
+  case network(state: NetworkState)
 }
 
 class HomeViewModel {
@@ -18,45 +24,42 @@ class HomeViewModel {
   
   var userEmail: String?
   
-  var state: ViewModelState = .idle {
+  private var state: HomeViewModelState = .network(state: .idle) {
     didSet {
-      delegate?.didUpdateState()
+      delegate?.didUpdateState(to: state)
     }
   }
   
   func loadUserProfile() {
-    state = .loading
+    state = .network(state: .loading)
     UserService.sharedInstance.getMyProfile({ [weak self] user in
       self?.userEmail = user.email
-      self?.state = .idle
+      self?.state = .loadedProfile
     }, failure: { [weak self] error in
-      self?.state = .error(error.localizedDescription)
+      self?.state = .network(state: .error(error.localizedDescription))
     })
   }
   
   func logoutUser() {
-    state = .loading
+    state = .network(state: .loading)
     UserService.sharedInstance.logout({ [weak self] in
       self?.didlogOutAccount()
     }, failure: { [weak self] error in
-      self?.state = .error(error.localizedDescription)
+      self?.state = .network(state: .error(error.localizedDescription))
     })
   }
   
   func deleteAccount() {
-    state = .loading
+    state = .network(state: .loading)
     UserService.sharedInstance.deleteAccount({ [weak self] in
       self?.didlogOutAccount()
     }, failure: { [weak self] error in
-      self?.state = .error(error.localizedDescription)
+      self?.state = .network(state: .error(error.localizedDescription))
     })
   }
   
   private func didlogOutAccount() {
-    AppNavigator.shared.navigate(
-      to: OnboardingRoutes.firstScreen,
-      with: .changeRoot
-    )
+    state = .loggedOut
     AnalyticsManager.shared.reset()
   }
 }
