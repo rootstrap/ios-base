@@ -48,8 +48,11 @@ extension TargetType {
     return Self.baseHeaders
   }
 
-  public func requestParameters(parameters: [String: Any]) -> Task {
-    return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+  public func requestParameters(
+    parameters: [String: Any],
+    encoding: ParameterEncoding = JSONEncoding.default
+  ) -> Task {
+    return .requestParameters(parameters: parameters, encoding: encoding)
   }
 
   public func multipartData(
