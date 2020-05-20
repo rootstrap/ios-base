@@ -88,9 +88,26 @@ extension URL {
   func setupForNewProject() {
     replaceOccurrences(of: baseProjectName, with: projectName)
     replaceOccurrences(of: baseDomain, with: bundleDomain)
-    replaceOccurrences(of: baseCompany, with: companyName)
     rename(from: baseProjectName, to: projectName)
   }
+}
+
+// Helper functions
+
+func changeOrganizationName() {
+  let pbxProjectPath = "\(currentFolder)/\(baseProjectName).xcodeproj/project.pbxproj"
+  guard
+    fileManager.fileExists(atPath: pbxProjectPath),
+    companyName != baseCompany
+  else { return }
+
+  print("\nUpdating company name to '\(companyName)'...")
+  
+  let filterKey = "ORGANIZATIONNAME"
+  let organizationNameFilter = "\(filterKey) = \"\(baseCompany)\""
+  let organizationNameReplacement = "\(filterKey) = \"\(companyName)\""
+  let fileUrl = URL(fileURLWithPath: pbxProjectPath)
+  fileUrl.replaceOccurrences(of: organizationNameFilter, with: organizationNameReplacement)
 }
 
 // Project Initialization
@@ -109,6 +126,8 @@ companyName = setup(step: .companyNameEntry, defaultValue: baseCompany)
 
 //Remove current git tracking
 _ = shell("rm", "-rf", ".git")
+
+changeOrganizationName()
 
 print("\nRenaming to '\(projectName)'...")
 let enumerator = fileManager.enumerator(at: URL(fileURLWithPath: currentFolder), includingPropertiesForKeys: [.nameKey, .isDirectoryKey])!
