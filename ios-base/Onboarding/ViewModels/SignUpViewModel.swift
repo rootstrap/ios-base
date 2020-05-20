@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-protocol SignUpViewModelDelegate: SignInStateDelegate {
+protocol SignUpViewModelDelegate: AuthViewModelStateDelegate {
   func formDidChange()
 }
 
-enum SignInViewModelState {
+enum AuthViewModelState {
   case loggedIn
   case network(state: NetworkState)
 }
 
 class SignUpViewModelWithEmail {
   
-  private var state: SignInViewModelState = .network(state: .idle) {
+  private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
     }

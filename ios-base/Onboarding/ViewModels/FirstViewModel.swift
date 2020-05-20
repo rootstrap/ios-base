@@ -11,13 +11,13 @@ import FBSDKLoginKit
 
 class FirstViewModel {
   
-  var state: SignInViewModelState = .network(state: .idle) {
+  var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
     }
   }
   
-  weak var delegate: SignInStateDelegate?
+  weak var delegate: AuthViewModelStateDelegate?
   
   func facebookLogin() {
     guard let viewController = delegate as? UIViewController else { return }

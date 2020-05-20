@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol SignInViewModelDelegate: SignInStateDelegate {
+protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
   func didUpdateCredentials()
 }
 
 class SignInViewModelWithCredentials {
   
-  private var state: SignInViewModelState = .network(state: .idle) {
+  private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HomeViewModelDelegate: class {
+protocol HomeViewModelDelegate: NetworkStatusDelegate {
   func didUpdateState(to state: HomeViewModelState)
 }
 

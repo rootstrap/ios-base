@@ -45,15 +45,7 @@ extension HomeViewController: HomeViewModelDelegate {
   func didUpdateState(to state: HomeViewModelState) {
     switch state {
     case .network(let networkStatus):
-      switch networkStatus {
-      case .loading:
-        UIApplication.showNetworkActivity()
-      case .error(let errorDescription):
-        showMessage(title: "Error", message: errorDescription)
-        fallthrough
-      default:
-        UIApplication.hideNetworkActivity()
-      }
+      networkStatusChanged(to: networkStatus)
     case .loadedProfile:
       UIApplication.hideNetworkActivity()
       showMessage(title: "My Profile", message: "email: \(viewModel.userEmail ?? "")")

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, SignInStateDelegate {
+class FirstViewController: UIViewController, AuthViewModelStateDelegate {
   
   // MARK: - Outlets
   
