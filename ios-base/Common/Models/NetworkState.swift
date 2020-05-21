@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum NetworkState {
+enum NetworkState: Equatable {
   case idle, loading, error(_ error: String)
 }

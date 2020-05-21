@@ -8,13 +8,17 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, AuthViewModelStateDelegate {
+class FirstViewController: UIViewController,
+  AuthViewModelStateDelegate,
+  ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
+  
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: FirstViewModel!
 

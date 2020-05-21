@@ -12,6 +12,7 @@
 		07276EBC23F5CCA70089C0AD /* XCUIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07276EBB23F5CCA70089C0AD /* XCUIApplicationExtension.swift */; };
 		07276EBE23F5CCCA0089C0AD /* XCUIElementExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07276EBD23F5CCCA0089C0AD /* XCUIElementExtension.swift */; };
 		07276EC023F5CE880089C0AD /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07276EBF23F5CE880089C0AD /* XCTestCaseExtension.swift */; };
+		074889A72477251500A0029E /* ActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074889A62477251500A0029E /* ActivityIndicatorPresenter.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		0A6990351F9F82A300F4BAC7 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6990341F9F82A300F4BAC7 /* UIApplicationExtension.swift */; };
 		0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFB8921FA366D90098F751 /* Main.storyboard */; };
@@ -89,6 +90,7 @@
 		07276EBB23F5CCA70089C0AD /* XCUIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtension.swift; sourceTree = "<group>"; };
 		07276EBD23F5CCCA0089C0AD /* XCUIElementExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtension.swift; sourceTree = "<group>"; };
 		07276EBF23F5CE880089C0AD /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
+		074889A62477251500A0029E /* ActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		07741D71218CDED600DB3B97 /* FirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewModel.swift; sourceTree = "<group>"; };
 		0A6990341F9F82A300F4BAC7 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		0ABFB8911FA366D90098F751 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -195,6 +197,14 @@
 			path = "ios-baseUITests";
 			sourceTree = "<group>";
 		};
+		074889A5247724EF00A0029E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				074889A62477251500A0029E /* ActivityIndicatorPresenter.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		078642EA22E668120027BF11 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 		078642F222E6691B0027BF11 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				074889A5247724EF00A0029E /* Protocols */,
 				078642F322E669270027BF11 /* Views */,
 				9BFA84EE1C7767D9009F64E4 /* Models */,
 			);
@@ -799,6 +810,7 @@
 				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
+				074889A72477251500A0029E /* ActivityIndicatorPresenter.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
 				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,

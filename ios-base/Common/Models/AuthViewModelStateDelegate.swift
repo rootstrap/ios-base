@@ -31,14 +31,14 @@ extension AuthViewModelStateDelegate where Self: UIViewController {
 
 extension NetworkStatusDelegate where Self: UIViewController {
   func networkStatusChanged(to networkStatus: NetworkState) {
+    if let viewController = self as? ActivityIndicatorPresenter {
+      viewController.showActivityIndicator(networkStatus == .loading)
+    }
     switch networkStatus {
-    case .loading:
-      UIApplication.showNetworkActivity()
     case .error(let errorDescription):
       showMessage(title: "Error", message: errorDescription)
-      fallthrough
     default:
-      UIApplication.hideNetworkActivity()
+      break
     }
   }
 }
