@@ -1124,7 +1124,7 @@
 					"${SRCROOT}/Pods/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = "ios-baseUnitTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1155,7 +1155,7 @@
 					"${SRCROOT}/Pods/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = "ios-baseUnitTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.ios-baseUnitTests";
@@ -1184,7 +1184,7 @@
 					"${SRCROOT}/Pods/Firebase/CoreOnly/Sources",
 				);
 				INFOPLIST_FILE = "ios-baseUnitTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.ios-baseUnitTests";
