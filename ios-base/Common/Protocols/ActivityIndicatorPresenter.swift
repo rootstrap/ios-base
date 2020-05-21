@@ -15,7 +15,6 @@ protocol ActivityIndicatorPresenter: class {
 
 extension ActivityIndicatorPresenter where Self: UIViewController {
   func showActivityIndicator(_ show: Bool) {
-    
     view.isUserInteractionEnabled = !show
     
     guard show else {
