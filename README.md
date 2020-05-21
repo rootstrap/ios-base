@@ -70,17 +70,29 @@ the CodeCliemate's configuration file.
 **NOTE:** Make sure you have SwiftLint version 0.35.0 or greater installed to avoid known false-positives with some of the rules.
 
 ## Security recommendations
-#### Third Party Keys
 
-We strongly recommend that all private keys be added to a `.plist` file that will remain locally and not be committed to your project repo. An example file is already provided, these are the final steps to set it up:
+### Third Party Keys
 
-1. Rename the `ThirdPartyKeys.example.plist` file on your project so that it is called `ThirdPartyKeys.plist`.
+We strongly recommend that all private keys be added to a `.plist` file that either:
+* persists locally and is not committed to your project repo. 
+* (for CI/CD purposes) is encrypted before commit and decrypted before build - see next section
+
+An example file is already provided, these are the steps to set it up:
+
+1. Rename the `config\ThirdPartyKeys.example.plist` file on your project to `config\ThirdPartyKeys.plist`.
   To add a set of keys simply add a dictionary with the name you want the key to have and add the corresponding **Debug**, **Staging** and **Release** keys as items.
 2. Remove the reference of `ThirdPartyKeys.plist` from XCode but do not delete the file. This way, you will keep the file locally(it is already in the .gitignore list) in the project directory.
-  **Note: Do NOT move the file from the current location, the script uses the $(PROJECT_DIR) directory.**
 3. Go to **Product** -> **Scheme** -> **Edit scheme**. Then select **Pre-actions** for the Build stage and make sure that the `Provided build setting` is set to your current target.
-**Repeat this step for the Post-actions script.**
-4. Done :)
+4. **Repeat this step for the Post-actions script.**
+
+* Done :)
+
+### Encrypting and decrypting config files
+
+For running the build through a CI pipeline we need to make sure the `ThirdPartyKeys.plist` as well as any any other sensitive config files are available to all build agents. Managing these files separately brings issues to ensure they are: a- version-controlled in a consistent manner with the code, and b- available to every build agent at build time.
+
+We suggest using [git secret](https://git-secret.io/) as a simple and secure solution for keeping these sensitive files in the repo. See [Config](./config/Readme.md) for detailed instructions.
+
 
 
 ## Automated Build and Deployment using Fastlane

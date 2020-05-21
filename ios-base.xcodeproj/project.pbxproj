@@ -19,6 +19,15 @@
 		074D20DD248ECEAC002A39B4 /* BaseURLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DC248ECEAC002A39B4 /* BaseURLConvertible.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFB8921FA366D90098F751 /* Main.storyboard */; };
+		32AFD0632476D29B007CCF22 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0622476D29B007CCF22 /* Debug.xcconfig */; };
+		32AFD0642476D29B007CCF22 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0622476D29B007CCF22 /* Debug.xcconfig */; };
+		32AFD0652476D29B007CCF22 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0622476D29B007CCF22 /* Debug.xcconfig */; };
+		32AFD0672476D2BA007CCF22 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0662476D2BA007CCF22 /* Staging.xcconfig */; };
+		32AFD0682476D2BA007CCF22 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0662476D2BA007CCF22 /* Staging.xcconfig */; };
+		32AFD0692476D2BA007CCF22 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD0662476D2BA007CCF22 /* Staging.xcconfig */; };
+		32AFD06B2476D2CB007CCF22 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD06A2476D2CB007CCF22 /* Release.xcconfig */; };
+		32AFD06C2476D2CB007CCF22 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD06A2476D2CB007CCF22 /* Release.xcconfig */; };
+		32AFD06D2476D2CB007CCF22 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32AFD06A2476D2CB007CCF22 /* Release.xcconfig */; };
 		88322866B1B0807F4161B0C7 /* Pods_ios_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5331948D49F73551E188FC1 /* Pods_ios_base.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -98,6 +107,9 @@
 		0ABFB8941FA366EA0098F751 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		0ABFB8961FA366EC0098F751 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		18C57D0B131511ACAD07441F /* Pods_AcceptanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AcceptanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32AFD0622476D29B007CCF22 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		32AFD0662476D2BA007CCF22 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		32AFD06A2476D2CB007CCF22 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		3F7782D67A29B3F015B36B72 /* Pods-ios-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.debug.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.debug.xcconfig"; sourceTree = "<group>"; };
 		492292317C9AA84D410C67C2 /* Pods-ios-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.release.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.release.xcconfig"; sourceTree = "<group>"; };
 		85FF9D270B540FD7BDB842CF /* Pods-ios-base.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.staging.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.staging.xcconfig"; sourceTree = "<group>"; };
@@ -291,6 +303,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		32AFD0612476D1ED007CCF22 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				9B12AF6B1F269B03005FD465 /* ThirdPartyKeys.example.plist */,
+				32AFD0622476D29B007CCF22 /* Debug.xcconfig */,
+				32AFD0662476D2BA007CCF22 /* Staging.xcconfig */,
+				32AFD06A2476D2CB007CCF22 /* Release.xcconfig */,
+			);
+			path = config;
+			sourceTree = SOURCE_ROOT;
+		};
 		506A29AE0C7D2BF634BD7D7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,8 +353,8 @@
 		9B5AFAD11C7205EB002347D6 = {
 			isa = PBXGroup;
 			children = (
+				32AFD0612476D1ED007CCF22 /* config */,
 				9B9C6BFD20C7160700EB0523 /* README.md */,
-				9B12AF6B1F269B03005FD465 /* ThirdPartyKeys.example.plist */,
 				07276EB123F5CC460089C0AD /* ios-baseUITests */,
 				9B5E1436245B2AA00059DF62 /* ios-baseUnitTests */,
 				9B5AFADB1C7205EC002347D6 /* Products */,
@@ -613,6 +636,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32AFD0682476D2BA007CCF22 /* Staging.xcconfig in Resources */,
+				32AFD0642476D29B007CCF22 /* Debug.xcconfig in Resources */,
+				32AFD06C2476D2CB007CCF22 /* Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +649,9 @@
 				0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */,
 				9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */,
 				9B8D306B20AB456C0050697F /* Localization.strings in Resources */,
+				32AFD0632476D29B007CCF22 /* Debug.xcconfig in Resources */,
+				32AFD0672476D2BA007CCF22 /* Staging.xcconfig in Resources */,
+				32AFD06B2476D2CB007CCF22 /* Release.xcconfig in Resources */,
 				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +660,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32AFD0692476D2BA007CCF22 /* Staging.xcconfig in Resources */,
+				32AFD0652476D29B007CCF22 /* Debug.xcconfig in Resources */,
+				32AFD06D2476D2CB007CCF22 /* Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +969,7 @@
 		};
 		9B5AFAEA1C7205EC002347D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32AFD0622476D29B007CCF22 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -995,6 +1028,7 @@
 		};
 		9B5AFAEB1C7205EC002347D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32AFD06A2476D2CB007CCF22 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1197,6 +1231,7 @@
 		};
 		9BEE614B1C736054002E43B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32AFD0662476D2BA007CCF22 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
