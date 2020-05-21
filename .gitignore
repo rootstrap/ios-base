@@ -64,4 +64,9 @@ fastlane/screenshots
 **/ThirdPartyKeys.plist
 GoogleService*.plist
 
+# Environment config
+**/*.xcconfig
+
 R.generated.swift
+.gitsecret/keys/random_seed
+!*.secret
