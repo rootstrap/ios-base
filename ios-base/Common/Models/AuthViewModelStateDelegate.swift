@@ -23,7 +23,6 @@ extension AuthViewModelStateDelegate where Self: UIViewController {
     case .network(let networkStatus):
       networkStatusChanged(to: networkStatus)
     case .loggedIn:
-      UIApplication.hideNetworkActivity()
       AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
     }
   }
