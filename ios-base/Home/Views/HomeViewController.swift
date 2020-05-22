@@ -8,13 +8,15 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
   @IBOutlet weak var welcomeLabel: UILabel!
   @IBOutlet weak var logOut: UIButton!
   @IBOutlet weak var deleteAccountButton: UIButton!
+    
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: HomeViewModel!
   
@@ -47,10 +49,10 @@ extension HomeViewController: HomeViewModelDelegate {
     case .network(let networkStatus):
       networkStatusChanged(to: networkStatus)
     case .loadedProfile:
-      UIApplication.hideNetworkActivity()
+      showActivityIndicator(false)
       showMessage(title: "My Profile", message: "email: \(viewModel.userEmail ?? "")")
     case .loggedOut:
-      UIApplication.hideNetworkActivity()
+      showActivityIndicator(false)
       AppNavigator.shared.navigate(
         to: OnboardingRoutes.firstScreen,
         with: .changeRoot

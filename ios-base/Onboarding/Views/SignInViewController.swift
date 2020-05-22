@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
   @IBOutlet weak var logIn: UIButton!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
+  
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: SignInViewModelWithCredentials!
   
