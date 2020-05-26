@@ -8,7 +8,6 @@ xcode_scheme: ios-base-develop
 osx_image: xcode10.2
 cache:
   - bundler
-  - cocoapods
 before_install:
    - gem install cocoapods -v '0.32.1'
    - pod repo update
