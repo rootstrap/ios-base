@@ -89,7 +89,7 @@ We use [Fastlane](https://docs.fastlane.tools) to automate code signing, buildin
 
 ### New Project Setup
 
-Several steps need to be executed before before building a project for the first time.
+Several steps need to be executed before building a project for the first time.
 
   1. Install latest Xcode command line tools
   ```
