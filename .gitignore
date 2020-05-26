@@ -67,7 +67,3 @@ report.junit
 GoogleService*.plist
 
 R.generated.swift
-
-# Gem dependencies
-vendor/
-Gemfile.lock
