@@ -2,10 +2,14 @@ env:
   global:
     - CC_TEST_REPORTER_ID: 8454035bac667725e88752aa44de9ee72dc53982138c3d0c3def3843b9191568
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+  jobs:
+    - IOS=11.4, DEVICE_NAME="iPhone 8"
+    - IOS=12.4, DEVICE_NAME="iPhone 8"
+    - IOS=13.4, DEVICE_NAME="iPhone 8"
+    - IOS=13.4, DEVICE_NAME="iPhone 11 Pro"
+    - IOS=13.4, DEVICE_NAME="iPhone 11 Pro Max"
+osx_image: xcode11.5
 language: swift
-xcode_workspace: ios-base.xcworkspace
-xcode_scheme: ios-base-develop
-osx_image: xcode10.2
 cache:
   - bundler
   - cocoapods
@@ -20,7 +24,7 @@ install:
   - pod install
 script:
   - set -o pipefail
-  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base-develop -destination 'platform=iOS Simulator,name=iPhone Xs,OS=12.2' build test | xcpretty --test --color
+  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base-develop -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS" build test | xcpretty --test --color
 after_script:
   - slather coverage
   - ./cc-test-reporter after-build -t cobertura --exit-code $TRAVIS_TEST_RESULT
