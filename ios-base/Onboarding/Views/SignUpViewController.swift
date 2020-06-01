@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
@@ -16,6 +16,8 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var passwordConfirmationField: UITextField!
+  
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: SignUpViewModelWithEmail!
   
@@ -61,17 +63,5 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: SignUpViewModelDelegate {
   func formDidChange() {
     setSignUpButton(enabled: viewModel.hasValidData)
-  }
-  
-  func didUpdateState() {
-    switch viewModel.state {
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Error", message: errorDescription)
-    case .idle:
-      UIApplication.hideNetworkActivity()
-    }
   }
 }

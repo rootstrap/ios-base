@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
   @IBOutlet weak var logIn: UIButton!
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
+  
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: SignInViewModelWithCredentials!
   
@@ -58,17 +60,5 @@ class SignInViewController: UIViewController {
 extension SignInViewController: SignInViewModelDelegate {
   func didUpdateCredentials() {
     setLoginButton(enabled: viewModel.hasValidCredentials)
-  }
-  
-  func didUpdateState() {
-    switch viewModel.state {
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Error", message: errorDescription)
-    case .idle:
-      UIApplication.hideNetworkActivity()
-    }
   }
 }
