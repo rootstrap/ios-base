@@ -13,6 +13,7 @@ This template comes with:
 - Examples for **account creation** and **Facebook integration**.
 - Useful classes to **manage User and Session data**.
 - **Secure** way to store keys of your **third party integrations**.
+- Generic implementation of **navigation** between view controllers.
 - Handy **helpers** and **extensions** to make your coding experience faster and easier.
 
 
@@ -42,6 +43,7 @@ To manage user and session persistence after the original sign in/up we store th
  - [Moya](https://github.com/Moya/Moya) + [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
+ - [R.swift](https://github.com/mac-cain13/R.swift) for strongly typed and autocompleted assets, segues and more.
 
 
 #### Testing

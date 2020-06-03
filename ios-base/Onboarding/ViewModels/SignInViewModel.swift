@@ -8,16 +8,15 @@
 
 import Foundation
 
-protocol SignInViewModelDelegate: class {
+protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
   func didUpdateCredentials()
-  func didUpdateState()
 }
 
 class SignInViewModelWithCredentials {
   
-  var state: ViewModelState = .idle {
+  private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
-      delegate?.didUpdateState()
+      delegate?.didUpdateState(to: state)
     }
   }
   
@@ -40,19 +39,18 @@ class SignInViewModelWithCredentials {
   }
   
   func login() {
-    state = .loading
-    UserService.sharedInstance
-      .login(email,
-             password: password,
-             success: { [weak self] in
-              guard let self = self else { return }
-              self.state = .idle
-              AnalyticsManager.shared.identifyUser(with: self.email)
-              AnalyticsManager.shared.log(event: Event.login)
-              AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-             },
-             failure: { [weak self] error in
-               self?.state = .error(error.localizedDescription)
-             })
+    state = .network(state: .loading)
+    UserService.sharedInstance.login(
+      email,
+      password: password,
+      success: { [weak self] in
+        guard let self = self else { return }
+        self.state = .loggedIn
+        AnalyticsManager.shared.identifyUser(with: self.email)
+        AnalyticsManager.shared.log(event: Event.login)
+      },
+      failure: { [weak self] error in
+        self?.state = .network(state: .error(error.localizedDescription))
+    })
   }
 }

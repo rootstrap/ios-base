@@ -8,13 +8,17 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController,
+  AuthViewModelStateDelegate,
+  ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
   @IBOutlet weak var facebookSign: UIButton!
   @IBOutlet weak var signIn: UIButton!
   @IBOutlet weak var signUp: UIButton!
+  
+  let activityIndicator = UIActivityIndicatorView()
   
   var viewModel: FirstViewModel!
 
@@ -38,24 +42,10 @@ class FirstViewController: UIViewController {
   }
 
   @IBAction func signInTapped() {
-    viewModel.signIn()
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signIn, with: .push)
   }
 
   @IBAction func signUpTapped() {
-    viewModel.signUp()
-  }
-}
-
-extension FirstViewController: FirstViewModelDelegate {
-  func didUpdateState() {
-    switch viewModel.state {
-    case .loading:
-      UIApplication.showNetworkActivity()
-    case .idle:
-      UIApplication.hideNetworkActivity()
-    case .error(let errorDescription):
-      UIApplication.hideNetworkActivity()
-      showMessage(title: "Oops", message: errorDescription)
-    }
+    AppNavigator.shared.navigate(to: OnboardingRoutes.signUp, with: .push)
   }
 }

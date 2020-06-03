@@ -9,16 +9,20 @@
 import Foundation
 import UIKit
 
-protocol SignUpViewModelDelegate: class {
+protocol SignUpViewModelDelegate: AuthViewModelStateDelegate {
   func formDidChange()
-  func didUpdateState()
+}
+
+enum AuthViewModelState {
+  case loggedIn
+  case network(state: NetworkState)
 }
 
 class SignUpViewModelWithEmail {
   
-  var state: ViewModelState = .idle {
+  private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
-      delegate?.didUpdateState()
+      delegate?.didUpdateState(to: state)
     }
   }
   
@@ -48,21 +52,21 @@ class SignUpViewModelWithEmail {
   }
   
   func signup() {
-    state = .loading
+    state = .network(state: .loading)
     UserService.sharedInstance.signup(
       email, password: password, avatar64: UIImage.random(),
       success: { [weak self] in
         guard let self = self else { return }
-        self.state = .idle
+        self.state = .loggedIn
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
         AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
       },
       failure: { [weak self] error in
         if let apiError = error as? APIError {
-          self?.state = .error(apiError.firstError ?? "") // show the first error
+          self?.state = .network(state: .error(apiError.firstError ?? ""))
         } else {
-          self?.state = .error(error.localizedDescription)
+          self?.state = .network(state: .error(error.localizedDescription))
         }
     })
   }

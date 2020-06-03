@@ -117,12 +117,14 @@ public extension Navigator {
     case .reset:
       route.transitionConfigurator?(nil, viewController)
       rootViewController?.setViewControllers([viewController], animated: animated)
-    case .changeRoot:
-      UIView.animate(withDuration: 0.3) { [weak self] in
-        let navigation = viewController.embedInNavigationController()
-        UIApplication.shared.keyWindow?.rootViewController = navigation
-        self?.rootViewController = navigation
-      }
+    case .changeRoot(let transitionType, let transitionSubtype):
+      let navigationController = viewController.embedInNavigationController()
+      animateRootReplacementTransition(
+        to: navigationController,
+        withTransitionType: transitionType,
+        andTransitionSubtype: transitionSubtype
+      )
+      rootViewController = navigationController
     }
   }
 
@@ -166,6 +168,24 @@ public extension Navigator {
 
   func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
     currentViewController?.dismiss(animated: animated, completion: completion)
+  }
+  
+  private func animateRootReplacementTransition(
+    to viewController: UIViewController,
+    withTransitionType type: CATransitionType,
+    andTransitionSubtype subtype: CATransitionSubtype
+  ) {
+    let window = UIApplication.shared.keyWindow
+    let transition = CATransition()
+    transition.duration = 0.3
+    transition.timingFunction = CAMediaTimingFunction(
+      name: CAMediaTimingFunctionName.easeOut
+    )
+    transition.type = type
+    transition.subtype = subtype
+    window?.layer.add(transition, forKey: kCATransition)
+  
+    window?.rootViewController = viewController
   }
 }
 
@@ -214,7 +234,16 @@ public enum TransitionType {
   case reset
 
   /// Replaces the key window's Root view controller with the Route's screen.
-  case changeRoot
+  case changeRoot(
+    transitionType: CATransitionType,
+    transitionSubtype: CATransitionSubtype
+  )
+  
+  /// Allows to use the changeRoot transition type with default parameters
+  static let changeRoot: TransitionType = .changeRoot(
+    transitionType: .push,
+    transitionSubtype: .fromTop
+  )
 }
 
 public extension UIViewController {
