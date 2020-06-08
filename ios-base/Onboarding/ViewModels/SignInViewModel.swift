@@ -41,7 +41,7 @@ class SignInViewModelWithCredentials {
   func login() {
     state = .network(state: .loading)
     AuthenticationServices.login(
-      email,
+      email: email,
       password: password,
       success: { [weak self] in
         guard let self = self else { return }

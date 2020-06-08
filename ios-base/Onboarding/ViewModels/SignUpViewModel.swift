@@ -54,7 +54,7 @@ class SignUpViewModelWithEmail {
   func signup() {
     state = .network(state: .loading)
     AuthenticationServices.signup(
-      email, password: password, avatar64: UIImage.random(),
+      email: email, password: password, avatar64: UIImage.random(),
       success: { [weak self] _ in
         guard let self = self else { return }
         self.state = .loggedIn

@@ -20,53 +20,6 @@ public enum SwiftBaseErrorCode: Int {
   case propertyListSerializationFailed = -6007
 }
 
-class BaseURLConvertible: URLConvertible {
-  
-  let path: String
-  let baseUrl: String
-  
-  init(path: String, baseUrl: String = APIClient.getBaseUrl()) {
-    self.path = path
-    self.baseUrl = baseUrl
-  }
-  
-  func asURL() throws -> URL {
-    return URL(string: "\(baseUrl)\(path)")!
-  }
-}
-
-class BaseURLRequestConvertible: URLRequestConvertible {
-  let url: URLConvertible
-  let method: HTTPMethod
-  let headers: HTTPHeaders
-  let params: [String: Any]?
-  let encoding: ParameterEncoding?
-  
-  func asURLRequest() throws -> URLRequest {
-    let request = try URLRequest(url: url,
-                                 method: method,
-                                 headers: headers)
-    if let params = params, let encoding = encoding {
-      return try encoding.encode(request, with: params)
-    }
-    
-    return request
-  }
-  
-  init(path: String,
-       baseUrl: String = APIClient.getBaseUrl(),
-       method: HTTPMethod,
-       encoding: ParameterEncoding? = nil,
-       params: [String: Any]? = nil,
-       headers: [String: String] = [:]) {
-    url = BaseURLConvertible(path: path, baseUrl: baseUrl)
-    self.method = method
-    self.headers = HTTPHeaders(headers)
-    self.params = params
-    self.encoding = encoding
-  }
-}
-
 public typealias SuccessCallback = (
   _ responseObject: [String: Any],
   _ responseHeaders: [AnyHashable: Any]
@@ -104,7 +57,7 @@ class APIClient {
     return baseHeaders
   }
   
-  fileprivate class func getBaseUrl() -> String {
+  class func getBaseUrl() -> String {
     return Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
   }
   
@@ -143,14 +96,16 @@ class APIClient {
   //Note: Multipart request does not support Content-Type = application/json.
   //If your API requires this header
   //do not use this method or change backend to skip this validation.
-  class func multipartRequest(_ method: HTTPMethod = .post,
-                              url: String,
-                              headers: [String: String] = APIClient.getHeaders(),
-                              params: [String: Any]?,
-                              paramsRootKey: String,
-                              media: [MultipartMedia],
-                              success: @escaping SuccessCallback,
-                              failure: @escaping FailureCallback) {
+  class func multipartRequest(
+    method: HTTPMethod = .post,
+    url: String,
+    headers: [String: String] = APIClient.getHeaders(),
+    params: [String: Any]?,
+    paramsRootKey: String,
+    media: [MultipartMedia],
+    success: @escaping SuccessCallback,
+    failure: @escaping FailureCallback
+  ) {
     
     let requestConvertible = BaseURLRequestConvertible(
       path: url,
@@ -166,8 +121,9 @@ class APIClient {
         for elem in media {
           elem.embed(inForm: multipartForm)
         }
-    },
-      with: requestConvertible)
+      },
+      with: requestConvertible
+    )
       .responseJSON(completionHandler: { result in
         validateResult(result: result, success: success, failure: failure)
       })
@@ -182,12 +138,14 @@ class APIClient {
     }
   }
   
-  class func request(_ method: HTTPMethod,
-                     url: String,
-                     params: [String: Any]? = nil,
-                     paramsEncoding: ParameterEncoding? = nil,
-                     success: @escaping SuccessCallback,
-                     failure: @escaping FailureCallback) {
+  class func request(
+    _ method: HTTPMethod,
+    url: String,
+    params: [String: Any]? = nil,
+    paramsEncoding: ParameterEncoding? = nil,
+    success: @escaping SuccessCallback,
+    failure: @escaping FailureCallback
+  ) {
     let encoding = paramsEncoding ?? defaultEncoding(forMethod: method)
     let headers = APIClient.getHeaders()
     let requestConvertible = BaseURLRequestConvertible(
@@ -246,7 +204,7 @@ class APIClient {
     failure: @escaping FailureCallback
   ) {
     let defaultError = App.error(
-      domain: .generic,
+      domain: .parsing,
       localizedDescription: "Error parsing response".localized
     )
   
@@ -284,13 +242,10 @@ class APIClient {
   ) -> Bool {
     let defaultError = App.error(
       domain: .generic,
-      localizedDescription: "Error parsing response".localized
+      localizedDescription: "Unexpected empty response".localized
     )
     
-    guard
-      let data = data,
-      !data.isEmpty
-    else {
+    guard let data = data, !data.isEmpty else {
       let emptyResponseAllowed = emptyDataStatusCodes.contains(
         response.statusCode
       )
@@ -316,7 +271,7 @@ class APIClient {
       dictionary = try JSONSerialization.jsonObject(
         with: data,
         options: .allowFragments
-        ) as? [String: Any]
+      ) as? [String: Any]
     } catch let exceptionError as NSError {
       serializationError = exceptionError
     }

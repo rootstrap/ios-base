@@ -14,10 +14,12 @@ class AuthenticationServices {
   fileprivate static let usersUrl = "/users/"
   fileprivate static let currentUserUrl = "/user/"
   
-  class func login(_ email: String,
-                   password: String,
-                   success: @escaping () -> Void,
-                   failure: @escaping (_ error: Error) -> Void) {
+  class func login(
+    email: String,
+    password: String,
+    success: @escaping () -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     let url = usersUrl + "sign_in"
     let parameters = [
       "user": [
@@ -25,21 +27,25 @@ class AuthenticationServices {
         "password": password
       ]
     ]
-    APIClient.request(.post, url: url, params: parameters, success: { response, headers in
-      AuthenticationServices.saveUserSession(fromResponse: response, headers: headers)
-      success()
-    }, failure: { error in
-      failure(error)
-    })
+    APIClient.request(
+      .post, url: url, params: parameters,
+      success: { response, headers in
+        AuthenticationServices.saveUserSession(fromResponse: response, headers: headers)
+        success()
+      },
+      failure: failure
+    )
   }
   
   //Multi part upload example
   //TODO: rails base backend not supporting multipart uploads yet
-  class func signup(_ email: String,
-                    password: String,
-                    avatar: UIImage,
-                    success: @escaping (_ user: User?) -> Void,
-                    failure: @escaping (_ error: Error) -> Void) {
+  class func signup(
+    email: String,
+    password: String,
+    avatar: UIImage,
+    success: @escaping (_ user: User?) -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     let parameters = [
       "user": [
         "email": email,
@@ -67,17 +73,19 @@ class AuthenticationServices {
       success: { response, headers in
         AuthenticationServices.saveUserSession(fromResponse: response, headers: headers)
         success(UserDataManager.currentUser)
-    },
+      },
       failure: failure
     )
   }
   
   //Example method that uploads base64 encoded image.
-  class func signup(_ email: String,
-                    password: String,
-                    avatar64: UIImage,
-                    success: @escaping (_ user: User?) -> Void,
-                    failure: @escaping (_ error: Error) -> Void) {
+  class func signup(
+    email: String,
+    password: String,
+    avatar64: UIImage,
+    success: @escaping (_ user: User?) -> Void,
+    failure: @escaping (_ error: Error) -> Void
+  ) {
     let picData = avatar64.jpegData(compressionQuality: 0.75)
     let parameters = [
       "user": [
@@ -95,7 +103,7 @@ class AuthenticationServices {
       success: { response, headers in
         AuthenticationServices.saveUserSession(fromResponse: response, headers: headers)
         success(UserDataManager.currentUser)
-    },
+      },
       failure: failure
     )
   }
