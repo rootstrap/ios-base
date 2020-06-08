@@ -19,7 +19,8 @@ class UserServices {
       url: "/user/profile",
       success: { response, _ in
         guard
-          let userDictionary = response["user"] as? [String: Any]
+          let userDictionary = response["user"] as? [String: Any],
+          let user = User(dictionary: userDictionary) 
         else {
           failure(App.error(
             domain: .parsing,
@@ -28,7 +29,6 @@ class UserServices {
           return 
         }
         
-        let user = User(dictionary: userDictionary)
         UserDataManager.currentUser = user
         success(user)
       },

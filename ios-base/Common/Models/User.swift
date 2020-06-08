@@ -21,10 +21,18 @@ struct User: Codable {
     case image = "profile_picture"
   }
     
-  init(dictionary: [String: Any]) {
-    self.id = dictionary[CodingKeys.id.rawValue] as? Int ?? 0
-    self.username = dictionary[CodingKeys.username.rawValue] as? String ?? ""
-    self.email = dictionary[CodingKeys.email.rawValue] as? String ?? ""
+  init?(dictionary: [String: Any]) {
+    guard
+      let id = dictionary[CodingKeys.id.rawValue] as? Int,
+      let username = dictionary[CodingKeys.username.rawValue] as? String,
+      let email = dictionary[CodingKeys.email.rawValue] as? String
+    else {
+      return nil
+    }
+      
+    self.id = id
+    self.username = username
+    self.email = email
     self.image = URL(string: dictionary[CodingKeys.image.rawValue] as? String ?? "")
   }
 }
