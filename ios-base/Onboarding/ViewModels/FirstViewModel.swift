@@ -43,15 +43,16 @@ class FirstViewModel {
       return
     }
     //This fails with 404 since this endpoint is not implemented in the API base
-    UserService.sharedInstance.loginWithFacebook(
-      token: token.tokenString,
-      success: { [weak self] in
-        self?.state = .network(state: .idle)
-        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-      },
-      failure: { [weak self] error in
-        self?.state = .network(state: .error(error.localizedDescription))
-    })
+    //TODO: remove when implementing login with apple id
+//    AuthenticationServices.loginWithFacebook(
+//      token: token.tokenString,
+//      success: { [weak self] in
+//        self?.state = .network(state: .idle)
+//        AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
+//      },
+//      failure: { [weak self] error in
+//        self?.state = .network(state: .error(error.localizedDescription))
+//    })
   }
   
   func facebookLoginRequestFailed(reason: String, cancelled: Bool = false) {

@@ -20,4 +20,11 @@ struct User: Codable {
     case email
     case image = "profile_picture"
   }
+    
+  init(dictionary: [String: Any]) {
+    self.id = dictionary[CodingKeys.id.rawValue] as? Int ?? 0
+    self.username = dictionary[CodingKeys.username.rawValue] as? String ?? ""
+    self.email = dictionary[CodingKeys.email.rawValue] as? String ?? ""
+    self.image = URL(string: dictionary[CodingKeys.image.rawValue] as? String ?? "")
+  }
 }

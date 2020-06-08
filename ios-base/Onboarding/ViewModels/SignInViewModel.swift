@@ -40,7 +40,7 @@ class SignInViewModelWithCredentials {
   
   func login() {
     state = .network(state: .loading)
-    UserService.sharedInstance.login(
+    AuthenticationServices.login(
       email,
       password: password,
       success: { [weak self] in
