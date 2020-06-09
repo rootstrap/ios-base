@@ -16,16 +16,20 @@
 default_platform(:ios)
 
 # CONFIG VARIABLES
-username = 'toptiertest@gmail.com' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+app_name = 'ios-base'
+username = '' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
 xcodeproj = 'ios-base.xcodeproj' # The xcodeproj name eg: ReactNativeBase.xcodeproj
 workspace =  'ios-base.xcworkspace' # The xworkspace name here eg: ReactNativeBase.xcworkspace
-certificates_git_url = '' # The repo to store and sync certs and provisioning profiles. Eg: git@github.com:rootstrap/cafe-infinity-certificates.git
+certificates_git_url = 'git@github.com:rootstrap/ios-base-certificates.git' # The repo to store and sync certs and provisioning profiles. Eg: git@github.com:rootstrap/cafe-infinity-certificates.git
 team_id = ''  # The organization's team id (you can leave this empty and select it on the CLI on each run)
+itc_team_id = '' # App Store Connect team id
 distribute_external = false # Change this to true if you want the build to be distributed to external testers as well.
 notify_external_testers = false
-skip_waiting_for_build_processing = false # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
+skip_waiting_for_build_processing = true # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
+devices = 'platform=iOS Simulator,OS=9.2' # Replace with proper array of devices to run the tests on
 
 platform :ios do
+  
   lane :release_develop do
     sync_code_signing(
       git_url: certificates_git_url,
@@ -45,7 +49,7 @@ platform :ios do
     push_to_git_remote(remote_branch: 'develop')
 
     build_app(
-      scheme: 'ios-base-develop',
+      scheme: app_name + '-develop',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
@@ -60,8 +64,7 @@ platform :ios do
 
     upload_to_testflight(
       username: username,
-      team_id: team_id,
-      changelog: changelog,
+      team_id: itc_team_id,
       distribute_external: distribute_external,
       notify_external_testers: notify_external_testers,
       skip_waiting_for_build_processing: skip_waiting_for_build_processing
@@ -87,7 +90,7 @@ platform :ios do
     push_to_git_remote(remote_branch: 'develop')
 
     build_app(
-      scheme: 'ios-base-staging',
+      scheme: app_name + '-staging',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
@@ -102,7 +105,7 @@ platform :ios do
 
     upload_to_testflight(
       username: username,
-      team_id: team_id,
+      team_id: itc_team_id,
       changelog: changelog,
       distribute_external: distribute_external,
       notify_external_testers: notify_external_testers,
@@ -129,7 +132,7 @@ platform :ios do
     push_to_git_remote(remote_branch: 'master')
 
     build_app(
-      scheme: 'ios-base',
+      scheme: app_name + '-production',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
@@ -143,8 +146,8 @@ platform :ios do
     )
 
     upload_to_testflight(
-      username: "mauricio.cousillas@rootstrap.com",
-      team_id: team_id,
+      username: username,
+      team_id: itc_team_id,
       changelog: changelog,
       distribute_external: distribute_external,
       notify_external_testers: notify_external_testers,
@@ -156,17 +159,17 @@ platform :ios do
     sync_code_signing(
       git_url: certificates_git_url,
       username: username,
-      type: 'appstore',
+      type: 'adhoc',
       team_id: team_id
     )
 
     increment_build_number(xcodeproj: xcodeproj)
 
     build_app(
-      scheme: 'ios-base-develop',
+      scheme: app_name + '-develop',
       workspace: workspace,
       include_bitcode: true,
-      export_method: 'app-store'
+      export_method: 'ad-hoc'
     )
   end
 
@@ -174,17 +177,17 @@ platform :ios do
     sync_code_signing(
       git_url: certificates_git_url,
       username: username,
-      type: 'appstore',
+      type: 'adhoc',
       team_id: team_id
     )
 
     increment_build_number(xcodeproj: xcodeproj)
 
     build_app(
-      scheme: 'ios-base-staging',
+      scheme: app_name + '-staging',
       workspace: workspace,
       include_bitcode: true,
-      export_method: 'app-store'
+      export_method: 'ad-hoc'
     )
   end
 
@@ -199,11 +202,21 @@ platform :ios do
     increment_build_number(xcodeproj: xcodeproj)
 
     build_app(
-      scheme: 'ios-base',
+      scheme: app_name + '-production',
       workspace: workspace,
       include_bitcode: true,
       export_method: 'app-store'
     )
   end
-end
 
+  lane :test_develop do
+    run_tests(
+      workspace: workspace,
+      scheme: app_name+'-develop',
+      devices: devices,
+      skip_build: true,
+      code_coverage: true
+    )
+  end
+
+end

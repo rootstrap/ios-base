@@ -24,6 +24,7 @@ This template comes with:
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
 - [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
+- [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) to integrate build and release with **Jenkins**.
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
@@ -82,19 +83,82 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 **Repeat this step for the Post-actions script.**
 4. Done :)
 
-## CD using Fastlane
-Lanes for each deployment target are provided with some basic behavior:
-- Each target has two options: `build_x` and `release_x`.
-- The `build` lane will just archive the app and leave the `.ipa` ready for upload.
-- The `release` lane will:
-  - Check the repo status (it has to be clean, with no pending changes)
-  - Increment the build number.
-  - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
-  - Build the app.
-  - Generate a changelog from the commit diff between this new version and the previous.
-  - Upload to testflight and wait until it's processed.
 
-Check the `Appfile` and `Fastfile` for more information.
+## Automated Build and Deployment using Fastlane
+
+We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
+
+
+### New Project Setup
+
+Several steps need to be executed before building a project for the first time.
+
+  1. Install latest Xcode command line tools
+  ```
+  xcode-select --install
+  ```
+
+  2. Install latest Fastlane 
+  ```
+  # Using RubyGems
+  sudo gem install fastlane -NV
+  # Alternatively using Homebrew
+  brew install fastlane
+  ```
+
+  3. Create required App Ids in the Apple Developer Portal and App Store Connect 
+  This can be done on the Portal itself or using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
+  ```
+  fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
+  ```
+  4. Create private empty repository to store signing certificates, eg. `git@github.com:rootstrap/{app_name}-certificates.git`
+
+  5. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
+  ```
+  fastlane match init 
+  ```
+  select `git` as storage mode and specify the URL of the certificates git repo
+
+  6. **optional** If the Developer account has old/invalid certificates which are not shared, it is recommended to use the `nuke` action to clear the existing certificates (*use with caution*):
+  ```
+  fastlane match nuke development
+  fastlane match nuke distribution
+  ```
+
+  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action (fastlane will prompt for location of the `.cer` and `.p12` files):
+  ```
+  fastlane match import \
+    --username {{username}} \
+    --git_url {{certificates_git_url}} \
+    --team_id {{team_id}} \
+    --type appstore  \
+    --app_identifier com.{{company}}.{{app_name}} \
+  ```
+
+  8. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the following values before use:
+    - `app_name`              # this will match with application name in App Store and target schemes in the project
+    - `username`              # The apple id used to manage the certificates
+    - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
+    - `team_id`               # The organization's team id 
+    - `itc_team_id`           # App Store Connect team id
+    - `devices`               # List of devices to launch simulators for running tests on
+
+ 
+### Fastlane usage
+Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
+
+- Each target has two options: `build_x` and `release_x`.
+  - The `build` lane will build the application signed with an **Ad Hoc** certificate and keep the `.ipa` in the local folder for upload.
+  - The `release` lane will:
+    - Check the repo status (it has to be clean, with no pending changes)
+    - Increment the build number.
+    - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
+    - Build the app signed with an **App Store** certificate
+    - Generate a changelog from the commit diff between this new version and the previous.
+    - Upload to testflight and wait until it's processed.
+
+- Additionally, lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
+
 
 ## License
 
