@@ -20,7 +20,6 @@ This template comes with:
 #### Extensions
  This App Template also contains other branches with specific features that may be of use to you:
 
-- [**feature/observe_root_vc**](https://github.com/rootstrap/ios-base/tree/feature/observe_root_vc): Detecting when **rootViewController** gets loaded.
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
 - [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
