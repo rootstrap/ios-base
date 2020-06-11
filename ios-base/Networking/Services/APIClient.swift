@@ -124,9 +124,9 @@ class APIClient {
       },
       with: requestConvertible
     )
-      .responseJSON(completionHandler: { result in
-        validateResult(result: result, success: success, failure: failure)
-      })
+    .responseJSON(completionHandler: { result in
+      validateResult(result: result, success: success, failure: failure)
+    })
   }
   
   class func defaultEncoding(forMethod method: HTTPMethod) -> ParameterEncoding {
@@ -161,7 +161,8 @@ class APIClient {
     request.responseJSON(
       completionHandler: { result in
         validateResult(result: result, success: success, failure: failure)
-    })
+      }
+    )
   }
   
   //Handle rails-API-base errors if any
@@ -264,7 +265,6 @@ class APIClient {
     success: @escaping SuccessCallback,
     failure: @escaping FailureCallback
   ) {
-    
     var dictionary: [String: Any]?
     var serializationError: NSError?
     do {

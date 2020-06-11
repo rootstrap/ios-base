@@ -86,15 +86,17 @@ class AuthenticationServices {
     success: @escaping (_ user: User?) -> Void,
     failure: @escaping (_ error: Error) -> Void
   ) {
-    let picData = avatar64.jpegData(compressionQuality: 0.75)
-    let parameters = [
+    var parameters: [String: Any] = [
       "user": [
         "email": email,
         "password": password,
-        "password_confirmation": password,
-        "image": picData!.asBase64Param()
+        "password_confirmation": password
       ]
     ]
+    
+    if let picData = avatar64.jpegData(compressionQuality: 0.75) {
+      parameters["image"] = picData.asBase64Param()
+    }
     
     APIClient.request(
       .post,
