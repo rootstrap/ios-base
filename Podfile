@@ -11,6 +11,11 @@ target 'ios-base' do
   pod 'Crashlytics', '~> 3.12.0'
   pod 'R.swift', '~> 5.0.3'
 
+  # Uncomment if needed ---
+  # pod 'PagedLists', '~> 1.0.0'
+  # pod 'RSFormView', '~> 2.1.1'
+  # ------
+
   # FB SDK ---
   pod 'FBSDKCoreKit', '~> 5.5.0'
   pod 'FBSDKLoginKit', '~> 5.5.0'
