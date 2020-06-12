@@ -5,7 +5,7 @@ env:
 language: swift
 xcode_workspace: ios-base.xcworkspace
 xcode_scheme: ios-base-develop
-osx_image: xcode10.2
+osx_image: xcode11.4
 cache:
   - bundler
   - cocoapods

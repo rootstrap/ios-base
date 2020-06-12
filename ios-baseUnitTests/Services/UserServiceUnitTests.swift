@@ -11,22 +11,27 @@ import XCTest
 
 class UserServiceUnitTests: XCTestCase {
   
-  let testUser = User(
-    id: 0,
-    username: "test",
-    email: "test-user@rootstrap.com",
-    image: nil
-  )
-  let subject = UserService.sharedInstance
+  let userResponse: [String: Any] = [
+    "user": [
+      "id": 0,
+      "username": "test",
+      "email": "test-user@rootstrap.com"
+    ]
+  ]
+  
+  var testUser: User!
   
   override func setUp() {
     super.setUp()
+    if let userDictionary = userResponse["user"] as? [String: Any] {
+      testUser = User(dictionary: userDictionary)
+    }
     SessionManager.deleteSession()
     UserDataManager.deleteUser()
   }
   
   func testUserPersistence() {
-    subject.saveUserSession(user: testUser, headers: [:])
+    AuthenticationServices.saveUserSession(fromResponse: userResponse, headers: [:])
     guard let persistedUser = UserDataManager.currentUser else {
       XCTFail("User should NOT be nil")
       return
@@ -42,14 +47,17 @@ class UserServiceUnitTests: XCTestCase {
     let token = "dummySessionToken"
     let uid = testUser.email
     let expiry = "\(Date.timeIntervalSinceReferenceDate)"
-    let sessionHeaders = [
-      HTTPHeader.uid.rawValue: uid,
-      HTTPHeader.client.rawValue: client,
-      HTTPHeader.token.rawValue: token,
-      HTTPHeader.expiry.rawValue: expiry
+    let sessionHeaders: [String: Any] = [
+      APIClient.HTTPHeader.uid.rawValue: uid,
+      APIClient.HTTPHeader.client.rawValue: client,
+      APIClient.HTTPHeader.token.rawValue: token,
+      APIClient.HTTPHeader.expiry.rawValue: expiry
     ]
     
-    subject.saveUserSession(user: testUser, headers: sessionHeaders)
+    AuthenticationServices.saveUserSession(
+      fromResponse: userResponse,
+      headers: sessionHeaders
+    )
     guard let persistedSession = SessionManager.currentSession else {
       XCTFail("Session should NOT be nil")
       return
@@ -63,19 +71,25 @@ class UserServiceUnitTests: XCTestCase {
   
   func testBadSessionPersistence() {
     // Testing case where shouldn't be session at all
-    let unusableHeaders = [HTTPHeader.client: "badHeaderKey"]
-    subject.saveUserSession(user: testUser, headers: unusableHeaders)
+    let unusableHeaders = [APIClient.HTTPHeader.client: "badHeaderKey"]
+    AuthenticationServices.saveUserSession(
+      fromResponse: userResponse,
+      headers: unusableHeaders
+    )
     XCTAssert(SessionManager.currentSession == nil)
     XCTAssertFalse(SessionManager.validSession)
     
     // Testing case where should be session but not valid
     let wrongSessionHeaders = [
       "testKey": "testValue",
-      HTTPHeader.uid.rawValue: "",
-      HTTPHeader.client.rawValue: "",
-      HTTPHeader.token.rawValue: ""
+      APIClient.HTTPHeader.uid.rawValue: "",
+      APIClient.HTTPHeader.client.rawValue: "",
+      APIClient.HTTPHeader.token.rawValue: ""
     ]
-    subject.saveUserSession(user: testUser, headers: wrongSessionHeaders)
+    AuthenticationServices.saveUserSession(
+      fromResponse: userResponse,
+      headers: wrongSessionHeaders
+    )
     XCTAssert(SessionManager.currentSession != nil)
     XCTAssertFalse(SessionManager.validSession)
   }

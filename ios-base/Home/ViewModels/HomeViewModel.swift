@@ -32,30 +32,42 @@ class HomeViewModel {
   
   func loadUserProfile() {
     state = .network(state: .loading)
-    UserService.sharedInstance.getMyProfile({ [weak self] user in
-      self?.userEmail = user.email
-      self?.state = .loadedProfile
-    }, failure: { [weak self] error in
-      self?.state = .network(state: .error(error.localizedDescription))
-    })
+    
+    UserServices.getMyProfile(
+      success: { [weak self] user in
+        self?.userEmail = user.email
+        self?.state = .loadedProfile
+      },
+      failure: { [weak self] error in
+        self?.state = .network(state: .error(error.localizedDescription))
+      }
+    )
   }
   
   func logoutUser() {
     state = .network(state: .loading)
-    UserService.sharedInstance.logout({ [weak self] in
-      self?.didlogOutAccount()
-    }, failure: { [weak self] error in
-      self?.state = .network(state: .error(error.localizedDescription))
-    })
+    
+    AuthenticationServices.logout(
+      success: { [weak self] in
+        self?.didlogOutAccount()
+      },
+      failure: { [weak self] error in
+        self?.state = .network(state: .error(error.localizedDescription))
+      }
+    )
   }
   
   func deleteAccount() {
     state = .network(state: .loading)
-    UserService.sharedInstance.deleteAccount({ [weak self] in
-      self?.didlogOutAccount()
-    }, failure: { [weak self] error in
-      self?.state = .network(state: .error(error.localizedDescription))
-    })
+  
+    AuthenticationServices.deleteAccount(
+      success: { [weak self] in
+        self?.didlogOutAccount()
+      },
+      failure: { [weak self] error in
+        self?.state = .network(state: .error(error.localizedDescription))
+      }
+    )
   }
   
   private func didlogOutAccount() {
