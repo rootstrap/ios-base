@@ -9,7 +9,7 @@
 import XCTest
 
 extension XCTestCase {
-  func waitFor(element: XCUIElement, timeOut: TimeInterval) {
+  func waitFor(element: XCUIElement, timeOut: TimeInterval = 2) {
     let exists = NSPredicate(format: "exists == 1")
     
     expectation(for: exists, evaluatedWith: element, handler: nil)

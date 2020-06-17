@@ -59,11 +59,27 @@ PODS:
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.1.1)
+  - KIF (3.7.9):
+    - KIF/Core (= 3.7.9)
+  - KIF/Core (3.7.9)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
   - PromisesObjC (1.2.8)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
@@ -72,13 +88,15 @@ PODS:
     - Device (~> 3.1.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0)
+  - Alamofire (~> 5.2.0)
   - Crashlytics (~> 3.12.0)
   - Fabric (~> 1.9.0)
   - FBSDKCoreKit (~> 5.5.0)
   - FBSDKLoginKit (~> 5.5.0)
   - Firebase/Core (~> 6.1.0)
   - IQKeyboardManagerSwift (~> 6.1.1)
+  - KIF
+  - OHHTTPStubs/Swift (~> 9.0.0)
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
 
@@ -97,7 +115,9 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - IQKeyboardManagerSwift
+    - KIF
     - nanopb
+    - OHHTTPStubs
     - PromisesObjC
     - R.swift
     - R.swift.Library
@@ -117,12 +137,14 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  KIF: 350f96fb4205972a10e4c1a45774d48b2d8482d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
 
-PODFILE CHECKSUM: d654c0b4fb936e1c1801cae70d43dd3331f532c1
+PODFILE CHECKSUM: 957468f65f52459ceb17b97a5f9ea87e180cc408
 
 COCOAPODS: 1.9.2

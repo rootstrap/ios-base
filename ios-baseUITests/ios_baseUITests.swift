@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import OHHTTPStubs
 @testable import ios_base_Debug
 
 class ios_baseUITests: XCTestCase {
@@ -55,6 +56,51 @@ class ios_baseUITests: XCTestCase {
              on: "ConfirmPasswordTextField",
              isSecure: true)
     XCTAssertFalse(signUpButton.isEnabled)
+  }
+  
+  func testSignUpSuccesful() {
+    app.launch()
+    stub(
+      condition: { req in
+        print("req \(req)")
+        return true
+    },
+      response: { _ in
+        let signUpJSONPath = OHPathForFile("SignUpSuccessfully.json", type(of: self)) ?? ""
+        return fixture(
+          filePath: signUpJSONPath,
+          status: 200,
+          headers: Test.validUserHeaders
+        )
+    })
+    
+    app.logOutIfNeeded(in: self)
+    
+    app.buttons["GoToSignUpButton"].forceTap()
+    
+    let toolbarDoneButton = app.buttons["Toolbar Done Button"]
+    let signUpButton = app.buttons["SignUpButton"]
+    waitFor(element: signUpButton, timeOut: 2)
+    
+    app.type(text: "test@test.com", on: "EmailTextField")
+    
+    toolbarDoneButton.forceTap()
+    app.type(text: "holahola",
+             on: "PasswordTextField",
+             isSecure: true)
+    
+    toolbarDoneButton.forceTap()
+    app.type(text: "holahola",
+             on: "ConfirmPasswordTextField",
+             isSecure: true)
+    
+    toolbarDoneButton.forceTap()
+    signUpButton.forceTap()
+    
+    let logOutButton = app.buttons["LogoutButton"]
+    waitFor(element: logOutButton, timeOut: 10)
+    
+    XCTAssert(logOutButton.exists)
   }
   
   func testSignInSuccess() {

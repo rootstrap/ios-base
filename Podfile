@@ -16,3 +16,8 @@ target 'ios-base' do
   pod 'FBSDKLoginKit', '~> 5.5.0'
   # ------
 end
+
+target 'ios-baseUITests' do
+  pod 'OHHTTPStubs/Swift', '~> 9.0.0', :configurations => ['Debug']
+  pod 'KIF'
+end
