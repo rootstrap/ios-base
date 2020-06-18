@@ -134,7 +134,12 @@ Several steps need to be executed before building a project for the first time.
     --app_identifier com.{{company}}.{{app_name}} \
   ```
 
-  8. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the following values before use:
+  8. Generate app bundle identifiers 
+  ```
+  fastlane match appstore -u {{username}} --team-id {{team_id}} -a com.{{company}}.{{app_name}} 
+  ```
+
+  9. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the following values before use:
     - `app_name`              # this will match with application name in App Store and target schemes in the project
     - `username`              # The apple id used to manage the certificates
     - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
@@ -144,6 +149,11 @@ Several steps need to be executed before building a project for the first time.
 
  
 ### Fastlane usage
+
+```
+fastlane ios {{lane}}
+```
+
 Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
 
 - Each target has two options: `build_x` and `release_x`.
