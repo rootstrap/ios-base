@@ -124,7 +124,7 @@ Several steps need to be executed before building a project for the first time.
   fastlane match nuke distribution
   ```
 
-  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action (fastlane will prompt for location of the `.cer` and `.p12` files):
+  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action:
   ```
   fastlane match import \
     --username {{username}} \
@@ -133,6 +133,9 @@ Several steps need to be executed before building a project for the first time.
     --type appstore  \
     --app_identifier com.{{company}}.{{app_name}} \
   ```
+    * Fastlane will prompt for location of the `.cer` and `.p12` files
+    * Fastlane will require setting a passphrase for encrypting the files in git
+
 
   8. Generate app bundle identifiers 
   ```
