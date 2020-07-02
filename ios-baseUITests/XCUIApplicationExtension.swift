@@ -86,6 +86,7 @@ extension XCUIApplication {
       isSecure: true
     )
     
+    toolbarDoneButton.forceTap()
     signUpButton.forceTap()
   }
 }
