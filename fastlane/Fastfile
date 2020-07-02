@@ -115,7 +115,7 @@ platform :ios do
 
   lane :release_production do
     sync_code_signing(
-      git_url: prod_certificates_git_url,
+      git_url: certificates_git_url,
       username: username,
       type: 'appstore',
       team_id: team_id
@@ -193,7 +193,7 @@ platform :ios do
 
   lane :build_production do
     sync_code_signing(
-      git_url: prod_certificates_git_url,
+      git_url: certificates_git_url,
       username: username,
       type: 'appstore',
       team_id: team_id
