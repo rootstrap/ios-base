@@ -32,12 +32,15 @@ extension XCUIApplication {
     }
   }
   
-  func attemptSignIn(in testCase: XCTestCase,
-                     with email: String,
-                     password: String) {
+  func attemptSignIn(
+    in testCase: XCTestCase,
+    with email: String,
+    password: String
+  ) {
     let goToSignInButton = buttons["GoToSignInButton"]
     let toolbarDoneButton = buttons["Toolbar Done Button"]
     
+    testCase.waitFor(element: goToSignInButton, timeOut: 2)
     goToSignInButton.forceTap()
     
     let signInButton = buttons["SignInButton"]
@@ -53,5 +56,36 @@ extension XCUIApplication {
     toolbarDoneButton.forceTap()
     
     signInButton.forceTap()
+  }
+  
+  func attemptSignUp(
+    in testCase: XCTestCase,
+    email: String,
+    password: String
+  ) {
+    buttons["GoToSignUpButton"].forceTap()
+    
+    let toolbarDoneButton = buttons["Toolbar Done Button"]
+    let signUpButton = buttons["SignUpButton"]
+    testCase.waitFor(element: signUpButton, timeOut: 2)
+    
+    type(text: email, on: "EmailTextField")
+    
+    toolbarDoneButton.forceTap()
+    type(
+      text: password,
+      on: "PasswordTextField",
+      isSecure: true
+    )
+    XCTAssertFalse(signUpButton.isEnabled)
+    
+    toolbarDoneButton.forceTap()
+    type(
+      text: password,
+      on: "ConfirmPasswordTextField",
+      isSecure: true
+    )
+    
+    signUpButton.forceTap()
   }
 }

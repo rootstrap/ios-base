@@ -16,4 +16,23 @@ class StringExtensionUnitTests: XCTestCase {
     XCTAssert("username@test.com".isEmailFormatted())
     XCTAssert("username.alias+2@gmail.com".isEmailFormatted())
   }
+  
+  func testAlphanumeric() {
+    XCTAssertFalse("123598 sdg asd".isAlphanumericWithNoSpaces)
+    XCTAssert("1231234314".isAlphanumericWithNoSpaces)
+    XCTAssert("asdgasdg".isAlphanumericWithNoSpaces)
+    XCTAssert("asdgasd28352".isAlphanumericWithNoSpaces)
+  }
+  
+  func testHasNumbers() {
+    XCTAssertFalse("asdgasdfgkjasf ".hasNumbers)
+    XCTAssertFalse("$#^&@".hasNumbers)
+    XCTAssert("asd235".hasNumbers)
+    XCTAssert("124".hasNumbers)
+  }
+  
+  func testHasPunctuation() {
+    XCTAssertFalse("asgfasfdhg123".hasPunctuationCharacters)
+    XCTAssert("asdg,asd !".hasPunctuationCharacters)
+  }
 }
