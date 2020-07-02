@@ -76,7 +76,7 @@ class ios_baseUITests: XCTestCase {
     
     let logOutButton = app.buttons["LogoutButton"]
     
-    waitFor(element: logOutButton, timeOut: 3)
+    waitFor(element: logOutButton, timeOut: 5)
     
     networkMocker.stubLogOut()
     
