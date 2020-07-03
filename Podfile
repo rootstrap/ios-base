@@ -20,4 +20,9 @@ target 'ios-base' do
   pod 'FBSDKCoreKit', '~> 5.5.0'
   pod 'FBSDKLoginKit', '~> 5.5.0'
   # ------
+  
+  target 'ios-baseUITests' do
+    inherit! :complete
+    pod 'Swifter', '~> 1.4.7'
+  end
 end
