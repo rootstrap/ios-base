@@ -21,9 +21,10 @@ This template comes with:
  This App Template also contains other branches with specific features that may be of use to you:
 
 - [**feature/util_gradients**](https://github.com/rootstrap/ios-base/tree/feature/util_gradients): Helper methods to easily add **color gradients**.
-- [**feature/paginated_collections**](https://github.com/rootstrap/ios-base/tree/feature/paginated_collections): Adds **paginated** subclasses of **UITableView** and **UICollectionView**.
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
 - [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) to integrate build and release with **Jenkins**.
+- [**feature/moya_integration**](https://github.com/rootstrap/ios-base/tree/feature/moya_integration) manage routes and HTTP resources with Moya and Alamofire.
+
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
@@ -39,16 +40,24 @@ To manage user and session persistence after the original sign in/up we store th
 
 ## Pods
 #### Main
- - [Moya](https://github.com/Moya/Moya) + [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
+ - [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
  - [R.swift](https://github.com/mac-cain13/R.swift) for strongly typed and autocompleted assets, segues and more.
 
 
+#### Utilities
+
+We have developed other libraries that can be helpful and you could integrate with the dependency manager of your choice.
+
+- **[PagedLists:](https://github.com/rootstrap/PagedLists)** Custom **UITableView** and **UICollectionView** classes to easily handle pagination.
+- **[RSFontSizes:](https://github.com/rootstrap/RSFontSizes)** allows you to manage different font sizes for every device screen size in a flexible manner.
+- **[RSFormView:](https://github.com/rootstrap/RSFormView)** a A library that helps you to build fully customizable forms for data entry in a few minutes.
+
+
 #### Testing
  - [KIF](https://github.com/kif-framework/KIF) for UI testing.
  - [KIF/IdentifierTests](https://github.com/kif-framework/KIF) to have access to accesibility identifiers.
- - [OHHTTPStubs/Swift](https://github.com/AliSoftware/OHHTTPStubs) for network testing.
 
 #### Optional
  - [FBSDKCoreKit](https://github.com/facebook/facebook-ios-sdk) facebook pods dependency.
