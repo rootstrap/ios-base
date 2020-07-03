@@ -19,7 +19,7 @@ class AnalyticsManager: AnalyticsService {
     You can either customize this class and add new ones,
     or subclass it and override the variable.
    */
-  open var services = [FirebaseAnalyticsService()]
+  open var services: [AnalyticsService] = [FirebaseAnalyticsService()]
 
   static let shared = AnalyticsManager()
 
