@@ -107,7 +107,10 @@ func changeOrganizationName() {
   let organizationNameFilter = "\(filterKey) = \"\(baseCompany)\""
   let organizationNameReplacement = "\(filterKey) = \"\(companyName)\""
   let fileUrl = URL(fileURLWithPath: pbxProjectPath)
-  fileUrl.replaceOccurrences(of: organizationNameFilter, with: organizationNameReplacement)
+  fileUrl.replaceOccurrences(
+    of: organizationNameFilter,
+    with: organizationNameReplacement
+  )
 }
 
 // Project Initialization
