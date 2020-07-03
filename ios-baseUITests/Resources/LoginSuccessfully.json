@@ -1,0 +1,13 @@
+{
+  "user": {
+    "id": 1,
+    "email": "automation@test.com",
+    "provider": "email",
+    "uid": "automation@test.com",
+    "first_name": "FirstName",
+    "last_name": "LastName",
+    "username": "test",
+    "created_at": "2017-02-23T13:54:33.283Z",
+    "updated_at": "2017-02-23T13:54:33.425Z"
+  }
+}
