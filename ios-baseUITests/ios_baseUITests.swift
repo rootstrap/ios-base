@@ -74,24 +74,7 @@ class ios_baseUITests: XCTestCase {
       password: "holahola"
     )
     
-    let logOutButton = app.buttons["LogoutButton"]
-    
-    waitFor(element: logOutButton, timeOut: 5)
-    
-    networkMocker.stubLogOut()
-    
-    logOutButton.tap()
-    
-    networkMocker.stubLogIn()
-    
-    app.attemptSignIn(
-      in: self,
-      with: "automation@test.com",
-      password: "holahola"
-    )
-    
     networkMocker.stubGetProfile()
-    
     let getMyProfile = app.buttons["GetMyProfileButton"]
     waitFor(element: getMyProfile, timeOut: 10)
     getMyProfile.tap()
@@ -101,10 +84,14 @@ class ios_baseUITests: XCTestCase {
       waitFor(element: alert, timeOut: 10)
       
       alert.buttons.allElementsBoundByIndex.first?.tap()
-      
-      networkMocker.stubLogOut()
-      app.logOutIfNeeded(in: self)
     }
+    
+    let logOutButton = app.buttons["LogoutButton"]
+    waitFor(element: logOutButton, timeOut: 5)
+    
+    networkMocker.stubLogOut()
+    
+    logOutButton.tap()
   }
   
   func testSignInSuccess() {
