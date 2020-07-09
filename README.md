@@ -31,7 +31,7 @@ To use them simply download the branch and locally rebase against master/develop
 ## How to use
 1. Clone repo.
 2. Install desired extensions from their branches.
-3. Run `swift init.swift` from the recently created folder.
+3. Run `./init` from the recently created folder.
 4. Initialize a new git repo and add your remote url.
 5. Done!
 
