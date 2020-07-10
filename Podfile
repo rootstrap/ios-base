@@ -14,6 +14,7 @@ target 'ios-base' do
   # Uncomment if needed ---
   # pod 'PagedLists', '~> 1.0.0'
   # pod 'RSFormView', '~> 2.1.1'
+  # pod 'SwiftGradients', '~> 1.0.0'
   # ------
 
   # FB SDK ---
