@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "&#10;">
+               scriptText = "/usr/libexec/PlistBuddy -c &quot;Set :ConfigurationName \&quot;$CONFIGURATION\&quot;&quot; &quot;$PROJECT_DIR/$INFOPLIST_FILE&quot;&#10;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
