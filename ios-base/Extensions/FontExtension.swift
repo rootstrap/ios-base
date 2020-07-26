@@ -3,7 +3,7 @@
 //  ios-base
 //
 //  Created by Germán Stábile on 2/28/19.
-//  Copyright © 2019 TopTier labs. All rights reserved.
+//  Copyright © 2019 Rootstrap Inc. All rights reserved.
 //
 
 import UIKit

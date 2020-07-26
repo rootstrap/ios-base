@@ -3,7 +3,7 @@
 //  ios-base
 //
 //  Created by Mauricio Cousillas on 6/11/19.
-//  Copyright © 2019 TopTier labs. All rights reserved.
+//  Copyright © 2019 Rootstrap Inc. All rights reserved.
 //
 
 import Foundation
@@ -19,7 +19,7 @@ class AnalyticsManager: AnalyticsService {
     You can either customize this class and add new ones,
     or subclass it and override the variable.
    */
-  open var services = [FirebaseAnalyticsService()]
+  open var services: [AnalyticsService] = [FirebaseAnalyticsService()]
 
   static let shared = AnalyticsManager()
 

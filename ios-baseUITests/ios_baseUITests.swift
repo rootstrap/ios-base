@@ -3,7 +3,7 @@
 //  ios-baseUITests
 //
 //  Created by Germán Stábile on 2/13/20.
-//  Copyright © 2020 TopTier labs. All rights reserved.
+//  Copyright © 2020 Rootstrap Inc. All rights reserved.
 //
 
 import XCTest
@@ -13,16 +13,22 @@ class ios_baseUITests: XCTestCase {
 
   var app: XCUIApplication!
   
+  let networkMocker = NetworkMocker()
+  
   override func setUp() {
     super.setUp()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
+    networkMocker.setUp()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+    networkMocker.tearDown()
   }
   
   func testCreateAccountValidations() {
     app.launch()
-    
-    app.logOutIfNeeded(in: self)
     
     app.buttons["GoToSignUpButton"].forceTap()
     
@@ -57,37 +63,60 @@ class ios_baseUITests: XCTestCase {
     XCTAssertFalse(signUpButton.isEnabled)
   }
   
+  func testAccountCreation() {
+    app.launch()
+    
+    networkMocker.stubSignUp()
+    
+    app.attemptSignUp(
+      in: self,
+      email: "automation@test.com",
+      password: "holahola"
+    )
+    
+    networkMocker.stubGetProfile()
+    let getMyProfile = app.buttons["GetMyProfileButton"]
+    waitFor(element: getMyProfile, timeOut: 10)
+    getMyProfile.tap()
+    
+    sleep(1)
+    if let alert = app.alerts.allElementsBoundByIndex.first {
+      waitFor(element: alert, timeOut: 10)
+      
+      alert.buttons.allElementsBoundByIndex.first?.tap()
+    }
+    
+    let logOutButton = app.buttons["LogoutButton"]
+    waitFor(element: logOutButton, timeOut: 5)
+    
+    networkMocker.stubLogOut()
+    
+    logOutButton.tap()
+  }
+  
   func testSignInSuccess() {
     app.launch()
     
-    app.logOutIfNeeded(in: self)
+    networkMocker.stubLogIn()
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",
                       password: "holahola")
     
-    //TEST CODE ONLY ELSE BLOCK SHOULD BE EXECUTED NORMALLY
-    sleep(10)
-    if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 10)
-      XCTAssertTrue(alert.label == "Error")
-      
-      alert.buttons.allElementsBoundByIndex.first?.forceTap()
-    } else {
-      let logOutButton = app.buttons["LogoutButton"]
-      waitFor(element: logOutButton, timeOut: 10)
-      
-      logOutButton.forceTap()
-      
-      let goToSignInButton = app.buttons["GoToSignInButton"]
-      waitFor(element: goToSignInButton, timeOut: 10)
-    }
+    let logOutButton = app.buttons["LogoutButton"]
+    waitFor(element: logOutButton, timeOut: 10)
+    
+    networkMocker.stubLogOut()
+    logOutButton.forceTap()
+    
+    let goToSignInButton = app.buttons["GoToSignInButton"]
+    waitFor(element: goToSignInButton, timeOut: 10)
   }
   
   func testSignInFailure() {
     app.launch()
     
-    app.logOutIfNeeded(in: self)
+    networkMocker.stubLogIn(shouldSucceed: false)
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",
@@ -95,7 +124,6 @@ class ios_baseUITests: XCTestCase {
     
     if let alert = app.alerts.allElementsBoundByIndex.first {
       waitFor(element: alert, timeOut: 2)
-      XCTAssertTrue(alert.label == "Error")
       
       alert.buttons.allElementsBoundByIndex.first?.forceTap()
     }
@@ -106,8 +134,6 @@ class ios_baseUITests: XCTestCase {
   
   func testSignInValidations() {
     app.launch()
-    
-    app.logOutIfNeeded(in: self)
     
     app.buttons["GoToSignInButton"].forceTap()
     

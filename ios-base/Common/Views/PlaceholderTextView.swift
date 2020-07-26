@@ -3,7 +3,7 @@
 //  talkative-iOS
 //
 //  Created by German Lopez on 6/6/16.
-//  Copyright © 2016 Rootstrap. All rights reserved.
+//  Copyright © 2016 Rootstrap Inc. All rights reserved.
 //
 
 import UIKit
