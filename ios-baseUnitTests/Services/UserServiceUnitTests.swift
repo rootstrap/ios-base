@@ -3,7 +3,7 @@
 //  ios-baseUnitTests
 //
 //  Created by German on 4/30/20.
-//  Copyright © 2020 Rootstrap Inc. All rights reserved.
+//  Copyright © 2020 TopTier labs. All rights reserved.
 //
 
 import XCTest

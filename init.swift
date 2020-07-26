@@ -4,8 +4,6 @@ let baseProjectName = "ios-base"
 var projectName = "RSDemoProject"
 let baseDomain = "com.rootstrap"
 var bundleDomain = baseDomain
-let baseCompany = "Rootstrap Inc."
-var companyName = baseCompany
 
 let whiteList: [String] = [".DS_Store", "UserInterfaceState.xcuserstate", "init.swift"]
 let fileManager = FileManager.default
@@ -16,13 +14,11 @@ var currentFolder: String {
 enum SetupStep: Int {
   case nameEntry = 1
   case bundleDomainEntry
-  case companyNameEntry
   
   var question: String {
     switch self {
     case .nameEntry: return "Enter a name for the project"
     case .bundleDomainEntry: return "Enter the reversed domain of your organization"
-    case .companyNameEntry: return "Enter the Company name to use on file's headers"
     }
   }
 }
@@ -92,27 +88,6 @@ extension URL {
   }
 }
 
-// Helper functions
-
-func changeOrganizationName() {
-  let pbxProjectPath = "\(currentFolder)/\(baseProjectName).xcodeproj/project.pbxproj"
-  guard
-    fileManager.fileExists(atPath: pbxProjectPath),
-    companyName != baseCompany
-  else { return }
-
-  print("\nUpdating company name to '\(companyName)'...")
-  
-  let filterKey = "ORGANIZATIONNAME"
-  let organizationNameFilter = "\(filterKey) = \"\(baseCompany)\""
-  let organizationNameReplacement = "\(filterKey) = \"\(companyName)\""
-  let fileUrl = URL(fileURLWithPath: pbxProjectPath)
-  fileUrl.replaceOccurrences(
-    of: organizationNameFilter,
-    with: organizationNameReplacement
-  )
-}
-
 // Project Initialization
 
 print("""
@@ -125,12 +100,9 @@ print("""
 
 projectName = setup(step: .nameEntry, defaultValue: projectName)
 bundleDomain = setup(step: .bundleDomainEntry, defaultValue: baseDomain)
-companyName = setup(step: .companyNameEntry, defaultValue: baseCompany)
 
 //Remove current git tracking
 _ = shell("rm", "-rf", ".git")
-
-changeOrganizationName()
 
 print("\nRenaming to '\(projectName)'...")
 let enumerator = fileManager.enumerator(at: URL(fileURLWithPath: currentFolder), includingPropertiesForKeys: [.nameKey, .isDirectoryKey])!

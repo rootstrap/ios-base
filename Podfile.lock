@@ -70,10 +70,9 @@ PODS:
   - R.swift.Library (5.0.1)
   - RSFontSizes (1.0.2):
     - Device (~> 3.1.2)
-  - Swifter (1.4.7)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2.0)
+  - Alamofire (~> 5.0)
   - Crashlytics (~> 3.12.0)
   - Fabric (~> 1.9.0)
   - FBSDKCoreKit (~> 5.5.0)
@@ -82,7 +81,6 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift (~> 6.1.1)
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
-  - Swifter (~> 1.4.7)
 
 SPEC REPOS:
   trunk:
@@ -104,7 +102,6 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - RSFontSizes
-    - Swifter
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -125,8 +122,7 @@ SPEC CHECKSUMS:
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
-  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
 
-PODFILE CHECKSUM: 6ab8b40df3c38a71ffd6dc52f6508ce14fe0afe2
+PODFILE CHECKSUM: d654c0b4fb936e1c1801cae70d43dd3331f532c1
 
 COCOAPODS: 1.9.2
