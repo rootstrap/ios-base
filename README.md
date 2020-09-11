@@ -151,13 +151,7 @@ Several steps need to be executed before building a project for the first time.
   fastlane match appstore -u {{username}} --team-id {{team_id}} -a com.{{company}}.{{app_name}} 
   ```
 
-  9. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the following values before use:
-    - `app_name`              # this will match with application name in App Store and target schemes in the project
-    - `username`              # The apple id used to manage the certificates
-    - `certificates_git_url`  # The repo to store and sync certs and provisioning profiles
-    - `team_id`               # The organization's team id 
-    - `itc_team_id`           # App Store Connect team id
-    - `devices`               # List of devices to launch simulators for running tests on
+  9. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the required values and environment variables before use:
 
  
 ### Fastlane usage
@@ -168,8 +162,9 @@ fastlane ios {{lane}}
 
 Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
 
-- Each target has two options: `build_x` and `release_x`.
-  - The `build` lane will build the application signed with an **Ad Hoc** certificate and keep the `.ipa` in the local folder for upload.
+- Each target has three options: `debug_*`, `archive_*` and `release_*`.
+  - The `debug` lane will install pod dependencies and run tests 
+  - The `archive` lane will additionally build the application with the specified profile and certificate, keeping the `.ipa` in the local folder for upload.
   - The `release` lane will:
     - Check the repo status (it has to be clean, with no pending changes)
     - Increment the build number.

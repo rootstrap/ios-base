@@ -7,7 +7,7 @@
 
 for_platform :ios do
 
-  for_lane :build_develop do
+  for_lane :archive_develop do
     app_identifier('com.rootstrap.ios-base-Debug')
   end
 
@@ -15,19 +15,20 @@ for_platform :ios do
     app_identifier('com.rootstrap.ios-base-Debug')
   end
 
+  for_lane :archive_staging do
+    app_identifier('com.rootstrap.ios-base-Staging')
+  end
+
   for_lane :release_staging do
     app_identifier('com.rootstrap.ios-base-Staging')
   end
 
-  for_lane :build_staging do
-    app_identifier('com.rootstrap.ios-base-Staging')
+  for_lane :archive_production do
+    app_identifier('com.rootstrap.ios-base')
   end
 
   for_lane :release_production do
     app_identifier('com.rootstrap.ios-base')
   end
 
-  for_lane :build_production do
-    app_identifier('com.rootstrap.ios-base')
-  end
 end
