@@ -1,4 +1,4 @@
-name: Dev Build
+name: CI Build
 
 # Run for any commits to any branch
 on: [push, pull_request]
@@ -48,6 +48,6 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: ${{ job.status }}
-        text: 'ios-base build status'
+        text: 'ios-base build status is ${{ job.status }}'
         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
       if: always()  
