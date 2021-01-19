@@ -28,8 +28,8 @@ itc_team_id           = ENV["FASTLANE_ITC_TEAM_ID"]                           # 
 distribute_external   = false                                                 # Change this to true if you want the build to be distributed to external testers as well.
 notify_testers        = false                                                 #
 skip_wait             = true                                                  # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers.
-devices               = 'platform=iOS Simulator,OS=11.4'                       # If using test lane, replace with proper array of devices to run the tests on
-slack_url             = ''                                                    # Slack webhook url and channel name for sending notifications upon completion
+devices               = ["iPhone 9", "iPhone 11 Pro", "iPhone 11 Max"]        # If using test lane, replace with proper array of devices to run the tests on
+slack_url             = ENV["SLACK_WEBHOOK_URL"]                              # Slack webhook url and channel name for sending notifications upon completion
 slack_channel         = '#ios-builds'                                         #
 
 
