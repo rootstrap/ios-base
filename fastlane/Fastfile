@@ -13,209 +13,174 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+skip_docs
+
 default_platform(:ios)
 
 # CONFIG VARIABLES
-app_name = 'ios-base'
-username = '' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
-xcodeproj = 'ios-base.xcodeproj' # The xcodeproj name eg: ReactNativeBase.xcodeproj
-workspace =  'ios-base.xcworkspace' # The xworkspace name here eg: ReactNativeBase.xcworkspace
-certificates_git_url = 'git@github.com:rootstrap/ios-base-certificates.git' # The repo to store and sync certs and provisioning profiles. Eg: git@github.com:rootstrap/cafe-infinity-certificates.git
-team_id = ''  # The organization's team id (you can leave this empty and select it on the CLI on each run)
-itc_team_id = '' # App Store Connect team id
-distribute_external = false # Change this to true if you want the build to be distributed to external testers as well.
-notify_external_testers = false
-skip_waiting_for_build_processing = true # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers. (You might want to use this option if you are using this action on CI and have to pay for 'minutes used' on your CI plan)
-devices = 'platform=iOS Simulator,OS=9.2' # Replace with proper array of devices to run the tests on
+app_name              = 'ios-base'
+username              = ENV["FASTLANE_USER"]                                  # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+xcodeproj             = 'ios-base.xcodeproj'                                  # The .xcodeproj file name
+workspace             = 'ios-base.xcworkspace'                                # The xworkspace file name
+certificates_git_url  = 'git@github.com:rootstrap/ios-base-certificates.git'  # The repo to store and sync certs and provisioning profiles.
+team_id               = ENV["FASTLANE_TEAM_ID"]                               # The organization's team id 
+itc_team_id           = ENV["FASTLANE_ITC_TEAM_ID"]                           # App Store Connect team id
+distribute_external   = false                                                 # Change this to true if you want the build to be distributed to external testers as well.
+notify_testers        = false                                                 #
+skip_wait             = true                                                  # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers.
+devices               = 'platform=iOS Simulator,OS=11.4'                       # If using test lane, replace with proper array of devices to run the tests on
+slack_url             = ''                                                    # Slack webhook url and channel name for sending notifications upon completion
+slack_channel         = '#ios-builds'                                         #
+
+
 
 platform :ios do
-  
-  lane :release_develop do
-    sync_code_signing(
+
+  lane :test do |options|
+    cocoapods(
+      repo_update: true
+    )
+    run_tests(
+      workspace: workspace,
+      scheme: options[:scheme],
+      devices: devices,
+      skip_build: true,
+      code_coverage: true
+    )
+  end
+
+  lane :build_and_sign do |options|
+    # pod install
+    cocoapods(
+      repo_update: true
+    )
+    # Sync Code signing - download and install certficate and profile
+    match(
       git_url: certificates_git_url,
       username: username,
-      type: 'appstore',
+      type: options[:profile],
       team_id: team_id
     )
-
-    ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
-    add_git_tag
-
-    push_to_git_remote(remote_branch: 'develop')
-
-    build_app(
-      scheme: app_name + '-develop',
+    # Build and Archive app
+    gym(
+      scheme: options[:scheme],
       workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
+      export_method: options[:method],
+      clean: true,
+      output_name: options[:scheme]+".ipa",
+      export_team_id: team_id
     )
-
+  end
+  
+  lane :publish do |options|
+    # Increase build number - remove if running from an automated branch
+    ensure_git_status_clean
+    increment_build_number(xcodeproj: xcodeproj)
+    commit_version_bump(xcodeproj: xcodeproj)
+    # Create release tag and commit - see https://docs.fastlane.tools/actions/add_git_tag/ to adapt params as needed
+    add_git_tag
+    push_to_git_remote(remote_branch: options[:branch])
+    # Generate build
+    build_and_sign(
+      scheme: options[:scheme],
+      profile: 'appstore',
+      method: 'app-store'
+    )
+    # Upload to TestFlight
     changelog = changelog_from_git_commits(
       pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
       date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
       match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
       merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
     )
-
-    upload_to_testflight(
+    pilot(
       username: username,
       team_id: itc_team_id,
-      distribute_external: distribute_external,
-      notify_external_testers: notify_external_testers,
-      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+      skip_waiting_for_build_processing: skip_wait
+    )
+    # send Slack notification - optional
+    version = get_info_plist_value(
+      path: options[:scheme]+"-Info.plist",
+      key: "CFBundleShortVersionString"
+    )
+    build = get_info_plist_value(
+      path: options[:scheme]+"-Info.plist",
+      key: "CFBundleVersion"
+    )
+    slack(
+      message: "Hi! A new iOS "+options[:scheme]+" build has been submitted to TestFlight",
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Release Version" => version+"."+build
+      },
+      channel: slack_channel,
+      slack_url: slack_url,
+      use_webhook_configured_username_and_icon: true,
+      fail_on_error: false,
+      success: true
+    )  
+  end
+
+  lane :release_develop do
+    publish(
+      scheme: app_name+'-develop',
+      branch: 'develop'
     )
   end
 
   lane :release_staging do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore',
-      team_id: team_id
-    )
-
-    ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
-    add_git_tag
-
-    push_to_git_remote(remote_branch: 'develop')
-
-    build_app(
-      scheme: app_name + '-staging',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
-
-    changelog = changelog_from_git_commits(
-      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
-      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
-      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
-      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
-    )
-
-    upload_to_testflight(
-      username: username,
-      team_id: itc_team_id,
-      changelog: changelog,
-      distribute_external: distribute_external,
-      notify_external_testers: notify_external_testers,
-      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    publish(
+      scheme: app_name+'-staging',
+      branch: 'staging'
     )
   end
 
   lane :release_production do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore',
-      team_id: team_id
-    )
-
-    ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
-    add_git_tag
-
-    push_to_git_remote(remote_branch: 'master')
-
-    build_app(
-      scheme: app_name + '-production',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
-
-    changelog = changelog_from_git_commits(
-      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
-      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
-      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
-      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
-    )
-
-    upload_to_testflight(
-      username: username,
-      team_id: itc_team_id,
-      changelog: changelog,
-      distribute_external: distribute_external,
-      notify_external_testers: notify_external_testers,
-      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    publish(
+      scheme: app_name+'-production',
+      branch: 'master'
     )
   end
 
-  lane :build_develop do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'adhoc',
-      team_id: team_id
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: app_name + '-develop',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'ad-hoc'
-    )
-  end
-
-  lane :build_staging do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'adhoc',
-      team_id: team_id
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: app_name + '-staging',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'ad-hoc'
-    )
-  end
-
-  lane :build_production do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore',
-      team_id: team_id
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: app_name + '-production',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
-  end
-
-  lane :test_develop do
-    run_tests(
-      workspace: workspace,
+  lane :archive_develop do
+    build_and_sign(
       scheme: app_name+'-develop',
-      devices: devices,
-      skip_build: true,
-      code_coverage: true
+      profile: 'adhoc',
+      method: 'ad-hoc'
+    )
+  end
+
+  lane :archive_staging do
+    build_and_sign(
+      scheme: app_name+'-staging',
+      profile: 'appstore',
+      method: 'app-store'
+    )
+  end
+
+  lane :archive_production do
+    build_and_sign(
+      scheme: app_name+'-production',
+      profile: 'appstore',
+      method: 'app-store'
+    )
+  end
+
+  lane :debug_develop do
+    test(
+      scheme: app_name+'-develop'
+    )
+  end
+
+  lane :debug_staging do
+    test(
+      scheme: app_name+'-staging'
+    )
+  end
+
+  lane :debug_production do
+    test(
+      scheme: app_name+'-production'
     )
   end
 
