@@ -17,9 +17,6 @@ env:
   KEYS_BUCKET: ${{ secrets.AWS_S3_KEYS_BUCKET }}
   # iOS Release - all sensitive values should be stored as repo Secrets
   APPLE_PROFILE: ${{ secrets.APPLE_PROFILE }}               # Filename for the provisioning profile, eg AppStore_comrootstraiosbasedevelop.mobileprovision
-  APPLE_CERT: ${{ secrets.APPLE_CERT }}                     # Filename for the Distribution Certificate, eg Distribution.cer
-  APPLE_KEY: ${{ secrets.APPLE_KEY }}                       # Filename for the Certificate signing Private Key, eg certificates.p12
-  APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}     # Password for decrypting PK
   APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}                # Organization's team ID in the Developer Portal
   FASTLANE_ITC_TEAM_ID: ${{ secrets.APPLE_TEAM_ITC_ID}}     # iTunes connect team ID
   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}               # Apple Developer Portal user
@@ -43,7 +40,7 @@ jobs:
         
     # Downloads Firebase and other configuration files from S3
     - name: Download configuration items
-      run: aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./ios --recursive
+      run: aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ . --recursive
     
     # Runs full build and codesigning for the Debug target, and releases to TestFlight
     - name: Build and Release
