@@ -3,8 +3,8 @@ name: Develop Release
 on:
   push:
     branches:
-      - feat/github-actions
       - develop
+      
 
 
 env:
