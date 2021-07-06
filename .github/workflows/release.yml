@@ -1,0 +1,50 @@
+name: Develop Release
+
+on:
+  push:
+    branches:
+      - develop
+      
+
+
+env:
+  LANG: en_US.UTF-8
+  # S3 details - credentials should be stored as repo Secrets
+  FOLDER: ios-base
+  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  KEYS_BUCKET: ${{ secrets.AWS_S3_KEYS_BUCKET }}
+  # iOS Release - all sensitive values should be stored as repo Secrets
+  APPLE_PROFILE: ${{ secrets.APPLE_PROFILE }}               # Filename for the provisioning profile, eg AppStore_comrootstraiosbasedevelop.mobileprovision
+  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}                # Organization's team ID in the Developer Portal
+  FASTLANE_ITC_TEAM_ID: ${{ secrets.APPLE_TEAM_ITC_ID}}     # iTunes connect team ID
+  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}               # Apple Developer Portal user
+  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}       # Apple Developer Portal password
+  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }} 
+                                                            # Apple Application-specific password for uploading to TestFlight
+  # Notifications
+  SLACK_URL: ${{ secrets.SLACK_URL }}
+  SLACK_CHANNEL: '#dev-builds'
+
+jobs:
+
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+   
+    - name: Checkout
+      uses: actions/checkout@v2
+        
+    # Downloads Firebase and other configuration files from S3
+    - name: Download configuration items
+      run: aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ . --recursive
+    
+    # Runs full build and codesigning for the Debug target, and releases to TestFlight
+    - name: Build and Release
+      uses: maierj/fastlane-action@v1.4.0
+      with:
+        lane: release_develop
+

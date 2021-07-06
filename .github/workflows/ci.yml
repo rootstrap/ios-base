@@ -1,0 +1,47 @@
+name: CI Build
+
+# Run for any commits to any branch
+on: [push, pull_request]
+
+
+env:
+  LANG: en_US.UTF-8
+  # CodeClimate
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  # Notifications
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
+
+jobs:
+
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+   
+    - name: Checkout
+      uses: actions/checkout@v2
+        
+    - name: Setup Code Climate test reporter
+      run: |
+        pwd
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+
+    # Executes pod install and runs test against Debug target
+    - name: Run tests
+      uses: maierj/fastlane-action@v1.4.0
+      with:
+        lane: debug_develop
+
+    - name: Send test coverage report
+      run: ./cc-test-reporter after-build
+
+    - name: Send notification of build result
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'ios-base build status is ${{ job.status }}'
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      if: always()  

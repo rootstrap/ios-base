@@ -21,9 +21,7 @@ This template comes with:
  This App Template also contains other branches with specific features that may be of use to you:
 
 - [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
-- [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) to integrate build and release with **Jenkins**.
 - [**feature/moya_integration**](https://github.com/rootstrap/ios-base/tree/feature/moya_integration) manage routes and HTTP resources with Moya and Alamofire.
-
 
 To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
 **Important**: See steps below on how to install this features.
@@ -51,7 +49,7 @@ We have developed other libraries that can be helpful and you could integrate wi
 
 - **[PagedLists:](https://github.com/rootstrap/PagedLists)** Custom `UITableView` and `UICollectionView` classes to easily handle pagination.
 - **[RSFontSizes:](https://github.com/rootstrap/RSFontSizes)** allows you to manage different font sizes for every device screen size in a flexible manner.
-- **[RSFormView:](https://github.com/rootstrap/RSFormView)** a A library that helps you to build fully customizable forms for data entry in a few minutes.
+- **[RSFormView:](https://github.com/rootstrap/RSFormView)** a library that helps you to build fully customizable forms for data entry in a few minutes.
 - **[SwiftGradients:](https://github.com/rootstrap/SwiftGradients)** Useful extensions for `UIViews` and `CALayer` classes to add beautiful color gradients.
 
 
@@ -79,7 +77,8 @@ the CodeCliemate's configuration file.
 **NOTE:** Make sure you have SwiftLint version 0.35.0 or greater installed to avoid known false-positives with some of the rules.
 
 ## Security recommendations
-#### Third Party Keys
+
+### Third Party Keys
 
 We strongly recommend that all private keys be added to a `.plist` file that will remain locally and not be committed to your project repo. An example file is already provided, these are the final steps to set it up:
 
@@ -91,90 +90,29 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 **Repeat this step for the Post-actions script.**
 4. Done :)
 
+#### Secure storage
+
+We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) for storing `.plist` files containing Third Party keys, as well as any other sensitive files. Alternatively when not using Fastlane Match (eg might not be compatible with some CICD systems), AWS S3 can also be used for storing Certificates, Private Keys and Profiles required for app signing. The CICD code examples (described below) make use of the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) to download any files relevant for our project from a predefined bucket and folder 
+
+Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**]
+(https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
+
 
 ## Automated Build and Deployment using Fastlane
 
-We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and deployment. 
+We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and release to TestFlight. 
 
+See details in [Fastlane folder](fastlane/README.md).
 
-### New Project Setup
+## Continuous Integration / Delivery
 
-Several steps need to be executed before building a project for the first time.
+We recommend [GitHub Actions](https://docs.github.com/en/actions) for integrating Fastlane into a CI/CD pipeline. You can find two workflows in the GitHub workflows folder:
+* [ci.yml](.github/workflows/release.myl)       : triggered on any push and PR, runs unit tests, coverage report and static analysis with [CodeClimate](https://github.com/codeclimate/codeclimate)
+* [release.yml](.github/workflows/release.yml)  : triggered on push to specific branches, builds, signs and submits to TestFlight
 
-  1. Install latest Xcode command line tools
-  ```
-  xcode-select --install
-  ```
+Alternatively you can merge branch [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) for some equivalent CICD boilerplate with **Jenkins**.
 
-  2. Install latest Fastlane 
-  ```
-  # Using RubyGems
-  sudo gem install fastlane -NV
-  # Alternatively using Homebrew
-  brew install fastlane
-  ```
-
-  3. Create required App Ids in the Apple Developer Portal and App Store Connect 
-  This can be done on the Portal itself or using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
-  ```
-  fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
-  ```
-  4. Create private empty repository to store signing certificates, eg. `git@github.com:rootstrap/{app_name}-certificates.git`
-
-  5. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
-  ```
-  fastlane match init 
-  ```
-  select `git` as storage mode and specify the URL of the certificates git repo
-
-  6. **optional** If the Developer account has old/invalid certificates which are not shared, it is recommended to use the `nuke` action to clear the existing certificates (*use with caution*):
-  ```
-  fastlane match nuke development
-  fastlane match nuke distribution
-  ```
-
-  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action:
-  ```
-  fastlane match import \
-    --username {{username}} \
-    --git_url {{certificates_git_url}} \
-    --team_id {{team_id}} \
-    --type appstore  \
-    --app_identifier com.{{company}}.{{app_name}} \
-  ```
-    * Fastlane will prompt for location of the `.cer` and `.p12` files
-    * Fastlane will require setting a passphrase for encrypting the files in git
-
-
-  8. Generate app bundle identifiers 
-  ```
-  fastlane match appstore -u {{username}} --team-id {{team_id}} -a com.{{company}}.{{app_name}} 
-  ```
-
-  9. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the required values and environment variables before use:
-
- 
-### Fastlane usage
-
-```
-fastlane ios {{lane}}
-```
-
-Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
-
-- Each target has three options: `debug_*`, `archive_*` and `release_*`.
-  - The `debug` lane will install pod dependencies and run tests 
-  - The `archive` lane will additionally build the application with the specified profile and certificate, keeping the `.ipa` in the local folder for upload.
-  - The `release` lane will:
-    - Check the repo status (it has to be clean, with no pending changes)
-    - Increment the build number.
-    - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
-    - Build the app signed with an **App Store** certificate
-    - Generate a changelog from the commit diff between this new version and the previous.
-    - Upload to testflight and wait until it's processed.
-
-- Additionally, lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
-
+On both alternatives we assume usage of Fastlane match for managing signing Certificates and Profiles, and AWS S3 for storing other files containing third-party keys 
 
 ## License
 

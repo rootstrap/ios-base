@@ -57,6 +57,8 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+.bundle/
+
 report.html
 report.junit
 
@@ -67,3 +69,4 @@ report.junit
 GoogleService*.plist
 
 R.generated.swift
+
