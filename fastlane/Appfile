@@ -7,28 +7,32 @@
 
 for_platform :ios do
 
-  for_lane :archive_develop do
-    app_identifier('com.rootstrap.ios-base-Debug')
+  apple_id(ENV['FASTLANE_USER'])
+  
+  team_id(ENV['APPLE_TEAM_ID'])
+
+  for_lane :build_develop do
+    app_identifier('com.rootstrap.ios-base-develop')
   end
 
   for_lane :release_develop do
-    app_identifier('com.rootstrap.ios-base-Debug')
+    app_identifier('com.rootstrap.ios-base-develop')
   end
 
-  for_lane :archive_staging do
-    app_identifier('com.rootstrap.ios-base-Staging')
+  for_lane :build_staging do
+    app_identifier('com.rootstrap.ios-base-staging')
   end
 
   for_lane :release_staging do
-    app_identifier('com.rootstrap.ios-base-Staging')
+    app_identifier('com.rootstrap.ios-base-staging')
   end
 
-  for_lane :archive_production do
-    app_identifier('com.rootstrap.ios-base')
+  for_lane :build_production do
+    app_identifier('com.rootstrap.ios-base-production')
   end
 
   for_lane :release_production do
-    app_identifier('com.rootstrap.ios-base')
+    app_identifier('com.rootstrap.ios-base-production')
   end
 
 end

@@ -19,169 +19,229 @@ default_platform(:ios)
 
 # CONFIG VARIABLES
 app_name              = 'ios-base'
-username              = ENV["FASTLANE_USER"]                                  # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
-xcodeproj             = 'ios-base.xcodeproj'                                  # The .xcodeproj file name
-workspace             = 'ios-base.xcworkspace'                                # The xworkspace file name
-certificates_git_url  = 'git@github.com:rootstrap/ios-base-certificates.git'  # The repo to store and sync certs and provisioning profiles.
-team_id               = ENV["FASTLANE_TEAM_ID"]                               # The organization's team id 
-itc_team_id           = ENV["FASTLANE_ITC_TEAM_ID"]                           # App Store Connect team id
-distribute_external   = false                                                 # Change this to true if you want the build to be distributed to external testers as well.
-notify_testers        = false                                                 #
-skip_wait             = true                                                  # Don't wait for the build to process. If set to true, the changelog won't be set, distribute_external option won't work and no build will be distributed to testers.
-devices               = ["iPhone 9", "iPhone 11 Pro", "iPhone 11 Max"]        # If using test lane, replace with proper array of devices to run the tests on
-slack_url             = ENV["SLACK_WEBHOOK_URL"]                              # Slack webhook url and channel name for sending notifications upon completion
-slack_channel         = '#ios-builds'                                         #
+team_id               = ENV["APPLE_TEAM_ID"]                                # The organization's team id in the Apple Developer portal
+cert                  = ENV["APPLE_CERT"]                                   # Local path to distribution certificate file to be used for signing the build
+key                   = ENV["APPLE_KEY"]                                    # Private key (.p12 file) used for encrypting certificate
+key_pwd               = ENV["APPLE_KEY_PASSWORD"]                                                   # Password to private key file
+appstore_key_id       = ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"]             # AppStore Connect API id and issuer
+appstore_issuer_id    = ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"]          #
+appstore_key_filepath = ENV["APP_STORE_CONNECT_API_KEY_FILE"]               # location of .p8 API key file
+
+# S3
+s3_key                = ENV["AWS_ACCESS_KEY_ID"]                            # credentials for uploading files to S3
+s3_secret_key         = ENV["AWS_SECRET_ACCESS_KEY"]                        #
+s3_region             = ENV["AWS_REGION"]                                   #
+s3_bucket             = ENV["BUILDS_BUCKET"]                                # S3 bucket and parent folder to upload to
+folder                = ENV["FOLDER"]                                       #
+
+# Slack
+slack_channel         = ENV["SLACK_CHANNEL"]                                # Slack webhook url and channel name for sending notifications upon completion
+slack_url             = ENV["SLACK_URL"]                                    #
 
 
 
 platform :ios do
 
-  lane :test do |options|
-    cocoapods(
-      repo_update: true
+  lane :set_signing do
+    # Create keychain - (Travis setup works for GitHhub Actions too)
+    setup_ci(
+      force: true,
+      provider: "travis"
     )
-    run_tests(
-      workspace: workspace,
-      scheme: options[:scheme],
-      devices: devices,
-      skip_build: true,
-      code_coverage: true
+    # Unlock keychain and set as default
+    unlock_keychain(
+      path: "fastlane_tmp_keychain",
+      password: "",
+      set_default: true
+    )
+    # Import .cer and .p12 - this is a workaround for fastlane match when we retrieve certs from a custom location
+    import_certificate(
+      certificate_path: key,
+      certificate_password: key_pwd,
+      keychain_name: "fastlane_tmp_keychain",
+      keychain_password: "",
+      log_output: true
+    )
+    import_certificate(
+      certificate_path: cert,
+      keychain_name: "fastlane_tmp_keychain",
+      keychain_password: "",
+      log_output: true
     )
   end
 
   lane :build_and_sign do |options|
+    set_signing
     # pod install
-    cocoapods(
-      repo_update: true
-    )
-    # Sync Code signing - download and install certficate and profile
-    match(
-      git_url: certificates_git_url,
-      username: username,
-      type: options[:profile],
-      team_id: team_id
-    )
-    # Build and Archive app
+    cocoapods
     gym(
       scheme: options[:scheme],
-      workspace: workspace,
+      workspace: app_name+'.xcworkspace',
       export_method: options[:method],
+      export_options: {iCloudContainerEnvironment: 'Production'},
       clean: true,
-      output_name: options[:scheme]+".ipa",
-      export_team_id: team_id
+      include_bitcode: true,
+      output_name: options[:scheme]+".ipa"
     )
   end
   
-  lane :publish do |options|
-    # Increase build number - remove if running from an automated branch
-    ensure_git_status_clean
-    increment_build_number(xcodeproj: xcodeproj)
-    commit_version_bump(xcodeproj: xcodeproj)
-    # Create release tag and commit - see https://docs.fastlane.tools/actions/add_git_tag/ to adapt params as needed
-    add_git_tag
-    push_to_git_remote(remote_branch: options[:branch])
-    # Generate build
-    build_and_sign(
-      scheme: options[:scheme],
-      profile: 'appstore',
-      method: 'app-store'
-    )
-    # Upload to TestFlight
-    changelog = changelog_from_git_commits(
+  lane :publish_appstore do |options|
+    # get timestamp
+    datetime = sh("date +%Y%m%d%H%M").chomp
+    # get branch name
+    branch = git_branch()
+    # get app version
+    version = get_version_number(target: options[:scheme])
+    changelog_from_git_commits(
       pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
       date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
       match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
       merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
     )
-    pilot(
-      username: username,
-      team_id: itc_team_id,
-      skip_waiting_for_build_processing: skip_wait
+    # Load an App Store Connect API token
+    api_key = app_store_connect_api_key(
+      key_id: appstore_key_id,
+      issuer_id: appstore_issuer_id,
+      key_filepath: appstore_key_filepath,
+      in_house: false # determines this is an AppStore team
+    )
+    # Submit to TestFlight with the previous token
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
     )
     # send Slack notification - optional
-    version = get_info_plist_value(
-      path: options[:scheme]+"-Info.plist",
-      key: "CFBundleShortVersionString"
-    )
-    build = get_info_plist_value(
-      path: options[:scheme]+"-Info.plist",
-      key: "CFBundleVersion"
-    )
     slack(
       message: "Hi! A new iOS "+options[:scheme]+" build has been submitted to TestFlight",
       payload: {
         "Build Date" => Time.new.to_s,
-        "Release Version" => version+"."+build
+        "Release Version" => version
       },
       channel: slack_channel,
       slack_url: slack_url,
       use_webhook_configured_username_and_icon: true,
       fail_on_error: false,
       success: true
-    )  
+    )
   end
-
-  lane :release_develop do
-    publish(
-      scheme: app_name+'-develop',
-      branch: 'develop'
+  
+  lane :publish_s3 do |options|
+    # get timestamp
+    datetime = sh("date +%Y%m%d%H%M").chomp
+    # get branch name
+    branch = git_branch()
+    # get app version
+    version = get_version_number(target: options[:scheme])
+    # push to S3
+    s3_path = folder+"/ios/"+branch+"/"+version+"-"+datetime+"/"
+    aws_s3(
+      access_key: s3_key,
+      secret_access_key: s3_secret_key,
+      bucket: s3_bucket,
+      region: s3_region,
+      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      path: s3_path,
+      acl: "public-read",
+      upload_metadata: true
+    )
+    # send notification
+    slack(
+      message: "Hi! A new iOS build has been uploaded for "+options[:scheme],
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Release Version" => version,
+        "Location" => lane_context[SharedValues::S3_FOLDER_OUTPUT_PATH],
+        "Download link" => "https://"+s3_bucket+".s3.amazonaws.com/"+s3_path+options[:scheme]+".ipa"
+        },
+      channel: slack_channel,
+      slack_url: slack_url,
+      use_webhook_configured_username_and_icon: true,
+      fail_on_error: false,
+      success: true
     )
   end
 
-  lane :release_staging do
-    publish(
-      scheme: app_name+'-staging',
-      branch: 'staging'
-    )
-  end
-
-  lane :release_production do
-    publish(
-      scheme: app_name+'-production',
-      branch: 'master'
-    )
-  end
-
-  lane :archive_develop do
+#DEVELOP
+  lane :build_develop do
     build_and_sign(
       scheme: app_name+'-develop',
-      profile: 'adhoc',
       method: 'ad-hoc'
     )
   end
 
-  lane :archive_staging do
+  lane :share_develop do
     build_and_sign(
-      scheme: app_name+'-staging',
-      profile: 'appstore',
-      method: 'app-store'
+      scheme: app_name+'-develop',
+      method: 'ad-hoc'
     )
-  end
-
-  lane :archive_production do
-    build_and_sign(
-      scheme: app_name+'-production',
-      profile: 'appstore',
-      method: 'app-store'
-    )
-  end
-
-  lane :debug_develop do
-    test(
+    publish_s3(
       scheme: app_name+'-develop'
     )
   end
 
-  lane :debug_staging do
-    test(
+  lane :release_develop do
+    build_and_sign(
+      scheme: app_name+'-develop',
+      method: 'app-store'
+    )
+    publish_appstore(
+      scheme: app_name+'-develop'
+    )
+  end
+
+  #STAGING
+  lane :build_staging do
+    build_and_sign(
+      scheme: app_name+'-staging',
+      method: 'ad-hoc'
+    )
+  end
+
+  lane :share_staging do
+    build_and_sign(
+      scheme: app_name+'-staging',
+      method: 'ad-hoc'
+    )
+    publish_s3(
       scheme: app_name+'-staging'
     )
   end
 
-  lane :debug_production do
-    test(
+  lane :release_staging do
+    build_and_sign(
+      scheme: app_name+'-staging',
+      method: 'app-store'
+    )
+    publish_appstore(
+      scheme: app_name+'-staging'
+    )
+  end
+  
+  #PRODUCTION
+  lane :build_production do
+    build_and_sign(
+      scheme: app_name+'-production',
+      method: 'ad-hoc'
+    )
+  end
+
+  lane :share_production do
+    build_and_sign(
+      scheme: app_name+'-production',
+      method: 'ad-hoc'
+    )
+    publish_s3(
       scheme: app_name+'-production'
     )
   end
 
+  lane :release_production do
+    build_and_sign(
+      scheme: app_name+'-production',
+      method: 'app-store'
+    )
+    publish_appstore(
+      scheme: app_name+'-production'
+    )
+  end
 end

@@ -1,79 +1,71 @@
-## Build Automation with Fastlane
+Fastlane documentation
+================
+We use [Fastlane](https://docs.fastlane.tools/) for automating the iOS application build and submission
 
-### New Project Setup
+# Installation
 
-Several steps need to be executed before building a project for the first time.
-
-  1. Install latest Xcode command line tools
-  ```
-  xcode-select --install
-  ```
-
-  2. Install latest Fastlane 
-  ```
-  # Using RubyGems
-  sudo gem install fastlane -NV
-  # Alternatively using Homebrew
-  brew install fastlane
-  ```
-
-  3. Create required App Ids in the Apple Developer Portal and App Store Connect 
-  This can be done on the Portal itself or using [fastlane produce](https://docs.fastlane.tools/actions/produce/)
-  ```
-  fastlane produce -u {apple_id} --app-name {app_name} --team-id {team_id} --app-identifier {app_id} 
-  ```
-  4. Create private empty repository to store signing certificates, eg. `git@github.com:rootstrap/{app_name}-certificates.git`
-
-  5. Generate Matchfile with [fastlane match](https://docs.fastlane.tools/actions/match/)
-  ```
-  fastlane match init 
-  ```
-  select `git` as storage mode and specify the URL of the certificates git repo
-
-  6. **optional** If the Developer account has old/invalid certificates which are not shared, it is recommended to use the `nuke` action to clear the existing certificates (*use with caution*):
-  ```
-  fastlane match nuke development
-  fastlane match nuke distribution
-  ```
-
-  7. **optional** If wanting to reuse existing distribution certificates, these can be imported into the certificates repository using match with the `import` action:
-  ```
-  fastlane match import \
-    --username {{username}} \
-    --git_url {{certificates_git_url}} \
-    --team_id {{team_id}} \
-    --type appstore  \
-    --app_identifier com.{{company}}.{{app_name}} \
-  ```
-    * Fastlane will prompt for location of the `.cer` and `.p12` files
-    * Fastlane will require setting a passphrase for encrypting the files in git
-
-
-  8. Generate app bundle identifiers 
-  ```
-  fastlane match appstore -u {{username}} --team-id {{team_id}} -a com.{{company}}.{{app_name}} 
-  ```
-
-  9. Check the `fastlane/Appfile` and `fastlane/Fastfile`; set and/or validate the required values and environment variables before use:
-
- 
-### Fastlane usage
+Make sure you have the latest version of the Xcode command line tools installed:
 
 ```
-fastlane ios {{lane}}
+xcode-select --install
 ```
 
-Lanes for each deployment target are provided with some basic behavior, which can be modified as needed:
+Install _fastlane_ using
+```
+[sudo] gem install fastlane -NV
+```
+or alternatively using `brew cask install fastlane`
 
-- Each target has three options: `debug_*`, `archive_*` and `release_*`.
-  - The `debug` lane will install pod dependencies and run tests 
-  - The `archive` lane will additionally build the application with the specified profile and certificate, keeping the `.ipa` in the local folder for upload.
-  - The `release` lane will:
-    - Check the repo status (it has to be clean, with no pending changes)
-    - Increment the build number.
-    - Tag the new release and push it to the set branch (dev and staging push to develop and production to master by default, but it's configurable).
-    - Build the app signed with an **App Store** certificate
-    - Generate a changelog from the commit diff between this new version and the previous.
-    - Upload to testflight and wait until it's processed.
+# Project setup
 
-- Additionally, lane `test_develop` can be used by the CI job to only run the unit test against simulators (specified by `devices` variable in Fastfile)
+1. Generate certificate and profiles for each target
+2. [Disable automatic signing](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html#//apple_ref/doc/uid/TP40005929-CH4-SW7) for each target in XCode and associate to the right provisioning profile
+3. For uploading the builds to TestFlight, [AppStore Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api) keys are required
+4. For uploading the builds to S3, [AWS keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) with valid permissions are required
+
+# Required environment variables
+
+* `FASTLANE_USER`                         : Your App Store Connect / Apple Developer Portal id used for managing certificates and submitting to the App Store
+* `FASTLANE_PASSWORD`                     : Your App Store Connect / Apple Developer Portal password, usually only needed if you also set the 
+* `FASTLANE_TEAM_ID`                      : Developer Portal team id
+* `LANG` and `LC_ALL`                     : These set up the locale your shell and all the commands you execute run at. These need to be set to UTF-8 to work correctly,for example en_US.UTF-8
+* `APPLE_CERT`                            : Local path to distribution certificate file to be used for signing the build 
+* `APPLE_KEY`                             : Private key (.p12 file) used for encrypting certificate
+* `APP_STORE_CONNECT_API_KEY_KEY_ID`      : AppStore Connect API ID
+* `APP_STORE_CONNECT_API_KEY_ISSUER_ID`   : AppStore Connect issuer ID
+* `APP_STORE_CONNECT_API_KEY_FILE`        : location of .p8 API key file
+* `AWS_ACCESS_KEY_ID`                     : credentials for uploading files to S3
+* `AWS_SECRET_ACCESS_KEY`
+* `AWS_REGION`
+* `BUILDS_BUCKET`                         : S3 bucket to upload the build to
+* `SLACK_CHANNEL`                         : Slack webhook url for sending notifications upon completion  
+* `SLACK_URL`                             : Slack channel name
+
+# Available Actions
+
+## build_*
+* Runs `pod install`
+* If needed downloads and installs the corresponding distribution certificate and profile
+* Builds and archive corresponding target (.ipa file is kept locally)
+```
+fastlane build_develop
+```
+
+## share_*
+* Runs the build steps for the corresponding target
+* Gathers build version
+* Uploads the resulting .ipa to S3
+* Sends a Slack notification
+```
+fastlane share_develop
+```
+
+## release_*
+* Checks for the Git status
+* Runs the build steps for the corresponding target
+* Generates changelog
+* Pushes the resulting .ipa to TestFlight
+* Sends a Slack notification
+```
+fastlane release_develop
+```
