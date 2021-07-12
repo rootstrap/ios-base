@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //Add global constants here
 
@@ -26,4 +27,23 @@ struct App {
 enum ErrorDomain: String {
   case generic = "GenericError"
   case parsing = "ParsingError"
+}
+
+struct UI {
+  enum Defaults {
+  }
+  
+  enum ViewController {
+  }
+  
+  enum Button {
+    static let cornerRadious: CGFloat = 10.0
+    static let height: CGFloat = 45.0
+  }
+  
+  enum TextField {
+  }
+  
+  enum Label {
+  }
 }
