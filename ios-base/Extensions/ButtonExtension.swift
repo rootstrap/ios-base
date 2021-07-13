@@ -15,9 +15,8 @@ extension UIButton {
     color: UIColor = .buttonBackground,
     title: String = "",
     titleColor: UIColor = .white,
-    cornerRadius: CGFloat = UI.Button.cornerRadious,
+    cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
-    width: CGFloat = UI.Button.width,
     font: UIFont = .h3Medium,
     target: Any? = nil,
     action: Selector? = nil
@@ -45,7 +44,7 @@ extension UIButton {
     color: UIColor = .buttonBackground,
     title: String = "",
     titleColor: UIColor = .white,
-    cornerRadius: CGFloat = UI.Button.cornerRadious,
+    cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
     font: UIFont = .h3Medium
   ) {

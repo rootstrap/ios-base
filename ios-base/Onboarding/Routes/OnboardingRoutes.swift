@@ -42,8 +42,8 @@ enum OnboardingRoutes: Route {
   }
 
   private func buildFirstViewController() -> UIViewController {
-    let first = FirstViewController()
-    first.viewModel = FirstViewModel()
-    return first
+    let firstViewController = FirstViewController()
+    firstViewController.viewModel = FirstViewModel()
+    return firstViewController
   }
 }

@@ -58,6 +58,7 @@
 		E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBB1C01DD21D18000D6740 /* SessionManager.swift */; };
 		FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54D5871E11C59600F0DBEA /* FirstViewController.swift */; };
 		FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABDC9211EE1EB2B000DDAC3 /* ConfigurationManager.swift */; };
+		FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8C0271269E2F2E003F86CE /* UIConstants.swift */; };
 		FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */; };
 		FDFAAB09269CCED70007DB8B /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */; };
 		FDFAAB0B269CD56D0007DB8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFAAB0A269CD56D0007DB8B /* Localizable.strings */; };
@@ -165,6 +166,7 @@
 		F4C38E87D04367D32253026B /* Pods-ios-base-ios-baseUITests.uitests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-ios-baseUITests.uitests.xcconfig"; path = "Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests.uitests.xcconfig"; sourceTree = "<group>"; };
 		FA54D5871E11C59600F0DBEA /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		FABDC9211EE1EB2B000DDAC3 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		FD8C0271269E2F2E003F86CE /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		FDFAAB0A269CD56D0007DB8B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				9B88CC661CAB305900AE60C5 /* Constants.swift */,
+				FD8C0271269E2F2E003F86CE /* UIConstants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */,
 				9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */,
 				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
+				FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */,
 				074D20D7248E98EC002A39B4 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

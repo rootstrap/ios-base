@@ -10,12 +10,12 @@ import UIKit
 import RSFontSizes
 
 extension UIFont {
-  static let h1Regular: UIFont = .systemFont(ofSize: 32, weight: .regular)
-  static let h2Regular: UIFont = .systemFont(ofSize: 16, weight: .regular)
-  static let h3Regular: UIFont = .systemFont(ofSize: 15, weight: .regular)
-  static let h1Medium: UIFont = .systemFont(ofSize: 32, weight: .medium)
-  static let h2Medium: UIFont = .systemFont(ofSize: 16, weight: .medium)
-  static let h3Medium: UIFont = .systemFont(ofSize: 15, weight: .medium)
+  static let h1Regular: UIFont = .font(size: 32).withWeight(.regular)
+  static let h2Regular: UIFont = .font(size: 16).withWeight(.regular)
+  static let h3Regular: UIFont = .font(size: 15).withWeight(.regular)
+  static let h1Medium: UIFont = .font(size: 32).withWeight(.medium)
+  static let h2Medium: UIFont = .font(size: 16).withWeight(.regular)
+  static let h3Medium: UIFont = .font(size: 15).withWeight(.regular)
   
   private func withWeight(_ weight: UIFont.Weight) -> UIFont {
     var attributes = fontDescriptor.fontAttributes
@@ -32,7 +32,7 @@ extension UIFont {
     return UIFont(descriptor: descriptor, size: pointSize)
   }
   
-  static func font(withName name: String, size: CGFloat) -> UIFont {
+  static func font(withName name: String = "", size: CGFloat) -> UIFont {
     let size = Font.PointSize.proportional(to: (.screen6_5Inch,
                                                 size)).value()
     let font = UIFont(name: name,

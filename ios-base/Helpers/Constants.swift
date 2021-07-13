@@ -28,26 +28,3 @@ enum ErrorDomain: String {
   case generic = "GenericError"
   case parsing = "ParsingError"
 }
-
-struct UI {
-  enum Defaults {
-    static let margin: CGFloat = 32
-  }
-  
-  enum ViewController {
-    static let topMargin: CGFloat = 72
-  }
-  
-  enum Button {
-    static let cornerRadious: CGFloat = 22.0
-    static let height: CGFloat = 45.0
-    static let width: CGFloat = 200.0
-    static let spacing: CGFloat = 20.0
-  }
-  
-  enum TextField {
-  }
-  
-  enum Label {
-  }
-}

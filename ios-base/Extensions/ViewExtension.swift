@@ -87,6 +87,14 @@ extension UIView {
     ])
   }
   
+  /// Center a subview already added to its parent view
+  ///
+  /// - Parameters:
+  ///   - subview: UIView to be centered on its parent
+  ///   - verticalOffset: CGFloat indicating the vertical displacement of the view
+  ///   - horizontalOffset: CGFloat indicating the horizontal displacement of the view
+  ///   - vertically: Boolean that indicates if the view will be center vertically
+  ///   - horizontally: Boolean that indicates if the view will be center horizontally
   func center(
     subview: UIView,
     verticalOffset: CGFloat = 0,
@@ -94,6 +102,10 @@ extension UIView {
     vertically: Bool = true,
     horizontally: Bool = true
   ) {
+    if !subviews.contains(subview) {
+      addSubview(subview)
+    }
+    
     if vertically {
       subview.centerYAnchor.constraint(
         equalTo: centerYAnchor,
