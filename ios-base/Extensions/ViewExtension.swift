@@ -53,6 +53,61 @@ extension UIView {
       self?.layoutIfNeeded()
     })
   }
+  
+  // MARK: Constrains Helper
+  
+  func attachHorizontally(
+    subview: UIView,
+    leadingMargin: CGFloat = UI.Defaults.margin,
+    trailingMargin: CGFloat = UI.Defaults.margin
+  ) {
+    NSLayoutConstraint.activate([
+      subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leadingMargin),
+      subview.trailingAnchor.constraint(
+        equalTo: trailingAnchor,
+        constant: -trailingMargin
+      )
+    ])
+  }
+  
+  func addSubviews(subviews: [UIView]) {
+    for subview in subviews {
+      addSubview(subview)
+    }
+  }
+  
+  func attachVertically(
+    subview: UIView,
+    topMargin: CGFloat = UI.Defaults.margin,
+    bottomMargin: CGFloat = UI.Defaults.margin
+  ) {
+    NSLayoutConstraint.activate([
+      subview.topAnchor.constraint(equalTo: topAnchor, constant: topMargin),
+      subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -bottomMargin)
+    ])
+  }
+  
+  func center(
+    subview: UIView,
+    verticalOffset: CGFloat = 0,
+    horizontalOffset: CGFloat = 0,
+    vertically: Bool = true,
+    horizontally: Bool = true
+  ) {
+    if vertically {
+      subview.centerYAnchor.constraint(
+        equalTo: centerYAnchor,
+        constant: verticalOffset
+      ).isActive = true
+    }
+    
+    if horizontally {
+      subview.centerXAnchor.constraint(
+        equalTo: centerXAnchor,
+        constant: horizontalOffset
+      ).isActive = true
+    }
+  }
 }
 
 extension Array where Element: UIView {

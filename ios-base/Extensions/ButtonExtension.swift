@@ -11,7 +11,37 @@ import UIKit
 
 extension UIButton {
   
-  private func primaryButton(
+  static func primaryButton(
+    color: UIColor = .buttonBackground,
+    title: String = "",
+    titleColor: UIColor = .white,
+    cornerRadius: CGFloat = UI.Button.cornerRadious,
+    height: CGFloat = UI.Button.height,
+    width: CGFloat = UI.Button.width,
+    font: UIFont = .h3Medium,
+    target: Any? = nil,
+    action: Selector? = nil
+  ) -> UIButton {
+    let button = UIButton()
+    button.setup(
+      color: color,
+      title: title,
+      titleColor: titleColor,
+      cornerRadius: cornerRadius,
+      height: height,
+      font: font
+    )
+    if let action = action {
+      button.addTarget(
+        target,
+        action: action,
+        for: .touchUpInside
+      )
+    }
+    return button
+  }
+  
+  private func setup(
     color: UIColor = .buttonBackground,
     title: String = "",
     titleColor: UIColor = .white,

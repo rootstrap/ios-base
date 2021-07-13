@@ -16,4 +16,5 @@ extension UIColor {
   static let facebookButton = UIColor(named: "facebookButton")!
   static let mainTitle = UIColor(named: "mainTitle")!
   static let redirectButtonTitle = UIColor(named: "redirectButtonTitle")!
+  static let screenBackground = UIColor(named: "screenBackground")!
 }

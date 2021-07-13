@@ -16,7 +16,7 @@ extension UILabel {
     font: UIFont = .h1Regular,
     textColor: UIColor = .mainTitle,
     backgroundColor: UIColor = .clear,
-    numberOfLines: Int = 1,
+    numberOfLines: Int = 0,
     textAlignment: NSTextAlignment = .left
   ) -> UILabel {
     let label = UILabel()
