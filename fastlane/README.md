@@ -31,6 +31,7 @@ or alternatively using `brew cask install fastlane`
 * `LANG` and `LC_ALL`                     : These set up the locale your shell and all the commands you execute run at. These need to be set to UTF-8 to work correctly,for example en_US.UTF-8
 * `APPLE_CERT`                            : Local path to distribution certificate file to be used for signing the build 
 * `APPLE_KEY`                             : Private key (.p12 file) used for encrypting certificate
+* `APPLE_KEY_PASSWORD`                    : Password to private key file
 * `APP_STORE_CONNECT_API_KEY_KEY_ID`      : AppStore Connect API ID
 * `APP_STORE_CONNECT_API_KEY_ISSUER_ID`   : AppStore Connect issuer ID
 * `APP_STORE_CONNECT_API_KEY_FILE`        : location of .p8 API key file
