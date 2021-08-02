@@ -55,70 +55,76 @@ extension UIView {
   }
   
   // MARK: Constrains Helper
-  
-  func attachHorizontally(
-    subview: UIView,
-    leadingMargin: CGFloat = UI.Defaults.margin,
-    trailingMargin: CGFloat = UI.Defaults.margin
-  ) {
-    NSLayoutConstraint.activate([
-      subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leadingMargin),
-      subview.trailingAnchor.constraint(
-        equalTo: trailingAnchor,
-        constant: -trailingMargin
-      )
-    ])
-  }
-  
+
   func addSubviews(subviews: [UIView]) {
     for subview in subviews {
       addSubview(subview)
     }
   }
-  
+
+  func attachHorizontally(
+    to view: UIView,
+    leadingMargin: CGFloat = UI.Defaults.margin,
+    trailingMargin: CGFloat = UI.Defaults.margin
+  ) {
+    NSLayoutConstraint.activate([
+      leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingMargin),
+      trailingAnchor.constraint(
+        equalTo: view.trailingAnchor,
+        constant: -trailingMargin
+      )
+    ])
+  }
+
   func attachVertically(
-    subview: UIView,
+    to view: UIView,
     topMargin: CGFloat = UI.Defaults.margin,
     bottomMargin: CGFloat = UI.Defaults.margin
   ) {
     NSLayoutConstraint.activate([
-      subview.topAnchor.constraint(equalTo: topAnchor, constant: topMargin),
-      subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -bottomMargin)
+      topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin),
+      bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomMargin)
     ])
   }
   
-  /// Center a subview already added to its parent view
+  /// Centers the view horizontally  in a specific view
   ///
   /// - Parameters:
-  ///   - subview: UIView to be centered on its parent
-  ///   - verticalOffset: CGFloat indicating the vertical displacement of the view
-  ///   - horizontalOffset: CGFloat indicating the horizontal displacement of the view
-  ///   - vertically: Boolean that indicates if the view will be center vertically
-  ///   - horizontally: Boolean that indicates if the view will be center horizontally
-  func center(
-    subview: UIView,
-    verticalOffset: CGFloat = 0,
-    horizontalOffset: CGFloat = 0,
-    vertically: Bool = true,
-    horizontally: Bool = true
+  ///   - view: UIView on which the view will be centered horizontally
+  ///   - withOffset: CGFloat indicating the horizontal displacement of the view
+  func centerHorizontallyIn(
+    _ view: UIView,
+    withOffset offset: CGFloat = 0
   ) {
-    if !subviews.contains(subview) {
-      addSubview(subview)
+    guard superview == view else {
+      assertionFailure("View parameter and view's superview must be equal.\nView: \(self)")
+      return
     }
-    
-    if vertically {
-      subview.centerYAnchor.constraint(
-        equalTo: centerYAnchor,
-        constant: verticalOffset
-      ).isActive = true
+
+    centerXAnchor.constraint(
+      equalTo: view.centerXAnchor,
+      constant: offset
+    ).isActive = true
+  }
+
+  /// Centers the view vertically  in a specific view
+  ///
+  /// - Parameters:
+  ///   - view: UIView on which the view will be centered vertically
+  ///   - withOffset: CGFloat indicating the vertical displacement of the view
+  func centerVerticallyIn(
+    _ view: UIView,
+    withOffset offset: CGFloat = 0
+  ) {
+    guard superview == view else {
+      assertionFailure("View parameter and view's superview must be equal.\nView: \(self)")
+      return
     }
-    
-    if horizontally {
-      subview.centerXAnchor.constraint(
-        equalTo: centerXAnchor,
-        constant: horizontalOffset
-      ).isActive = true
-    }
+
+    centerYAnchor.constraint(
+      equalTo: view.centerYAnchor,
+      constant: offset
+    ).isActive = true
   }
 }
 
