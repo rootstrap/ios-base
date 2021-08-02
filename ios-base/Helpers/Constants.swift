@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 //Add global constants here
 

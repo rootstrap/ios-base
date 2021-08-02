@@ -31,11 +31,7 @@ extension UIButton {
       font: font
     )
     if let action = action {
-      button.addTarget(
-        target,
-        action: action,
-        for: .touchUpInside
-      )
+      button.addTarget(target, action: action, for: .touchUpInside)
     }
     return button
   }
