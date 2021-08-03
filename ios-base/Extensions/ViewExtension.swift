@@ -86,41 +86,41 @@ extension UIView {
       bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomMargin)
     ])
   }
-  
-  /// Centers the view horizontally  in a specific view
+
+  /// Centers the view horizontally and vertically with a specific view
+  ///
+  /// - Parameters:
+  ///   - view: UIView on which the view will be centered horizontally
+  ///   - withOffset: CGPoint indicating the horizontal and vertical displacement of the view
+  func center(_ view: UIView, withOffset offset: CGPoint = .zero) {
+    centerHorizontally(with: view, withOffset: offset.x)
+    centerVertically(with: view, withOffset: offset.y)
+  }
+
+  /// Centers the view horizontally with a specific view
   ///
   /// - Parameters:
   ///   - view: UIView on which the view will be centered horizontally
   ///   - withOffset: CGFloat indicating the horizontal displacement of the view
-  func centerHorizontallyIn(
-    _ view: UIView,
+  func centerHorizontally(
+    with view: UIView,
     withOffset offset: CGFloat = 0
   ) {
-    guard superview == view else {
-      assertionFailure("View parameter and view's superview must be equal.\nView: \(self)")
-      return
-    }
-
     centerXAnchor.constraint(
       equalTo: view.centerXAnchor,
       constant: offset
     ).isActive = true
   }
 
-  /// Centers the view vertically  in a specific view
+  /// Centers the view vertically with a specific view
   ///
   /// - Parameters:
   ///   - view: UIView on which the view will be centered vertically
   ///   - withOffset: CGFloat indicating the vertical displacement of the view
-  func centerVerticallyIn(
-    _ view: UIView,
+  func centerVertically(
+    with view: UIView,
     withOffset offset: CGFloat = 0
   ) {
-    guard superview == view else {
-      assertionFailure("View parameter and view's superview must be equal.\nView: \(self)")
-      return
-    }
-
     centerYAnchor.constraint(
       equalTo: view.centerYAnchor,
       constant: offset

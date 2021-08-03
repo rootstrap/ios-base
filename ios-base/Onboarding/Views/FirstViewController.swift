@@ -68,8 +68,8 @@ class FirstViewController: UIViewController,
   }
   
   private func activateConstraints() {
-    facebookSignButton.centerHorizontallyIn(view)
-    signInButton.centerHorizontallyIn(view)
+    facebookSignButton.centerHorizontally(with: view)
+    signInButton.centerHorizontally(with: view)
     titleLabel.attachHorizontally(to: view)
     signUpButton.attachHorizontally(to: view)
     
