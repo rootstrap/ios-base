@@ -18,13 +18,11 @@ env:
   KEYCHAIN_PASSWORD: ''
   # iOS Release - all sensitive values should be stored as repo Secrets
   APPLE_PROFILE: ${{ secrets.APPLE_PROFILE }}               # Filename for the provisioning profile, eg AppStore_comrootstraiosbasedevelop.mobileprovision
-  APPLE_CERT: ${{ secrets.APPLE_CERT }}
-  APPLE_KEY: ${{ secrets.APPLE_KEY }}
+  APPLE_CERT: ${{ secrets.APPLE_CERT }}                     # Filename for the distribution certificate (.cer) that should be uploaded to S3 bucket
+  APPLE_KEY: ${{ secrets.APPLE_KEY }}                       # Filename for the key (.p12) that should be uploaded to S3 bucket
   APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}
   APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}                # Organization's team ID in the Developer Portal
   FASTLANE_ITC_TEAM_ID: ${{ secrets.APPLE_TEAM_ITC_ID}}     # iTunes connect team ID
-  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}               # Apple Developer Portal user
-  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}       # Apple Developer Portal password
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
                                                             # Apple Application-specific password for uploading to TestFlight
   APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
