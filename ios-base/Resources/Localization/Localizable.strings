@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  ios-base
+
+  Created by Karen Stoletniy on 12/7/21.
+  Copyright © 2021 Rootstrap Inc. All rights reserved.
+*/
+
+// MARK: FIRST SCREEN
+"firstscreen_title" = "Welcome to \nRS iOS BASE.";
+"firstscreen_login_button_title" = "LOG IN";
+"firstscreen_facebook_button_title" = "FACEBOOK CONNECT";
+"firstscreen_registre_button_title" = "Don’t have an account? Let’s create one ►";
+
+// MARK: SIGN IN SCREEN
+"signin_title" = "Sign In";
+"signin_email_placeholder" = "Email";
+"signin_password_placeholder" = "Password";
+"signin_button_title" = "LOG IN";
+
+// MARK: SIGN UP SCREEN
+"signup_title" = "Sign Up";
+"signup_email_placeholder" = "Email";
+"signup_password_placeholder" = "Password";
+"signup_confirm_password_placeholder" = "Confirm Password";
+"signup_button_title" = "SIGN UP";
+
+// MARK: HOME SCREEN
+
+"homescreen_title" = "You are signed in/up";
+"homescreen_get_profile_button_title" = "Get my profile";
+"homescreen_logout_button_title" = "LOG OUT";
+"homescreen_delete_button_title" = "DELETE ACCOUNT";
