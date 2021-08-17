@@ -1,126 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aXS-GV-C4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="XFt-23-ycy">
-            <objects>
-                <navigationController storyboardIdentifier="StartViewController" id="aXS-GV-C4h" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KuO-wr-86C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TG7-O6-CrN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1PI-jp-5Wj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-418" y="429"/>
-        </scene>
-        <!--First View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="FirstViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="FirstViewController" customModule="ios_base" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVq-bX-pA7">
-                                <rect key="frame" x="87" y="474" width="201" height="45"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.76094285102739723" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" identifier="GoToSignInButton"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="ICR-xw-Heb"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="201" id="chz-DM-F9g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <inset key="contentEdgeInsets" minX="18" minY="14" maxX="18" maxY="13"/>
-                                <state key="normal" title="LOG IN">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signInTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOB-TC-Gqv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-2n-nei">
-                                <rect key="frame" x="12" y="604" width="351" height="45"/>
-                                <accessibility key="accessibilityConfiguration" identifier="GoToSignUpButton">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="DCe-Ah-qyc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <inset key="contentEdgeInsets" minX="24" minY="14" maxX="24" maxY="13"/>
-                                <state key="normal" title="Don’t have an account? Let’s create one ►">
-                                    <color key="titleColor" red="0.21931966145833334" green="0.21931966145833334" blue="0.21931966145833334" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUpTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="ujP-qo-Kgd"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMy-eR-RsW">
-                                <rect key="frame" x="32" y="72" width="189.5" height="76.5"/>
-                                <string key="text">Welcome to
-RS iOS BASE.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" red="0.45508993310866014" green="0.41961441863798504" blue="0.40671423155773956" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3he-61-Jm3">
-                                <rect key="frame" x="62" y="539" width="251" height="45"/>
-                                <color key="backgroundColor" red="0.031372549020000001" green="0.22352941179999999" blue="0.47843137250000001" alpha="0.72792701199999998" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="CaE-LB-M3o"/>
-                                </constraints>
-                                <state key="normal" title="FACEBOOK CONNECT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebookLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="DoD-Nz-Y60"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.95331488715277779" green="0.95331488715277779" blue="0.95331488715277779" alpha="1" colorSpace="calibratedRGB"/>
-                        <accessibility key="accessibilityConfiguration" identifier="StartView"/>
-                        <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EN8-2n-nei" secondAttribute="bottom" constant="18" id="0uu-hu-FDa"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nMy-eR-RsW" secondAttribute="trailing" constant="20" symbolic="YES" id="A5X-Hs-TIn"/>
-                            <constraint firstItem="3he-61-Jm3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BEE-Zm-ac7"/>
-                            <constraint firstItem="EN8-2n-nei" firstAttribute="top" secondItem="3he-61-Jm3" secondAttribute="bottom" constant="20" id="DTg-CJ-II7"/>
-                            <constraint firstItem="nMy-eR-RsW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Gwo-18-Uld"/>
-                            <constraint firstItem="nMy-eR-RsW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="72" id="QWv-2L-MoY"/>
-                            <constraint firstItem="3he-61-Jm3" firstAttribute="top" secondItem="OVq-bX-pA7" secondAttribute="bottom" constant="20" id="Tg0-h2-Y9E"/>
-                            <constraint firstItem="EN8-2n-nei" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="12" id="Vzk-Jr-A7g"/>
-                            <constraint firstAttribute="trailing" secondItem="EN8-2n-nei" secondAttribute="trailing" constant="12" id="fep-Rk-VcS"/>
-                            <constraint firstItem="OVq-bX-pA7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j0q-ZA-Sud"/>
-                            <constraint firstItem="3he-61-Jm3" firstAttribute="width" secondItem="OVq-bX-pA7" secondAttribute="width" multiplier="1.25" id="znp-RY-UmS"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" id="G7m-RB-EXL"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="facebookSign" destination="3he-61-Jm3" id="tz3-o6-lDl"/>
-                        <outlet property="signIn" destination="OVq-bX-pA7" id="PMG-yl-8ea"/>
-                        <outlet property="signUp" destination="EN8-2n-nei" id="mGt-dJ-RXu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="381.60000000000002" y="428.63568215892059"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="ZQL-UK-H2d">
             <objects>
@@ -133,7 +20,7 @@ RS iOS BASE.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbs-uB-Nr7">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbs-uB-Nr7">
                                 <rect key="frame" x="87" y="562" width="201" height="45"/>
                                 <color key="backgroundColor" red="0.1831054688" green="0.1831054688" blue="0.1831054688" alpha="0.76094285100000003" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SignInButton"/>
@@ -182,7 +69,7 @@ RS iOS BASE.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.95331488720000002" green="0.95331488720000002" blue="0.95331488720000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration" identifier="SignInView"/>
                         <constraints>
                             <constraint firstItem="VXP-E8-PA8" firstAttribute="trailing" secondItem="SGW-mB-J78" secondAttribute="trailing" id="4QR-x6-Q0p"/>
@@ -222,14 +109,14 @@ RS iOS BASE.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in/up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-Nf-PW5">
-                                <rect key="frame" x="49" y="72" width="277.5" height="38.5"/>
+                                <rect key="frame" x="49" y="72" width="277" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03z-HI-tG7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03z-HI-tG7">
                                 <rect key="frame" x="75" y="583" width="225" height="44"/>
-                                <color key="backgroundColor" red="0.69471571180000002" green="0.27205175819999999" blue="0.35792462899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.69411764705882351" green="0.27058823529411763" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="DeleteAccountButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="GFl-9u-Vux"/>
@@ -243,18 +130,18 @@ RS iOS BASE.</string>
                                     <action selector="tapOnLogOutButton:" destination="K4y-mn-w4p" eventType="touchUpInside" id="gCc-47-Ziz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-gz-amO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-gz-amO">
                                 <rect key="frame" x="75" y="317.5" width="225" height="32"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GetMyProfileButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Get my profile">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <connections>
                                     <action selector="tapOnGetMyProfile:" destination="K4y-mn-w4p" eventType="touchUpInside" id="HQj-iH-IxE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-gP-X0k">
                                 <rect key="frame" x="75" y="524" width="225" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LogoutButton"/>
@@ -337,7 +224,7 @@ RS iOS BASE.</string>
                                     <action selector="formEditingChange:" destination="1Oa-ww-vdW" eventType="editingChanged" id="mMg-xq-3Hm"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-MA-2oV">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-MA-2oV">
                                 <rect key="frame" x="87" y="570" width="201" height="45"/>
                                 <color key="backgroundColor" red="0.1831054688" green="0.1831054688" blue="0.1831054688" alpha="0.76094285100000003" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="SignUpButton"/>
@@ -353,7 +240,7 @@ RS iOS BASE.</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaK-dC-F7z">
-                                <rect key="frame" x="32" y="84" width="109" height="38.5"/>
+                                <rect key="frame" x="32" y="84" width="109.5" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.45508993310000001" green="0.41961441859999998" blue="0.40671423159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -405,4 +292,9 @@ RS iOS BASE.</string>
             <point key="canvasLocation" x="949.60000000000002" y="1178.8605697151424"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

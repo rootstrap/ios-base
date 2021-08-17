@@ -53,6 +53,79 @@ extension UIView {
       self?.layoutIfNeeded()
     })
   }
+  
+  // MARK: Constrains Helper
+
+  func addSubviews(subviews: [UIView]) {
+    for subview in subviews {
+      addSubview(subview)
+    }
+  }
+
+  func attachHorizontally(
+    to view: UIView,
+    leadingMargin: CGFloat = UI.Defaults.margin,
+    trailingMargin: CGFloat = UI.Defaults.margin
+  ) {
+    NSLayoutConstraint.activate([
+      leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingMargin),
+      trailingAnchor.constraint(
+        equalTo: view.trailingAnchor,
+        constant: -trailingMargin
+      )
+    ])
+  }
+
+  func attachVertically(
+    to view: UIView,
+    topMargin: CGFloat = UI.Defaults.margin,
+    bottomMargin: CGFloat = UI.Defaults.margin
+  ) {
+    NSLayoutConstraint.activate([
+      topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin),
+      bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomMargin)
+    ])
+  }
+
+  /// Centers the view horizontally and vertically with a specific view
+  ///
+  /// - Parameters:
+  ///   - view: UIView on which the view will be centered horizontally
+  ///   - withOffset: CGPoint indicating the horizontal and vertical displacement of the view
+  func center(_ view: UIView, withOffset offset: CGPoint = .zero) {
+    centerHorizontally(with: view, withOffset: offset.x)
+    centerVertically(with: view, withOffset: offset.y)
+  }
+
+  /// Centers the view horizontally with a specific view
+  ///
+  /// - Parameters:
+  ///   - view: UIView on which the view will be centered horizontally
+  ///   - withOffset: CGFloat indicating the horizontal displacement of the view
+  func centerHorizontally(
+    with view: UIView,
+    withOffset offset: CGFloat = 0
+  ) {
+    centerXAnchor.constraint(
+      equalTo: view.centerXAnchor,
+      constant: offset
+    ).isActive = true
+  }
+
+  /// Centers the view vertically with a specific view
+  ///
+  /// - Parameters:
+  ///   - view: UIView on which the view will be centered vertically
+  ///   - withOffset: CGFloat indicating the vertical displacement of the view
+  func centerVertically(
+    with view: UIView,
+    withOffset offset: CGFloat = 0
+  ) {
+    centerYAnchor.constraint(
+      equalTo: view.centerYAnchor,
+      constant: offset
+    ).isActive = true
+  }
 }
 
 extension Array where Element: UIView {

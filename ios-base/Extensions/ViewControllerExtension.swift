@@ -49,4 +49,8 @@ extension UIViewController {
       navigationController?.pushViewController(viewController, animated: true)
     }
   }
+  
+  func applyDefaultUIConfigs() {
+    view.backgroundColor = .screenBackground
+  }
 }
