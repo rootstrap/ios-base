@@ -10,7 +10,7 @@ target 'ios-base' do
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
   pod 'R.swift', '~> 5.0.3'
-  pod 'SwiftLint'
+  pod 'SwiftLint', '~> 0.43.1'
 
   # Uncomment if needed ---
   # pod 'PagedLists', '~> 1.0.0'
