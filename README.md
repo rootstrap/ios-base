@@ -41,7 +41,7 @@ To manage user and session persistence after the original sign in/up we store th
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
  - [R.swift](https://github.com/mac-cain13/R.swift) for strongly typed and autocompleted assets, segues and more.
-
+ - [Firebase](https://github.com/firebase/firebase-ios-sdk) for tools to help you build, grow and monetize your app.
 
 #### Utilities
 
@@ -61,8 +61,19 @@ We have developed other libraries that can be helpful and you could integrate wi
  - [FBSDKCoreKit](https://github.com/facebook/facebook-ios-sdk) facebook pods dependency.
  - [FBSDKLoginKit](https://github.com/facebook/facebook-ios-sdk) for facebook login.
 
+## Mandatory configuration
+#### Firebase
+
+In order for the project to run, you have to follow these steps:
+1. Register your app with Firebase.
+2. Download Firebase configuration file `GoogleService-Info.plist` from your account.
+3. Add downloaded file from previous step to the root of your project (replacing the existing one).
+4. Done :)
+
+See the [Firebase documentation](https://firebase.google.com/docs/ios/setup) for more information.
+
 ## Optional configuration
-#### facebook
+#### Facebook
 1. In `info.plist` on the URL types array, find `fbXXXXXXXXXXX` and replace it for the string "fb" + the ID of your app. i.e: `fb435272928934`.
 2. Change the `FacebookAppID` value for the same AppID that you replace above.
 3. Change the `FacebookDisplayName` value for the name of the app on Facebook.
@@ -94,8 +105,7 @@ We strongly recommend that all private keys be added to a `.plist` file that wil
 
 We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) for storing `.plist` files containing Third Party keys, as well as any other sensitive files. Alternatively when not using Fastlane Match (eg might not be compatible with some CICD systems), AWS S3 can also be used for storing Certificates, Private Keys and Profiles required for app signing. The CICD code examples (described below) make use of the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) to download any files relevant for our project from a predefined bucket and folder 
 
-Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**]
-(https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
+Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
 
 
 ## Automated Build and Deployment using Fastlane
