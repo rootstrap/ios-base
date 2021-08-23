@@ -71,6 +71,7 @@ PODS:
   - RSFontSizes (1.0.2):
     - Device (~> 3.1.2)
   - Swifter (1.4.7)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
   - Swifter (~> 1.4.7)
+  - SwiftLint (~> 0.43.1)
 
 SPEC REPOS:
   trunk:
@@ -105,6 +107,7 @@ SPEC REPOS:
     - R.swift.Library
     - RSFontSizes
     - Swifter
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -126,7 +129,8 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
   Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 4f3f540230adcc23bc2c88e628e6851c38a7c3b0
+PODFILE CHECKSUM: dc61e6efb399e5661257f09af3c799e7f8af1085
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2
