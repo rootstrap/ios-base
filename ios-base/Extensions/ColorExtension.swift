@@ -8,6 +8,7 @@
 
 import UIKit
 
+// swiftlint:disable force_unwrapping
 extension UIColor {
   
   static let buttonBackground = UIColor(named: "buttonBackground")!

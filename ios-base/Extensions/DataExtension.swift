@@ -8,9 +8,11 @@
 
 import Foundation
 
-//Helper to retrieve the right string value for base64 API uploaders
+// Helper to retrieve the right string value for base64 API uploaders
 extension Data {
+  
   func asBase64Param(withType type: MimeType = .jpeg) -> String {
-    return "data:\(type.rawValue);base64,\(self.base64EncodedString())"
+    "data:\(type.rawValue);base64,\(self.base64EncodedString())"
   }
+  
 }

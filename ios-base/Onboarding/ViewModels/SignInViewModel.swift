@@ -35,7 +35,7 @@ class SignInViewModelWithCredentials {
   }
   
   var hasValidCredentials: Bool {
-    return email.isEmailFormatted() && !password.isEmpty
+    email.isEmailFormatted() && !password.isEmpty
   }
   
   func login() {

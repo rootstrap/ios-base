@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
   // MARK: - Instance methods
-  //Change the default values for params as you wish
+  // Change the default values for params as you wish
   func addBorder(color: UIColor = UIColor.black, weight: CGFloat = 1.0) {
     layer.borderColor = color.cgColor
     layer.borderWidth = weight
@@ -23,13 +23,15 @@ extension UIView {
   }
   
   var typeName: String {
-    return String(describing: type(of: self))
+    String(describing: type(of: self))
   }
   
   func instanceFromNib(withName name: String) -> UIView? {
-    return UINib(nibName: name,
-                 bundle: nil).instantiate(withOwner: self,
-                                          options: nil).first as? UIView
+    UINib(
+      nibName: name, bundle: nil
+    ).instantiate(
+      withOwner: self, options: nil
+    ).first as? UIView
   }
   
   func addNibView(
@@ -90,8 +92,8 @@ extension UIView {
   /// Centers the view horizontally and vertically with a specific view
   ///
   /// - Parameters:
-  ///   - view: UIView on which the view will be centered horizontally
-  ///   - withOffset: CGPoint indicating the horizontal and vertical displacement of the view
+  /// view: UIView on which the view will be centered horizontally
+  /// withOffset: CGPoint indicating the horizontal and vertical displacement of the view
   func center(_ view: UIView, withOffset offset: CGPoint = .zero) {
     centerHorizontally(with: view, withOffset: offset.x)
     centerVertically(with: view, withOffset: offset.y)

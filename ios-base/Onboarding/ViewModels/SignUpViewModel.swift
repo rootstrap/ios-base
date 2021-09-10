@@ -47,7 +47,6 @@ class SignUpViewModelWithEmail {
   }
   
   var hasValidData: Bool {
-    return
       email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   

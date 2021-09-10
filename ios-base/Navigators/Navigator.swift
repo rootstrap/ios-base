@@ -19,8 +19,7 @@ import UIKit
 open class BaseNavigator: Navigator {
   open var rootViewController: UINavigationController?
   open var currentViewController: UIViewController? {
-    return
-      rootViewController?.visibleViewController ?? rootViewController?.topViewController
+    rootViewController?.visibleViewController ?? rootViewController?.topViewController
   }
 
   public required init(with route: Route) {
@@ -35,7 +34,7 @@ open class BaseNavigator: Navigator {
  ViewController that is currently displayed. This way it can
  handle any kind of navigation action that you might want to dispatch.
  */
-public protocol Navigator: class {
+public protocol Navigator: AnyObject {
   /// The root navigation controller of your stack.
   var rootViewController: UINavigationController? { get set }
 
@@ -216,7 +215,7 @@ public protocol Route {
 
 public extension Route {
   var transitionConfigurator: TransitionConfigurator? {
-    return nil
+    nil
   }
 }
 

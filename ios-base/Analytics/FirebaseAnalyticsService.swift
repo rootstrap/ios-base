@@ -8,8 +8,10 @@
 
 import Foundation
 import Firebase
+import FirebaseAnalytics
 
 class FirebaseAnalyticsService: AnalyticsService {
+  
   func setup() {
     guard
       let googleServicesPath = Bundle.main.object(

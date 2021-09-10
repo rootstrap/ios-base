@@ -40,6 +40,7 @@ extension UIFont {
     return font ?? UIFont.systemFont(ofSize: size)
   }
 
+  // swiftlint:disable identifier_name
   public enum Sizes: CGFloat {
     case h1 = 32.0
     case h2 = 16.0

@@ -19,8 +19,9 @@ class BaseURLConvertible: URLConvertible {
     self.baseUrl = baseUrl
   }
   
+  // swiftlint:disable force_unwrapping
   func asURL() throws -> URL {
-    return URL(string: "\(baseUrl)\(path)")!
+    URL(string: "\(baseUrl)\(path)")!
   }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol NetworkStatusDelegate: class {
+protocol NetworkStatusDelegate: AnyObject {
   func networkStatusChanged(to networkStatus: NetworkState)
 }
 

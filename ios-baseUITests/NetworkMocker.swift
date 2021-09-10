@@ -20,6 +20,7 @@ class NetworkMocker {
   
   var server = HttpServer()
   
+  // swiftlint:disable force_try
   func setUp() {
     try! server.start()
   }
