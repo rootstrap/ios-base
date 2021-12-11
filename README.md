@@ -110,7 +110,10 @@ Another alternative for managing sensitive files whithin the repo using Git-Secr
 ## CI/CD configuration with Bitrise (updated on Dec 12th 2021)
 
 We are going to start using a tool called Bitrise to configure de CI/CD pipelines for mobiles apps.
-For Andoidr apps you can find how to do it in this link: https://www.notion.so/rootstrap/Android-CI-CD-26d4abd4f2454224be8f617110147366
+
+--> For Android apps you can find how to do it in this link: https://www.notion.so/rootstrap/Android-CI-CD-26d4abd4f2454224be8f617110147366
+
+--> For iOS apps you can find how to do it in this link: https://www.notion.so/rootstrap/iOS-CI-CD-01e00409a0144f5b85212bf889c627dd
 
 
 ## Automated Build and Deployment using Fastlane  (DEPRECATED)
