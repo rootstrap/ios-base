@@ -107,8 +107,13 @@ We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguid
 
 Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
 
+## CI/CD configuration with Bitrise (updated on Dec 12th 2021)
 
-## Automated Build and Deployment using Fastlane
+We are going to start using a tool called Bitrise to configure de CI/CD pipelines for mobiles apps.
+For Andoidr apps you can find how to do it in this link: https://www.notion.so/rootstrap/Android-CI-CD-26d4abd4f2454224be8f617110147366
+
+
+## Automated Build and Deployment using Fastlane  (DEPRECATED)
 
 We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and release to TestFlight. 
 
