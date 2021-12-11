@@ -111,8 +111,6 @@ Another alternative for managing sensitive files whithin the repo using Git-Secr
 
 We are going to start using a tool called Bitrise to configure de CI/CD pipelines for mobiles apps.
 
---> For Android apps you can find how to do it in this link: https://www.notion.so/rootstrap/Android-CI-CD-26d4abd4f2454224be8f617110147366
-
 --> For iOS apps you can find how to do it in this link: https://www.notion.so/rootstrap/iOS-CI-CD-01e00409a0144f5b85212bf889c627dd
 
 
@@ -122,7 +120,7 @@ We use [Fastlane](https://docs.fastlane.tools) to automate code signing, buildin
 
 See details in [Fastlane folder](fastlane/README.md).
 
-## Continuous Integration / Delivery
+## Continuous Integration / Delivery (DEPRECATED)
 
 We recommend [GitHub Actions](https://docs.github.com/en/actions) for integrating Fastlane into a CI/CD pipeline. You can find two workflows in the GitHub workflows folder:
 * [ci.yml](.github/workflows/release.myl)       : triggered on any push and PR, runs unit tests, coverage report and static analysis with [CodeClimate](https://github.com/codeclimate/codeclimate)
