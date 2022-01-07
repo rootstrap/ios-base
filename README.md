@@ -67,7 +67,7 @@ We have developed other libraries that can be helpful and you could integrate wi
 In order for the project to run, you have to follow these steps:
 1. Register your app with Firebase.
 2. Download Firebase configuration file `GoogleService-Info.plist` from your account.
-3. Add downloaded file from previous step to the root of your project (replacing the existing one).
+3. Add the downloaded file to the <main-source-folder>/Resources folder.
 4. Done :)
 
 See the [Firebase documentation](https://firebase.google.com/docs/ios/setup) for more information.
