@@ -9,6 +9,18 @@
 import UIKit
 
 extension UITextField {
+  static func primaryTextField(
+    target: Any,
+    selector: Selector,
+    placeholder: String
+  ) -> UITextField {
+    let textField = UITextField()
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    textField.addTarget(target, action: selector, for: .editingChanged)
+    textField.placeholder = placeholder
+    return textField
+  }
+  
   func setPlaceholder(color: UIColor = .lightGray) {
     attributedPlaceholder = NSAttributedString(
       string: placeholder ?? "",

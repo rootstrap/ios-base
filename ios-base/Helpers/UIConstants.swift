@@ -12,6 +12,7 @@ import UIKit
 struct UI {
   enum Defaults {
     static let margin: CGFloat = 32
+    static let spacing: CGFloat = 20
   }
   
   enum ViewController {

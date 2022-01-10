@@ -60,6 +60,7 @@
 		E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBB1C01DD21D18000D6740 /* SessionManager.swift */; };
 		FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54D5871E11C59600F0DBEA /* FirstViewController.swift */; };
 		FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABDC9211EE1EB2B000DDAC3 /* ConfigurationManager.swift */; };
+		FD66EC1A270F708100BF65B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD66EC19270F708100BF65B3 /* GoogleService-Info.plist */; };
 		FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8C0271269E2F2E003F86CE /* UIConstants.swift */; };
 		FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */; };
 		FDFAAB09269CCED70007DB8B /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */; };
@@ -166,6 +167,7 @@
 		F9BE994CFA78189FABF22B93 /* Pods-ios-base-ios-baseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-ios-baseUITests.release.xcconfig"; path = "Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FA54D5871E11C59600F0DBEA /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		FABDC9211EE1EB2B000DDAC3 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		FD66EC19270F708100BF65B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FD8C0271269E2F2E003F86CE /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				9B2D00EF2788CE3A000657BE /* GoogleService-Info.plist in Resources */,
 				9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */,
 				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
+				FD66EC1A270F708100BF65B3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
