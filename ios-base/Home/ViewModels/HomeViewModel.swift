@@ -33,41 +33,41 @@ class HomeViewModel {
   func loadUserProfile() {
     state = .network(state: .loading)
     
-    UserServices.getMyProfile(
-      success: { [weak self] user in
+    UserServices.getMyProfile { [weak self] (result: Result<User, Error>) in
+      switch result {
+      case .success(let user):
         self?.userEmail = user.email
         self?.state = .loadedProfile
-      },
-      failure: { [weak self] error in
+      case .failure(let error):
         self?.state = .network(state: .error(error.localizedDescription))
       }
-    )
+    }
   }
   
   func logoutUser() {
     state = .network(state: .loading)
     
-    AuthenticationServices.logout(
-      success: { [weak self] in
+    AuthenticationServices.logout { [weak self] result in
+      switch result {
+      case .success:
         self?.didlogOutAccount()
-      },
-      failure: { [weak self] error in
+      case .failure(let error):
         self?.state = .network(state: .error(error.localizedDescription))
       }
-    )
+    }
   }
   
   func deleteAccount() {
     state = .network(state: .loading)
   
-    AuthenticationServices.deleteAccount(
-      success: { [weak self] in
+    AuthenticationServices.deleteAccount { [weak self] result in
+      switch result {
+      case .success:
         self?.didlogOutAccount()
-      },
-      failure: { [weak self] error in
+      case .failure(let error):
         self?.state = .network(state: .error(error.localizedDescription))
       }
-    )
+    }
   }
   
   private func didlogOutAccount() {

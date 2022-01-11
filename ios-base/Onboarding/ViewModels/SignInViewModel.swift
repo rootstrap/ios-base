@@ -35,22 +35,25 @@ class SignInViewModelWithCredentials {
   }
   
   var hasValidCredentials: Bool {
-    return email.isEmailFormatted() && !password.isEmpty
+    email.isEmailFormatted() && !password.isEmpty
   }
   
   func login() {
     state = .network(state: .loading)
     AuthenticationServices.login(
       email: email,
-      password: password,
-      success: { [weak self] in
-        guard let self = self else { return }
+      password: password
+    ) { [weak self] result in
+      guard let self = self else { return }
+
+      switch result {
+      case .success:
         self.state = .loggedIn
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.login)
-      },
-      failure: { [weak self] error in
-        self?.state = .network(state: .error(error.localizedDescription))
-    })
+      case .failure(let error):
+        self.state = .network(state: .error(error.localizedDescription))
+      }
+    }
   }
 }
