@@ -17,6 +17,8 @@ struct UI {
   
   enum ViewController {
     static let topMargin: CGFloat = 72
+    static let smallTopMargin: CGFloat = 40
+    static let bottomMargin: CGFloat = 60
   }
   
   enum Button {
@@ -25,5 +27,8 @@ struct UI {
     static let width: CGFloat = 200.0
     static let spacing: CGFloat = 20.0
   }
+  
+  enum TextField {
+    static let height: CGFloat = 40.0
+  }
 }
-

@@ -12,12 +12,19 @@ extension UITextField {
   static func primaryTextField(
     target: Any,
     selector: Selector,
-    placeholder: String
+    placeholder: String,
+    backgroundColor: UIColor = .white,
+    height: CGFloat = UI.TextField.height,
+    borderStyle: BorderStyle = .line
   ) -> UITextField {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
     textField.addTarget(target, action: selector, for: .editingChanged)
     textField.placeholder = placeholder
+    textField.backgroundColor = backgroundColor
+    textField.borderStyle = borderStyle
+    textField.heightAnchor.constraint(equalToConstant: height).isActive = true
+    
     return textField
   }
   

@@ -96,8 +96,8 @@ private extension SignInViewController {
     emailField.centerVertically(with: view)
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
-        equalTo: view.topAnchor,
-        constant: UI.ViewController.topMargin
+        equalTo: view.safeAreaLayoutGuide.topAnchor,
+        constant: UI.ViewController.smallTopMargin
       ),
       passwordField.topAnchor.constraint(
         equalTo: emailField.bottomAnchor,
@@ -105,7 +105,7 @@ private extension SignInViewController {
       ),
       logInButton.bottomAnchor.constraint(
         equalTo: view.bottomAnchor,
-        constant: -UI.Button.spacing
+        constant: -UI.ViewController.bottomMargin
       )
     ])
   }
