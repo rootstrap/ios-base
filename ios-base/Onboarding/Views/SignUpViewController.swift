@@ -12,11 +12,6 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-//  @IBOutlet weak var signUp: UIButton!
-//  @IBOutlet weak var emailField: UITextField!
-//  @IBOutlet weak var passwordField: UITextField!
-//  @IBOutlet weak var passwordConfirmationField: UITextField!
-  
   private lazy var titleLabel = UILabel.titleLabel(text: "Sign Up")
   private lazy var signUpButton = UIButton.primaryButton(
     title: "SIGN UP",
