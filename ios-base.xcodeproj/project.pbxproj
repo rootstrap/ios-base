@@ -25,7 +25,6 @@
 		074D20DB248EA832002A39B4 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DA248EA832002A39B4 /* UserServices.swift */; };
 		074D20DD248ECEAC002A39B4 /* BaseURLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DC248ECEAC002A39B4 /* BaseURLConvertible.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
-		0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABFB8921FA366D90098F751 /* Main.storyboard */; };
 		2DADBBA306FA6F1F621EAEF0 /* Pods_ios_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9871850DE703C3BC6CEC3C38 /* Pods_ios_base.framework */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
@@ -117,9 +116,6 @@
 		074D20DA248EA832002A39B4 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		074D20DC248ECEAC002A39B4 /* BaseURLConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConvertible.swift; sourceTree = "<group>"; };
 		07741D71218CDED600DB3B97 /* FirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewModel.swift; sourceTree = "<group>"; };
-		0ABFB8911FA366D90098F751 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0ABFB8941FA366EA0098F751 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		0ABFB8961FA366EC0098F751 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		0E6BE0B9E4C486E90ABC2C7E /* Pods-ios-base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.debug.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.debug.xcconfig"; sourceTree = "<group>"; };
 		1D1C31D361CB4400C53A9ECA /* Pods-ios-base-ios-baseUITests.uitests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-ios-baseUITests.uitests.xcconfig"; path = "Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests.uitests.xcconfig"; sourceTree = "<group>"; };
 		21C28C202321A74BB2FA7B17 /* Pods-ios-base-ios-baseUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-ios-baseUITests.staging.xcconfig"; path = "Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -370,7 +366,6 @@
 				9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */,
 				9B0C726D1C738D3400BAF3B1 /* Info.plist */,
 				9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */,
-				0ABFB8921FA366D90098F751 /* Main.storyboard */,
 			);
 			path = "ios-base";
 			sourceTree = "<group>";
@@ -681,7 +676,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ABFB8901FA366D90098F751 /* Main.storyboard in Resources */,
 				FDFAAB0B269CD56D0007DB8B /* Localizable.strings in Resources */,
 				9B2D00EF2788CE3A000657BE /* GoogleService-Info.plist in Resources */,
 				9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */,
@@ -986,19 +980,6 @@
 			targetProxy = 9B5E143A245B2AA00059DF62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		0ABFB8921FA366D90098F751 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0ABFB8911FA366D90098F751 /* Base */,
-				0ABFB8941FA366EA0098F751 /* en */,
-				0ABFB8961FA366EC0098F751 /* es */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		07276EB823F5CC460089C0AD /* Debug */ = {

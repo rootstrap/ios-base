@@ -72,6 +72,7 @@ class FirstViewController: UIViewController,
     signInButton.centerHorizontally(with: view)
     titleLabel.attachHorizontally(to: view)
     signUpButton.attachHorizontally(to: view)
+    facebookSignButton.attachHorizontally(to: view)
     
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
@@ -79,10 +80,6 @@ class FirstViewController: UIViewController,
         constant: UI.ViewController.topMargin
       ),
       signInButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UI.Button.width),
-      facebookSignButton.widthAnchor.constraint(
-        equalTo: signInButton.widthAnchor,
-        multiplier: 1.25
-      ),
       signUpButton.bottomAnchor.constraint(
         equalTo: view.bottomAnchor,
         constant: -UI.Defaults.margin
