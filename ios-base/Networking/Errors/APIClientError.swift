@@ -1,6 +1,5 @@
 import Foundation
 
-///
 internal enum APIClientError: Error {
     case invalidEmptyResponse
     case statusCodeInvalid

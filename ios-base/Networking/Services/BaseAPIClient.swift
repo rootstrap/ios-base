@@ -45,7 +45,11 @@ internal final class BaseAPIClient: APIClient {
 
       switch result {
       case.success(let response):
-        self.validateResult(response: response, completion: completion)
+        self.validateResult(
+          response: response,
+          customDecodingConfiguration: endpoint.decodingConfiguration,
+          completion: completion
+        )
       case .failure(let error):
         completion(.failure(error), [:])
       }
@@ -70,7 +74,11 @@ internal final class BaseAPIClient: APIClient {
 
       switch result {
       case.success(let response):
-        self.validateResult(response: response, completion: completion)
+        self.validateResult(
+          response: response,
+          customDecodingConfiguration: endpoint.decodingConfiguration,
+          completion: completion
+        )
       case .failure(let error):
         completion(.failure(error), [:])
       }
@@ -87,6 +95,7 @@ internal final class BaseAPIClient: APIClient {
   
   private func validateResult<T: Decodable>(
     response: Network.Response,
+    customDecodingConfiguration: DecodingConfiguration?,
     completion: CompletionCallback<T>
   ) {
     let responseData = response.data
@@ -105,7 +114,9 @@ internal final class BaseAPIClient: APIClient {
       return
     }
 
-    let decoder = JSONDecoder(decodingConfig: self.decodingConfiguration)
+    let decoder = JSONDecoder(
+      decodingConfig: customDecodingConfiguration ?? decodingConfiguration
+    )
     do {
       let decodedObject = try decoder.decode(T.self, from: data)
 
