@@ -33,11 +33,10 @@ extension UIFont {
   }
   
   static func font(withName name: String = "", size: Sizes) -> UIFont {
-    let size = Font.PointSize.proportional(to: (.screen6_5Inch,
-                                                size.rawValue)).value()
-    let font = UIFont(name: name,
-                      size: size)
-    return font ?? UIFont.systemFont(ofSize: size)
+    name.font(
+      withWeight: .normal,
+      size: PointSize.proportional(to: (.screen6_5Inch, size.rawValue))
+    ) ?? UIFont.systemFont(ofSize: size.rawValue)
   }
 
   public enum Sizes: CGFloat {

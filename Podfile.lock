@@ -104,7 +104,7 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - RSFontSizes (1.0.2):
+  - RSFontSizes (1.2.0):
     - Device (~> 3.1.2)
   - Swifter (1.4.7)
   - SwiftLint (0.43.1)
@@ -118,7 +118,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics (~> 8.6.0)
   - IQKeyboardManagerSwift (~> 6.1.1)
   - R.swift (~> 5.0.3)
-  - RSFontSizes (~> 1.0.2)
+  - RSFontSizes (~> 1.2.0)
   - Swifter (~> 1.4.7)
   - SwiftLint (~> 0.43.1)
 
@@ -165,10 +165,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
+  RSFontSizes: 78158061f9f6121c6715f746395b1d8390fcb18b
   Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 9bf8204f31e4c13e914fa6af761a3874db46b336
+PODFILE CHECKSUM: d9666ef391d09f4c9b73d221091dd44a4938bf88
 
 COCOAPODS: 1.10.1
