@@ -12,25 +12,24 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-  //  @IBOutlet weak var logIn: UIButton!
-  //  @IBOutlet weak var emailField: UITextField!
-  //  @IBOutlet weak var passwordField: UITextField!
-  
-  private lazy var titleLabel = UILabel.titleLabel(text: "Sign In")
+  private lazy var titleLabel = UILabel.titleLabel(text: "signin_title".localized)
   private lazy var logInButton = UIButton.primaryButton(
-    title: "Log In",
+    title: "signin_button_title".localized,
     target: self,
     action: #selector(tapOnSignInButton)
   )
+  
   private lazy var emailField = UITextField.primaryTextField(
     target: self,
     selector: #selector(credentialsChanged),
-    placeholder: "Email"
+    placeholder: "signin_email_placeholder".localized
   )
+  
   private lazy var passwordField = UITextField.primaryTextField(
     target: self,
     selector: #selector(credentialsChanged),
-    placeholder: "Password"
+    placeholder: "signin_password_placeholder".localized,
+    isPassword: true
   )
   
   let activityIndicator = UIActivityIndicatorView()

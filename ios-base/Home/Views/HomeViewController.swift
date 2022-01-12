@@ -12,24 +12,20 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-//  @IBOutlet weak var welcomeLabel: UILabel!
-//  @IBOutlet weak var logOut: UIButton!
-//  @IBOutlet weak var deleteAccountButton: UIButton!
-  
   private lazy var welcomeLabel = UILabel.titleLabel(
-    text: "You are signed in/up".localized
+    text: "homescreen_title".localized
   )
   
   private lazy var logOutButton = UIButton.primaryButton(
     color: .black,
-    title: "LOG OUT".localized,
+    title: "homescreen_logout_button_title".localized,
     target: self,
     action: #selector(tapOnLogOutButton)
   )
   
   private lazy var deleteAccountButton = UIButton.primaryButton(
     color: .deleteButton,
-    title: "DELETE ACCOUNT".localized,
+    title: "homescreen_delete_button_title".localized,
     target: self,
     action: #selector(tapOnDeleteAccount)
   )
@@ -37,7 +33,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   private lazy var getProfileButton: UIButton = {
     let button = UIButton()
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Get my profile", for: .normal)
+    button.setTitle("homescreen_get_profile_button_title".localized, for: .normal)
     button.setTitleColor(.blue, for: .normal)
     button.addTarget(
       self,

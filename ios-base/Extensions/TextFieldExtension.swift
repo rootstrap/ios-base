@@ -15,7 +15,8 @@ extension UITextField {
     placeholder: String,
     backgroundColor: UIColor = .white,
     height: CGFloat = UI.TextField.height,
-    borderStyle: BorderStyle = .line
+    borderStyle: BorderStyle = .line,
+    isPassword: Bool = false
   ) -> UITextField {
     let textField = UITextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +25,7 @@ extension UITextField {
     textField.backgroundColor = backgroundColor
     textField.borderStyle = borderStyle
     textField.heightAnchor.constraint(equalToConstant: height).isActive = true
+    textField.isSecureTextEntry = isPassword
     
     return textField
   }

@@ -12,26 +12,31 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-  private lazy var titleLabel = UILabel.titleLabel(text: "Sign Up")
+  private lazy var titleLabel = UILabel.titleLabel(text: "signup_title".localized)
   private lazy var signUpButton = UIButton.primaryButton(
-    title: "SIGN UP",
+    title: "signup_button_title".localized,
     target: self,
     action: #selector(tapOnSignUpButton)
   )
+  
   private lazy var emailField = UITextField.primaryTextField(
     target: self,
     selector: #selector(formEditingChange),
-    placeholder: "Email"
+    placeholder: "signup_email_placeholder".localized
   )
+  
   private lazy var passwordField = UITextField.primaryTextField(
     target: self,
     selector: #selector(formEditingChange),
-    placeholder: "Password"
+    placeholder: "signup_password_placeholder".localized,
+    isPassword: true
   )
+  
   private lazy var passwordConfirmationField = UITextField.primaryTextField(
     target: self,
     selector: #selector(formEditingChange),
-    placeholder: "Confirm Password"
+    placeholder: "signup_confirm_password_placeholder".localized,
+    isPassword: true
   )
   
   let activityIndicator = UIActivityIndicatorView()
