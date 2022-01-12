@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class Base64Media: MultipartMedia {
   var base64: String

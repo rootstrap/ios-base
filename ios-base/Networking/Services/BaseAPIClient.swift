@@ -1,11 +1,3 @@
-//
-//  APIClient.swift
-//  ios-base
-//
-//  Created by Germán Stábile on 6/8/20.
-//  Copyright © 2020 Rootstrap Inc. All rights reserved.
-//
-
 import Foundation
 
 /// Concrete implementation of API Client.
@@ -60,73 +52,30 @@ internal final class BaseAPIClient: APIClient {
     }
   }
 
-  // Recursively build multipart params to send along with media in upload requests.
-  // If params includes the desired root key,
-  // call this method with an empty String for rootKey param.
-  //  class func multipartFormData(
-  //    _ multipartForm: MultipartFormData,
-  //    params: Any,
-  //    rootKey: String
-  //  ) {
-  //    switch params.self {
-  //    case let array as [Any]:
-  //      for val in array {
-  //        let forwardRootKey = rootKey.isEmpty ? "array[]" : rootKey + "[]"
-  //        multipartFormData(multipartForm, params: val, rootKey: forwardRootKey)
-  //      }
-  //    case let dict as [String: Any]:
-  //      for (key, value) in dict {
-  //        let forwardRootKey = rootKey.isEmpty ? key : rootKey + "[\(key)]"
-  //        multipartFormData(multipartForm, params: value, rootKey: forwardRootKey)
-  //      }
-  //    default:
-  //      if let uploadData = "\(params)".data(
-  //        using: String.Encoding.utf8,
-  //        allowLossyConversion: false
-  //      ) {
-  //        let forwardRootKey = rootKey.isEmpty ?
-  //          "\(type(of: params))".lowercased() : rootKey
-  //        multipartForm.append(uploadData, withName: forwardRootKey)
-  //      }
-  //    }
-  //  }
-  
-  // Multipart-form base request. Used to upload media along with desired params.
-  // Note: Multipart request does not support Content-Type = application/json.
-  // If your API requires this header
-  // do not use this method or change backend to skip this validation.
-  //  class func multipartRequest(
-  //    method: HTTPMethod = .post,
-  //    url: String,
-  //    headers: [String: String] = BaseAPIClient.getHeaders(),
-  //    params: [String: Any]?,
-  //    paramsRootKey: String,
-  //    media: [MultipartMedia],
-  //    success: @escaping SuccessCallback,
-  //    failure: @escaping FailureCallback
-  //  ) {
-  //
-  //    let requestConvertible = BaseURLRequestConvertible(
-  //      path: url,
-  //      method: method,
-  //      headers: headers
-  //    )
-  //
-  //    AF.upload(
-  //      multipartFormData: { (multipartForm) -> Void in
-  //        if let parameters = params {
-  //          multipartFormData(multipartForm, params: parameters, rootKey: paramsRootKey)
-  //        }
-  //        for elem in media {
-  //          elem.embed(inForm: multipartForm)
-  //        }
-  //      },
-  //      with: requestConvertible
-  //    )
-  //    .responseJSON(completionHandler: { result in
-  //      validateResult(result: result, success: success, failure: failure)
-  //    })
-  //  }
+  @discardableResult
+  func multipartRequest<T: Decodable>(
+    endpoint: Endpoint,
+    paramsRootKey: String,
+    media: [MultipartMedia],
+    completion: @escaping CompletionCallback<T>
+  ) -> Cancellable {
+    let apiEndpoint = APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
+
+    return networkProvider.multipartRequest(
+      endpoint: apiEndpoint,
+      multipartFormKey: paramsRootKey,
+      media: media
+    ) { [weak self] result in
+      guard let self = self else { return }
+
+      switch result {
+      case.success(let response):
+        self.validateResult(response: response, completion: completion)
+      case .failure(let error):
+        completion(.failure(error), [:])
+      }
+    }
+  }
 
   private func handleCustomAPIError(from response: Network.Response) -> APIError? {
     if response.statusCode == Network.StatusCode.unauthorized {

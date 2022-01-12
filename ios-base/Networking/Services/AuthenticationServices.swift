@@ -39,46 +39,53 @@ class AuthenticationServices {
     }
   }
   
-  // Multi part upload example
-  // TODO: rails base backend not supporting multipart uploads yet
-//  class func signup(
-//    email: String,
-//    password: String,
-//    avatar: UIImage,
-//    success: @escaping (_ user: User?) -> Void,
-//    failure: @escaping (_ error: Error) -> Void
-//  ) {
-//    let parameters = [
-//      "user": [
-//        "email": email,
-//        "password": password,
-//        "password_confirmation": password
-//      ]
-//    ]
-//    
-//    guard let picData = avatar.jpegData(compressionQuality: 0.75) else {
-//      failure(App.error(
-//        domain: .parsing,
-//        localizedDescription: "Could not parse pic data"
-//      ))
-//      return
-//    }
-//    let image = MultipartMedia(key: "user[avatar]", data: picData)
-//    //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
-//    //Example: let image2 = Base64Media(key: "user[image]", data: picData)
-//    //Then: media [image, image2]
-//    BaseAPIClient.multipartRequest(
-//      url: usersUrl,
-//      params: parameters,
-//      paramsRootKey: "",
-//      media: [image],
-//      success: { response, headers in
-//        AuthenticationServices.saveUserSession(fromResponse: response, headers: headers)
-//        success(UserDataManager.currentUser)
-//      },
-//      failure: failure
-//    )
-//  }
+  /// Example Upload via Multipart requests.
+  /// TODO: rails base backend not supporting multipart uploads yet
+  class func signup(
+    email: String,
+    password: String,
+    avatar: UIImage,
+    completion: @escaping (Result<User, Error>) -> Void
+  ) {
+    guard let picData = avatar.jpegData(compressionQuality: 0.75) else {
+      let pictureDataError = App.error(
+        domain: .generic,
+        localizedDescription: "Multipart image data could not be constructed"
+      )
+      completion(.failure(pictureDataError))
+      return
+    }
+    
+    // Mixed base64 encoded and multipart images are supported
+    // in the [MultipartMedia] array
+    // Example: `let image2 = Base64Media(key: "user[image]", data: picData)`
+    // Then: media [image, image2]
+    let image = MultipartMedia(key: "user[avatar]", data: picData)
+
+    let endpoint = AuthEndpoint.signUp(
+      email: email,
+      password: password,
+      passwordConfirmation: password,
+      picture: nil
+    )
+
+    BaseAPIClient.default.multipartRequest(
+      endpoint: endpoint,
+      paramsRootKey: "",
+      media: [image]
+    ) { (result: Result<User?, Error>, responseHeaders: [String: String]) in
+      switch result {
+      case .success(let user):
+        if saveUserSession(user, headers: responseHeaders), let user = user {
+          completion(.success(user))
+        } else {
+          completion(.failure(AuthError.userSessionInvalid))
+        }
+      case .failure(let error):
+        completion(.failure(error))
+      }
+    }
+  }
   
   /// Example method that uploads base64 encoded image.
   class func signup(

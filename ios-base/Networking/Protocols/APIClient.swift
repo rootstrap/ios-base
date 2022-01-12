@@ -29,4 +29,14 @@ internal protocol APIClient {
     completion: @escaping CompletionCallback<T>
   ) -> Cancellable
 
+  /// Performs a multipart request to upload one or many `MultipartMedia` objects.
+  /// The endpoint parameters will be encoded in the multipart form.
+  /// Note: Multipart requests do not support `Content-Type = application/json` headers.
+  /// If your API requires this header user base64 uploads instead.
+  func multipartRequest<T: Decodable>(
+    endpoint: Endpoint,
+    paramsRootKey: String,
+    media: [MultipartMedia],
+    completion: @escaping CompletionCallback<T>
+  ) -> Cancellable
 }

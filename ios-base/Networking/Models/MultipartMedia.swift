@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Alamofire
 
-//Basic media MIME types, add more if needed.
+// Basic media MIME types, add more if needed.
 enum MimeType: String {
   case jpeg = "image/jpeg"
   case bmp = "image/bmp"
@@ -38,16 +37,12 @@ class MultipartMedia {
   var data: Data
   var type: MimeType
   var toFile: String {
-    return key.validFilename + type.fileExtension()
+    key.validFilename + type.fileExtension()
   }
   
   init(key: String, data: Data, type: MimeType = .jpeg) {
     self.key = key
     self.data = data
     self.type = type
-  }
-  
-  func embed(inForm multipart: MultipartFormData) {
-    multipart.append(data, withName: key, fileName: toFile, mimeType: type.rawValue)
   }
 }
