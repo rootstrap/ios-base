@@ -19,7 +19,7 @@ internal struct APIEndpoint: Endpoint {
   }
 
   var headers: [String: String] {
-    endpoint.headers + headersProvider.requestHeaders
+    headersProvider.requestHeaders + endpoint.headers 
   }
 
   var parameters: [String: Any] {

@@ -40,10 +40,12 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
   var parameters: [String: Any] {
     switch self {
     case .signIn(let email, let password):
-      return ["user": [
-        "email": email,
-        "password": password
-      ]]
+      return [
+        "user": [
+          "email": email,
+          "password": password
+        ]
+      ]
     case .signUp(let email, let password, let passwordConfirmation, let picture):
       var parameters = [
         "email": email,
