@@ -19,13 +19,13 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     action: #selector(tapOnSignInButton)
   )
   
-  private lazy var emailField = UITextField.primaryTextField(
+  private lazy var emailField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_email_placeholder".localized
   )
   
-  private lazy var passwordField = UITextField.primaryTextField(
+  private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_password_placeholder".localized,
@@ -34,7 +34,17 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   let activityIndicator = UIActivityIndicatorView()
   
-  var viewModel: SignInViewModelWithCredentials!
+  private let viewModel: SignInViewModelWithCredentials
+  
+  init(viewModel: SignInViewModelWithCredentials) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: - Lifecycle Events
   
@@ -89,9 +99,9 @@ private extension SignInViewController {
   }
   
   func activateConstrains() {
-    [titleLabel, emailField, passwordField, logInButton].forEach({
+    [titleLabel, emailField, passwordField, logInButton].forEach {
       $0.attachHorizontally(to: view)
-    })
+    }
     emailField.centerVertically(with: view)
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(

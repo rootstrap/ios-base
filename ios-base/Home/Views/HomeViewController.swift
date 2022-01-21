@@ -46,7 +46,17 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
     
   let activityIndicator = UIActivityIndicatorView()
   
-  var viewModel: HomeViewModel!
+  private var viewModel: HomeViewModel
+  
+  init(viewModel: HomeViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: - Lifecycle Events
   override func viewDidLoad() {
@@ -104,7 +114,6 @@ private extension HomeViewController {
         constant: -UI.Button.spacing
       )
     ])
-    
   }
 
 }

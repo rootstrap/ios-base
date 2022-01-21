@@ -9,7 +9,8 @@
 import UIKit
 
 extension UITextField {
-  static func primaryTextField(
+  
+  convenience init(
     target: Any,
     selector: Selector,
     placeholder: String,
@@ -17,17 +18,16 @@ extension UITextField {
     height: CGFloat = UI.TextField.height,
     borderStyle: BorderStyle = .line,
     isPassword: Bool = false
-  ) -> UITextField {
-    let textField = UITextField()
-    textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.addTarget(target, action: selector, for: .editingChanged)
-    textField.placeholder = placeholder
-    textField.backgroundColor = backgroundColor
-    textField.borderStyle = borderStyle
-    textField.heightAnchor.constraint(equalToConstant: height).isActive = true
-    textField.isSecureTextEntry = isPassword
+  ) {
+    self.init()
     
-    return textField
+    translatesAutoresizingMaskIntoConstraints = false
+    addTarget(target, action: selector, for: .editingChanged)
+    self.placeholder = placeholder
+    self.backgroundColor = backgroundColor
+    self.borderStyle = borderStyle
+    heightAnchor.constraint(equalToConstant: height).isActive = true
+    isSecureTextEntry = isPassword
   }
   
   func setPlaceholder(color: UIColor = .lightGray) {

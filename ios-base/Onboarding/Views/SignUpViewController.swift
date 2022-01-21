@@ -19,20 +19,20 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
     action: #selector(tapOnSignUpButton)
   )
   
-  private lazy var emailField = UITextField.primaryTextField(
+  private lazy var emailField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_email_placeholder".localized
   )
   
-  private lazy var passwordField = UITextField.primaryTextField(
+  private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_password_placeholder".localized,
     isPassword: true
   )
   
-  private lazy var passwordConfirmationField = UITextField.primaryTextField(
+  private lazy var passwordConfirmationField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_confirm_password_placeholder".localized,
@@ -41,7 +41,17 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   
   let activityIndicator = UIActivityIndicatorView()
   
-  var viewModel: SignUpViewModelWithEmail!
+  private let viewModel: SignUpViewModelWithEmail
+  
+  init(viewModel: SignUpViewModelWithEmail) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: - Lifecycle Events
   
@@ -103,13 +113,13 @@ private extension SignUpViewController {
   func activateConstrains() {
     [
       titleLabel,
-     emailField,
-     passwordField,
-     passwordConfirmationField,
-     signUpButton
-    ].forEach({
+      emailField,
+      passwordField,
+      passwordConfirmationField,
+      signUpButton
+    ].forEach {
       $0.attachHorizontally(to: view)
-    })
+    }
     emailField.centerVertically(with: view)
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
