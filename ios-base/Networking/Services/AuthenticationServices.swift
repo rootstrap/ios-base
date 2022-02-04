@@ -37,8 +37,8 @@ class AuthenticationServices {
     )
   }
   
-  //Multi part upload example
-  //TODO: rails base backend not supporting multipart uploads yet
+  // Multi part upload example
+  // TODO: rails base backend not supporting multipart uploads yet
   class func signup(
     email: String,
     password: String,
@@ -62,9 +62,9 @@ class AuthenticationServices {
       return
     }
     let image = MultipartMedia(key: "user[avatar]", data: picData)
-    //Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
-    //Example: let image2 = Base64Media(key: "user[image]", data: picData)
-    //Then: media [image, image2]
+    // Mixed base64 encoded and multipart images are supported in [MultipartMedia] param:
+    // Example: let image2 = Base64Media(key: "user[image]", data: picData)
+    // Then: media [image, image2]
     APIClient.multipartRequest(
       url: usersUrl,
       params: parameters,
@@ -78,7 +78,7 @@ class AuthenticationServices {
     )
   }
   
-  //Example method that uploads base64 encoded image.
+  // Example method that uploads base64 encoded image.
   class func signup(
     email: String,
     password: String,

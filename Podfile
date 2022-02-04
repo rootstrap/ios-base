@@ -25,6 +25,6 @@ target 'ios-base' do
   
   target 'ios-baseUITests' do
     inherit! :complete
-    pod 'Swifter', '~> 1.4.7'
+    pod 'Swifter', '~> 1.5.0'
   end
 end
