@@ -107,28 +107,11 @@ We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguid
 
 Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
 
-## CI/CD configuration with Bitrise (updated on Dec 12th 2021)
+## CI/CD configuration with Bitrise
 
 We are going to start using a tool called Bitrise to configure de CI/CD pipelines for mobiles apps.
 
 --> For iOS apps you can find how to do it in this link: https://www.notion.so/rootstrap/iOS-CI-CD-01e00409a0144f5b85212bf889c627dd
-
-
-## Automated Build and Deployment using Fastlane  (DEPRECATED)
-
-We use [Fastlane](https://docs.fastlane.tools) to automate code signing, building and release to TestFlight. 
-
-See details in [Fastlane folder](fastlane/README.md).
-
-## Continuous Integration / Delivery (DEPRECATED)
-
-We recommend [GitHub Actions](https://docs.github.com/en/actions) for integrating Fastlane into a CI/CD pipeline. You can find two workflows in the GitHub workflows folder:
-* [ci.yml](.github/workflows/release.myl)       : triggered on any push and PR, runs unit tests, coverage report and static analysis with [CodeClimate](https://github.com/codeclimate/codeclimate)
-* [release.yml](.github/workflows/release.yml)  : triggered on push to specific branches, builds, signs and submits to TestFlight
-
-Alternatively you can merge branch [**feature/jenkins**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) for some equivalent CICD boilerplate with **Jenkins**.
-
-On both alternatives we assume usage of Fastlane match for managing signing Certificates and Profiles, and AWS S3 for storing other files containing third-party keys 
 
 ## License
 
