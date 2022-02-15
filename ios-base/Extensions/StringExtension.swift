@@ -17,19 +17,19 @@ extension String {
   }
   
   var hasPunctuationCharacters: Bool {
-    return rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
+    rangeOfCharacter(from: CharacterSet.punctuationCharacters) != nil
   }
   
   var hasNumbers: Bool {
-    return rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
+    rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil
   }
   
   var localized: String {
-    return self.localize()
+    self.localize()
   }
     
   func localize(comment: String = "") -> String {
-    return NSLocalizedString(self, comment: comment)
+    NSLocalizedString(self, comment: comment)
   }
   
   var validFilename: String {
@@ -37,7 +37,7 @@ extension String {
     return addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "emptyFilename"
   }
   
-  //Regex fulfill RFC 5322 Internet Message format
+  // Regex fulfill RFC 5322 Internet Message format
   func isEmailFormatted() -> Bool {
     // swiftlint:disable line_length
     let emailRegex = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?"

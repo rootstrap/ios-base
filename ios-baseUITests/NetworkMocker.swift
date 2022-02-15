@@ -20,8 +20,8 @@ class NetworkMocker {
   
   var server = HttpServer()
   
-  func setUp() {
-    try! server.start()
+  func setUp() throws {
+    try server.start()
   }
   
   func tearDown() {

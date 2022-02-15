@@ -19,7 +19,8 @@ class ios_baseUITests: XCTestCase {
     super.setUp()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
-    networkMocker.setUp()
+      
+    try? networkMocker.setUp()
   }
   
   override func tearDown() {

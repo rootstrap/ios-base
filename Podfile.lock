@@ -106,7 +106,7 @@ PODS:
   - R.swift.Library (5.0.1)
   - RSFontSizes (1.0.2):
     - Device (~> 3.1.2)
-  - Swifter (1.4.7)
+  - Swifter (1.5.0)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
@@ -119,7 +119,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift (~> 6.1.1)
   - R.swift (~> 5.0.3)
   - RSFontSizes (~> 1.0.2)
-  - Swifter (~> 1.4.7)
+  - Swifter (~> 1.5.0)
   - SwiftLint (~> 0.43.1)
 
 SPEC REPOS:
@@ -166,9 +166,9 @@ SPEC CHECKSUMS:
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RSFontSizes: cf14ae41c2807b66573f7064528ccff8c98251c9
-  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
+  Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 9bf8204f31e4c13e914fa6af761a3874db46b336
+PODFILE CHECKSUM: 0466151c1673f2ab6ca3ea6aebefa12d898a7fbd
 
 COCOAPODS: 1.10.2
