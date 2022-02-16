@@ -32,16 +32,31 @@ class HomeViewModel {
   
   func loadUserProfile() {
     state = .network(state: .loading)
-    
-    UserServices.getMyProfile(
-      success: { [weak self] user in
-        self?.userEmail = user.email
-        self?.state = .loadedProfile
-      },
-      failure: { [weak self] error in
-        self?.state = .network(state: .error(error.localizedDescription))
+    fetchUser()
+  }
+  
+  private func fetchUser() {
+    if #available(iOS 15.0, *) {
+      Task {
+        do {
+          let user = try await UserServices.myProfile()
+          userEmail = user.email
+          state = .loadedProfile
+        } catch let error {
+          state = .network(state: .error(error.localizedDescription))
+        }
       }
-    )
+    } else {
+      UserServices.getMyProfile(
+        success: { [weak self] user in
+          self?.userEmail = user.email
+          self?.state = .loadedProfile
+        },
+        failure: { [weak self] error in
+          self?.state = .network(state: .error(error.localizedDescription))
+        }
+      )
+    }
   }
   
   func logoutUser() {

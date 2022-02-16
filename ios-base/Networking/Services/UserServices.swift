@@ -20,13 +20,13 @@ class UserServices {
       success: { response, _ in
         guard
           let userDictionary = response["user"] as? [String: Any],
-          let user = User(dictionary: userDictionary) 
+          let user = User(dictionary: userDictionary)
         else {
           failure(App.error(
             domain: .parsing,
             localizedDescription: "Could not parse a valid user".localized
           ))
-          return 
+          return
         }
         
         UserDataManager.currentUser = user
@@ -34,5 +34,31 @@ class UserServices {
       },
       failure: failure
     )
+  }
+  
+  class func myProfile() async throws -> User {
+    try await withCheckedThrowingContinuation { continuation in
+      APIClient.request(
+        .get,
+        url: "/user/profile",
+        success: { response, _ in
+          guard
+            let userDictionary = response["user"] as? [String: Any],
+            let user = User(dictionary: userDictionary)
+          else {
+            return continuation.resume(
+              throwing: App.error(
+                domain: .parsing,
+                localizedDescription: "Could not parse a valid user".localized
+              )
+            )
+          }
+          
+          UserDataManager.currentUser = user
+          continuation.resume(returning: user)
+        },
+        failure: { continuation.resume(throwing: $0) }
+      )
+    }
   }
 }
