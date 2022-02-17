@@ -25,4 +25,3 @@ struct UI {
     static let spacing: CGFloat = 20.0
   }
 }
-
