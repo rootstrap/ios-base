@@ -38,11 +38,11 @@ internal final class BaseAPIClient: APIClient {
     endpoint: Endpoint,
     completion: @escaping CompletionCallback<T>
   ) -> Cancellable {
-    let apiEndpoint = APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
-
-    return networkProvider.request(endpoint: apiEndpoint) { [weak self] result in
+    networkProvider.request(
+      endpoint: buildApiEndpoint(from: endpoint)
+    ) { [weak self] result in
       guard let self = self else { return }
-
+      
       self.handle(result, for: endpoint, completion: completion)
     }
   }
@@ -54,10 +54,8 @@ internal final class BaseAPIClient: APIClient {
     media: [MultipartMedia],
     completion: @escaping CompletionCallback<T>
   ) -> Cancellable {
-    let apiEndpoint = APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
-
-    return networkProvider.multipartRequest(
-      endpoint: apiEndpoint,
+    networkProvider.multipartRequest(
+      endpoint: buildApiEndpoint(from: endpoint),
       multipartFormKey: paramsRootKey,
       media: media
     ) { [weak self] result in
@@ -82,6 +80,10 @@ internal final class BaseAPIClient: APIClient {
     case .failure(let error):
       completion(.failure(error), [:])
     }
+  }
+  
+  private func buildApiEndpoint(from endpoint: Endpoint) -> APIEndpoint {
+    APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
   }
 
   private func handleCustomAPIError(from response: Network.Response) -> APIError? {
