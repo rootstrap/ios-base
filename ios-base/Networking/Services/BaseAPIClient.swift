@@ -71,56 +71,41 @@ internal final class BaseAPIClient: APIClient {
     completion: CompletionCallback<T>
   ) {
     switch result {
-    case .success(let response):
-      validateResult(
-        response: response,
-        customDecodingConfiguration: endpoint.decodingConfiguration,
-        completion: completion
-      )
-    case .failure(let error):
-      completion(.failure(error), [:])
+    case .success(let response): handle(response, with: endpoint.decodingConfiguration, completion: completion)
+    case .failure(let error): completion(.failure(error), [:])
     }
   }
   
   private func buildApiEndpoint(from endpoint: Endpoint) -> APIEndpoint {
     APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
   }
-
-  private func handleCustomAPIError(from response: Network.Response) -> APIError? {
-    if response.statusCode == Network.StatusCode.unauthorized {
-      AppDelegate.shared.unexpectedLogout()
-    }
-
-    return APIError(response: response, decodingConfiguration: decodingConfiguration)
-  }
   
-  private func validateResult<T: Decodable>(
-    response: Network.Response,
-    customDecodingConfiguration: DecodingConfiguration?,
+  private func handle<T: Decodable>(
+    _ response: Network.Response,
+    with configuration: DecodingConfiguration?,
     completion: CompletionCallback<T>
   ) {
-    let responseData = response.data
-
-    guard let data = responseData, !data.isEmpty else {
-      if emptyDataStatusCodes.contains(response.statusCode) {
-        completion(.success(.none), response.headers)
-      } else {
-        let emptyResponseInvalidError = App.error(
-          domain: .network,
-          localizedDescription: "Unexpected empty response".localized
-        )
-        completion(.failure(emptyResponseInvalidError), response.headers)
+    do {
+      guard let data = response.data, !data.isEmpty else {
+        try checkForUnexpectedCodeOnEmptyData(response)
+        
+        return completion(.success(.none), response.headers)
       }
 
-      return
-    }
-
-    do {
-      completion(.success(try decode(data, with: customDecodingConfiguration)), response.headers)
+      completion(.success(try decode(data, with: configuration)), response.headers)
     } catch let error {
       completion(
         .failure(handleCustomAPIError(from: response) ?? error),
         response.headers
+      )
+    }
+  }
+  
+  private func checkForUnexpectedCodeOnEmptyData(_ response: Network.Response) throws {
+    if !emptyDataStatusCodes.contains(response.statusCode) {
+      throw App.error(
+        domain: .network,
+        localizedDescription: "Unexpected empty response".localized
       )
     }
   }
@@ -130,6 +115,14 @@ internal final class BaseAPIClient: APIClient {
       JSONDecoder(decodingConfig: configuration ?? decodingConfiguration)
     }
     return try buildDecoder(from: configuration).decode(M.self, from: data)
+  }
+  
+  private func handleCustomAPIError(from response: Network.Response) -> APIError? {
+    if response.statusCode == Network.StatusCode.unauthorized {
+      AppDelegate.shared.unexpectedLogout()
+    }
+    
+    return APIError(response: response, decodingConfiguration: decodingConfiguration)
   }
   
 }
