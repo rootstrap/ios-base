@@ -43,16 +43,7 @@ internal final class BaseAPIClient: APIClient {
     return networkProvider.request(endpoint: apiEndpoint) { [weak self] result in
       guard let self = self else { return }
 
-      switch result {
-      case.success(let response):
-        self.validateResult(
-          response: response,
-          customDecodingConfiguration: endpoint.decodingConfiguration,
-          completion: completion
-        )
-      case .failure(let error):
-        completion(.failure(error), [:])
-      }
+      self.handle(result, for: endpoint, completion: completion)
     }
   }
 
@@ -71,17 +62,25 @@ internal final class BaseAPIClient: APIClient {
       media: media
     ) { [weak self] result in
       guard let self = self else { return }
-
-      switch result {
-      case.success(let response):
-        self.validateResult(
-          response: response,
-          customDecodingConfiguration: endpoint.decodingConfiguration,
-          completion: completion
-        )
-      case .failure(let error):
-        completion(.failure(error), [:])
-      }
+      
+      self.handle(result, for: endpoint, completion: completion)
+    }
+  }
+  
+  private func handle<T: Decodable>(
+    _ result: Result<Network.Response, Error>,
+    for endpoint: Endpoint,
+    completion: CompletionCallback<T>
+  ) {
+    switch result {
+    case .success(let response):
+      validateResult(
+        response: response,
+        customDecodingConfiguration: endpoint.decodingConfiguration,
+        completion: completion
+      )
+    case .failure(let error):
+      completion(.failure(error), [:])
     }
   }
 
