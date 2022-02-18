@@ -115,13 +115,8 @@ internal final class BaseAPIClient: APIClient {
       return
     }
 
-    let decoder = JSONDecoder(
-      decodingConfig: customDecodingConfiguration ?? decodingConfiguration
-    )
     do {
-      let decodedObject = try decoder.decode(T.self, from: data)
-
-      completion(.success(decodedObject), response.headers)
+      completion(.success(try decode(data, with: customDecodingConfiguration)), response.headers)
     } catch let error {
       completion(
         .failure(handleCustomAPIError(from: response) ?? error),
@@ -129,4 +124,12 @@ internal final class BaseAPIClient: APIClient {
       )
     }
   }
+  
+  private func decode<M: Decodable>(_ data: Data, with configuration: DecodingConfiguration?) throws -> M {
+    func buildDecoder(from configuration: DecodingConfiguration?) -> JSONDecoder {
+      JSONDecoder(decodingConfig: configuration ?? decodingConfiguration)
+    }
+    return try buildDecoder(from: configuration).decode(M.self, from: data)
+  }
+  
 }
