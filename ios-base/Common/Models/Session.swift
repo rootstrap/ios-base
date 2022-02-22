@@ -15,6 +15,8 @@ struct Session: Codable {
   var accessToken: String?
   var expiry: Date?
   
+  var isValid: Bool { [uid, accessToken, client].allSatisfy { $0 != nil } }
+  
   private enum CodingKeys: String, CodingKey {
     case uid
     case client

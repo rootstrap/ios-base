@@ -77,7 +77,7 @@ class UserServiceUnitTests: XCTestCase {
       headers: unusableHeaders
     )
     XCTAssert(SessionManager.currentSession == nil)
-    XCTAssertFalse(SessionManager.validSession)
+    XCTAssertFalse(SessionManager.isSessionValid)
     
     // Testing case where should be session but not valid
     let wrongSessionHeaders = [
@@ -91,6 +91,6 @@ class UserServiceUnitTests: XCTestCase {
       headers: wrongSessionHeaders
     )
     XCTAssert(SessionManager.currentSession != nil)
-    XCTAssertFalse(SessionManager.validSession)
+    XCTAssertFalse(SessionManager.isSessionValid)
   }
 }

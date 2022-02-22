@@ -171,6 +171,6 @@ internal class AuthenticationServices {
     UserDataManager.currentUser = user
     sessionManager.currentSession = Session(headers: headers)
 
-    return UserDataManager.currentUser != nil && sessionManager.validSession
+    return UserDataManager.currentUser != nil && sessionManager.isSessionValid
   }
 }
