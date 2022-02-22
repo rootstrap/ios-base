@@ -39,7 +39,7 @@ internal final class BaseAPIClient: APIClient {
     completion: @escaping CompletionCallback<T>
   ) -> Cancellable {
     networkProvider.request(
-      endpoint: buildApiEndpoint(from: endpoint)
+      endpoint: buildAPIEndpoint(from: endpoint)
     ) { [weak self] result in
       guard let self = self else { return }
       
@@ -55,7 +55,7 @@ internal final class BaseAPIClient: APIClient {
     completion: @escaping CompletionCallback<T>
   ) -> Cancellable {
     networkProvider.multipartRequest(
-      endpoint: buildApiEndpoint(from: endpoint),
+      endpoint: buildAPIEndpoint(from: endpoint),
       multipartFormKey: paramsRootKey,
       media: media
     ) { [weak self] result in
@@ -76,8 +76,15 @@ internal final class BaseAPIClient: APIClient {
     }
   }
   
-  private func buildApiEndpoint(from endpoint: Endpoint) -> APIEndpoint {
+  private func buildAPIEndpoint(from endpoint: Endpoint) -> APIEndpoint {
     APIEndpoint(endpoint: endpoint, headersProvider: headersProvider)
+  }
+  
+  private var unexpectedResponseError: NSError {
+    App.error(
+      domain: .network,
+      localizedDescription: "Unexpected empty response".localized
+    )
   }
   
   private func handle<T: Decodable>(
@@ -87,7 +94,7 @@ internal final class BaseAPIClient: APIClient {
   ) {
     do {
       guard let data = response.data, !data.isEmpty else {
-        try checkForUnexpectedCodeOnEmptyData(response)
+        guard emptyDataStatusCodes.contains(response.statusCode) else { throw unexpectedResponseError }
         
         return completion(.success(.none), response.headers)
       }
@@ -101,20 +108,10 @@ internal final class BaseAPIClient: APIClient {
     }
   }
   
-  private func checkForUnexpectedCodeOnEmptyData(_ response: Network.Response) throws {
-    if !emptyDataStatusCodes.contains(response.statusCode) {
-      throw App.error(
-        domain: .network,
-        localizedDescription: "Unexpected empty response".localized
-      )
-    }
-  }
-  
   private func decode<M: Decodable>(_ data: Data, with configuration: DecodingConfiguration?) throws -> M {
-    func buildDecoder(from configuration: DecodingConfiguration?) -> JSONDecoder {
-      JSONDecoder(decodingConfig: configuration ?? decodingConfiguration)
-    }
-    return try buildDecoder(from: configuration).decode(M.self, from: data)
+    let decoder = JSONDecoder(decodingConfig: configuration ?? decodingConfiguration)
+
+    return try decoder.decode(M.self, from: data)
   }
   
   private func handleCustomAPIError(from response: Network.Response) -> APIError? {
