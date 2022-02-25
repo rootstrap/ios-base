@@ -21,6 +21,7 @@ class ios_baseUITests: XCTestCase {
     app.launchArguments = ["Automation Test"]
       
     try? networkMocker.setUp()
+    app.logOutIfNeeded(in: self)
   }
   
   override func tearDown() {
