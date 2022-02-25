@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       uses: maierj/fastlane-action@v1.4.0
       with:
-        lane: debug_develop
+        lane: run_test_suite
 
     - name: Send test coverage report
       run: ./cc-test-reporter after-build

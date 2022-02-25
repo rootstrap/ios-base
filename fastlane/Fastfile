@@ -19,6 +19,7 @@ default_platform(:ios)
 
 # CONFIG VARIABLES
 app_name              = 'ios-base'
+workspace             = app_name+'.xcworkspace'
 team_id               = ENV["APPLE_TEAM_ID"]                                # The organization's team id in the Apple Developer portal
 cert                  = ENV["APPLE_CERT"]                                   # Local path to distribution certificate file to be used for signing the build
 key                   = ENV["APPLE_KEY"]                                    # Private key (.p12 file) used for encrypting certificate
@@ -38,9 +39,19 @@ folder                = ENV["FOLDER"]                                       #
 slack_channel         = ENV["SLACK_CHANNEL"]                                # Slack webhook url and channel name for sending notifications upon completion
 slack_url             = ENV["SLACK_URL"]                                    #
 
-
-
 platform :ios do
+
+  before_all do |lane|
+    build_lanes = %i[
+      build_and_sign
+      run_test_suite
+    ]
+  
+    if build_lanes.include?(lane)
+      bundle_install
+      cocoapods(repo_update: true)
+    end
+  end
 
   lane :set_signing do
     # Create keychain - (Travis setup works for GitHhub Actions too)
@@ -72,11 +83,9 @@ platform :ios do
 
   lane :build_and_sign do |options|
     set_signing
-    # pod install
-    cocoapods
     gym(
       scheme: options[:scheme],
-      workspace: app_name+'.xcworkspace',
+      workspace: workspace,
       export_method: options[:method],
       export_options: {iCloudContainerEnvironment: 'Production'},
       clean: true,
@@ -161,7 +170,23 @@ platform :ios do
     )
   end
 
-#DEVELOP
+  # TESTING
+  lane :run_test_suite do
+    scan(
+      workspace: workspace,
+      scheme: app_name+"-develop",
+      devices: ["iPhone 13 Pro"],
+      code_coverage: true
+    )
+    # scan(
+    #   workspace: workspace,
+    #   scheme: app_name+"-develop",
+    #   devices: ["iPhone 13"],
+    #   code_coverage: false
+    # )
+  end
+
+  #DEVELOP
   lane :build_develop do
     build_and_sign(
       scheme: app_name+'-develop',

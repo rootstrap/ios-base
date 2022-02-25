@@ -3,7 +3,7 @@ name: Develop Release
 on:
   push:
     branches:
-      - develop
+      - master
       
 env:
   LANG: en_US.UTF-8
@@ -30,11 +30,11 @@ env:
   APP_STORE_CONNECT_API_KEY_FILE: ${{ secrets.APP_STORE_CONNECT_API_KEY_FILE }}
   # Notifications
   SLACK_URL: ${{ secrets.SLACK_URL }}
-  SLACK_CHANNEL: '#dev-releases'
+  SLACK_CHANNEL: '#dev-builds'
 
 jobs:
   ios:
-    runs-on: macmini
+    runs-on: macos-latest
     timeout-minutes: 45
 
     steps:
