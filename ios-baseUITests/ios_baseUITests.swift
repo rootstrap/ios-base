@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import ios_base_Debug
 
 class ios_baseUITests: XCTestCase {
 
@@ -21,6 +20,7 @@ class ios_baseUITests: XCTestCase {
     app.launchArguments = ["Automation Test"]
       
     try? networkMocker.setUp()
+    networkMocker.stubLogOut()
     app.logOutIfNeeded(in: self)
   }
   
@@ -87,13 +87,6 @@ class ios_baseUITests: XCTestCase {
       
       alert.buttons.allElementsBoundByIndex.first?.tap()
     }
-    
-    let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 5)
-    
-    networkMocker.stubLogOut()
-    
-    logOutButton.tap()
   }
   
   func testSignInSuccess() {
@@ -107,12 +100,6 @@ class ios_baseUITests: XCTestCase {
     
     let logOutButton = app.buttons["LogoutButton"]
     waitFor(element: logOutButton, timeOut: 10)
-    
-    networkMocker.stubLogOut()
-    logOutButton.forceTap()
-    
-    let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 10)
   }
   
   func testSignInFailure() {
