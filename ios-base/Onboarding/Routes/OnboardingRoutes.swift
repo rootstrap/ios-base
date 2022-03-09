@@ -26,24 +26,17 @@ enum OnboardingRoutes: Route {
   }
 
   private func buildSignInViewController() -> UIViewController {
-    guard let signIn = R.storyboard.main.signInViewController() else {
-      return UIViewController()
-    }
-    signIn.viewModel = SignInViewModelWithCredentials()
+    let signIn = SignInViewController(viewModel: SignInViewModelWithCredentials())
     return signIn
   }
 
   private func buildSignUpViewController() -> UIViewController {
-    guard let signUp = R.storyboard.main.signUpViewController() else {
-      return UIViewController()
-    }
-    signUp.viewModel = SignUpViewModelWithEmail()
+    let signUp = SignUpViewController(viewModel: SignUpViewModelWithEmail())
     return signUp
   }
 
   private func buildFirstViewController() -> UIViewController {
-    let firstViewController = FirstViewController()
-    firstViewController.viewModel = FirstViewModel()
+    let firstViewController = FirstViewController(viewModel: FirstViewModel())
     return firstViewController
   }
 }

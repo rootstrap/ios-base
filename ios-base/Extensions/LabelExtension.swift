@@ -13,7 +13,7 @@ extension UILabel {
   
   static func titleLabel (
     text: String = "",
-    font: UIFont = .h1Regular,
+    font: UIFont = .h2Regular,
     textColor: UIColor = .mainTitle,
     backgroundColor: UIColor = .clear,
     numberOfLines: Int = 0,
