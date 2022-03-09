@@ -44,10 +44,12 @@ class PlaceholderTextView: UITextView {
     textColor = text == placeholder ? placeholderColor : fontColor
   }
   
-  convenience init(
-    frame: CGRect, placeholder: String = "", placeholderColor: UIColor = .lightGray
+  init(
+    frame: CGRect,
+    placeholder: String,
+    placeholderColor: UIColor = .lightGray
   ) {
-    self.init(frame: frame)
+    super.init(frame: frame, textContainer: nil)
     self.placeholderColor = placeholderColor
     self.placeholder = placeholder
     if let txtC = textColor {

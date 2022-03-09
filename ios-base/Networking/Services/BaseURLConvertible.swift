@@ -20,7 +20,7 @@ class BaseURLConvertible: URLConvertible {
   }
   
   func asURL() throws -> URL {
-    return URL(string: "\(baseUrl)\(path)")!
+      try "\(baseUrl)\(path)".asURL()
   }
 }
 

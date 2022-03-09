@@ -75,6 +75,12 @@ class FirstViewController: UIViewController,
       subviews: [titleLabel, signInButton, facebookSignButton, signUpButton]
     )
     activateConstraints()
+    setupAccessibility()
+  }
+
+  private func setupAccessibility() {
+    signUpButton.accessibilityIdentifier = "GoToSignUpButton"
+    signInButton.accessibilityIdentifier = "GoToSignInButton"
   }
   
   private func activateConstraints() {

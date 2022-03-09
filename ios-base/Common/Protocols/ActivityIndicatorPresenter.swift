@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ActivityIndicatorPresenter: class {
+protocol ActivityIndicatorPresenter: AnyObject {
   var activityIndicator: UIActivityIndicatorView { get }
   func showActivityIndicator(_ show: Bool)
 }
