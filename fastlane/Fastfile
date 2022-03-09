@@ -37,7 +37,11 @@ folder                = ENV["FOLDER"]                                       #
 
 # Slack
 slack_channel         = ENV["SLACK_CHANNEL"]                                # Slack webhook url and channel name for sending notifications upon completion
-slack_url             = ENV["SLACK_URL"]                                    #
+slack_url             = ENV["SLACK_URL"]  
+
+# Google
+google_services_file = "GoogleService-Info.plist"
+google_services_file_path = "#{app_name}/Resources/#{google_services_file}"
 
 platform :ios do
 
@@ -50,7 +54,31 @@ platform :ios do
     if build_lanes.include?(lane)
       bundle_install
       cocoapods(repo_update: true)
+      setup_google_services
     end
+  end
+
+  # This lane will fetch the Google secrets file from S3.
+  # If your app uses Google services, like Firebase, this lane must be
+  # executed before building the application.
+  lane :setup_google_services do
+    s3_download(
+      access_key_id: s3_key,
+      secret_access_key: s3_secret_key,
+      bucket: s3_bucket,
+      file_name: google_services_file,
+      output_path: google_services_file_path
+    )
+  end
+
+  # Execute this lane if you want to update the Google secrets file on the S3 bucket
+  lane :update_remote_google_services do
+    s3_upload(
+      access_key_id: s3_key,
+      secret_access_key: s3_secret_key,
+      bucket: s3_bucket,
+      content_path: google_services_file_path
+    )
   end
 
   lane :set_signing do
@@ -178,12 +206,6 @@ platform :ios do
       devices: ["iPhone 13 Pro"],
       code_coverage: true
     )
-    # scan(
-    #   workspace: workspace,
-    #   scheme: app_name+"-develop",
-    #   devices: ["iPhone 13"],
-    #   code_coverage: false
-    # )
   end
 
   #DEVELOP

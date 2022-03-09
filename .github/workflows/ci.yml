@@ -3,7 +3,6 @@ name: CI Build
 # Run for any commits to any branch
 on: [push, pull_request]
 
-
 env:
   LANG: en_US.UTF-8
   # CodeClimate
