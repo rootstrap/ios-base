@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 // Basic media MIME types, add more if needed.
 enum MimeType: String {
@@ -45,9 +44,5 @@ class MultipartMedia {
     self.key = key
     self.data = data
     self.type = type
-  }
-  
-  func embed(inForm multipart: MultipartFormData) {
-    multipart.append(data, withName: key, fileName: toFile, mimeType: type.rawValue)
   }
 }

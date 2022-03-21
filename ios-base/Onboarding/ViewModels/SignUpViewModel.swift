@@ -53,16 +53,21 @@ class SignUpViewModelWithEmail {
   func signup() {
     state = .network(state: .loading)
     AuthenticationServices.signup(
-      email: email, password: password, avatar64: UIImage.random(),
-      success: { [weak self] _ in
-        guard let self = self else { return }
+      email: email,
+      password: password,
+      avatar64: UIImage.random()
+    ) { [weak self] result in
+      guard let self = self else { return }
+
+      switch result {
+      case .success:
         self.state = .loggedIn
         AnalyticsManager.shared.identifyUser(with: self.email)
         AnalyticsManager.shared.log(event: Event.registerSuccess(email: self.email))
         AppNavigator.shared.navigate(to: HomeRoutes.home, with: .changeRoot)
-      },
-      failure: { [weak self] error in
-        self?.state = .network(state: .error(error.localizedDescription))
-    })
+      case .failure(let error):
+        self.state = .network(state: .error(error.localizedDescription))
+      }
+    }
   }
 }
