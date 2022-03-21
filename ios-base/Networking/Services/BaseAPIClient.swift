@@ -71,8 +71,10 @@ internal final class BaseAPIClient: APIClient {
     completion: CompletionCallback<T>
   ) {
     switch result {
-    case .success(let response): handle(response, with: endpoint.decodingConfiguration, completion: completion)
-    case .failure(let error): completion(.failure(error), [:])
+    case .success(let response):
+      handle(response, with: endpoint.decodingConfiguration, completion: completion)
+    case .failure(let error):
+      completion(.failure(error), [:])
     }
   }
   
@@ -94,7 +96,9 @@ internal final class BaseAPIClient: APIClient {
   ) {
     do {
       guard let data = response.data, !data.isEmpty else {
-        guard emptyDataStatusCodes.contains(response.statusCode) else { throw unexpectedResponseError }
+        guard emptyDataStatusCodes.contains(response.statusCode) else {
+          throw unexpectedResponseError
+        }
         
         return completion(.success(.none), response.headers)
       }
@@ -108,7 +112,10 @@ internal final class BaseAPIClient: APIClient {
     }
   }
   
-  private func decode<M: Decodable>(_ data: Data, with configuration: DecodingConfiguration?) throws -> M {
+  private func decode<M: Decodable>(
+    _ data: Data,
+    with configuration: DecodingConfiguration?
+  ) throws -> M {
     let decoder = JSONDecoder(decodingConfig: configuration ?? decodingConfiguration)
 
     return try decoder.decode(M.self, from: data)
