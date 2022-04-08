@@ -2,6 +2,22 @@ platform :ios, '14.0'
 use_frameworks!
 inhibit_all_warnings!
 
+# Add here all the necessary keys used in the project.
+# Then update the setup-secrets.sh to fill in the value for the new key.
+plugin 'cocoapods-keys', {
+  project: "ios-base",
+  keys: [
+    "FacebookAPIKey"
+  ]
+}
+
+# Injects all the secrets from the environment variables
+# This is to avoid the `pod install` step asking for key input.
+pre_install do |_|
+  system("chmod +x .setup-secrets.sh")
+  system("./.setup-secrets.sh")
+end
+
 target 'ios-base' do
   pod 'Alamofire', '~> 5.2.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'

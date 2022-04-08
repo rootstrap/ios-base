@@ -44,6 +44,7 @@
 		9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B715A451E28083600C0C039 /* PlaceholderTextView.swift */; };
 		9B77E0731E2FB6350020E450 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0721E2FB6350020E450 /* User.swift */; };
 		9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0741E2FB66F0020E450 /* UserDataManager.swift */; };
+		9B83F5552800C0C0002698CD /* App+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83F5542800C0C0002698CD /* App+Keys.swift */; };
 		9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */; };
 		9B8574D9212C84130063A3E2 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8574D8212C84130063A3E2 /* ImageExtension.swift */; };
 		9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88CC661CAB305900AE60C5 /* Constants.swift */; };
@@ -158,6 +159,7 @@
 		9B715A451E28083600C0C039 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9B77E0721E2FB6350020E450 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9B77E0741E2FB66F0020E450 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		9B83F5542800C0C0002698CD /* App+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Keys.swift"; sourceTree = "<group>"; };
 		9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		9B8574D8212C84130063A3E2 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		9B88CC661CAB305900AE60C5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 				FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */,
 				FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */,
 				FDFAAB0C269CDD540007DB8B /* ColorExtension.swift */,
+				9B83F5542800C0C0002698CD /* App+Keys.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Device/Device.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -851,6 +855,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Device.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -915,6 +920,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-base/Pods-ios-base-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Device/Device.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -933,6 +939,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Device.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -1019,6 +1026,7 @@
 				07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */,
 				9BBB30E22787791800BB8068 /* NetworkProvider.swift in Sources */,
 				FE583F0C22AFC9EA00EF3CDA /* AnalyticsService.swift in Sources */,
+				9B83F5552800C0C0002698CD /* App+Keys.swift in Sources */,
 				FE583F0E22AFC9F300EF3CDA /* FirebaseAnalyticsService.swift in Sources */,
 				9BB0608E27889AB000FF880B /* APIClient.swift in Sources */,
 				FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */,
