@@ -29,8 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     // Override point for customization after application launch.
     AnalyticsManager.shared.setup()
+
+    let appSecrets = App.secrets
+
     // -Facebook
-    Settings.appID = ConfigurationManager.getValue(for: "FacebookKey")
+    Settings.appID = ConfigurationManager.getValue(for: appSecrets.facebookAPIKey)
     ApplicationDelegate.shared.application(
       application, didFinishLaunchingWithOptions: launchOptions
     )
