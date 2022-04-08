@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let appSecrets = App.secrets
 
     // -Facebook
-    Settings.appID = ConfigurationManager.getValue(for: appSecrets.facebookAPIKey)
+    Settings.appID = appSecrets.facebookAppID
     ApplicationDelegate.shared.application(
       application, didFinishLaunchingWithOptions: launchOptions
     )

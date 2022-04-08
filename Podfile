@@ -7,6 +7,7 @@ inhibit_all_warnings!
 plugin 'cocoapods-keys', {
   project: "ios-base",
   keys: [
+    "FacebookAppID",
     "FacebookAPIKey"
   ]
 }
