@@ -10,19 +10,19 @@ import Foundation
 
 class ConfigurationManager: NSObject {
 
-  class func getValue(
-    for key: String, on propertyList: String = "ThirdPartyKeys"
-  ) -> String? {
+  private static let environmentKeyName = "ConfigurationName"
+
+  class func getValue(for key: String, on propertyList: String) -> String? {
     if
       let path = Bundle.main.path(forResource: propertyList, ofType: "plist"),
-      let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject]
+      let plistData = NSDictionary(contentsOfFile: path) as? [String: AnyObject]
     {
-      if let configDict = dict[key] as? [String: AnyObject] {
-        let key = Bundle.main.object(
-          forInfoDictionaryKey: "ConfigurationName"
-        ) as? String ?? ""
-        return configDict[key] as? String
-      } else if let value = dict[key] as? String {
+      if
+        let configuration = plistData[key] as? [String: AnyObject],
+        let env = Bundle.main.object(forInfoDictionaryKey: environmentKeyName) as? String
+      {
+        return configuration[env] as? String
+      } else if let value = plistData[key] as? String {
         return value
       }
     }

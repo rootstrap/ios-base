@@ -36,7 +36,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>ConfigurationName</key>
-	<string>Debug</string>
+	<string>$(CONFIGURATION)</string>
 	<key>FacebookDisplayName</key>
 	<string></string>
 	<key>FacebookKey</key>
