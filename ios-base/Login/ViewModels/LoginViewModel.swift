@@ -10,4 +10,9 @@ import Foundation
 
 class LoginViewModel {
   
+  var delegate: AuthDelegate?
+  
+  func doSomething() {
+    delegate?.toggleErrorStatus(isError: true)
+  }
 }

@@ -11,6 +11,8 @@ import UIKit
 
 class UIFormFieldView: UIView {
   
+  var delegate: FormFieldDelegate?
+  
   var secureTextEntry: Bool {
     get {
       return textField.isSecureTextEntry
@@ -87,10 +89,15 @@ class UIFormFieldView: UIView {
   @objc
   private func removeErrorState() {
     toggleErrorState(isError: false)
+    delegate?.toggleErrorStatus(isError: false)
   }
   
   func toggleErrorState(isError: Bool) {
     errorLabel.isHidden = !isError
     textField.layer.borderColor = isError ? UIColor.red.cgColor : UIColor.black.cgColor
   }
+}
+
+protocol FormFieldDelegate {
+  func toggleErrorStatus(isError: Bool)
 }

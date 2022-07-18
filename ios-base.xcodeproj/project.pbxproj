@@ -54,7 +54,7 @@
 		9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EB5BE247590710082370F /* AuthViewModelStateDelegate.swift */; };
 		9B917421287DAC0C00AC4A90 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B917420287DAC0C00AC4A90 /* LoginViewModel.swift */; };
 		9B917423287E09A500AC4A90 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B917422287E09A500AC4A90 /* GoogleService-Info-Debug.plist */; };
-		9B917425287E0A0A00AC4A90 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B917424287E0A0A00AC4A90 /* Login.storyboard */; };
+		9B9EDB032885E5F700899A57 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EDB022885E5F700899A57 /* AuthDelegate.swift */; };
 		9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */; };
 		9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */; };
 		9BB0608B2788989000FF880B /* EncodingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0608A2788989000FF880B /* EncodingConfiguration.swift */; };
@@ -174,8 +174,8 @@
 		9B8EB5BE247590710082370F /* AuthViewModelStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelStateDelegate.swift; sourceTree = "<group>"; };
 		9B917420287DAC0C00AC4A90 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9B917422287E09A500AC4A90 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
-		9B917424287E0A0A00AC4A90 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9B9C6BFD20C7160700EB0523 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9B9EDB022885E5F700899A57 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
 		9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		9BB0608A2788989000FF880B /* EncodingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingConfiguration.swift; sourceTree = "<group>"; };
@@ -487,7 +487,6 @@
 		9B722739287C67D200CF18F8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9B917424287E0A0A00AC4A90 /* Login.storyboard */,
 				9B91741F287DABEC00AC4A90 /* ViewModels */,
 				9B72273A287C67E000CF18F8 /* Views */,
 			);
@@ -522,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				9B917420287DAC0C00AC4A90 /* LoginViewModel.swift */,
+				9B9EDB022885E5F700899A57 /* AuthDelegate.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -839,7 +839,6 @@
 			files = (
 				FDFAAB0B269CD56D0007DB8B /* Localizable.strings in Resources */,
 				9B722738287C60E900CF18F8 /* GoogleService-Info.plist in Resources */,
-				9B917425287E0A0A00AC4A90 /* Login.storyboard in Resources */,
 				9BC04830287F1D12000DB951 /* LaunchScreen.storyboard in Resources */,
 				9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */,
 				9B917423287E09A500AC4A90 /* GoogleService-Info-Debug.plist in Resources */,
@@ -1080,6 +1079,7 @@
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
+				9B9EDB032885E5F700899A57 /* AuthDelegate.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
 				9BBB30E927877ADD00BB8068 /* HTTPHeader.swift in Sources */,
 				9BBB30DC2787791800BB8068 /* DecodingConfiguration.swift in Sources */,

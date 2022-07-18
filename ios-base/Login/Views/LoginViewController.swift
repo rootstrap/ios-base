@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, AuthDelegate {
   
   private var viewModel: LoginViewModel
   
@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
   
   private lazy var emailFormField: UIFormFieldView = {
     let form = UIFormFieldView()
+    form.delegate = self
     form.setForm(title: "EMAIL")
     form.translatesAutoresizingMaskIntoConstraints = false
     return form
@@ -31,6 +32,7 @@ class LoginViewController: UIViewController {
   
   private lazy var passwordFormField: UIFormFieldView = {
     let form = UIFormFieldView()
+    form.delegate = self
     form.setForm(
       title: "PASSWORD",
       error: "this email and password don’t match"
@@ -101,6 +103,7 @@ class LoginViewController: UIViewController {
     configureViews()
     configureConstraints()
     configureConstraints2()
+    viewModel.delegate = self
   }
   
   init(viewModel: LoginViewModel) {
@@ -178,7 +181,12 @@ class LoginViewController: UIViewController {
   
   @objc
   func tapOnLogSignInButton(_ sender: Any) {
-    passwordFormField.toggleErrorState(isError: true)
-    emailFormField.toggleErrorState(isError: true)
+    viewModel.doSomething()
   }
+  
+  func toggleErrorStatus(isError: Bool) {
+    passwordFormField.toggleErrorState(isError: isError)
+    emailFormField.toggleErrorState(isError: isError)
+  }
+
 }

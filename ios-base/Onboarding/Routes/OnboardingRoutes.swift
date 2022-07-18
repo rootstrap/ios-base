@@ -44,12 +44,6 @@ enum OnboardingRoutes: Route {
   }
   
   private func buildLogInViewController() -> UIViewController {
-    /*
-    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-    let vc = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
-    return vc
-     */
-    
     let loginViewController = LoginViewController(viewModel: LoginViewModel())
     return loginViewController
   }
