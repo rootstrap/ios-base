@@ -130,6 +130,23 @@ extension UIView {
       constant: offset
     ).isActive = true
   }
+  
+  func centerVerticallyAndMatchSize(to view: UIView) {
+    NSLayoutConstraint.activate([
+      heightAnchor.constraint(equalTo: view.heightAnchor),
+      widthAnchor.constraint(equalTo: view.widthAnchor),
+      centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    ])
+  }
+  
+  func activateMarginConstraints(subview: UIView, edges: UIEdgeInsets = .zero) {
+    NSLayoutConstraint.activate([
+      subview.topAnchor.constraint(equalTo: topAnchor, constant: edges.top),
+      subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: edges.left),
+      subview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -edges.right),
+      subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -edges.bottom)
+    ])
+  }
 }
 
 extension Array where Element: UIView {

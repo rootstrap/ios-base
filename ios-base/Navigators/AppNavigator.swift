@@ -12,8 +12,11 @@ class AppNavigator: BaseNavigator {
   static let shared = AppNavigator()
 
   init() {
+    /*
     let initialRoute: Route = SessionManager.validSession ?
       HomeRoutes.home : OnboardingRoutes.firstScreen
+     */
+    let initialRoute = OnboardingRoutes.login
     super.init(with: initialRoute)
   }
 

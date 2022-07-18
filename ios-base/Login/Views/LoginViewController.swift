@@ -1,0 +1,184 @@
+//
+//  LoginViewController.swift
+//  ios-base
+//
+//  Created by Lucas Miotti on 11/07/2022.
+//  Copyright © 2022 Rootstrap Inc. All rights reserved.
+//
+
+import UIKit
+
+class LoginViewController: UIViewController {
+  
+  private var viewModel: LoginViewModel
+  
+  private lazy var header = UIImageView(image: UIImage(named: "Auth Header"))
+  
+  private lazy var titleLabel = UILabel.titleLabel(
+    text: "TARGET MVD",
+    font: UIFont.boldSystemFont(ofSize: 20),
+    textColor: UIColor.black,
+    numberOfLines: 1,
+    textAlignment: .center
+  )
+  
+  private lazy var emailFormField: UIFormFieldView = {
+    let form = UIFormFieldView()
+    form.setForm(title: "EMAIL")
+    form.translatesAutoresizingMaskIntoConstraints = false
+    return form
+  }()
+  
+  private lazy var passwordFormField: UIFormFieldView = {
+    let form = UIFormFieldView()
+    form.setForm(
+      title: "PASSWORD",
+      error: "this email and password don’t match"
+    )
+    form.secureTextEntry = true
+    form.translatesAutoresizingMaskIntoConstraints = false
+    return form
+  }()
+  
+  private var signInButton = UIButton.primaryButton(
+    color: UIColor.black,
+    title: "SIGN IN",
+    titleColor: .white,
+    cornerRadius: 0,
+    height: 37,
+    font: UIFont.font(size: .heading5),
+    action: #selector(tapOnLogSignInButton)
+  )
+  
+  private lazy var forgotPasswordButton = UIButton.primaryButton(
+    color: UIColor.white,
+    title: "Forgot your password?",
+    titleColor: UIColor.black,
+    cornerRadius: 0,
+    height: 14,
+    font: UIFont.font(size: .heading5)
+  )
+  
+  private lazy var facebookButton = UIButton.primaryButton(
+    color: UIColor.white,
+    title: "CONNECT WITH FACEBOOK",
+    titleColor: UIColor.black,
+    cornerRadius: 0,
+    height: 14,
+    font: UIFont.boldSystemFont(ofSize: 12)
+  )
+  
+  private lazy var container: UIStackView = {
+    let stackView = UIStackView(arrangedSubviews: [
+      emailFormField,
+      passwordFormField,
+      signInButton
+    ])
+    stackView.axis = .vertical
+    stackView.spacing = 25
+    stackView.alignment = .center
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    return stackView
+  }()
+  
+  private lazy var dividerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor.black
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  private lazy var signUpButton = UIButton.primaryButton(
+    color: .white,
+    title: "SIGN UP",
+    titleColor: .black,
+    cornerRadius: 0,
+    height: 15
+  )
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    configureViews()
+    configureConstraints()
+    configureConstraints2()
+  }
+  
+  init(viewModel: LoginViewModel) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func configureViews() {
+    view.backgroundColor = .white
+    view.addSubviews(subviews: [
+      header,
+      titleLabel,
+      container,
+      forgotPasswordButton,
+      facebookButton,
+      dividerView,
+      signUpButton
+    ])
+  }
+  
+  private func configureConstraints() {
+    [
+      titleLabel,
+      container,
+      forgotPasswordButton,
+      facebookButton,
+      dividerView,
+      signUpButton
+    ].forEach {
+      $0.centerHorizontally(with: view)
+    }
+
+    NSLayoutConstraint.activate([
+      titleLabel.topAnchor.constraint(
+        equalTo: view.topAnchor,
+        constant: 75
+      ),
+      container.topAnchor.constraint(
+        equalTo: titleLabel.bottomAnchor,
+        constant: 75
+      ),
+      container.widthAnchor.constraint(equalToConstant: 188),
+      signInButton.widthAnchor.constraint(equalToConstant: 114),
+      forgotPasswordButton.topAnchor.constraint(
+        equalTo: signInButton.bottomAnchor,
+        constant: 11
+      ),
+      facebookButton.topAnchor.constraint(
+        equalTo: forgotPasswordButton.bottomAnchor,
+        constant: 22
+      )
+    ])
+  }
+  
+  private func configureConstraints2() {
+    NSLayoutConstraint.activate([
+      dividerView.widthAnchor.constraint(equalToConstant: 121),
+      dividerView.heightAnchor.constraint(equalToConstant: 0.5),
+      dividerView.bottomAnchor.constraint(
+        equalTo: signUpButton.topAnchor,
+        constant: -15.5
+      ),
+      signUpButton.widthAnchor.constraint(equalToConstant: 102),
+      signUpButton.bottomAnchor.constraint(
+        equalTo: view.bottomAnchor,
+        constant: -45
+      )
+    ])
+  }
+  
+  @objc
+  func tapOnLogSignInButton(_ sender: Any) {
+    passwordFormField.toggleErrorState(isError: true)
+    emailFormField.toggleErrorState(isError: true)
+  }
+}

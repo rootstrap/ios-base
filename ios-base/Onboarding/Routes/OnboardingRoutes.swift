@@ -13,6 +13,7 @@ enum OnboardingRoutes: Route {
   case firstScreen
   case signIn
   case signUp
+  case login
 
   var screen: UIViewController {
     switch self {
@@ -22,6 +23,8 @@ enum OnboardingRoutes: Route {
       return buildSignInViewController()
     case .signUp:
       return buildSignUpViewController()
+    case .login:
+      return buildLogInViewController()
     }
   }
 
@@ -38,5 +41,16 @@ enum OnboardingRoutes: Route {
   private func buildFirstViewController() -> UIViewController {
     let firstViewController = FirstViewController(viewModel: FirstViewModel())
     return firstViewController
+  }
+  
+  private func buildLogInViewController() -> UIViewController {
+    /*
+    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+    let vc = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
+    return vc
+     */
+    
+    let loginViewController = LoginViewController(viewModel: LoginViewModel())
+    return loginViewController
   }
 }

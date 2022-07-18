@@ -43,5 +43,7 @@ extension UIFont {
     case heading1 = 32.0
     case heading2 = 16.0
     case heading3 = 15.0
+    case heading4 = 14.0
+    case heading5 = 10.0
   }
 }

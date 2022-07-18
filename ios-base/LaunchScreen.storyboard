@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,25 +12,40 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RS iOS BASE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoE-UW-kzP">
-                                <rect key="frame" x="97" y="302.5" width="181" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oval Blue Bottom" translatesAutoresizingMaskIntoConstraints="NO" id="07l-xt-Pc8">
+                                <rect key="frame" x="166" y="459" width="209" height="208"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oval Yellow Bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Szo-Ry-pf3">
+                                <rect key="frame" x="0.0" y="409" width="298" height="258"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-Ao-g1N">
+                                <rect key="frame" x="0.0" y="200" width="375" height="31"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="TARGET MVD">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="26"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.95331488720000002" green="0.95331488720000002" blue="0.95331488720000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EoE-UW-kzP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MTJ-VF-wpz"/>
-                            <constraint firstItem="EoE-UW-kzP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-12" id="SYi-JS-ZUQ"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="07l-xt-Pc8" secondAttribute="trailing" id="3Gx-eG-1zc"/>
+                            <constraint firstItem="Szo-Ry-pf3" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="6vZ-cu-JOm"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="Szo-Ry-pf3" secondAttribute="bottom" id="A1S-EZ-oOn"/>
+                            <constraint firstItem="sc9-Ao-g1N" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="MVh-ub-FHz"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="07l-xt-Pc8" secondAttribute="bottom" id="cAd-hM-fPa"/>
+                            <constraint firstItem="sc9-Ao-g1N" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-118" id="cDi-UJ-Ioo"/>
+                            <constraint firstItem="sc9-Ao-g1N" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hqm-rz-0Y1"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="sc9-Ao-g1N" secondAttribute="trailing" id="kAy-S9-eSY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,4 +54,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Oval Blue Bottom" width="209" height="208"/>
+        <image name="Oval Yellow Bottom" width="298" height="258"/>
+    </resources>
 </document>
