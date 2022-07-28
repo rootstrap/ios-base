@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol AuthDelegate: FormFieldDelegate {
-  
+protocol AuthDelegate {
+
+  func onAuthSuccess()
+  func onAuthError(errorCode: String)
 }

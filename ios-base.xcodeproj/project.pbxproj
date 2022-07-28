@@ -71,9 +71,18 @@
 		9BBB30E927877ADD00BB8068 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */; };
 		9BC04830287F1D12000DB951 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC0482F287F1D12000DB951 /* LaunchScreen.storyboard */; };
 		9BC04834287F4754000DB951 /* UIFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC04833287F4754000DB951 /* UIFormFieldView.swift */; };
+		9BCC0A272891B8C800D221C4 /* TargetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A262891B8C800D221C4 /* TargetHomeViewController.swift */; };
+		9BCC0A2A2891B90500D221C4 /* TargetHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A292891B90500D221C4 /* TargetHomeViewModel.swift */; };
+		9BCC0A2C2891BA8700D221C4 /* RegisterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A2B2891BA8700D221C4 /* RegisterDelegate.swift */; };
 		9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD01E351F01641E007255E3 /* DictionaryExtension.swift */; };
+		9BE116652886DEFB00925DA7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE116642886DEFB00925DA7 /* RegisterViewController.swift */; };
+		9BE116682886DF3F00925DA7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE116672886DF3F00925DA7 /* RegisterViewModel.swift */; };
+		9BE1166B2889A8EB00925DA7 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE1166A2889A8EB00925DA7 /* LoginDelegate.swift */; };
 		9BE3669D1F101737007CAECD /* MultipartMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3669C1F101736007CAECD /* MultipartMedia.swift */; };
 		9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3669E1F10175E007CAECD /* Base64Media.swift */; };
+		9BF6498E288EDEF3003836A7 /* TargetAuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6498D288EDEF3003836A7 /* TargetAuthServices.swift */; };
+		9BF64990288EEC90003836A7 /* TargetAuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6498F288EEC90003836A7 /* TargetAuthEndpoint.swift */; };
+		9BF64995288F21F8003836A7 /* TargetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF64994288F21F8003836A7 /* TargetUser.swift */; };
 		BB83CFA64940E660BA4A4420 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C0EC01A885BD14BD1552DE80 /* Pods_ios_base_ios_baseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1760A5E754FEA0591B3C8A /* Pods_ios_base_ios_baseUITests.framework */; };
 		E59EB5E2CE360C64F9DB38FF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -192,9 +201,18 @@
 		9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		9BC0482F287F1D12000DB951 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC04833287F4754000DB951 /* UIFormFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFormFieldView.swift; sourceTree = "<group>"; };
+		9BCC0A262891B8C800D221C4 /* TargetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHomeViewController.swift; sourceTree = "<group>"; };
+		9BCC0A292891B90500D221C4 /* TargetHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHomeViewModel.swift; sourceTree = "<group>"; };
+		9BCC0A2B2891BA8700D221C4 /* RegisterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDelegate.swift; sourceTree = "<group>"; };
 		9BD01E351F01641E007255E3 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		9BE116642886DEFB00925DA7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9BE116672886DF3F00925DA7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		9BE1166A2889A8EB00925DA7 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		9BE3669C1F101736007CAECD /* MultipartMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartMedia.swift; sourceTree = "<group>"; };
 		9BE3669E1F10175E007CAECD /* Base64Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Base64Media.swift; sourceTree = "<group>"; tabWidth = 2; };
+		9BF6498D288EDEF3003836A7 /* TargetAuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAuthServices.swift; sourceTree = "<group>"; };
+		9BF6498F288EEC90003836A7 /* TargetAuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAuthEndpoint.swift; sourceTree = "<group>"; };
+		9BF64994288F21F8003836A7 /* TargetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetUser.swift; sourceTree = "<group>"; };
 		A143F3EC1A6E7D9DE1CA4A68 /* Pods-ios-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.release.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.release.xcconfig"; sourceTree = "<group>"; };
 		A449B00976D690BCC4003AA1 /* Pods_ios_base.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_base.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08689AA3A7C35FB70274F30 /* Pods-ios-base-ios-baseUITests.uitests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base-ios-baseUITests.uitests.xcconfig"; path = "Target Support Files/Pods-ios-base-ios-baseUITests/Pods-ios-base-ios-baseUITests.uitests.xcconfig"; sourceTree = "<group>"; };
@@ -399,6 +417,9 @@
 		9B0C72511C738C3100BAF3B1 /* ios-base */ = {
 			isa = PBXGroup;
 			children = (
+				9BCC0A242891B89F00D221C4 /* TargetHome */,
+				9BF64991288F1582003836A7 /* Models */,
+				9BE116622886DED700925DA7 /* Register */,
 				9BC04832287F4742000DB951 /* CustomViews */,
 				9B722739287C67D200CF18F8 /* Login */,
 				078642F222E6691B0027BF11 /* Common */,
@@ -426,6 +447,7 @@
 				9B2D00FD278CB123000657BE /* RailsAPIEndpoint.swift */,
 				9B2D00FF278CB1C2000657BE /* AuthEndpoint.swift */,
 				9B2D0101278DE207000657BE /* UserEndpoint.swift */,
+				9BF6498F288EEC90003836A7 /* TargetAuthEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -487,6 +509,7 @@
 		9B722739287C67D200CF18F8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				9BE116692889A8D900925DA7 /* Delegate */,
 				9B91741F287DABEC00AC4A90 /* ViewModels */,
 				9B72273A287C67E000CF18F8 /* Views */,
 			);
@@ -521,7 +544,6 @@
 			isa = PBXGroup;
 			children = (
 				9B917420287DAC0C00AC4A90 /* LoginViewModel.swift */,
-				9B9EDB022885E5F700899A57 /* AuthDelegate.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -595,6 +617,31 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		9BCC0A242891B89F00D221C4 /* TargetHome */ = {
+			isa = PBXGroup;
+			children = (
+				9BCC0A282891B8D600D221C4 /* ViewModels */,
+				9BCC0A252891B8A700D221C4 /* Views */,
+			);
+			path = TargetHome;
+			sourceTree = "<group>";
+		};
+		9BCC0A252891B8A700D221C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BCC0A262891B8C800D221C4 /* TargetHomeViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BCC0A282891B8D600D221C4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9BCC0A292891B90500D221C4 /* TargetHomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		9BDA91DF1C7390C10003877D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,11 +665,54 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		9BE116622886DED700925DA7 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				9BE116662886DF2300925DA7 /* RegisterViewModel */,
+				9BE116632886DEDF00925DA7 /* Views */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		9BE116632886DEDF00925DA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B9EDB022885E5F700899A57 /* AuthDelegate.swift */,
+				9BE116642886DEFB00925DA7 /* RegisterViewController.swift */,
+				9BCC0A2B2891BA8700D221C4 /* RegisterDelegate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BE116662886DF2300925DA7 /* RegisterViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BE116672886DF3F00925DA7 /* RegisterViewModel.swift */,
+			);
+			path = RegisterViewModel;
+			sourceTree = "<group>";
+		};
+		9BE116692889A8D900925DA7 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				9BE1166A2889A8EB00925DA7 /* LoginDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		9BE3669B1F1016BD007CAECD /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9BE3669E1F10175E007CAECD /* Base64Media.swift */,
 				9BE3669C1F101736007CAECD /* MultipartMedia.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9BF64991288F1582003836A7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9BF64994288F21F8003836A7 /* TargetUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -654,6 +744,7 @@
 				074D20D6248E98EC002A39B4 /* BaseAPIClient.swift */,
 				074D20D8248E993B002A39B4 /* AuthenticationServices.swift */,
 				074D20DA248EA832002A39B4 /* UserServices.swift */,
+				9BF6498D288EDEF3003836A7 /* TargetAuthServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1068,6 +1159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8290BFE1D832D9200599960 /* ViewExtension.swift in Sources */,
+				9BE116652886DEFB00925DA7 /* RegisterViewController.swift in Sources */,
 				07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */,
 				9BBB30E22787791800BB8068 /* NetworkProvider.swift in Sources */,
 				FE583F0C22AFC9EA00EF3CDA /* AnalyticsService.swift in Sources */,
@@ -1075,9 +1167,11 @@
 				9BB0608E27889AB000FF880B /* APIClient.swift in Sources */,
 				FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */,
 				9B3AA3A11ED4D014005A4D26 /* HomeViewController.swift in Sources */,
+				9BF64995288F21F8003836A7 /* TargetUser.swift in Sources */,
 				9BB0609127889BF000FF880B /* AlamofireNetworkProvider.swift in Sources */,
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
+				9BF6498E288EDEF3003836A7 /* TargetAuthServices.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				9B9EDB032885E5F700899A57 /* AuthDelegate.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
@@ -1096,6 +1190,7 @@
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
 				FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */,
 				9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */,
+				9BF64990288EEC90003836A7 /* TargetAuthEndpoint.swift in Sources */,
 				9B2D00F9278C8F7D000657BE /* APIEndpoint.swift in Sources */,
 				FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */,
 				9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */,
@@ -1106,9 +1201,12 @@
 				FDFAAB0D269CDD540007DB8B /* ColorExtension.swift in Sources */,
 				FE583F0A22AFC9E000EF3CDA /* AnalyticsManager.swift in Sources */,
 				9B3AA39B1ED35013005A4D26 /* SignUpViewController.swift in Sources */,
+				9BE1166B2889A8EB00925DA7 /* LoginDelegate.swift in Sources */,
 				FDFAAB09269CCED70007DB8B /* ButtonExtension.swift in Sources */,
 				9BBB30DF2787791800BB8068 /* Endpoint.swift in Sources */,
 				9B5EAB4A232C146D00B9CE3C /* TextFieldExtension.swift in Sources */,
+				9BCC0A2A2891B90500D221C4 /* TargetHomeViewModel.swift in Sources */,
+				9BE116682886DF3F00925DA7 /* RegisterViewModel.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
 				9BBB30DD2787791800BB8068 /* Network.swift in Sources */,
@@ -1129,9 +1227,11 @@
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
 				9B8EB5BD2475890A0082370F /* NetworkState.swift in Sources */,
 				9B2D00FB278CAED3000657BE /* APIClient+Product.swift in Sources */,
+				9BCC0A2C2891BA8700D221C4 /* RegisterDelegate.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 				FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */,
 				9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */,
+				9BCC0A272891B8C800D221C4 /* TargetHomeViewController.swift in Sources */,
 				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
 				9B2D00F5278C8C87000657BE /* SessionHeadersProvider.swift in Sources */,
 				FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */,
@@ -1312,7 +1412,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "http://localhost:8080";
+				BASE_URL = "https://target-mvd-api.herokuapp.com/api/v1/";
 				BUNDLE_DOMAIN = com.rootstrap;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1514,7 +1614,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "https://private-dc5596-iosbasemock.apiary-mock.com/api/v1";
+				BASE_URL = "https://target-mvd-api.herokuapp.com/api/v1/";
 				BUNDLE_DOMAIN = com.rootstrap;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1546,7 +1646,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "https://private-dc5596-iosbasemock.apiary-mock.com/api/v1";
+				BASE_URL = "https://target-mvd-api.herokuapp.com/api/v1/";
 				BUNDLE_DOMAIN = com.rootstrap;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1723,7 +1823,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_URL = "https://private-dc5596-iosbasemock.apiary-mock.com/api/v1";
+				BASE_URL = "https://target-mvd-api.herokuapp.com/api/v1/";
 				BUNDLE_DOMAIN = com.rootstrap;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

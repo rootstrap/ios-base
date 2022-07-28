@@ -14,6 +14,8 @@ enum OnboardingRoutes: Route {
   case signIn
   case signUp
   case login
+  case register
+  case home
 
   var screen: UIViewController {
     switch self {
@@ -25,6 +27,10 @@ enum OnboardingRoutes: Route {
       return buildSignUpViewController()
     case .login:
       return buildLogInViewController()
+    case .register:
+      return buildRegisterViewController()
+    case .home:
+      return buildHomeViewController()
     }
   }
 
@@ -46,5 +52,14 @@ enum OnboardingRoutes: Route {
   private func buildLogInViewController() -> UIViewController {
     let loginViewController = LoginViewController(viewModel: LoginViewModel())
     return loginViewController
+  }
+  
+  private func buildRegisterViewController() -> UIViewController {
+    let registerViewController = RegisterViewController(viewModel: RegisterViewModel())
+    return registerViewController
+  }
+  
+  private func buildHomeViewController() -> UIViewController {
+    return TargetHomeViewController(viewModel: TargetHomeViewModel())
   }
 }

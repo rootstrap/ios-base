@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
-class UIFormFieldView: UIView {
+class UIFormFieldView: UIView,
+                        UIPickerViewDelegate,
+                       UIPickerViewDataSource {
   
-  var delegate: FormFieldDelegate?
+  var delegate: UIFormFieldDelegate?
+    
+  private var errorMessage: String = ""
+  private var pickerData: [String] = []
+  
+  var text: String {
+    textField.text ?? ""
+  }
   
   var secureTextEntry: Bool {
     get {
-      return textField.isSecureTextEntry
+      textField.isSecureTextEntry
     }
     set(isSecure) {
       textField.isSecureTextEntry = isSecure
@@ -31,11 +40,11 @@ class UIFormFieldView: UIView {
   
   private lazy var textField: UITextField = {
     let textField = UITextField()
-    textField.layer.borderWidth = 1.5
+    textField.layer.borderWidth = 0.5
     textField.layer.borderColor = UIColor.black.cgColor
     textField.addTarget(
       self,
-      action: #selector(removeErrorState),
+      action: #selector(onTextChanged),
       for: .editingChanged
     )
     textField.font = .font(size: UIFont.Sizes.heading4)
@@ -75,29 +84,72 @@ class UIFormFieldView: UIView {
     container.centerVerticallyAndMatchSize(to: self)
     NSLayoutConstraint.activate([
       textField.widthAnchor.constraint(equalToConstant: 188),
-      textField.heightAnchor.constraint(equalToConstant: 37)
+      textField.heightAnchor.constraint(equalToConstant: 37),
+      errorLabel.heightAnchor.constraint(equalToConstant: 14)
     ])
-    errorLabel.isHidden = true
   }
   
-  func setForm(title: String, error: String = "") {
+  func setForm(
+    title: String,
+    placeholder: String = "",
+    error: String = ""
+  ) {
     label.text = title
-    textField.placeholder = title
-    errorLabel.text = error
+    textField.placeholder = placeholder
+    errorMessage = error
+  }
+  
+  func setPicker(
+    array: [String]
+  ) {
+    let pickerView = UIPickerView()
+    pickerView.delegate = self
+    pickerView.dataSource = self
+    textField.inputView = pickerView
+    pickerData = array
   }
   
   @objc
-  private func removeErrorState() {
+  private func onTextChanged(_ sender: UITextField) {
     toggleErrorState(isError: false)
-    delegate?.toggleErrorStatus(isError: false)
+    delegate?.onTextChanged(self)
   }
   
   func toggleErrorState(isError: Bool) {
-    errorLabel.isHidden = !isError
+    errorLabel.text = isError ? errorMessage : ""
     textField.layer.borderColor = isError ? UIColor.red.cgColor : UIColor.black.cgColor
+  }
+  
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    1
+  }
+  
+  func pickerView(
+    _ pickerView: UIPickerView,
+    numberOfRowsInComponent component: Int
+  ) -> Int {
+    pickerData.count
+  }
+  
+  func pickerView(
+    _ pickerView: UIPickerView,
+    titleForRow row: Int,
+    forComponent component: Int
+  ) -> String? {
+    let selectedData = pickerData[row]
+    delegate?.onTextChanged(self)
+    return selectedData
+  }
+  
+  func pickerView(
+    _ pickerView: UIPickerView,
+    didSelectRow row: Int,
+    inComponent component: Int
+  ) {
+      textField.text = pickerData[row]
   }
 }
 
-protocol FormFieldDelegate {
-  func toggleErrorStatus(isError: Bool)
+protocol UIFormFieldDelegate {
+  func onTextChanged(_ sender: UIFormFieldView)
 }

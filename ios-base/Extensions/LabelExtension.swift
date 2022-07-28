@@ -11,7 +11,7 @@ import UIKit
 
 extension UILabel {
   
-  static func titleLabel (
+  static func titleLabel(
     text: String = "",
     font: UIFont = .h2Regular,
     textColor: UIColor = .mainTitle,

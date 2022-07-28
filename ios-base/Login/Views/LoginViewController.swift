@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, AuthDelegate {
+class LoginViewController: UIViewController, LoginDelegate {
   
   private var viewModel: LoginViewModel
   
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, AuthDelegate {
     cornerRadius: 0,
     height: 37,
     font: UIFont.font(size: .heading5),
-    action: #selector(tapOnLogSignInButton)
+    action: #selector(tapOnButton)
   )
   
   private lazy var forgotPasswordButton = UIButton.primaryButton(
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, AuthDelegate {
       signInButton
     ])
     stackView.axis = .vertical
-    stackView.spacing = 25
+    stackView.spacing = 10
     stackView.alignment = .center
     stackView.translatesAutoresizingMaskIntoConstraints = false
     return stackView
@@ -95,7 +95,8 @@ class LoginViewController: UIViewController, AuthDelegate {
     title: "SIGN UP",
     titleColor: .black,
     cornerRadius: 0,
-    height: 15
+    height: 15,
+    action: #selector(tapOnButton)
   )
   
   override func viewDidLoad() {
@@ -180,13 +181,44 @@ class LoginViewController: UIViewController, AuthDelegate {
   }
   
   @objc
-  func tapOnLogSignInButton(_ sender: Any) {
-    viewModel.doSomething()
+  func tapOnButton(_ sender: UIButton) {
+    if sender == signInButton {
+      viewModel.signIn()
+    } else {
+      AppNavigator.shared.navigate(
+        to: OnboardingRoutes.register,
+        with: TransitionType.changeRoot
+      )
+    }
   }
   
-  func toggleErrorStatus(isError: Bool) {
-    passwordFormField.toggleErrorState(isError: isError)
-    emailFormField.toggleErrorState(isError: isError)
+  func showFieldError(_ sender: UIFormFieldView) {
+    sender.toggleErrorState(isError: true)
   }
-
+  
+  func onTextChanged(_ sender: UIFormFieldView) {
+    passwordFormField.toggleErrorState(isError: false)
+    emailFormField.toggleErrorState(isError: false)
+    if (sender == emailFormField) {
+      viewModel.email = sender.text
+    } else {
+      viewModel.password = sender.text
+    }
+  }
+  
+  func showEmailError() {
+    emailFormField.toggleErrorState(isError: true)
+  }
+  
+  func showPasswordError() {
+    passwordFormField.toggleErrorState(isError: true)
+  }
+  
+  func onAuthSuccess() {
+  
+  }
+  
+  func onAuthError(errorCode: String) {
+    
+  }
 }
