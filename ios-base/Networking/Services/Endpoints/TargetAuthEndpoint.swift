@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import Moya
 
-enum TargetAuthEndpoint: RailsAPIEndpoint {
-  
+enum TargetAuthEndpoint {
   case signIn(email: String, password: String)
   case register(
     username: String,
@@ -18,32 +18,22 @@ enum TargetAuthEndpoint: RailsAPIEndpoint {
     password: String,
     passwordConfirmation: String
   )
-  
-  var path: String {
-    switch self {
-    case .signIn:
-      return "users/sign_in"
-    case .register:
-      return "users"
-    }
+}
+
+extension TargetAuthEndpoint: TargetType {
+  var baseURL: URL {
+    URL(string: "https://target-mvd-api.herokuapp.com/api/v1")!
   }
   
-  var method: Network.HTTPMethod {
-    switch self {
-    case .signIn, .register:
-      return .post
-    }
-  }
-  
-  var parameters: [String : Any] {
+  var task: Task {
     switch self {
     case .signIn(let email, let password):
-      return [
-        "user": [
-          "email": email,
-          "password": password
-        ]
+      let parameters = [
+        "email": email,
+        "password": password
       ]
+        return .requestParameters(parameters: [
+          "user": parameters], encoding: JSONEncoding.default)
     case .register(
       let username,
       let email,
@@ -58,11 +48,46 @@ enum TargetAuthEndpoint: RailsAPIEndpoint {
         "password": password,
         "password_confirmation": passwordConfirmation
       ]
-      return ["user": parameters]
+      return .requestParameters(parameters: [
+        "user": parameters], encoding: JSONEncoding.default)
     }
   }
   
-  var headers: [String : String] {
-    ["Content-Type":"application/json"]
+  var path: String {
+    switch self {
+    case .signIn:
+      return "/users/sign_in"
+    case .register:
+      return "/users"
+    }
+  }
+  
+  var method: Moya.Method {
+    switch self {
+    case .signIn, .register:
+      return .post
+    }
+  }
+  
+  var headers: [String : String]? {
+    ["Content-Type": "application/json"]
+  }
+}
+
+struct UserRequest: Codable {
+  let user: UserDataRequest
+  
+  private enum CodingKeys: String, CodingKey {
+    case user
+  }
+}
+
+struct UserDataRequest: Codable {
+  let email: String
+  let password: String
+  
+  private enum CodingKeys: String, CodingKey {
+    case email
+    case password
   }
 }

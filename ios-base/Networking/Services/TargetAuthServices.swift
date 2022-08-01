@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya
 
 class TargetAuthServices {
     
@@ -15,17 +16,23 @@ class TargetAuthServices {
     password: String,
     completion: @escaping (Result<TargetUser, Error>) -> Void
   ) {
-    let request = BaseAPIClient.default.request(
-      endpoint: TargetAuthEndpoint.signIn(email: email, password: password)
-    ) { (result: Result<TargetUser?, Error>, responseHeaders: [String: String]) in
+    let provider = MoyaProvider<TargetAuthEndpoint>()
+    provider.request(.signIn(email: email, password: password)) { result in
       switch result {
-      case .success(let user):
-        completion(.success(user!))
-      case .failure(let error):
+      case .success(let response):
+        do {
+          let value = try JSONDecoder().decode(
+            DataResponse<TargetUser>.self,
+            from: response.data
+          )
+          completion(.success(value.data))
+        } catch let error {
           completion(.failure(error))
+        }
+      case .failure(let error):
+        completion(.failure(error))
       }
     }
-    print(request)
   }
   
   class func register(
@@ -36,21 +43,36 @@ class TargetAuthServices {
     passwordConfirmation: String,
     completion: @escaping (Result<TargetUser, Error>) -> Void
   ) {
-    BaseAPIClient.default.request(
-      endpoint: TargetAuthEndpoint.register(
+    let provider = MoyaProvider<TargetAuthEndpoint>()
+    provider.request(.register(
         username: username,
         email: email,
         gender: gender,
         password: password,
         passwordConfirmation: passwordConfirmation
-      )
-    ) { (result: Result<TargetUser?, Error>, responseHeaders: [String: String]) in
-      switch result {
-      case .success(let user):
-        completion(.success(user!))
-      case .failure(let error):
-        completion(.failure(error))
-      }
+      )) { result in
+        switch result {
+        case .success(let response):
+          do {
+            let value = try JSONDecoder().decode(
+              TargetUser.self,
+              from: response.data
+            )
+            completion(.success(value))
+          } catch let error {
+            completion(.failure(error))
+          }
+        case .failure(let error):
+          completion(.failure(error))
+        }
     }
+  }
+}
+
+struct DataResponse<T: Codable>: Codable {
+  var data: T
+  
+  private enum CodingKeys: String, CodingKey {
+    case data
   }
 }

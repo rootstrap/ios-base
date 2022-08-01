@@ -31,7 +31,7 @@ struct TargetUser: Codable {
 }
 
 struct Avatar: Codable {
-  let url: String
+  let url: String?
   let normal: ImageUrl
   let smallThumb: ImageUrl
   
@@ -43,7 +43,7 @@ struct Avatar: Codable {
 }
 
 struct ImageUrl: Codable {
-  let url: String
+  let url: String?
   
   private enum CodingKeys: String, CodingKey {
     case url

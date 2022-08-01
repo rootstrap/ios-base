@@ -215,10 +215,21 @@ class LoginViewController: UIViewController, LoginDelegate {
   }
   
   func onAuthSuccess() {
-  
+    AppNavigator.shared.navigate(
+      to: OnboardingRoutes.home,
+      with: TransitionType.changeRoot
+    )
   }
   
   func onAuthError(errorCode: String) {
-    
+    let alert = UIAlertController(
+      title: "Uh oh!",
+      message: "Something went wrong. Error code: \(errorCode)",
+      preferredStyle: .alert
+    )
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+        // Cancel Action
+    }))
+    self.present(alert, animated: true, completion: nil)
   }
 }

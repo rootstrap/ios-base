@@ -11,6 +11,7 @@ import Foundation
 class UserServices {
   
   class func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
+    /*
     BaseAPIClient.default.request(
       endpoint: UserEndpoint.profile
     ) { (result: Result<User?, Error>, _) in
@@ -31,5 +32,6 @@ class UserServices {
         completion(.failure(error))
       }
     }
+     */
   }
 }

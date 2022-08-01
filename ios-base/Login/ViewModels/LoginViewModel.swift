@@ -46,7 +46,7 @@ class LoginViewModel {
       switch result {
       case .success:
         self?.delegate?.onAuthSuccess()
-      case .failure:
+      case .failure(l):
         self?.delegate?.onAuthError(errorCode: "")
       }
     }

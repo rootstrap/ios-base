@@ -235,7 +235,7 @@ class RegisterViewController: UIViewController, RegisterDelegate {
   
   func onAuthSuccess() {
     AppNavigator.shared.navigate(
-      to: OnboardingRoutes.login,
+      to: OnboardingRoutes.home,
       with: TransitionType.changeRoot
     )
   }
@@ -246,7 +246,7 @@ class RegisterViewController: UIViewController, RegisterDelegate {
       message: "Something went wrong. Error code: \(errorCode)",
       preferredStyle: .alert
     )
-    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { _ in
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
         // Cancel Action
     }))
     self.present(alert, animated: true, completion: nil)

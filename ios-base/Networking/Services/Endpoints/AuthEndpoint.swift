@@ -37,7 +37,7 @@ internal enum AuthEndpoint: RailsAPIEndpoint {
     }
   }
 
-  var parameters: [String: Any] {
+  var parameters: Any {
     switch self {
     case .signIn(let email, let password):
       return [

@@ -1,6 +1,8 @@
 import Foundation
 
 internal enum UserEndpoint: RailsAPIEndpoint {
+  var parameters: Any
+  
 
   case profile
 
