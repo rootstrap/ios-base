@@ -21,20 +21,15 @@
 		0737296624AD38CE008C54D9 /* NetworkMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737296424AD38CE008C54D9 /* NetworkMocker.swift */; };
 		074889A72477251500A0029E /* ActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074889A62477251500A0029E /* ActivityIndicatorPresenter.swift */; };
 		0748CCCC6E80D2040F1C75D3 /* Pods_ios_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A449B00976D690BCC4003AA1 /* Pods_ios_base.framework */; };
-		074D20D7248E98EC002A39B4 /* BaseAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20D6248E98EC002A39B4 /* BaseAPIClient.swift */; };
 		074D20D9248E993B002A39B4 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20D8248E993B002A39B4 /* AuthenticationServices.swift */; };
 		074D20DB248EA832002A39B4 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DA248EA832002A39B4 /* UserServices.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
-		9B2D00F3278C8ACE000657BE /* HeaderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00F2278C8ACE000657BE /* HeaderProvider.swift */; };
-		9B2D00F5278C8C87000657BE /* SessionHeadersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00F4278C8C87000657BE /* SessionHeadersProvider.swift */; };
-		9B2D00F7278C8DEF000657BE /* RailsAPIHeadersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00F6278C8DEF000657BE /* RailsAPIHeadersProvider.swift */; };
-		9B2D00F9278C8F7D000657BE /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00F8278C8F7D000657BE /* APIEndpoint.swift */; };
-		9B2D00FB278CAED3000657BE /* APIClient+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00FA278CAED3000657BE /* APIClient+Product.swift */; };
-		9B2D00FE278CB123000657BE /* RailsAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00FD278CB123000657BE /* RailsAPIEndpoint.swift */; };
 		9B2D0100278CB1C2000657BE /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00FF278CB1C2000657BE /* AuthEndpoint.swift */; };
 		9B2D0102278DE207000657BE /* UserEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D0101278DE207000657BE /* UserEndpoint.swift */; };
+		9B2F322C28999F2100D9C710 /* APIClient+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F322B28999F2100D9C710 /* APIClient+Application.swift */; };
+		9B2F323028999FFE00D9C710 /* SessionHeadersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F322F28999FFE00D9C710 /* SessionHeadersProvider.swift */; };
 		9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AA3981ED35007005A4D26 /* SignInViewController.swift */; };
 		9B3AA39B1ED35013005A4D26 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */; };
 		9B3AA3A11ED4D014005A4D26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AA3A01ED4D014005A4D26 /* HomeViewController.swift */; };
@@ -52,21 +47,7 @@
 		9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EB5BE247590710082370F /* AuthViewModelStateDelegate.swift */; };
 		9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */; };
 		9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */; };
-		9BB0608B2788989000FF880B /* EncodingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0608A2788989000FF880B /* EncodingConfiguration.swift */; };
-		9BB0608E27889AB000FF880B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0608D27889AB000FF880B /* APIClient.swift */; };
-		9BB0609127889BF000FF880B /* AlamofireNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0609027889BF000FF880B /* AlamofireNetworkProvider.swift */; };
-		9BBB30DC2787791800BB8068 /* DecodingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D02787791800BB8068 /* DecodingConfiguration.swift */; };
-		9BBB30DD2787791800BB8068 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D12787791800BB8068 /* Network.swift */; };
-		9BBB30DE2787791800BB8068 /* JSONDecoder+DecodingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D22787791800BB8068 /* JSONDecoder+DecodingConfiguration.swift */; };
-		9BBB30DF2787791800BB8068 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D32787791800BB8068 /* Endpoint.swift */; };
-		9BBB30E12787791800BB8068 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D62787791800BB8068 /* APIClientError.swift */; };
-		9BBB30E22787791800BB8068 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30D72787791800BB8068 /* NetworkProvider.swift */; };
-		9BBB30E42787793B00BB8068 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30E32787793B00BB8068 /* APIError.swift */; };
-		9BBB30E727877AA000BB8068 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30E627877AA000BB8068 /* Cancellable.swift */; };
-		9BBB30E927877ADD00BB8068 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */; };
 		9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD01E351F01641E007255E3 /* DictionaryExtension.swift */; };
-		9BE3669D1F101737007CAECD /* MultipartMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3669C1F101736007CAECD /* MultipartMedia.swift */; };
-		9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3669E1F10175E007CAECD /* Base64Media.swift */; };
 		9BFA84F31C776827009F64E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */; };
 		BB83CFA64940E660BA4A4420 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C0EC01A885BD14BD1552DE80 /* Pods_ios_base_ios_baseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1760A5E754FEA0591B3C8A /* Pods_ios_base_ios_baseUITests.framework */; };
@@ -84,7 +65,6 @@
 		FDFAAB0B269CD56D0007DB8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDFAAB0A269CD56D0007DB8B /* Localizable.strings */; };
 		FDFAAB0D269CDD540007DB8B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFAAB0C269CDD540007DB8B /* ColorExtension.swift */; };
 		FE06840322CE7ED400C6294F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE06840222CE7ED400C6294F /* R.generated.swift */; };
-		FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE251D0622A7FE0F00E0DE90 /* DataExtension.swift */; };
 		FE4D635C22B2C75400685161 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4D635B22B2C75400685161 /* Navigator.swift */; };
 		FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4D635D22B2CAFF00685161 /* AppNavigator.swift */; };
 		FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4D635F22B2CB3800685161 /* HomeRoutes.swift */; };
@@ -128,7 +108,6 @@
 		0737296324AD38CE008C54D9 /* NetworkMockerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMockerExtension.swift; sourceTree = "<group>"; };
 		0737296424AD38CE008C54D9 /* NetworkMocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMocker.swift; sourceTree = "<group>"; };
 		074889A62477251500A0029E /* ActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
-		074D20D6248E98EC002A39B4 /* BaseAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIClient.swift; sourceTree = "<group>"; };
 		074D20D8248E993B002A39B4 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
 		074D20DA248EA832002A39B4 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		07741D71218CDED600DB3B97 /* FirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewModel.swift; sourceTree = "<group>"; };
@@ -138,14 +117,10 @@
 		9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B0C726D1C738D3400BAF3B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B12AF6B1F269B03005FD465 /* ThirdPartyKeys.example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ThirdPartyKeys.example.plist; sourceTree = "<group>"; };
-		9B2D00F2278C8ACE000657BE /* HeaderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProvider.swift; sourceTree = "<group>"; };
-		9B2D00F4278C8C87000657BE /* SessionHeadersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHeadersProvider.swift; sourceTree = "<group>"; };
-		9B2D00F6278C8DEF000657BE /* RailsAPIHeadersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailsAPIHeadersProvider.swift; sourceTree = "<group>"; };
-		9B2D00F8278C8F7D000657BE /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
-		9B2D00FA278CAED3000657BE /* APIClient+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Product.swift"; sourceTree = "<group>"; };
-		9B2D00FD278CB123000657BE /* RailsAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailsAPIEndpoint.swift; sourceTree = "<group>"; };
 		9B2D00FF278CB1C2000657BE /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		9B2D0101278DE207000657BE /* UserEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoint.swift; sourceTree = "<group>"; };
+		9B2F322B28999F2100D9C710 /* APIClient+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Application.swift"; sourceTree = "<group>"; };
+		9B2F322F28999FFE00D9C710 /* SessionHeadersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHeadersProvider.swift; sourceTree = "<group>"; };
 		9B3AA3981ED35007005A4D26 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9B3AA39A1ED35013005A4D26 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9B3AA3A01ED4D014005A4D26 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -167,21 +142,7 @@
 		9B9C6BFD20C7160700EB0523 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9BAFB7C22114E3CD0099DC61 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		9BB0608A2788989000FF880B /* EncodingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingConfiguration.swift; sourceTree = "<group>"; };
-		9BB0608D27889AB000FF880B /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		9BB0609027889BF000FF880B /* AlamofireNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkProvider.swift; sourceTree = "<group>"; };
-		9BBB30D02787791800BB8068 /* DecodingConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingConfiguration.swift; sourceTree = "<group>"; };
-		9BBB30D12787791800BB8068 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		9BBB30D22787791800BB8068 /* JSONDecoder+DecodingConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+DecodingConfiguration.swift"; sourceTree = "<group>"; };
-		9BBB30D32787791800BB8068 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		9BBB30D62787791800BB8068 /* APIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
-		9BBB30D72787791800BB8068 /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
-		9BBB30E32787793B00BB8068 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		9BBB30E627877AA000BB8068 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
-		9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		9BD01E351F01641E007255E3 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
-		9BE3669C1F101736007CAECD /* MultipartMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartMedia.swift; sourceTree = "<group>"; };
-		9BE3669E1F10175E007CAECD /* Base64Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Base64Media.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9BFA84F21C776827009F64E4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A143F3EC1A6E7D9DE1CA4A68 /* Pods-ios-base.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-base.release.xcconfig"; path = "Target Support Files/Pods-ios-base/Pods-ios-base.release.xcconfig"; sourceTree = "<group>"; };
 		A449B00976D690BCC4003AA1 /* Pods_ios_base.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_base.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +165,6 @@
 		FDFAAB0A269CD56D0007DB8B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FDFAAB0C269CDD540007DB8B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		FE06840222CE7ED400C6294F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		FE251D0622A7FE0F00E0DE90 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		FE4D635B22B2C75400685161 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		FE4D635D22B2CAFF00685161 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		FE4D635F22B2CB3800685161 /* HomeRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRoutes.swift; sourceTree = "<group>"; };
@@ -409,11 +369,26 @@
 		9B2D00FC278CAFFC000657BE /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
-				9B2D00FD278CB123000657BE /* RailsAPIEndpoint.swift */,
 				9B2D00FF278CB1C2000657BE /* AuthEndpoint.swift */,
 				9B2D0101278DE207000657BE /* UserEndpoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		9B2F322D28999FFE00D9C710 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				9B2F322E28999FFE00D9C710 /* API */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		9B2F322E28999FFE00D9C710 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9B2F322F28999FFE00D9C710 /* SessionHeadersProvider.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		9B5AFAD11C7205EB002347D6 = {
@@ -484,63 +459,10 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
-		9BB0608C2788989400FF880B /* API */ = {
-			isa = PBXGroup;
-			children = (
-				9BBB30D32787791800BB8068 /* Endpoint.swift */,
-				9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */,
-				9BB0608A2788989000FF880B /* EncodingConfiguration.swift */,
-				9BBB30D02787791800BB8068 /* DecodingConfiguration.swift */,
-				9B2D00F4278C8C87000657BE /* SessionHeadersProvider.swift */,
-				9B2D00F6278C8DEF000657BE /* RailsAPIHeadersProvider.swift */,
-				9B2D00F8278C8F7D000657BE /* APIEndpoint.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		9BB0608F27889B4600FF880B /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				9BBB30D12787791800BB8068 /* Network.swift */,
-				9BB0609027889BF000FF880B /* AlamofireNetworkProvider.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		9BBB30CF2787791800BB8068 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				9BB0608F27889B4600FF880B /* Network */,
-				9BB0608C2788989400FF880B /* API */,
-			);
-			path = Types;
-			sourceTree = "<group>";
-		};
-		9BBB30D42787791800BB8068 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				9BBB30E32787793B00BB8068 /* APIError.swift */,
-				9BBB30D62787791800BB8068 /* APIClientError.swift */,
-			);
-			path = Errors;
-			sourceTree = "<group>";
-		};
-		9BBB30E527877A9500BB8068 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9BBB30D72787791800BB8068 /* NetworkProvider.swift */,
-				9BBB30E627877AA000BB8068 /* Cancellable.swift */,
-				9BB0608D27889AB000FF880B /* APIClient.swift */,
-				9B2D00F2278C8ACE000657BE /* HeaderProvider.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		9BBB30EC27877BAF00BB8068 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9BBB30D22787791800BB8068 /* JSONDecoder+DecodingConfiguration.swift */,
-				9B2D00FA278CAED3000657BE /* APIClient+Product.swift */,
+				9B2F322B28999F2100D9C710 /* APIClient+Application.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -548,11 +470,8 @@
 		9BDA91DF1C7390C10003877D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9B2F322D28999FFE00D9C710 /* Types */,
 				9BBB30EC27877BAF00BB8068 /* Extensions */,
-				9BBB30E527877A9500BB8068 /* Protocols */,
-				9BE3669B1F1016BD007CAECD /* Models */,
-				9BBB30D42787791800BB8068 /* Errors */,
-				9BBB30CF2787791800BB8068 /* Types */,
 				9BFA84F11C776817009F64E4 /* Services */,
 			);
 			path = Networking;
@@ -566,15 +485,6 @@
 				9B77E0741E2FB66F0020E450 /* UserDataManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		9BE3669B1F1016BD007CAECD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9BE3669E1F10175E007CAECD /* Base64Media.swift */,
-				9BE3669C1F101736007CAECD /* MultipartMedia.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		9BFA84EE1C7767D9009F64E4 /* Models */ = {
@@ -601,7 +511,6 @@
 			isa = PBXGroup;
 			children = (
 				9B2D00FC278CAFFC000657BE /* Endpoints */,
-				074D20D6248E98EC002A39B4 /* BaseAPIClient.swift */,
 				074D20D8248E993B002A39B4 /* AuthenticationServices.swift */,
 				074D20DA248EA832002A39B4 /* UserServices.swift */,
 			);
@@ -627,7 +536,6 @@
 				9B8D306F20AB47E90050697F /* JSONEncodingExtension.swift */,
 				9B8574D8212C84130063A3E2 /* ImageExtension.swift */,
 				071CD2612228544700E6D385 /* FontExtension.swift */,
-				FE251D0622A7FE0F00E0DE90 /* DataExtension.swift */,
 				9B5EAB49232C146D00B9CE3C /* TextFieldExtension.swift */,
 				FDFAAB06269CCCD30007DB8B /* LabelExtension.swift */,
 				FDFAAB08269CCED70007DB8B /* ButtonExtension.swift */,
@@ -846,6 +754,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSFontSizes/RSFontSizes.framework",
+				"${BUILT_PRODUCTS_DIR}/RSSwiftNetworking/RSSwiftNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
 			);
@@ -865,6 +774,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSFontSizes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSwiftNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifter.framework",
 			);
@@ -929,6 +839,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSFontSizes/RSFontSizes.framework",
+				"${BUILT_PRODUCTS_DIR}/RSSwiftNetworking/RSSwiftNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -947,6 +858,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSFontSizes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSwiftNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,23 +929,17 @@
 			files = (
 				E8290BFE1D832D9200599960 /* ViewExtension.swift in Sources */,
 				07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */,
-				9BBB30E22787791800BB8068 /* NetworkProvider.swift in Sources */,
 				FE583F0C22AFC9EA00EF3CDA /* AnalyticsService.swift in Sources */,
 				FE583F0E22AFC9F300EF3CDA /* FirebaseAnalyticsService.swift in Sources */,
-				9BB0608E27889AB000FF880B /* APIClient.swift in Sources */,
 				FE4D636022B2CB3800685161 /* HomeRoutes.swift in Sources */,
 				9B3AA3A11ED4D014005A4D26 /* HomeViewController.swift in Sources */,
-				9BB0609127889BF000FF880B /* AlamofireNetworkProvider.swift in Sources */,
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
+				9B2F323028999FFE00D9C710 /* SessionHeadersProvider.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
-				9BBB30E927877ADD00BB8068 /* HTTPHeader.swift in Sources */,
-				9BBB30DC2787791800BB8068 /* DecodingConfiguration.swift in Sources */,
-				9BBB30DE2787791800BB8068 /* JSONDecoder+DecodingConfiguration.swift in Sources */,
 				071CD2622228544700E6D385 /* FontExtension.swift in Sources */,
 				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
-				9B2D00F3278C8ACE000657BE /* HeaderProvider.swift in Sources */,
 				074D20D9248E993B002A39B4 /* AuthenticationServices.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* ViewControllerExtension.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
@@ -1042,45 +948,31 @@
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
 				FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */,
 				9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */,
-				9B2D00F9278C8F7D000657BE /* APIEndpoint.swift in Sources */,
 				FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */,
 				9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */,
-				9BE3669D1F101737007CAECD /* MultipartMedia.swift in Sources */,
 				9B8574D9212C84130063A3E2 /* ImageExtension.swift in Sources */,
-				9B2D00F7278C8DEF000657BE /* RailsAPIHeadersProvider.swift in Sources */,
 				9B2D0102278DE207000657BE /* UserEndpoint.swift in Sources */,
 				FDFAAB0D269CDD540007DB8B /* ColorExtension.swift in Sources */,
 				FE583F0A22AFC9E000EF3CDA /* AnalyticsManager.swift in Sources */,
 				9B3AA39B1ED35013005A4D26 /* SignUpViewController.swift in Sources */,
 				FDFAAB09269CCED70007DB8B /* ButtonExtension.swift in Sources */,
-				9BBB30DF2787791800BB8068 /* Endpoint.swift in Sources */,
 				9B5EAB4A232C146D00B9CE3C /* TextFieldExtension.swift in Sources */,
 				9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */,
 				FE06840322CE7ED400C6294F /* R.generated.swift in Sources */,
-				9BBB30DD2787791800BB8068 /* Network.swift in Sources */,
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,
-				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
-				9BBB30E727877AA000BB8068 /* Cancellable.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
-				9BB0608B2788989000FF880B /* EncodingConfiguration.swift in Sources */,
-				9BBB30E42787793B00BB8068 /* APIError.swift in Sources */,
 				9B2D0100278CB1C2000657BE /* AuthEndpoint.swift in Sources */,
 				074889A72477251500A0029E /* ActivityIndicatorPresenter.swift in Sources */,
 				E8FBB1C11DD21D18000D6740 /* SessionManager.swift in Sources */,
-				9BE3669F1F10175E007CAECD /* Base64Media.swift in Sources */,
-				9B2D00FE278CB123000657BE /* RailsAPIEndpoint.swift in Sources */,
+				9B2F322C28999F2100D9C710 /* APIClient+Application.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
 				9B8EB5BD2475890A0082370F /* NetworkState.swift in Sources */,
-				9B2D00FB278CAED3000657BE /* APIClient+Product.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 				FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */,
 				9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */,
 				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
-				9B2D00F5278C8C87000657BE /* SessionHeadersProvider.swift in Sources */,
 				FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */,
-				074D20D7248E98EC002A39B4 /* BaseAPIClient.swift in Sources */,
-				9BBB30E12787791800BB8068 /* APIClientError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

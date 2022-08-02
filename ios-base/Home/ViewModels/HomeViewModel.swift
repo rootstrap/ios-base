@@ -29,11 +29,22 @@ class HomeViewModel {
       delegate?.didUpdateState(to: state)
     }
   }
+
+  private let userServices: UserServices
+  private let authServices: AuthenticationServices
+
+  init(
+    userServices: UserServices = UserServices(),
+    authServices: AuthenticationServices = AuthenticationServices()
+  ) {
+    self.userServices = userServices
+    self.authServices = authServices
+  }
   
   func loadUserProfile() {
     state = .network(state: .loading)
     
-    UserServices.getMyProfile { [weak self] (result: Result<User, Error>) in
+    userServices.getMyProfile { [weak self] (result: Result<User, Error>) in
       switch result {
       case .success(let user):
         self?.userEmail = user.email
@@ -47,7 +58,7 @@ class HomeViewModel {
   func logoutUser() {
     state = .network(state: .loading)
     
-    AuthenticationServices.logout { [weak self] result in
+    authServices.logout { [weak self] result in
       switch result {
       case .success:
         self?.didlogOutAccount()
@@ -60,7 +71,7 @@ class HomeViewModel {
   func deleteAccount() {
     state = .network(state: .loading)
   
-    AuthenticationServices.deleteAccount { [weak self] result in
+    authServices.deleteAccount { [weak self] result in
       switch result {
       case .success:
         self?.didlogOutAccount()

@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'ios-base' do
-  pod 'Alamofire', '~> 5.2.0'
+  pod 'RSSwiftNetworking/AlamofireProvider', '~> 1.0.1'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
   pod 'RSFontSizes', '~> 1.2.0'
   pod 'R.swift', '~> 5.0.3'
