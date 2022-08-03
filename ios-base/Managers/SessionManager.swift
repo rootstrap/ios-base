@@ -10,11 +10,11 @@ import UIKit
 
 class SessionManager: NSObject {
 
-  static var currentSession: Session? {
+  static var currentSession: TargetUser? {
     get {
       if
         let data = UserDefaults.standard.data(forKey: "ios-base-session"),
-        let session = try? JSONDecoder().decode(Session.self, from: data)
+        let session = try? JSONDecoder().decode(TargetUser.self, from: data)
       {
         return session
       }
@@ -32,9 +32,8 @@ class SessionManager: NSObject {
   }
   
   static var validSession: Bool {
-    if let session = currentSession, let uid = session.uid,
-       let tkn = session.accessToken, let client = session.client {
-      return !uid.isEmpty && !tkn.isEmpty && !client.isEmpty
+    if let session = currentSession {
+      return !session.email.isEmpty
     }
     return false
   }

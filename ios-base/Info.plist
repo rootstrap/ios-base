@@ -37,6 +37,8 @@
 	<string>1</string>
 	<key>ConfigurationName</key>
 	<string>Debug</string>
+	<key>FacebookAppID</key>
+	<string>166925907359293</string>
 	<key>FacebookDisplayName</key>
 	<string></string>
 	<key>FacebookKey</key>

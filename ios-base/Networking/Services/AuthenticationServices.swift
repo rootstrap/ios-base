@@ -149,8 +149,8 @@ class AuthenticationServices {
     _ user: User?,
     headers: [String: String]
   ) -> Bool {
-    UserDataManager.currentUser = user
-    SessionManager.currentSession = Session(headers: headers)
+    //UserDataManager.currentUser = user
+    //SessionManager.currentSession = Session(headers: headers)
 
     return UserDataManager.currentUser != nil && SessionManager.validSession
   }

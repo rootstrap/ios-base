@@ -10,12 +10,12 @@ import UIKit
 
 class UserDataManager: NSObject {
   
-  static var currentUser: User? {
+  static var currentUser: TargetUser? {
     get {
       let defaults = UserDefaults.standard
       if
         let data = defaults.data(forKey: "ios-base-user"),
-        let user = try? JSONDecoder().decode(User.self, from: data)
+        let user = try? JSONDecoder().decode(TargetUser.self, from: data)
       {
         return user
       }

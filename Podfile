@@ -11,6 +11,7 @@ target 'ios-base' do
   pod 'Firebase/CoreOnly', '~> 8.6.0'
   pod 'Firebase/Analytics', '~> 8.6.0'
   pod 'Firebase/Crashlytics', '~> 8.6.0'
+  pod 'Firebase/Auth'
   pod 'Moya', '~> 15.0'
 
   # Uncomment if needed ---

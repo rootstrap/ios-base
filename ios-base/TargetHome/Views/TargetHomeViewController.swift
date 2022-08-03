@@ -13,6 +13,16 @@ class TargetHomeViewController: UIViewController {
   
   private var viewModel: TargetHomeViewModel
   
+  private var logOutButton = UIButton.primaryButton(
+    color: UIColor.black,
+    title: "LOG OUT",
+    titleColor: .white,
+    cornerRadius: 0,
+    height: 37,
+    font: UIFont.font(size: .heading5),
+    action: #selector(tapOnButton)
+  )
+  
   init(viewModel: TargetHomeViewModel) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -26,5 +36,17 @@ class TargetHomeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
+    view.addSubviews(subviews: [logOutButton])
+    logOutButton.centerHorizontally(with: view)
+    logOutButton.centerVertically(with: view)
+  }
+  
+  @objc
+  func tapOnButton(_ sender: UIButton) {
+    viewModel.logOut()
+    AppNavigator.shared.navigate(
+      to: OnboardingRoutes.login,
+      with: TransitionType.changeRoot
+    )
   }
 }

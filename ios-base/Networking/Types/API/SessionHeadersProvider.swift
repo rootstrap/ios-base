@@ -6,8 +6,8 @@ internal class SessionHeadersProvider: HeadersProvider {
     if let session = SessionManager.currentSession {
       return [
         HTTPHeader.uid.rawValue: session.uid ?? "",
-        HTTPHeader.client.rawValue: session.client ?? "",
-        HTTPHeader.token.rawValue: session.accessToken ?? ""
+        //HTTPHeader.client.rawValue: session.client ?? "",
+        //HTTPHeader.token.rawValue: session.accessToken ?? ""
       ]
     }
 

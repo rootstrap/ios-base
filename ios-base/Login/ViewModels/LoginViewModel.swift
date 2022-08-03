@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FBSDKLoginKit
 
 class LoginViewModel {
   
@@ -44,11 +45,40 @@ class LoginViewModel {
       password: self.password
     ) { [weak self] result in
       switch result {
-      case .success:
+      case .success(let user):
+        UserDataManager.currentUser = user
         self?.delegate?.onAuthSuccess()
-      case .failure(l):
+      case .failure:
         self?.delegate?.onAuthError(errorCode: "")
       }
+    }
+  }
+  
+  func facebookSignIn() {
+    guard let viewController = delegate as? UIViewController else { return }
+    let fbLoginManager = LoginManager()
+    // Logs out before login, in case user changes facebook accounts
+    fbLoginManager.logIn(
+      permissions: ["email"],
+      from: viewController,
+      handler: handleFacebookResponse
+    )
+  }
+  
+  private func handleFacebookResponse(result: LoginManagerLoginResult?, error: Error?) {
+    guard let result = result, error == nil else {
+      self.delegate?.onAuthError(errorCode: error?.localizedDescription ?? "")
+      return
+    }
+    if result.isCancelled {
+      self.delegate?.onAuthError(errorCode: "User cancelled")
+    } else if !result.grantedPermissions.contains("email") {
+      self.delegate?.onAuthError(
+        errorCode: "It seems that you haven't allowed Facebook to provide your email address."
+      )
+    } else {
+      UserDataManager.currentUser = user
+      self.delegate?.onAuthSuccess()
     }
   }
 }

@@ -67,7 +67,8 @@ class LoginViewController: UIViewController, LoginDelegate {
     titleColor: UIColor.black,
     cornerRadius: 0,
     height: 14,
-    font: UIFont.boldSystemFont(ofSize: 12)
+    font: UIFont.boldSystemFont(ofSize: 12),
+    action: #selector(tapOnButton)
   )
   
   private lazy var container: UIStackView = {
@@ -119,6 +120,7 @@ class LoginViewController: UIViewController, LoginDelegate {
   
   private func configureViews() {
     view.backgroundColor = .white
+    // facebookButton.permissions = ["public_profile","email"]
     view.addSubviews(subviews: [
       header,
       titleLabel,
@@ -184,6 +186,8 @@ class LoginViewController: UIViewController, LoginDelegate {
   func tapOnButton(_ sender: UIButton) {
     if sender == signInButton {
       viewModel.signIn()
+    } else if sender == facebookButton {
+      viewModel.facebookSignIn()
     } else {
       AppNavigator.shared.navigate(
         to: OnboardingRoutes.register,

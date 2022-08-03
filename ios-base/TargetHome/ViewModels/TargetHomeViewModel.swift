@@ -7,7 +7,13 @@
 //
 
 import Foundation
+import FBSDKLoginKit
 
 class TargetHomeViewModel {
   
+  func logOut() {
+    let fbLoginManager = LoginManager()
+    fbLoginManager.logOut()
+    UserDataManager.deleteUser()
+  }
 }

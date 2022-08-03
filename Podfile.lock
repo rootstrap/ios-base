@@ -11,6 +11,9 @@ PODS:
     - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (8.6.0):
     - Firebase/Core
+  - Firebase/Auth (8.6.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 8.6.0)
   - Firebase/Core (8.6.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 8.6.0)
@@ -37,6 +40,11 @@ PODS:
     - GoogleUtilities/Network (~> 7.4)
     - "GoogleUtilities/NSData+zlib (~> 7.4)"
     - nanopb (~> 2.30908.0)
+  - FirebaseAuth (8.6.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GTMSessionFetcher/Core (~> 1.5)
   - FirebaseCore (8.6.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
@@ -94,6 +102,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.5.1):
     - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.7.2)
   - IQKeyboardManagerSwift (6.1.1)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -118,6 +127,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 5.5.0)
   - FBSDKLoginKit (~> 5.5.0)
   - Firebase/Analytics (~> 8.6.0)
+  - Firebase/Auth
   - Firebase/CoreOnly (~> 8.6.0)
   - Firebase/Crashlytics (~> 8.6.0)
   - IQKeyboardManagerSwift (~> 6.1.1)
@@ -135,6 +145,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
@@ -142,6 +153,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - Moya
     - nanopb
@@ -159,6 +171,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: bb28062f24e79590c44ba03297ca9bea4b6436d2
   Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
   FirebaseAnalytics: 8f32ae54ad42754f503354782575c4ddfc1425c3
+  FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
   FirebaseCore: 620b677f70f5470a8e59cb77f3ddc666f6f09785
   FirebaseCoreDiagnostics: 3721920bde3a9a6d5aa093c1d25e9d3e47f694af
   FirebaseCrashlytics: 58f8ecea7c799c61c50e8111d2e438424a8a1d2e
@@ -166,6 +179,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 2c0c6e2a7ab3fe730ade6379f732bdefb46f50b0
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -176,6 +190,6 @@ SPEC CHECKSUMS:
   Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 979af0ab5da875199d54a18db16d47eba03d7954
+PODFILE CHECKSUM: 39a564e0f6c4d808e3ae857d62e2ba82373e3524
 
 COCOAPODS: 1.11.3
