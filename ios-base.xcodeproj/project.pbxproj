@@ -70,6 +70,11 @@
 		9BBB30E927877ADD00BB8068 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */; };
 		9BC04830287F1D12000DB951 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC0482F287F1D12000DB951 /* LaunchScreen.storyboard */; };
 		9BC04834287F4754000DB951 /* UIFormFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC04833287F4754000DB951 /* UIFormFieldView.swift */; };
+		9BC3F1E1289AE706009ED183 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3F1E0289AE706009ED183 /* ProfileViewController.swift */; };
+		9BC3F1E3289AE71A009ED183 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3F1E2289AE71A009ED183 /* ProfileViewModel.swift */; };
+		9BC3F1E6289AE78D009ED183 /* TargetRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3F1E5289AE78D009ED183 /* TargetRoutes.swift */; };
+		9BC3F228289D47DC009ED183 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3F227289D47DC009ED183 /* ChatViewModel.swift */; };
+		9BC3F22A289D47F1009ED183 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3F229289D47F1009ED183 /* ChatViewController.swift */; };
 		9BCC0A272891B8C800D221C4 /* TargetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A262891B8C800D221C4 /* TargetHomeViewController.swift */; };
 		9BCC0A2A2891B90500D221C4 /* TargetHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A292891B90500D221C4 /* TargetHomeViewModel.swift */; };
 		9BCC0A2C2891BA8700D221C4 /* RegisterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0A2B2891BA8700D221C4 /* RegisterDelegate.swift */; };
@@ -82,9 +87,9 @@
 		9BF6498E288EDEF3003836A7 /* TargetAuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6498D288EDEF3003836A7 /* TargetAuthServices.swift */; };
 		9BF64990288EEC90003836A7 /* TargetAuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6498F288EEC90003836A7 /* TargetAuthEndpoint.swift */; };
 		9BF64995288F21F8003836A7 /* TargetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF64994288F21F8003836A7 /* TargetUser.swift */; };
-		BB83CFA64940E660BA4A4420 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		BB83CFA64940E660BA4A4420 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C0EC01A885BD14BD1552DE80 /* Pods_ios_base_ios_baseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1760A5E754FEA0591B3C8A /* Pods_ios_base_ios_baseUITests.framework */; };
-		E59EB5E2CE360C64F9DB38FF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		E59EB5E2CE360C64F9DB38FF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		E81171921DE5EFB7003D3DF5 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81171911DE5EFB7003D3DF5 /* ViewControllerExtension.swift */; };
 		E8290BFE1D832D9200599960 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8290BFD1D832D9200599960 /* ViewExtension.swift */; };
 		E8290C021D8330A800599960 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8290C011D8330A800599960 /* StringExtension.swift */; };
@@ -199,6 +204,11 @@
 		9BBB30E827877ADD00BB8068 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		9BC0482F287F1D12000DB951 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC04833287F4754000DB951 /* UIFormFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFormFieldView.swift; sourceTree = "<group>"; };
+		9BC3F1E0289AE706009ED183 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9BC3F1E2289AE71A009ED183 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9BC3F1E5289AE78D009ED183 /* TargetRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetRoutes.swift; sourceTree = "<group>"; };
+		9BC3F227289D47DC009ED183 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		9BC3F229289D47F1009ED183 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		9BCC0A262891B8C800D221C4 /* TargetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHomeViewController.swift; sourceTree = "<group>"; };
 		9BCC0A292891B90500D221C4 /* TargetHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHomeViewModel.swift; sourceTree = "<group>"; };
 		9BCC0A2B2891BA8700D221C4 /* RegisterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDelegate.swift; sourceTree = "<group>"; };
@@ -248,8 +258,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB83CFA64940E660BA4A4420 /* BuildFile in Frameworks */,
-				E59EB5E2CE360C64F9DB38FF /* BuildFile in Frameworks */,
+				BB83CFA64940E660BA4A4420 /* (null) in Frameworks */,
+				E59EB5E2CE360C64F9DB38FF /* (null) in Frameworks */,
 				C0EC01A885BD14BD1552DE80 /* Pods_ios_base_ios_baseUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +425,9 @@
 		9B0C72511C738C3100BAF3B1 /* ios-base */ = {
 			isa = PBXGroup;
 			children = (
+				9BC3F22B289D4D63009ED183 /* Points */,
+				9BC3F224289D47B7009ED183 /* Chat */,
+				9BC3F1DD289AD203009ED183 /* Profile */,
 				9BCC0A242891B89F00D221C4 /* TargetHome */,
 				9BF64991288F1582003836A7 /* Models */,
 				9BE116622886DED700925DA7 /* Register */,
@@ -614,9 +627,91 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		9BC3F1DD289AD203009ED183 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F1DF289AE471009ED183 /* ViewModels */,
+				9BC3F1DE289AE46B009ED183 /* Views */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9BC3F1DE289AE46B009ED183 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F1E0289AE706009ED183 /* ProfileViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BC3F1DF289AE471009ED183 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F1E2289AE71A009ED183 /* ProfileViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9BC3F1E4289AE77A009ED183 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F1E5289AE78D009ED183 /* TargetRoutes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		9BC3F224289D47B7009ED183 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F226289D47C8009ED183 /* ViewModel */,
+				9BC3F225289D47BF009ED183 /* Views */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		9BC3F225289D47BF009ED183 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F229289D47F1009ED183 /* ChatViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BC3F226289D47C8009ED183 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F227289D47DC009ED183 /* ChatViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9BC3F22B289D4D63009ED183 /* Points */ = {
+			isa = PBXGroup;
+			children = (
+				9BC3F22D289D4D71009ED183 /* ViewModels */,
+				9BC3F22C289D4D69009ED183 /* Views */,
+			);
+			path = Points;
+			sourceTree = "<group>";
+		};
+		9BC3F22C289D4D69009ED183 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BC3F22D289D4D71009ED183 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		9BCC0A242891B89F00D221C4 /* TargetHome */ = {
 			isa = PBXGroup;
 			children = (
+				9BC3F1E4289AE77A009ED183 /* Routes */,
 				9BCC0A282891B8D600D221C4 /* ViewModels */,
 				9BCC0A252891B8A700D221C4 /* Views */,
 			);
@@ -1120,7 +1215,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1181,6 +1276,7 @@
 				9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */,
 				9BD01E361F01641E007255E3 /* DictionaryExtension.swift in Sources */,
 				9BF6498E288EDEF3003836A7 /* TargetAuthServices.swift in Sources */,
+				9BC3F1E3289AE71A009ED183 /* ProfileViewModel.swift in Sources */,
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				9B9EDB032885E5F700899A57 /* AuthDelegate.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
@@ -1199,6 +1295,7 @@
 				9B77E0731E2FB6350020E450 /* User.swift in Sources */,
 				FA54D5881E11C59600F0DBEA /* FirstViewController.swift in Sources */,
 				9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */,
+				9BC3F22A289D47F1009ED183 /* ChatViewController.swift in Sources */,
 				9BF64990288EEC90003836A7 /* TargetAuthEndpoint.swift in Sources */,
 				9B2D00F9278C8F7D000657BE /* APIEndpoint.swift in Sources */,
 				FABDC9221EE1EB2B000DDAC3 /* ConfigurationManager.swift in Sources */,
@@ -1222,6 +1319,7 @@
 				FE4D635C22B2C75400685161 /* Navigator.swift in Sources */,
 				FE251D0722A7FE0F00E0DE90 /* DataExtension.swift in Sources */,
 				9BC04834287F4754000DB951 /* UIFormFieldView.swift in Sources */,
+				9BC3F1E1289AE706009ED183 /* ProfileViewController.swift in Sources */,
 				FE583F1022AFC9FA00EF3CDA /* AnalyticsEvent.swift in Sources */,
 				9BBB30E727877AA000BB8068 /* Cancellable.swift in Sources */,
 				FE4D635E22B2CAFF00685161 /* AppNavigator.swift in Sources */,
@@ -1234,6 +1332,7 @@
 				9B2D00FE278CB123000657BE /* RailsAPIEndpoint.swift in Sources */,
 				9BAFB7C32114E3CD0099DC61 /* SignInViewModel.swift in Sources */,
 				9B8EB5BD2475890A0082370F /* NetworkState.swift in Sources */,
+				9BC3F1E6289AE78D009ED183 /* TargetRoutes.swift in Sources */,
 				9B2D00FB278CAED3000657BE /* APIClient+Product.swift in Sources */,
 				9BCC0A2C2891BA8700D221C4 /* RegisterDelegate.swift in Sources */,
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
@@ -1244,6 +1343,7 @@
 				9B2D00F5278C8C87000657BE /* SessionHeadersProvider.swift in Sources */,
 				FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */,
 				074D20D7248E98EC002A39B4 /* BaseAPIClient.swift in Sources */,
+				9BC3F228289D47DC009ED183 /* ChatViewModel.swift in Sources */,
 				9BBB30E12787791800BB8068 /* APIClientError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

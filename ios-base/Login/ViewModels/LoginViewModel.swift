@@ -77,8 +77,21 @@ class LoginViewModel {
         errorCode: "It seems that you haven't allowed Facebook to provide your email address."
       )
     } else {
-      UserDataManager.currentUser = user
-      self.delegate?.onAuthSuccess()
+      signInWithFacebook(accessToken: result.token?.tokenString ?? "")
+    }
+  }
+  
+  private func signInWithFacebook(accessToken: String) {
+    TargetAuthServices.authWithFacebook(
+      accessToken: accessToken
+    ) { [weak self] result in
+        switch result {
+        case .success(let user):
+          UserDataManager.currentUser = user
+          self?.delegate?.onAuthSuccess()
+        case .failure:
+          self?.delegate?.onAuthError(errorCode: "")
+        }
     }
   }
 }

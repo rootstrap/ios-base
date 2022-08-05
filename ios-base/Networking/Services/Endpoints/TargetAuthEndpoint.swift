@@ -18,6 +18,7 @@ enum TargetAuthEndpoint {
     password: String,
     passwordConfirmation: String
   )
+  case authWithFacebook(accessToken: String)
 }
 
 extension TargetAuthEndpoint: TargetType {
@@ -50,6 +51,12 @@ extension TargetAuthEndpoint: TargetType {
       ]
       return .requestParameters(parameters: [
         "user": parameters], encoding: JSONEncoding.default)
+    case .authWithFacebook(
+      let accessToken
+    ):
+      return .requestParameters(parameters: [
+        "user": accessToken
+      ], encoding: JSONEncoding.default)
     }
   }
   
@@ -59,12 +66,14 @@ extension TargetAuthEndpoint: TargetType {
       return "/users/sign_in"
     case .register:
       return "/users"
+    case .authWithFacebook:
+      return "users/facebook"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .signIn, .register:
+    case .signIn, .register, .authWithFacebook:
       return .post
     }
   }

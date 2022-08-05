@@ -67,6 +67,31 @@ class TargetAuthServices {
         }
     }
   }
+  
+  class func authWithFacebook(
+    accessToken: String,
+    completion: @escaping (Result<TargetUser, Error>) -> Void
+  ) {
+    let provider = MoyaProvider<TargetAuthEndpoint>()
+    provider.request(
+      .authWithFacebook(accessToken: accessToken
+    )) { result in
+      switch result {
+      case .success(let response):
+        do {
+          let value = try JSONDecoder().decode(
+            TargetUser.self,
+            from: response.data
+          )
+          completion(.success(value))
+        } catch let error {
+          completion(.failure(error))
+        }
+      case .failure(let error):
+        completion(.failure(error))
+      }
+    }
+  }
 }
 
 struct DataResponse<T: Codable>: Codable {
