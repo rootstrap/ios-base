@@ -1,6 +1,6 @@
 import RSSwiftNetworking
 
-/// Provides an easy to access APIClient implementation to use across the application
+/// Provides an easy-access APIClient implementation to use across the application
 /// You can define and configure as many APIClients as needed
 internal enum iOSBaseAPIClient {
   static let shared = BaseAPIClient(
