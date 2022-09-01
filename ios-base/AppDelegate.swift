@@ -47,16 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication, open url: URL,
     sourceApplication: String?, annotation: Any
   ) -> Bool {
-    return ApplicationDelegate.shared.application(application, open: url,
-                                                  sourceApplication: sourceApplication,
-                                                  annotation: annotation)
+    ApplicationDelegate.shared.application(
+      application, open: url,
+      sourceApplication: sourceApplication,
+      annotation: annotation
+    )
   }
   
   func unexpectedLogout() {
     UserDataManager.deleteUser()
     SessionManager.deleteSession()
-    //Clear any local data if needed
-    //Take user to onboarding if needed, do NOT redirect the user
+    // Clear any local data if needed
+    // Take user to onboarding if needed, do NOT redirect the user
     // if is already in the landing to avoid losing the current VC stack state.
     if window?.rootViewController is HomeViewController {
       AppNavigator.shared.navigate(to: OnboardingRoutes.firstScreen, with: .changeRoot)

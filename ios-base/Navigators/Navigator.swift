@@ -19,7 +19,6 @@ import UIKit
 open class BaseNavigator: Navigator {
   open var rootViewController: UINavigationController?
   open var currentViewController: UIViewController? {
-    return
       rootViewController?.visibleViewController ?? rootViewController?.topViewController
   }
 
@@ -35,7 +34,7 @@ open class BaseNavigator: Navigator {
  ViewController that is currently displayed. This way it can
  handle any kind of navigation action that you might want to dispatch.
  */
-public protocol Navigator: class {
+public protocol Navigator: AnyObject {
   /// The root navigation controller of your stack.
   var rootViewController: UINavigationController? { get set }
 
@@ -175,7 +174,7 @@ public extension Navigator {
     withTransitionType type: CATransitionType,
     andTransitionSubtype subtype: CATransitionSubtype
   ) {
-    let window = UIApplication.shared.keyWindow
+    let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow })
     let transition = CATransition()
     transition.duration = 0.3
     transition.timingFunction = CAMediaTimingFunction(
@@ -216,7 +215,7 @@ public protocol Route {
 
 public extension Route {
   var transitionConfigurator: TransitionConfigurator? {
-    return nil
+    nil
   }
 }
 

@@ -1,11 +1,11 @@
-platform :ios, '11.4'
+platform :ios, '14.0'
 use_frameworks!
 inhibit_all_warnings!
 
 target 'ios-base' do
   pod 'Alamofire', '~> 5.2.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
-  pod 'RSFontSizes', '~> 1.0.2'
+  pod 'RSFontSizes', '~> 1.2.0'
   pod 'R.swift', '~> 5.0.3'
   pod 'SwiftLint', '~> 0.43.1'
   pod 'Firebase/CoreOnly', '~> 8.6.0'
@@ -25,6 +25,6 @@ target 'ios-base' do
   
   target 'ios-baseUITests' do
     inherit! :complete
-    pod 'Swifter', '~> 1.4.7'
+    pod 'Swifter', '~> 1.5.0'
   end
 end

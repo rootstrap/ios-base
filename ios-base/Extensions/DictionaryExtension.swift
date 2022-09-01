@@ -8,7 +8,7 @@
 
 import Foundation
 
-//+ Operator definition for Dictionary types
+// + Operator definition for Dictionary types
 
 func + <K, V> (left: [K: V], right: [K: V]) -> [K: V] {
   var merge = left

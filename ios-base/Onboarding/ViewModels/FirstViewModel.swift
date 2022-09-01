@@ -26,7 +26,7 @@ class FirstViewModel {
     
     state = .network(state: .loading)
     let fbLoginManager = LoginManager()
-    //Logs out before login, in case user changes facebook accounts
+    // Logs out before login, in case user changes facebook accounts
     fbLoginManager.logOut()
     fbLoginManager.logIn(
       permissions: ["email"],
@@ -38,12 +38,13 @@ class FirstViewModel {
   // MARK: Facebook callback methods
   
   func facebookLoginRequestSucceded() {
-    //Optionally store params (facebook user data) locally.
-    guard let token = AccessToken.current else {
-      return
-    }
-    //This fails with 404 since this endpoint is not implemented in the API base
-    //TODO: remove when implementing login with apple id
+    // Optionally store params (facebook user data) locally.
+//    guard let token = AccessToken.current else {
+//      return
+//    }
+      
+    // This fails with 404 since this endpoint is not implemented in the API base
+    // TODO: remove when implementing login with apple id
 //    AuthenticationServices.loginWithFacebook(
 //      token: token.tokenString,
 //      success: { [weak self] in

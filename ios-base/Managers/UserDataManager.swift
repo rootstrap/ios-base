@@ -33,6 +33,6 @@ class UserDataManager: NSObject {
   }
   
   static var isUserLogged: Bool {
-    return currentUser != nil
+    currentUser != nil
   }
 }

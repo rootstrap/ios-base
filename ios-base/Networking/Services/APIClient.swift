@@ -40,7 +40,7 @@ class APIClient {
   
   private static let emptyDataStatusCodes: Set<Int> = [204, 205]
   
-  //Mandatory headers for Rails 5 API
+  // Mandatory headers for Rails 5 API
   static let baseHeaders: [String: String] = [
     HTTPHeader.accept.rawValue: "application/json",
     HTTPHeader.contentType.rawValue: "application/json"
@@ -58,12 +58,12 @@ class APIClient {
   }
   
   class func getBaseUrl() -> String {
-    return Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
+    Bundle.main.object(forInfoDictionaryKey: "Base URL") as? String ?? ""
   }
   
-  //Recursively build multipart params to send along with media in upload requests.
-  //If params includes the desired root key,
-  //call this method with an empty String for rootKey param.
+  // Recursively build multipart params to send along with media in upload requests.
+  // If params includes the desired root key,
+  // call this method with an empty String for rootKey param.
   class func multipartFormData(
     _ multipartForm: MultipartFormData,
     params: Any,
@@ -92,10 +92,10 @@ class APIClient {
     }
   }
   
-  //Multipart-form base request. Used to upload media along with desired params.
-  //Note: Multipart request does not support Content-Type = application/json.
-  //If your API requires this header
-  //do not use this method or change backend to skip this validation.
+  // Multipart-form base request. Used to upload media along with desired params.
+  // Note: Multipart request does not support Content-Type = application/json.
+  // If your API requires this header
+  // do not use this method or change backend to skip this validation.
   class func multipartRequest(
     method: HTTPMethod = .post,
     url: String,
@@ -165,7 +165,7 @@ class APIClient {
     )
   }
   
-  //Handle rails-API-base errors if any
+  // Handle rails-API-base errors if any
   class func handleCustomError(_ code: Int?, dictionary: [String: Any]) -> NSError? {
     if
       let messageDict = dictionary["errors"] as? [String: [String]],
@@ -275,7 +275,7 @@ class APIClient {
     } catch let exceptionError as NSError {
       serializationError = exceptionError
     }
-    //Check for errors in validate() or API
+    // Check for errors in validate() or API
     if let errorOcurred = APIClient.handleCustomError(
       response.statusCode,
       dictionary: dictionary ?? [:]
@@ -283,7 +283,7 @@ class APIClient {
       failure(errorOcurred)
       return
     }
-    //Check for JSON serialization errors if any data received
+    // Check for JSON serialization errors if any data received
     if let serializationError = serializationError {
       if (serializationError as NSError).code == 401 {
         AppDelegate.shared.unexpectedLogout()

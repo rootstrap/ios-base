@@ -10,29 +10,26 @@ import Foundation
 
 class UserServices {
   
-  class func getMyProfile(
-    success: @escaping (_ user: User) -> Void,
-    failure: @escaping (_ error: Error) -> Void
-  ) {
-    APIClient.request(
-      .get,
-      url: "/user/profile",
-      success: { response, _ in
-        guard
-          let userDictionary = response["user"] as? [String: Any],
-          let user = User(dictionary: userDictionary) 
-        else {
-          failure(App.error(
+  class func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
+    BaseAPIClient.default.request(
+      endpoint: UserEndpoint.profile
+    ) { (result: Result<User?, Error>, _) in
+      switch result {
+      case .success(let user):
+        guard let user = user else {
+          let noUserFoundError = App.error(
             domain: .parsing,
             localizedDescription: "Could not parse a valid user".localized
-          ))
-          return 
+          )
+          completion(.failure(noUserFoundError))
+          return
         }
-        
+
         UserDataManager.currentUser = user
-        success(user)
-      },
-      failure: failure
-    )
+        completion(.success(user))
+      case .failure(let error):
+        completion(.failure(error))
+      }
+    }
   }
 }
