@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import RSSwiftNetworking
 
-class UserServices {
-  
-  class func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
-    BaseAPIClient.default.request(
+internal class UserServices {
+
+  private let apiClient: APIClient
+
+  init(apiClient: APIClient = iOSBaseAPIClient.shared) {
+    self.apiClient = apiClient
+  }
+
+  func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
+    apiClient.request(
       endpoint: UserEndpoint.profile
     ) { (result: Result<User?, Error>, _) in
       switch result {

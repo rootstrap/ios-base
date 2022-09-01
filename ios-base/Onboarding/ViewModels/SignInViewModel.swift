@@ -12,8 +12,8 @@ protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
   func didUpdateCredentials()
 }
 
-class SignInViewModelWithCredentials {
-  
+internal class SignInViewModelWithCredentials {
+
   private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
@@ -37,10 +37,16 @@ class SignInViewModelWithCredentials {
   var hasValidCredentials: Bool {
     email.isEmailFormatted() && !password.isEmpty
   }
+
+  private let authServices: AuthenticationServices
+
+  init(authServices: AuthenticationServices = AuthenticationServices()) {
+    self.authServices = authServices
+  }
   
   func login() {
     state = .network(state: .loading)
-    AuthenticationServices.login(
+    authServices.login(
       email: email,
       password: password
     ) { [weak self] result in

@@ -19,6 +19,12 @@ enum AuthViewModelState {
 }
 
 class SignUpViewModelWithEmail {
+
+  private let authServices: AuthenticationServices
+
+  init(authServices: AuthenticationServices = AuthenticationServices()) {
+    self.authServices = authServices
+  }
   
   private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
@@ -52,7 +58,7 @@ class SignUpViewModelWithEmail {
   
   func signup() {
     state = .network(state: .loading)
-    AuthenticationServices.signup(
+    authServices.signup(
       email: email,
       password: password,
       avatar64: UIImage.random()

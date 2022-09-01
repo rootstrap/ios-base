@@ -8,12 +8,14 @@
 
 import Foundation
 
-class AppNavigator: BaseNavigator {
-  static let shared = AppNavigator()
+internal class AppNavigator: BaseNavigator {
 
-  init() {
-    let initialRoute: Route = SessionManager.validSession ?
-      HomeRoutes.home : OnboardingRoutes.firstScreen
+  static let shared = AppNavigator(isLoggedIn: SessionManager.shared.validSession)
+
+  init(isLoggedIn: Bool) {
+    let initialRoute: Route = isLoggedIn
+      ? HomeRoutes.home
+      : OnboardingRoutes.firstScreen
     super.init(with: initialRoute)
   }
 
