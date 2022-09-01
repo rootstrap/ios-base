@@ -3,13 +3,17 @@ name: CI Build
 # Run for any commits to any branch
 on: [push, pull_request]
 
-
 env:
   LANG: en_US.UTF-8
   # CodeClimate
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   # Notifications
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
+  FOLDER: GoogleFirebase
+  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  BUILDS_BUCKET: ${{ secrets.AWS_S3_BUILDS_BUCKET }}
 
 jobs:
 
@@ -29,11 +33,31 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
 
-    # Executes pod install and runs test against Debug target
-    - name: Run tests
-      uses: maierj/fastlane-action@v1.4.0
+    # Executes pod install 
+    - name: Installing Dependencies
+      run: pod install --repo-update
+
+    # Downloads Firebase files
+    - name: Downloading Google Firebase plist files
+      run: aws s3 cp s3://$BUILDS_BUCKET/$FOLDER/ ios-base/Resources/$FOLDER/ --recursive
+      # uses: keithweaver/aws-s3-github-action@v1.0.0
+      # with:
+      #   command: cp
+      #   source: s3://${{ secrets.BUILDS_BUCKET }}/ios-base/GoogleService-Info.plist
+      #   destination: "ios-base/Resources/GoogleService-Info.plist" 
+      #   aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #   aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   aws_region: us-east-1
+
+    # Runs test on the develop scheme
+    - name: Running Test Suite
+      uses: mxcl/xcodebuild@v1
       with:
-        lane: debug_develop
+        platform: iOS
+        use_modern_build_system: true
+        code-coverage: true
+        scheme: ios-base-develop
+        configuration: Debug # no default, ie. `xcodebuild` decides itself
 
     - name: Send test coverage report
       run: ./cc-test-reporter after-build
@@ -44,4 +68,4 @@ jobs:
         status: ${{ job.status }}
         text: 'ios-base build status is ${{ job.status }}'
         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-      if: always()  
+      if: always()
