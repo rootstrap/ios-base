@@ -1,4 +1,5 @@
 import Foundation
+import RSSwiftNetworking
 
 internal enum AuthEndpoint: RailsAPIEndpoint {
 

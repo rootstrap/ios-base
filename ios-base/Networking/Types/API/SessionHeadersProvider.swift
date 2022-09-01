@@ -1,16 +1,35 @@
 import Foundation
+import RSSwiftNetworking
 
-internal class SessionHeadersProvider: HeadersProvider {
+internal protocol CurrentUserSessionProvider {
+  var currentSession: Session? { get }
+}
 
-  var requestHeaders: [String: String] {
-    if let session = SessionManager.currentSession {
-      return [
-        HTTPHeader.uid.rawValue: session.uid ?? "",
-        HTTPHeader.client.rawValue: session.client ?? "",
-        HTTPHeader.token.rawValue: session.accessToken ?? ""
-      ]
-    }
+internal class SessionHeadersProvider: SessionProvider {
 
-    return [:]
+  // MARK: - Properties
+
+  var uid: String? {
+    session?.uid
+  }
+
+  var client: String? {
+    session?.client
+  }
+
+  var accessToken: String? {
+    session?.accessToken
+  }
+
+  private let currentSessionProvider: CurrentUserSessionProvider
+
+  private var session: Session? {
+    currentSessionProvider.currentSession
+  }
+
+  // MARK: -
+
+  init(currentSessionProvider: CurrentUserSessionProvider = SessionManager.shared) {
+    self.currentSessionProvider = currentSessionProvider
   }
 }

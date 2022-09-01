@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RSSwiftNetworking
 
 struct Session: Codable {
   var uid: String?
@@ -31,12 +32,13 @@ struct Session: Codable {
     self.expiry = expires
   }
   
-  init?(headers: [String: Any]) {
-    var loweredHeaders = headers
-    loweredHeaders.lowercaseKeys()
-    guard let stringHeaders = loweredHeaders as? [String: String] else {
+  init?(headers: [AnyHashable: Any]) {
+    guard var stringHeaders = headers as? [String: String] else {
       return nil
     }
+
+    stringHeaders.lowercaseKeys()
+    
     if let expiryString = stringHeaders[HTTPHeader.expiry.rawValue],
       let expiryNumber = Double(expiryString) {
       expiry = Date(timeIntervalSince1970: expiryNumber)
