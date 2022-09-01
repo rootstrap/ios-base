@@ -40,22 +40,14 @@ jobs:
     # Downloads Firebase files
     - name: Downloading Google Firebase plist files
       run: aws s3 cp s3://$BUILDS_BUCKET/$FOLDER/ ios-base/Resources/$FOLDER/ --recursive
-      # uses: keithweaver/aws-s3-github-action@v1.0.0
-      # with:
-      #   command: cp
-      #   source: s3://${{ secrets.BUILDS_BUCKET }}/ios-base/GoogleService-Info.plist
-      #   destination: "ios-base/Resources/GoogleService-Info.plist" 
-      #   aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #   aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #   aws_region: us-east-1
 
     # Runs test on the develop scheme
     - name: Running Test Suite
       uses: mxcl/xcodebuild@v1
       with:
         platform: iOS
-        use_modern_build_system: true
         code-coverage: true
+        workspace: ios-base.xcworkspace
         scheme: ios-base-develop
         configuration: Debug # no default, ie. `xcodebuild` decides itself
 
