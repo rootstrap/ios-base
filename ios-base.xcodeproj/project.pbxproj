@@ -368,6 +368,14 @@
 			path = "ios-base";
 			sourceTree = "<group>";
 		};
+		9B0E254B28C15003006FBCD4 /* GoogleFirebase */ = {
+			isa = PBXGroup;
+			children = (
+				9B0E254628C140E3006FBCD4 /* GoogleService-Info.plist */,
+			);
+			path = GoogleFirebase;
+			sourceTree = "<group>";
+		};
 		9B2D00FC278CAFFC000657BE /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,7 +456,7 @@
 		9B8D306720AB45160050697F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9B0E254628C140E3006FBCD4 /* GoogleService-Info.plist */,
+				9B0E254B28C15003006FBCD4 /* GoogleFirebase */,
 				9B8D306820AB451E0050697F /* Localization */,
 			);
 			path = Resources;
