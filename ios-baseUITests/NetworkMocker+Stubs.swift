@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RSSwiftNetworking
 
 internal enum NetworkStub {
   case signUp(success: Bool)
@@ -42,15 +43,38 @@ internal enum NetworkStub {
       return success ? "GetProfileSuccessfully" : "GetProfileFailure"
     }
   }
+
+  var headers: [String: String]? {
+    switch self {
+    case .signUp(let success), .signIn(let success):
+      if success {
+        return [
+          HTTPHeader.uid.rawValue: "uid",
+          HTTPHeader.client.rawValue: "client",
+          HTTPHeader.token.rawValue: "accessToken",
+          HTTPHeader.expiry.rawValue: "\(Date.distantFuture.timeIntervalSinceNow)",
+          HTTPHeader.contentType.rawValue: "application/json"
+        ]
+      }
+      return nil
+    default:
+      return nil
+    }
+  }
 }
 
 extension NetworkMocker {
   
-  func stub(with networkStub: NetworkStub, method: HTTPMethod) {
+  func stub(
+    with networkStub: NetworkStub,
+    method: HTTPMethod,
+    customHeaders: [String: String]? = nil
+  ) {
     stub(
       url: networkStub.urlString,
       responseFilename: networkStub.responseFileName,
-      method: method
+      method: method,
+      customHeaders: customHeaders ?? networkStub.headers
     )
   }
 }

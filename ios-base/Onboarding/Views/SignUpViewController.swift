@@ -108,6 +108,14 @@ private extension SignUpViewController {
     ])
     
     activateConstrains()
+    setupAccessibility()
+  }
+
+  func setupAccessibility() {
+    signUpButton.accessibilityIdentifier = "SignUpButton"
+    emailField.accessibilityIdentifier = "EmailTextField"
+    passwordField.accessibilityIdentifier = "PasswordTextField"
+    passwordConfirmationField.accessibilityIdentifier = "ConfirmPasswordTextField"
   }
   
   func activateConstrains() {

@@ -14,13 +14,13 @@ class ios_baseUITests: XCTestCase {
   
   let networkMocker = NetworkMocker()
   
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
       
-    try? networkMocker.setUp()
-    networkMocker.stubLogOut()
+    try networkMocker.setUp()
+    networkMocker.stub(with: .logOut, method: .DELETE)
     app.logOutIfNeeded(in: self)
   }
   
@@ -68,7 +68,7 @@ class ios_baseUITests: XCTestCase {
   func testAccountCreation() {
     app.launch()
     
-    networkMocker.stubSignUp()
+    networkMocker.stub(with: .signUp(success: true), method: .POST)
     
     app.attemptSignUp(
       in: self,
@@ -76,7 +76,7 @@ class ios_baseUITests: XCTestCase {
       password: "holahola"
     )
     
-    networkMocker.stubGetProfile()
+    networkMocker.stub(with: .profile(success: true), method: .GET)
     let getMyProfile = app.buttons["GetMyProfileButton"]
     waitFor(element: getMyProfile, timeOut: 10)
     getMyProfile.tap()
@@ -92,7 +92,7 @@ class ios_baseUITests: XCTestCase {
   func testSignInSuccess() {
     app.launch()
     
-    networkMocker.stubLogIn()
+    networkMocker.stub(with: .signIn(success: true), method: .POST)
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",
@@ -105,7 +105,7 @@ class ios_baseUITests: XCTestCase {
   func testSignInFailure() {
     app.launch()
     
-    networkMocker.stubLogIn(shouldSucceed: false)
+    networkMocker.stub(with: .signIn(success: false), method: .POST)
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",

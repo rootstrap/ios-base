@@ -32,23 +32,30 @@ internal class NetworkMocker {
   public func stub(
     url: String,
     responseFilename: String,
-    method: HTTPMethod = .GET
+    method: HTTPMethod = .GET,
+    customHeaders: [String: String]? = nil
   ) {
     let testBundle = Bundle(for: type(of: self))
     let filePath = testBundle.path(forResource: responseFilename, ofType: "json") ?? ""
     let fileURL = URL(fileURLWithPath: filePath)
 
     do {
-      let jsonObject = try Data(contentsOf: fileURL, options: .uncached).jsonObject()
-      guard let jsonObject = jsonObject else {
-        XCTFail("A valid JSON couldn't be parsed")
-        return
-      }
+      let data = try Data(contentsOf: fileURL, options: .uncached)
+      let jsonObject = try data.jsonObject()
 
       let response: ((HttpRequest) -> HttpResponse) = { _ in
-        HttpResponse.ok(.json(jsonObject))
+        if let customHeaders = customHeaders {
+          return HttpResponse.raw(200, "OK", customHeaders) { bodyWriter in
+            try bodyWriter.write(data)
+          }
+        }
+        guard let jsonObject = jsonObject else {
+          XCTFail("A valid JSON couldn't be parsed")
+          return .badRequest(.none)
+        }
+        return HttpResponse.ok(.json(jsonObject))
       }
-
+      
       switch method {
       case .GET: server.GET[url] = response
       case .POST: server.POST[url] = response
