@@ -8,6 +8,7 @@
 
 import Foundation
 import Swifter
+import XCTest
 
 enum HTTPMethod {
   case POST
@@ -16,7 +17,7 @@ enum HTTPMethod {
   case DELETE
 }
 
-class NetworkMocker {
+internal class NetworkMocker {
   
   var server = HttpServer()
   
@@ -28,37 +29,42 @@ class NetworkMocker {
     server.stop()
   }
   
-  public func setupStub(
+  public func stub(
     url: String,
     responseFilename: String,
     method: HTTPMethod = .GET
   ) {
     let testBundle = Bundle(for: type(of: self))
     let filePath = testBundle.path(forResource: responseFilename, ofType: "json") ?? ""
-    let fileUrl = URL(fileURLWithPath: filePath)
-    guard let data = try? Data(contentsOf: fileUrl, options: .uncached) else {
-      fatalError("Could not parse mocked data")
-    }
-    let json = dataToJSON(data: data)
-    
-    let response: ((HttpRequest) -> HttpResponse) = { _ in
-      HttpResponse.ok(.json(json as AnyObject))
-    }
-    
-    switch method {
-    case .GET: server.GET[url] = response
-    case .POST: server.POST[url] = response
-    case .DELETE: server.DELETE[url] = response
-    case .PUT: server.PUT[url] = response
+    let fileURL = URL(fileURLWithPath: filePath)
+
+    do {
+      let jsonObject = try Data(contentsOf: fileURL, options: .uncached).jsonObject()
+      guard let jsonObject = jsonObject else {
+        XCTFail("A valid JSON couldn't be parsed")
+        return
+      }
+
+      let response: ((HttpRequest) -> HttpResponse) = { _ in
+        HttpResponse.ok(.json(jsonObject))
+      }
+
+      switch method {
+      case .GET: server.GET[url] = response
+      case .POST: server.POST[url] = response
+      case .DELETE: server.DELETE[url] = response
+      case .PUT: server.PUT[url] = response
+      }
+    } catch let error {
+      XCTFail("Failed to serialize JSON. Error \(error)")
     }
   }
-  
-  func dataToJSON(data: Data) -> Any? {
-    do {
-      return try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-    } catch let error {
-      print(error)
-    }
-    return nil
+}
+
+internal extension Data {
+  func jsonObject(
+    options: JSONSerialization.ReadingOptions = .mutableContainers
+  ) throws -> Any? {
+    try JSONSerialization.jsonObject(with: self, options: options)
   }
 }
