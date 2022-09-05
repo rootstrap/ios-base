@@ -41,8 +41,6 @@ jobs:
     - name: Downloading Google Firebase plist files
       run: |
         aws s3 cp s3://$BUILDS_BUCKET/$FOLDER/ ios-base/Resources/$FOLDER/ --recursive
-        ls
-        ls ios-base/Resources
 
     # Runs test on the develop scheme
     - name: Running Test Suite

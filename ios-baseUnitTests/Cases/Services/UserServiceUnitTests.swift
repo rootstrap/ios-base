@@ -42,7 +42,7 @@ class UserServiceUnitTests: XCTestCase {
       }
     }
 
-    wait(for: [expectation], timeout: 3.0)
+    wait(for: [expectation], timeout: 5.0)
   }
 
   func testServicesReturnsError() {
@@ -58,7 +58,7 @@ class UserServiceUnitTests: XCTestCase {
       }
 
     }
-    wait(for: [expectation], timeout: 3.0)
+    wait(for: [expectation], timeout: 5.0)
   }
 
   private func testUserStorageAfterProfileFetch(
