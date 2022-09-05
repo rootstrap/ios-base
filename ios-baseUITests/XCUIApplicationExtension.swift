@@ -25,7 +25,7 @@ extension XCUIApplication {
   func logOutIfNeeded(in testCase: XCTestCase) {
     let logOutButton = buttons["LogoutButton"]
     let goToSignInButton = buttons["GoToSignInButton"]
-    
+
     if logOutButton.exists {
       logOutButton.forceTap()
       testCase.waitFor(element: goToSignInButton, timeOut: 5)
@@ -40,12 +40,12 @@ extension XCUIApplication {
     let goToSignInButton = buttons["GoToSignInButton"]
     let toolbarDoneButton = buttons["Toolbar Done Button"]
     
-    testCase.waitFor(element: goToSignInButton, timeOut: 2)
+    testCase.waitFor(element: goToSignInButton, timeOut: 5)
     goToSignInButton.forceTap()
     
     let signInButton = buttons["SignInButton"]
     
-    testCase.waitFor(element: signInButton, timeOut: 2)
+    testCase.waitFor(element: signInButton, timeOut: 5)
     
     type(text: email, on: "EmailTextField")
     
@@ -67,7 +67,7 @@ extension XCUIApplication {
     
     let toolbarDoneButton = buttons["Toolbar Done Button"]
     let signUpButton = buttons["SignUpButton"]
-    testCase.waitFor(element: signUpButton, timeOut: 2)
+    testCase.waitFor(element: signUpButton, timeOut: 5)
     
     type(text: email, on: "EmailTextField")
     

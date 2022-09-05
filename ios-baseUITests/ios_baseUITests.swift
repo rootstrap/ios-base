@@ -9,16 +9,18 @@
 import XCTest
 
 class ios_baseUITests: XCTestCase {
-
+  
   var app: XCUIApplication!
   
-  let networkMocker = NetworkMocker()
+  private var networkMocker: NetworkMocker!
   
   override func setUpWithError() throws {
     try super.setUpWithError()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
-      
+    app.launch()
+
+    networkMocker = NetworkMocker()
     try networkMocker.setUp()
     networkMocker.stub(with: .logOut, method: .DELETE)
     app.logOutIfNeeded(in: self)
@@ -30,8 +32,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testCreateAccountValidations() {
-    app.launch()
-    
     app.buttons["GoToSignUpButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]
@@ -66,8 +66,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testAccountCreation() {
-    app.launch()
-    
     networkMocker.stub(with: .signUp(success: true), method: .POST)
     
     app.attemptSignUp(
@@ -90,8 +88,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testSignInSuccess() {
-    app.launch()
-    
     networkMocker.stub(with: .signIn(success: true), method: .POST)
     
     app.attemptSignIn(in: self,
@@ -103,8 +99,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testSignInFailure() {
-    app.launch()
-    
     networkMocker.stub(with: .signIn(success: false), method: .POST)
     
     app.attemptSignIn(in: self,
@@ -122,8 +116,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testSignInValidations() {
-    app.launch()
-    
     app.buttons["GoToSignInButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]

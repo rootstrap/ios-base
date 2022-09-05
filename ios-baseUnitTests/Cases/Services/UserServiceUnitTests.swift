@@ -13,11 +13,12 @@ import RSSwiftNetworking
 class UserServiceUnitTests: XCTestCase {
 
   private var userService: UserServices!
-  private let networkMocker = NetworkMocker()
+  private var networkMocker: NetworkMocker!
   
   override func setUpWithError() throws {
     try super.setUpWithError()
 
+    networkMocker = NetworkMocker()
     try networkMocker.setUp()
     userService = UserServices()
     UserDataManager.deleteUser()
@@ -49,8 +50,10 @@ class UserServiceUnitTests: XCTestCase {
     let expectation = expectation(description: "Request should fail")
     testUserStorageAfterProfileFetch(success: false) { result in
       switch result {
-      case .success:
-        XCTFail("Test expected to fail")
+      case .success(let user):
+        print("DB* \(user)")
+        print("DB* \(String(describing: UserDataManager.currentUser))")
+        XCTFail("GET Profile Request expected to fail")
       case .failure(let error):
         expectation.fulfill()
         XCTAssertNil(UserDataManager.currentUser)
