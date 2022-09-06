@@ -105,14 +105,10 @@ class ios_baseUITests: XCTestCase {
                       with: "automation@test.com",
                       password: "incorrect password")
     
-    if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 2)
-      
-      alert.buttons.allElementsBoundByIndex.first?.forceTap()
+    guard let alert = app.alerts.allElementsBoundByIndex.first else {
+      return XCTFail("An error alert is expected to appear on Sign In failure")
     }
-    
-    let signInButton = app.buttons["SignInButton"]
-    waitFor(element: signInButton, timeOut: 2)
+    alert.buttons.allElementsBoundByIndex.first?.forceTap()
   }
   
   func testSignInValidations() {

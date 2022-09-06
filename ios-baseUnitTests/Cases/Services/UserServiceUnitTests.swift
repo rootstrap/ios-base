@@ -50,9 +50,7 @@ class UserServiceUnitTests: XCTestCase {
     let expectation = expectation(description: "Request should fail")
     testUserStorageAfterProfileFetch(success: false) { result in
       switch result {
-      case .success(let user):
-        print("DB* \(user)")
-        print("DB* \(String(describing: UserDataManager.currentUser))")
+      case .success:
         XCTFail("GET Profile Request expected to fail")
       case .failure(let error):
         expectation.fulfill()

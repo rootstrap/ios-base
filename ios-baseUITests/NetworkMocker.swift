@@ -19,7 +19,7 @@ enum HTTPMethod {
 
 internal class NetworkMocker {
   
-  var server = HttpServer()
+  private(set) lazy var server = HttpServer()
   
   func setUp() throws {
     try server.start()
