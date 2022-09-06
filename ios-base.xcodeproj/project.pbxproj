@@ -50,13 +50,11 @@
 		9B5E1438245B2AA00059DF62 /* UserServiceUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E1437245B2AA00059DF62 /* UserServiceUnitTests.swift */; };
 		9B5E1443245B50630059DF62 /* StringExtensionUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E1442245B50630059DF62 /* StringExtensionUnitTests.swift */; };
 		9B5EAB4A232C146D00B9CE3C /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5EAB49232C146D00B9CE3C /* TextFieldExtension.swift */; };
-		9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B715A451E28083600C0C039 /* PlaceholderTextView.swift */; };
 		9B77E0731E2FB6350020E450 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0721E2FB6350020E450 /* User.swift */; };
 		9B77E0751E2FB66F0020E450 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77E0741E2FB66F0020E450 /* UserDataManager.swift */; };
 		9B8574D7212C81950063A3E2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */; };
 		9B8574D9212C84130063A3E2 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8574D8212C84130063A3E2 /* ImageExtension.swift */; };
 		9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88CC661CAB305900AE60C5 /* Constants.swift */; };
-		9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D306F20AB47E90050697F /* JSONEncodingExtension.swift */; };
 		9B8EB5BD2475890A0082370F /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EB5BC2475890A0082370F /* NetworkState.swift */; };
 		9B8EB5BF247590710082370F /* AuthViewModelStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EB5BE247590710082370F /* AuthViewModelStateDelegate.swift */; };
 		9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAFB7BE2114D9910099DC61 /* HomeViewModel.swift */; };
@@ -156,13 +154,11 @@
 		9B5E1439245B2AA00059DF62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B5E1442245B50630059DF62 /* StringExtensionUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionUnitTests.swift; sourceTree = "<group>"; };
 		9B5EAB49232C146D00B9CE3C /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
-		9B715A451E28083600C0C039 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9B77E0721E2FB6350020E450 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9B77E0741E2FB66F0020E450 /* UserDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		9B8574D6212C81950063A3E2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		9B8574D8212C84130063A3E2 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		9B88CC661CAB305900AE60C5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9B8D306F20AB47E90050697F /* JSONEncodingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingExtension.swift; sourceTree = "<group>"; };
 		9B8EB5BC2475890A0082370F /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		9B8EB5BE247590710082370F /* AuthViewModelStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelStateDelegate.swift; sourceTree = "<group>"; };
 		9B9C6BFD20C7160700EB0523 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -338,18 +334,9 @@
 			isa = PBXGroup;
 			children = (
 				074889A5247724EF00A0029E /* Protocols */,
-				078642F322E669270027BF11 /* Views */,
 				9BFA84EE1C7767D9009F64E4 /* Models */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		078642F322E669270027BF11 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				9B715A451E28083600C0C039 /* PlaceholderTextView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		12CFFD1CC7E90042DAA6625E /* Frameworks */ = {
@@ -611,7 +598,6 @@
 				E8290C011D8330A800599960 /* StringExtension.swift */,
 				E81171911DE5EFB7003D3DF5 /* ViewControllerExtension.swift */,
 				E8290BFD1D832D9200599960 /* ViewExtension.swift */,
-				9B8D306F20AB47E90050697F /* JSONEncodingExtension.swift */,
 				9B8574D8212C84130063A3E2 /* ImageExtension.swift */,
 				071CD2612228544700E6D385 /* FontExtension.swift */,
 				9B5EAB49232C146D00B9CE3C /* TextFieldExtension.swift */,
@@ -1099,7 +1085,6 @@
 				E8290C021D8330A800599960 /* StringExtension.swift in Sources */,
 				FE4D636222B2CBB000685161 /* OnboardingRoutes.swift in Sources */,
 				071CD2622228544700E6D385 /* FontExtension.swift in Sources */,
-				9B8D307020AB47E90050697F /* JSONEncodingExtension.swift in Sources */,
 				074D20D9248E993B002A39B4 /* AuthenticationServices.swift in Sources */,
 				E81171921DE5EFB7003D3DF5 /* ViewControllerExtension.swift in Sources */,
 				9B3AA3991ED35007005A4D26 /* SignInViewController.swift in Sources */,
@@ -1131,7 +1116,6 @@
 				9B88CC671CAB305900AE60C5 /* Constants.swift in Sources */,
 				FDFAAB07269CCCD30007DB8B /* LabelExtension.swift in Sources */,
 				9BAFB7BF2114D9910099DC61 /* HomeViewModel.swift in Sources */,
-				9B715A461E28083600C0C039 /* PlaceholderTextView.swift in Sources */,
 				FD8C0272269E2F2E003F86CE /* UIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
