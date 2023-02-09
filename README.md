@@ -89,21 +89,31 @@ the CodeCliemate's configuration file.
 
 ## Security recommendations
 
-### Third Party Keys
+### Secrets management
 
-We strongly recommend that all private keys be added to a `.plist` file that will remain locally and not be committed to your project repo. An example file is already provided, these are the final steps to set it up:
+We strongly recommend that all private keys be added to a `secrets.xcconfig` file that will remain locally and not be committed to your project repo.
 
-1. Rename the `ThirdPartyKeys.example.plist` file on your project so that it is called `ThirdPartyKeys.plist`.
-  To add a set of keys simply add a dictionary with the name you want the key to have and add the corresponding **Debug**, **Staging** and **Release** keys as items.
-2. Remove the reference of `ThirdPartyKeys.plist` from XCode but do not delete the file. This way, you will keep the file locally(it is already in the .gitignore list) in the project directory.
-  **Note: Do NOT move the file from the current location, the script uses the $(PROJECT_DIR) directory.**
-3. Go to **Product** -> **Scheme** -> **Edit scheme**. Then select **Pre-actions** for the Build stage and make sure that the `Provided build setting` is set to your current target.
-**Repeat this step for the Post-actions script.**
-4. Done :)
+#### Adding new secrets
+1. Add the new environment variable in your system:
+   - Optional: For local development, you can run `export KEY=value` in the terminal.
+      _Or you could start with a pre-filled secrets.dev.xcconfig file._
+   - In your CI/CD platform, simply add the environment variable with its value to the respective settings section.
+2. Add the new key name to the `keys.env` file.
+   _This could be any other file you use as source for the script mentioned in the next step._
+3. Run `./setup-env keys.env Config/secrets.xcconfig` in the terminal.
+   _This is automatically configured for Staging and Release build configurations as a pre-build script._
+4. Add the key to the Info.plist of your app's target.
+   _Example: FacebookKey = ${FACEBOOK_KEY}_
+5. Add a new case to the `Secret.Key` enum.
+   _The rawValue must match the key in the Info.plist file_
+6. Use it wisely :)
+
+**Note:** The `setup-env` script will fill in the `secrets.xcconfig` for Staging and Release builds.
+Use `secrets.dev.xcconfig` for the `Debug` Build Configuration.
 
 #### Secure storage
 
-We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) for storing `.plist` files containing Third Party keys, as well as any other sensitive files. Alternatively when not using Fastlane Match (eg might not be compatible with some CICD systems), AWS S3 can also be used for storing Certificates, Private Keys and Profiles required for app signing. The CICD code examples (described below) make use of the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) to download any files relevant for our project from a predefined bucket and folder 
+We recommend using [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) for storing `.xcconfig` files containing all secrets, as well as any other sensitive files. Alternatively when not using Fastlane Match (eg might not be compatible with some CICD systems), AWS S3 can also be used for storing Certificates, Private Keys and Profiles required for app signing. The CICD code examples (described below) make use of the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) to download any files relevant for our project from a predefined bucket and folder 
 
 Another alternative for managing sensitive files whithin the repo using Git-Secret can be found in the [**feature/git-secret**](https://github.com/rootstrap/ios-base/tree/feature/jenkins) branch 
 

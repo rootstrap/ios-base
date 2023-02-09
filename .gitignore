@@ -65,8 +65,7 @@ report.junit
 **/.DS_Store
 
 # Private keys
-**/ThirdPartyKeys.plist
-GoogleService*.plist
+secrets.xcconfig
 
 R.generated.swift
 

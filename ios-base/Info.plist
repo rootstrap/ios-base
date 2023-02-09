@@ -35,12 +35,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>ConfigurationName</key>
-	<string>Debug</string>
 	<key>FacebookDisplayName</key>
 	<string></string>
 	<key>FacebookKey</key>
-	<string></string>
+	<string>$(FACEBOOK_KEY)</string>
 	<key>GoogleServicesFileName</key>
 	<string>$(GOOGLE_SERVICES_FILE)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

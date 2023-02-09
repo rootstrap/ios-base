@@ -21,8 +21,8 @@ class FirstViewModel {
   
   func facebookLogin() {
     guard let viewController = delegate as? UIViewController else { return }
-    let facebookKey = ConfigurationManager.getValue(for: "FacebookKey")
-    assert(!(facebookKey?.isEmpty ?? false), "Value for FacebookKey not found")
+    let facebookKey: String = (try? Secret.value(for: .facebookKey)) ?? ""
+    assert(!facebookKey.isEmpty, "Value for FacebookKey not found")
     
     state = .network(state: .loading)
     let fbLoginManager = LoginManager()
