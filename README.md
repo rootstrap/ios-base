@@ -100,8 +100,9 @@ We strongly recommend that all private keys be added to a `secrets.xcconfig` fil
    - In your CI/CD platform, simply add the environment variable with its value to the respective settings section.
 2. Add the new key name to the `keys.env` file.
    _This could be any other file you use as source for the script mentioned in the next step._
-3. Run `./setup-env keys.env Config/secrets.xcconfig` in the terminal.
-   _This is automatically configured for Staging and Release build configurations as a pre-build script._
+3. Configure your CI/CD to run:
+   - `chmod u+x setup-env.sh`
+   - `./setup-env.sh`
 4. Add the key to the Info.plist of your app's target.
    _Example: FacebookKey = ${FACEBOOK_KEY}_
 5. Add a new case to the `Secret.Key` enum.
