@@ -9,7 +9,7 @@
 import XCTest
 @testable import ios_base_Debug
 
-class StringExtensionUnitTests: XCTestCase {
+internal class StringExtensionUnitTests: XCTestCase {
   func testEmailValidation() {
     XCTAssertFalse("username".isEmailFormatted())
     XCTAssertFalse("username@test".isEmailFormatted())

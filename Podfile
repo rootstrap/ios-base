@@ -2,6 +2,11 @@ platform :ios, '14.0'
 use_frameworks!
 inhibit_all_warnings!
 
+def shared_test_dependencies
+  inherit! :complete
+  pod 'Swifter', '~> 1.5.0'
+end
+
 target 'ios-base' do
   pod 'RSSwiftNetworking/AlamofireProvider', '~> 1.1.0'
   pod 'IQKeyboardManagerSwift', '~> 6.1.1'
@@ -24,7 +29,10 @@ target 'ios-base' do
   # ------
   
   target 'ios-baseUITests' do
-    inherit! :complete
-    pod 'Swifter', '~> 1.5.0'
+    shared_test_dependencies
+  end
+
+  target 'ios-baseUnitTests' do
+    shared_test_dependencies
   end
 end

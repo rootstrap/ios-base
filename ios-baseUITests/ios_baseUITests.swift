@@ -7,20 +7,23 @@
 //
 
 import XCTest
-@testable import ios_base_Debug
 
 class ios_baseUITests: XCTestCase {
-
+  
   var app: XCUIApplication!
   
-  let networkMocker = NetworkMocker()
+  private var networkMocker: NetworkMocker!
   
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
-      
-    try? networkMocker.setUp()
+    app.launch()
+
+    networkMocker = NetworkMocker()
+    try networkMocker.setUp()
+    networkMocker.stub(with: .logOut, method: .DELETE)
+    app.logOutIfNeeded(in: self)
   }
   
   override func tearDown() {
@@ -29,8 +32,6 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testCreateAccountValidations() {
-    app.launch()
-    
     app.buttons["GoToSignUpButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]
@@ -65,9 +66,7 @@ class ios_baseUITests: XCTestCase {
   }
   
   func testAccountCreation() {
-    app.launch()
-    
-    networkMocker.stubSignUp()
+    networkMocker.stub(with: .signUp(success: true), method: .POST)
     
     app.attemptSignUp(
       in: self,
@@ -75,7 +74,7 @@ class ios_baseUITests: XCTestCase {
       password: "holahola"
     )
     
-    networkMocker.stubGetProfile()
+    networkMocker.stub(with: .profile(success: true), method: .GET)
     let getMyProfile = app.buttons["GetMyProfileButton"]
     waitFor(element: getMyProfile, timeOut: 10)
     getMyProfile.tap()
@@ -86,19 +85,10 @@ class ios_baseUITests: XCTestCase {
       
       alert.buttons.allElementsBoundByIndex.first?.tap()
     }
-    
-    let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 5)
-    
-    networkMocker.stubLogOut()
-    
-    logOutButton.tap()
   }
   
   func testSignInSuccess() {
-    app.launch()
-    
-    networkMocker.stubLogIn()
+    networkMocker.stub(with: .signIn(success: true), method: .POST)
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",
@@ -106,36 +96,22 @@ class ios_baseUITests: XCTestCase {
     
     let logOutButton = app.buttons["LogoutButton"]
     waitFor(element: logOutButton, timeOut: 10)
-    
-    networkMocker.stubLogOut()
-    logOutButton.forceTap()
-    
-    let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 10)
   }
   
   func testSignInFailure() {
-    app.launch()
-    
-    networkMocker.stubLogIn(shouldSucceed: false)
+    networkMocker.stub(with: .signIn(success: false), method: .POST)
     
     app.attemptSignIn(in: self,
                       with: "automation@test.com",
                       password: "incorrect password")
     
-    if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 2)
-      
-      alert.buttons.allElementsBoundByIndex.first?.forceTap()
+    guard let alert = app.alerts.allElementsBoundByIndex.first else {
+      return XCTFail("An error alert is expected to appear on Sign In failure")
     }
-    
-    let signInButton = app.buttons["SignInButton"]
-    waitFor(element: signInButton, timeOut: 2)
+    alert.buttons.allElementsBoundByIndex.first?.forceTap()
   }
   
   func testSignInValidations() {
-    app.launch()
-    
     app.buttons["GoToSignInButton"].forceTap()
     
     let toolbarDoneButton = app.buttons["Toolbar Done Button"]

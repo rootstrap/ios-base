@@ -92,6 +92,12 @@ private extension HomeViewController {
       subviews: [welcomeLabel, logOutButton, deleteAccountButton, getProfileButton]
     )
     activateConstraints()
+    setupAccessibility()
+  }
+
+  func setupAccessibility() {
+    getProfileButton.accessibilityIdentifier = "GetMyProfileButton"
+    logOutButton.accessibilityIdentifier = "LogoutButton"
   }
   
   private func activateConstraints() {
