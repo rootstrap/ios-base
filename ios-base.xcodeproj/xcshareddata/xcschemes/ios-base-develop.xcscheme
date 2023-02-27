@@ -1,46 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1000"
-   version = "1.7">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "/usr/libexec/PlistBuddy -c &quot;Set :ConfigurationName \&quot;$CONFIGURATION\&quot;&quot; &quot;$PROJECT_DIR/$INFOPLIST_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "ios-base.app"
-                     BlueprintName = "ios-base"
-                     ReferencedContainer = "container:ios-base.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "cp &quot;${PROJECT_DIR}/ThirdPartyKeys.plist&quot; &quot;${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/ThirdPartyKeys.plist&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9B5AFAD91C7205EB002347D6"
-                     BuildableName = "ios-base.app"
-                     BlueprintName = "ios-base"
-                     ReferencedContainer = "container:ios-base.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"

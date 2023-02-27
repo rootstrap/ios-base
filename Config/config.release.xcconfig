@@ -1,0 +1,4 @@
+#include "secrets.xcconfig"
+#include "../Pods/Target Support Files/Pods-ios-base/Pods-ios-base.release.xcconfig"
+
+// Add here any build settings you want for the Release(Production) configuration

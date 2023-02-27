@@ -1,0 +1,4 @@
+#include "secrets.dev.xcconfig"
+#include "../Pods/Target Support Files/Pods-ios-base/Pods-ios-base.debug.xcconfig"
+
+// Add here any build settings you want for the Debug configuration
