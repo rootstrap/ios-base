@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FBSDKCoreKit
+import FacebookCore
 import Firebase
 import IQKeyboardManagerSwift
 
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     AnalyticsManager.shared.setup()
     // -Facebook
-    Settings.appID = try? Secret.value(for: .facebookKey)
+    Settings.shared.appID = try? Secret.value(for: .facebookKey)
     ApplicationDelegate.shared.application(
       application, didFinishLaunchingWithOptions: launchOptions
     )
