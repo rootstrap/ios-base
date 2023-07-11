@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import RSFontSizes
+import RSFontSizes
 
 extension UIFont {
   static let h1Regular: UIFont = .font(size: .heading1).withWeight(.regular)
@@ -18,27 +18,25 @@ extension UIFont {
   static let h3Medium: UIFont = .font(size: .heading3).withWeight(.regular)
   
   private func withWeight(_ weight: UIFont.Weight) -> UIFont {
-    return UIFont.systemFont(ofSize: 10)
-//    var attributes = fontDescriptor.fontAttributes
-//    var traits = (attributes[.traits] as? [UIFontDescriptor.TraitKey: Any]) ?? [:]
-//
-//    traits[.weight] = weight
-//
-//    attributes[.name] = nil
-//    attributes[.traits] = traits
-//    attributes[.family] = familyName
-//
-//    let descriptor = UIFontDescriptor(fontAttributes: attributes)
-//
-//    return UIFont(descriptor: descriptor, size: pointSize)
+    var attributes = fontDescriptor.fontAttributes
+    var traits = (attributes[.traits] as? [UIFontDescriptor.TraitKey: Any]) ?? [:]
+    
+    traits[.weight] = weight
+    
+    attributes[.name] = nil
+    attributes[.traits] = traits
+    attributes[.family] = familyName
+    
+    let descriptor = UIFontDescriptor(fontAttributes: attributes)
+    
+    return UIFont(descriptor: descriptor, size: pointSize)
   }
   
   static func font(withName name: String = "", size: Sizes) -> UIFont {
-    return UIFont.systemFont(ofSize: 10)
-//    name.font(
-//      withWeight: .normal,
-//      size: PointSize.proportional(to: (.screen6_5Inch, size.rawValue))
-//    ) ?? UIFont.systemFont(ofSize: size.rawValue)
+    name.font(
+      withWeight: .normal,
+      size: PointSize.proportional(to: (.screen6_5Inch, size.rawValue))
+    ) ?? UIFont.systemFont(ofSize: size.rawValue)
   }
 
   public enum Sizes: CGFloat {
