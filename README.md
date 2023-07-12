@@ -35,12 +35,11 @@ To use them simply download the branch and locally rebase against master/develop
 
 To manage user and session persistence after the original sign in/up we store that information in the native UserDefaults. The parameters that we save are due to the usage of [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for authentication on the server side. Suffice to say that this can be modified to be on par with the server authentication of your choice.
 
-## Pods
+## Dependencies
 #### Main
  - [Alamofire](https://github.com/Alamofire/Alamofire) for easy and elegant connection with an API.
  - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager) for auto-scrolling to current input in long views.
     Note: this pod is not fully working on iOS 11. [Here](https://github.com/hackiftekhar/IQKeyboardManager/issues/972) is the issue we encountered and the meantime solution.
- - [R.swift](https://github.com/mac-cain13/R.swift) for strongly typed and autocompleted assets, segues and more.
  - [Firebase](https://github.com/firebase/firebase-ios-sdk) for tools to help you build, grow and monetize your app.
 
 #### Utilities

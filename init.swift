@@ -151,8 +151,6 @@ for dir in directories.reversed() {
 let currentURL = URL(fileURLWithPath: currentFolder)
 currentURL.rename(from: baseProjectName, to: projectName)
 
-print("Installing pods...")
-_ = shell("pod", "install")
 print("Opening new project...")
 _ = shell("open", "\(projectName).xcworkspace")
 // Initialization Done!

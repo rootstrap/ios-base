@@ -39,6 +39,8 @@
 	<string></string>
 	<key>FacebookKey</key>
 	<string>$(FACEBOOK_KEY)</string>
+	<key>FacebookClientToken</key>
+	<string></string>
 	<key>GoogleServicesFileName</key>
 	<string>$(GOOGLE_SERVICES_FILE)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
