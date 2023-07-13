@@ -40,44 +40,41 @@ class HomeViewModel {
     self.userServices = userServices
     self.authServices = authServices
   }
-  
-  func loadUserProfile() {
+
+  func loadUserProfile() async {
     state = .network(state: .loading)
     
-    userServices.getMyProfile { [weak self] (result: Result<User, Error>) in
-      switch result {
-      case .success(let user):
-        self?.userEmail = user.email
-        self?.state = .loadedProfile
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
+    let result = await userServices.getMyProfile()
+    switch result {
+    case .success(let user):
+      self.userEmail = user.data.email
+      self.state = .loadedProfile
+    case .failure(let error):
+      self.state = .network(state: .error(error.localizedDescription))
     }
   }
   
-  func logoutUser() {
+  func logoutUser() async {
     state = .network(state: .loading)
     
-    authServices.logout { [weak self] result in
-      switch result {
-      case .success:
-        self?.didlogOutAccount()
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
+    let result = await authServices.logout()
+    switch result {
+    case .success:
+      self.didlogOutAccount()
+    case .failure(let error):
+      self.state = .network(state: .error(error.localizedDescription))
     }
   }
   
-  func deleteAccount() {
+  func deleteAccount() async {
     state = .network(state: .loading)
   
-    authServices.deleteAccount { [weak self] result in
-      switch result {
-      case .success:
-        self?.didlogOutAccount()
-      case .failure(let error):
-        self?.state = .network(state: .error(error.localizedDescription))
-      }
+    let result = await authServices.deleteAccount()
+    switch result {
+    case .success:
+      self.didlogOutAccount()
+    case .failure(let error):
+      self.state = .network(state: .error(error.localizedDescription))
     }
   }
   

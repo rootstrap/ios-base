@@ -7,43 +7,63 @@
 //
 
 import UIKit
+import Combine
+import SwiftUI
 
 internal class SessionManager: CurrentUserSessionProvider {
+    
+    var isSessionValidPublisher: AnyPublisher<Bool, Never> {
+        currentSessionPublisher.map { $0?.isValid ?? false }.eraseToAnyPublisher()
+    }
 
-  static let shared = SessionManager()
-
-  private let userDefaults: UserDefaults
-
-  init(userDefaults: UserDefaults = .standard) {
-    self.userDefaults = userDefaults
-  }
-
-  var currentSession: Session? {
-    get {
-      if
-        let data = userDefaults.data(forKey: "ios-base-session"),
-        let session = try? JSONDecoder().decode(Session.self, from: data)
-      {
-        return session
-      }
-      return nil
+    private var currentSessionPublisher: AnyPublisher<Session?, Never> {
+        userDefaults.publisher(for: \.currentSession).eraseToAnyPublisher()
     }
     
-    set {
-      let session = try? JSONEncoder().encode(newValue)
-      userDefaults.set(session, forKey: "ios-base-session")
+    private var subscriptions = Set<AnyCancellable>()
+    private let userDefaults: UserDefaults
+    
+    static let SESSIONKEY = "ios-base-session"
+    
+    static let shared = SessionManager()
+        
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
     }
-  }
-  
-  func deleteSession() {
-    userDefaults.removeObject(forKey: "ios-base-session")
-  }
-  
-  var validSession: Bool {
-    if let session = currentSession, let uid = session.uid,
-       let tkn = session.accessToken, let client = session.client {
-      return !uid.isEmpty && !tkn.isEmpty && !client.isEmpty
+    
+    private(set) var currentSession: Session? {
+        get {
+            userDefaults.currentSession
+        }
+        
+        set {
+            userDefaults.currentSession = newValue
+        }
     }
-    return false
-  }
+    
+    func deleteSession() {
+        currentSession = nil
+    }
+    
+    @MainActor func saveUser(session: Session) {
+        userDefaults.currentSession = session
+    }
+}
+
+fileprivate extension UserDefaults {
+    @objc dynamic var currentSession: Session? {
+        get {
+            if
+                let data = data(forKey: SessionManager.SESSIONKEY),
+                let session = try? JSONDecoder().decode(Session.self, from: data)
+            {
+                return session
+            }
+            return nil
+        }
+        set {
+            let session = try? JSONEncoder().encode(newValue)
+            set(session, forKey: SessionManager.SESSIONKEY)
+        }
+    }
 }

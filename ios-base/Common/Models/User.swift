@@ -21,3 +21,11 @@ struct User: Codable {
     case image = "profile_picture"
   }
 }
+
+struct UserData: Codable {
+  var data: User
+
+  private enum CodingKeys: String, CodingKey {
+    case data
+  }
+}
