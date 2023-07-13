@@ -167,10 +167,12 @@ internal class AuthenticationServices {
   private func saveUserSession(
     _ user: User?,
     headers: [AnyHashable: Any]
-  ) -> Bool {
-    UserDataManager.currentUser = user
-    sessionManager.currentSession = Session(headers: headers)
-
-    return UserDataManager.currentUser != nil && sessionManager.validSession
+  ) {
+    UserDataManager.currentUser = User(
+      dictionary: response["user"] as? [String: Any] ?? [:]
+    )
+    if let headers = headers as? [String: String] {
+      SessionManager.currentSession = Session(headers: headers)
+    }
   }
 }
