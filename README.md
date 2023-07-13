@@ -9,22 +9,12 @@
 ## Features
 This template comes with:
 #### Main
-- Complete **API service** class to easily communicate with **REST services**.
-- Examples for **account creation** and **Facebook integration**.
+- Extensible and decoupled integration with an **API Client** to easily communicate with **REST services**.
+- A few examples to **comprehend the app architecture**(e.g. Account creation, Login, Logout)
 - Useful classes to **manage User and Session data**.
-- **Secure** way to store keys of your **third party integrations**.
-- Generic implementation of **navigation** between view controllers.
-- Handy **helpers** and **extensions** to make your coding experience faster and easier.
-
-
-#### Extensions
- This App Template also contains other branches with specific features that may be of use to you:
-
-- [**feature/mvvm+rxswift**](https://github.com/rootstrap/ios-base/tree/feature/mvvm%2Brxswift) in case you want to work with **RxSwift** and **MVVM**.
-- [**feature/moya_integration**](https://github.com/rootstrap/ios-base/tree/feature/moya_integration) manage routes and HTTP resources with Moya and Alamofire.
-
-To use them simply download the branch and locally rebase against master/develop from your initial **iOS base** clone.
-**Important**: See steps below on how to install this features.
+- **Secure** way to store and manage secret keys of your **third party integrations**.
+- Centralized and intuitive **navigation system** that simplifies the transitioning between view controllers and streamlines the navigation flow within the app.
+- Convenient **helpers** and **extensions** to boost your productivity and improve the general coding experience.
 
 ## How to use
 1. Clone repo.
