@@ -19,13 +19,6 @@ class FirstViewController: UIViewController,
     font: .h1Medium
   )
   
-  private lazy var facebookSignButton = UIButton.primaryButton(
-    color: .facebookButton,
-    title: "firstscreen_facebook_button_title".localized,
-    target: self,
-    action: #selector(facebookLogin)
-  )
-  
   private lazy var signInButton = UIButton.primaryButton(
     title: "firstscreen_login_button_title".localized,
     target: self,
@@ -72,9 +65,7 @@ class FirstViewController: UIViewController,
   
   private func configureViews() {
     applyDefaultUIConfigs()
-    view.addSubviews(
-      subviews: [titleLabel, signInButton, facebookSignButton, signUpButton]
-    )
+    view.addSubviews(subviews: [titleLabel, signInButton, signUpButton])
     activateConstraints()
     setupAccessibility()
   }
@@ -85,11 +76,9 @@ class FirstViewController: UIViewController,
   }
   
   private func activateConstraints() {
-    facebookSignButton.centerHorizontally(with: view)
     signInButton.centerHorizontally(with: view)
     titleLabel.attachHorizontally(to: view)
     signUpButton.attachHorizontally(to: view)
-    facebookSignButton.attachHorizontally(to: view)
     
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
@@ -101,24 +90,14 @@ class FirstViewController: UIViewController,
         equalTo: view.bottomAnchor,
         constant: -UI.Defaults.margin
       ),
-      facebookSignButton.bottomAnchor.constraint(
-        equalTo: signUpButton.topAnchor,
-        constant: -UI.Button.spacing
-      ),
       signInButton.bottomAnchor.constraint(
-        equalTo: facebookSignButton.topAnchor,
+        equalTo: signUpButton.topAnchor,
         constant: -UI.Button.spacing
       )
     ])
-    
   }
   
   // MARK: - Actions
-  
-  @objc
-  func facebookLogin() {
-    viewModel.facebookLogin()
-  }
   
   @objc
   func signInTapped() {

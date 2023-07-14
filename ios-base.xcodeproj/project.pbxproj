@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,8 +24,6 @@
 		074D20DB248EA832002A39B4 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DA248EA832002A39B4 /* UserServices.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */; };
-		24514AA22A55BE5A003D686E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AA12A55BE5A003D686E /* FacebookCore */; };
-		24514AA42A55BE5A003D686E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AA32A55BE5A003D686E /* FacebookLogin */; };
 		24514AAF2A55C7CC003D686E /* RSSwiftNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AAE2A55C7CC003D686E /* RSSwiftNetworking */; };
 		24514AB12A55C7CC003D686E /* RSSwiftNetworkingAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AB02A55C7CC003D686E /* RSSwiftNetworkingAlamofire */; };
 		24D6CFB92A5C9D9000D1EFA2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */; };
@@ -194,11 +192,9 @@
 				24D6CFBE2A5C9EAA00D1EFA2 /* Swifter in Frameworks */,
 				24D6CFB92A5C9D9000D1EFA2 /* FirebaseAnalytics in Frameworks */,
 				24D6CFC12A5E074E00D1EFA2 /* RSFontSizes in Frameworks */,
-				24514AA42A55BE5A003D686E /* FacebookLogin in Frameworks */,
 				24514AAF2A55C7CC003D686E /* RSSwiftNetworking in Frameworks */,
 				24514AB12A55C7CC003D686E /* RSSwiftNetworkingAlamofire in Frameworks */,
 				24D6CFBB2A5C9D9000D1EFA2 /* FirebaseCrashlytics in Frameworks */,
-				24514AA22A55BE5A003D686E /* FacebookCore in Frameworks */,
 				24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,8 +603,6 @@
 			name = "ios-base";
 			packageProductDependencies = (
 				24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */,
-				24514AA12A55BE5A003D686E /* FacebookCore */,
-				24514AA32A55BE5A003D686E /* FacebookLogin */,
 				24514AAE2A55C7CC003D686E /* RSSwiftNetworking */,
 				24514AB02A55C7CC003D686E /* RSSwiftNetworkingAlamofire */,
 				24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */,
@@ -680,11 +674,11 @@
 			);
 			mainGroup = 9B5AFAD11C7205EB002347D6;
 			packageReferences = (
-				24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
+				24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */,
-				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */,
+				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */,
 				24D6CFBF2A5E074E00D1EFA2 /* XCRemoteSwiftPackageReference "RSFontSizes" */,
 			);
 			productRefGroup = 9B5AFADB1C7205EC002347D6 /* Products */;
@@ -736,6 +730,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		24D6CFB62A5C9B2F00D1EFA2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -749,7 +744,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nswiftlint_version=$(swiftlint --version)\necho \"$swiftlint_version\"\nif [ $swiftlint_version != \"0.52.3\" ]; then\n  echo \"warning: The required version of SwiftLint 0.52.3, please update if necessary.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1502,7 +1497,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
+		24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -1526,7 +1521,7 @@
 				version = 1.1.0;
 			};
 		};
-		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1534,7 +1529,7 @@
 				version = 8.6.0;
 			};
 		};
-		24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */ = {
+		24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter.git";
 			requirement = {
@@ -1555,18 +1550,8 @@
 /* Begin XCSwiftPackageProductDependency section */
 		24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
+			package = 24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
-		};
-		24514AA12A55BE5A003D686E /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
-		};
-		24514AA32A55BE5A003D686E /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
 		};
 		24514AAE2A55C7CC003D686E /* RSSwiftNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1580,17 +1565,17 @@
 		};
 		24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		24D6CFBA2A5C9D9000D1EFA2 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		24D6CFBD2A5C9EAA00D1EFA2 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */;
+			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */;
 			productName = Swifter;
 		};
 		24D6CFC02A5E074E00D1EFA2 /* RSFontSizes */ = {

@@ -9,7 +9,6 @@
 // MARK: FIRST SCREEN
 "firstscreen_title" = "Welcome to \nRootstrap's iOS demo app.";
 "firstscreen_login_button_title" = "LOG IN";
-"firstscreen_facebook_button_title" = "FACEBOOK CONNECT";
 "firstscreen_registre_button_title" = "Don’t have an account? Let’s create one ►";
 
 // MARK: SIGN IN SCREEN
