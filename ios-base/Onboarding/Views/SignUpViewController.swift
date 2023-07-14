@@ -12,7 +12,10 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-  private lazy var titleLabel = UILabel.titleLabel(text: "signup_title".localized)
+  private lazy var titleLabel = UILabel.titleLabel(
+    text: "signup_title".localized,
+    font: .h1Medium
+  )
   private lazy var signUpButton = UIButton.primaryButton(
     title: "signup_button_title".localized,
     target: self,

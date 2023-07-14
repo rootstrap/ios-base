@@ -12,7 +12,10 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   // MARK: - Outlets
   
-  private lazy var titleLabel = UILabel.titleLabel(text: "signin_title".localized)
+  private lazy var titleLabel = UILabel.titleLabel(
+    text: "signin_title".localized,
+    font: .h1Medium
+  )
   private lazy var logInButton = UIButton.primaryButton(
     title: "signin_button_title".localized,
     target: self,

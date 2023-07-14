@@ -15,7 +15,8 @@ class FirstViewController: UIViewController,
   // MARK: - Views
   
   private lazy var titleLabel = UILabel.titleLabel(
-    text: "firstscreen_title".localized
+    text: "firstscreen_title".localized,
+    font: .h1Medium
   )
   
   private lazy var facebookSignButton = UIButton.primaryButton(

@@ -680,11 +680,11 @@
 			);
 			mainGroup = 9B5AFAD11C7205EB002347D6;
 			packageReferences = (
-				24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */,
 				24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */,
-				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */,
+				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */,
 				24D6CFBF2A5E074E00D1EFA2 /* XCRemoteSwiftPackageReference "RSFontSizes" */,
 			);
 			productRefGroup = 9B5AFADB1C7205EC002347D6 /* Products */;
@@ -1502,7 +1502,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -1526,7 +1526,7 @@
 				version = 1.1.0;
 			};
 		};
-		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -1534,7 +1534,7 @@
 				version = 8.6.0;
 			};
 		};
-		24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */ = {
+		24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter.git";
 			requirement = {
@@ -1546,8 +1546,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rootstrap/RSFontSizes";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1555,7 +1555,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager.git" */;
 			productName = IQKeyboardManagerSwift;
 		};
 		24514AA12A55BE5A003D686E /* FacebookCore */ = {
@@ -1580,17 +1580,17 @@
 		};
 		24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseAnalytics;
 		};
 		24D6CFBA2A5C9D9000D1EFA2 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
 			productName = FirebaseCrashlytics;
 		};
 		24D6CFBD2A5C9EAA00D1EFA2 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */;
+			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter.git" */;
 			productName = Swifter;
 		};
 		24D6CFC02A5E074E00D1EFA2 /* RSFontSizes */ = {
