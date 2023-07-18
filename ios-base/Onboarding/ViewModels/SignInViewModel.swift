@@ -44,7 +44,7 @@ internal class SignInViewModelWithCredentials {
     self.authServices = authServices
   }
   
-  func login() async {
+  @MainActor func login() async {
     state = .network(state: .loading)
     let result = await authServices.login(
       email: email,

@@ -56,7 +56,7 @@ class SignUpViewModelWithEmail {
       email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
-  func signup() async {
+  @MainActor func signup() async {
     state = .network(state: .loading)
     let result = await authServices.signup(
       email: email,

@@ -64,6 +64,55 @@ class ios_baseUITests: XCTestCase {
     XCTAssertFalse(signUpButton.isEnabled)
   }
   
+  func testSignInFailure() {
+    app.launch()
+    
+    networkMocker.stubLogIn(shouldSucceed: false)
+    
+    app.attemptSignIn(in: self,
+                      with: "automation@test.com",
+                      password: "incorrect password")
+    
+    if let alert = app.alerts.allElementsBoundByIndex.first {
+      waitFor(element: alert, timeOut: 2)
+      
+      alert.buttons.allElementsBoundByIndex.first?.forceTap()
+    }
+    
+    let signInButton = app.buttons["SignInButton"]
+    waitFor(element: signInButton, timeOut: 2)
+  }
+  
+  func testSignInValidations() {
+    app.launch()
+    
+    app.buttons["GoToSignInButton"].forceTap()
+    
+    let toolbarDoneButton = app.buttons["Done"]
+    let signInButton = app.buttons["SignInButton"]
+    
+    waitFor(element: signInButton, timeOut: 2)
+    
+    XCTAssertFalse(signInButton.isEnabled)
+    
+    app.type(text: "automation@test", on: "EmailTextField")
+    
+    toolbarDoneButton.forceTap()
+    app.type(text: "holahola",
+             on: "PasswordTextField",
+             isSecure: true)
+              
+    XCTAssertFalse(signInButton.isEnabled)
+    
+    toolbarDoneButton.forceTap()
+    app.type(text: ".com", on: "EmailTextField")
+    
+    XCTAssert(signInButton.isEnabled)
+  }
+  
+  // swiftlint:disable line_length
+  /// These tests won't work because we need to mock headers and Swifter currently does not support this
+  /// https://github.com/httpswift/swifter/pull/500
   func testAccountCreation() {
     app.launch()
 
@@ -112,51 +161,5 @@ class ios_baseUITests: XCTestCase {
     
     let goToSignInButton = app.buttons["GoToSignInButton"]
     waitFor(element: goToSignInButton, timeOut: 10)
-  }
-  
-  func testSignInFailure() {
-    app.launch()
-    
-    networkMocker.stubLogIn(shouldSucceed: false)
-    
-    app.attemptSignIn(in: self,
-                      with: "automation@test.com",
-                      password: "incorrect password")
-    
-    if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 2)
-      
-      alert.buttons.allElementsBoundByIndex.first?.forceTap()
-    }
-    
-    let signInButton = app.buttons["SignInButton"]
-    waitFor(element: signInButton, timeOut: 2)
-  }
-  
-  func testSignInValidations() {
-    app.launch()
-    
-    app.buttons["GoToSignInButton"].forceTap()
-    
-    let toolbarDoneButton = app.buttons["Done"]
-    let signInButton = app.buttons["SignInButton"]
-    
-    waitFor(element: signInButton, timeOut: 2)
-    
-    XCTAssertFalse(signInButton.isEnabled)
-    
-    app.type(text: "automation@test", on: "EmailTextField")
-    
-    toolbarDoneButton.forceTap()
-    app.type(text: "holahola",
-             on: "PasswordTextField",
-             isSecure: true)
-              
-    XCTAssertFalse(signInButton.isEnabled)
-    
-    toolbarDoneButton.forceTap()
-    app.type(text: ".com", on: "EmailTextField")
-    
-    XCTAssert(signInButton.isEnabled)
   }
 }

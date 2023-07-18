@@ -222,8 +222,8 @@
 			children = (
 				0737296424AD38CE008C54D9 /* NetworkMocker.swift */,
 				0737296324AD38CE008C54D9 /* NetworkMockerExtension.swift */,
-				0737295824AD389F008C54D9 /* Resources */,
 				07276EB223F5CC460089C0AD /* ios_baseUITests.swift */,
+				0737295824AD389F008C54D9 /* Resources */,
 				07276EB423F5CC460089C0AD /* Info.plist */,
 				07276EBB23F5CCA70089C0AD /* XCUIApplicationExtension.swift */,
 				07276EBD23F5CCCA0089C0AD /* XCUIElementExtension.swift */,
