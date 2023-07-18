@@ -399,12 +399,12 @@
 			isa = PBXGroup;
 			children = (
 				9B6C8A3829954B8900F2E1C8 /* keys.env */,
-				9BC8FF2A2992C0BF00CAB17A /* Config */,
 				9B9C6BFD20C7160700EB0523 /* README.md */,
-				07276EB123F5CC460089C0AD /* ios-baseUITests */,
-				9B5E1436245B2AA00059DF62 /* ios-baseUnitTests */,
-				9B5AFADB1C7205EC002347D6 /* Products */,
+				9BC8FF2A2992C0BF00CAB17A /* Config */,
 				9B0C72511C738C3100BAF3B1 /* ios-base */,
+				9B5E1436245B2AA00059DF62 /* ios-baseUnitTests */,
+				07276EB123F5CC460089C0AD /* ios-baseUITests */,
+				9B5AFADB1C7205EC002347D6 /* Products */,
 				241E327F2A664B4D00B61972 /* Frameworks */,
 			);
 			indentWidth = 2;

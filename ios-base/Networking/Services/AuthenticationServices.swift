@@ -67,7 +67,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -116,7 +116,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -146,7 +146,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -192,7 +192,6 @@ internal class AuthenticationServices {
     userDataManager.currentUser = user
     guard let session = Session(headers: headers) else { return false }
     sessionManager.saveUser(session: session)
-    
     return userDataManager.currentUser != nil && sessionManager.currentSession?.isValid ?? false
   }
 }

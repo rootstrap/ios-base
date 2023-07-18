@@ -92,8 +92,10 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   }
   
   @objc
-  func tapOnSignUpButton(_ sender: Any) async {
-    await viewModel.signup()
+  func tapOnSignUpButton(_ sender: Any) {
+    Task {
+      await viewModel.signup()
+    }
   }
   
   func setSignUpButton(enabled: Bool) {
