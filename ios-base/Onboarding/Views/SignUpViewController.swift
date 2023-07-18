@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   )
   private lazy var signUpButton = UIButton.primaryButton(
     title: "signup_button_title".localized,
+    accessibilityIdentifier: "SignUpButton",
     target: self,
     action: #selector(tapOnSignUpButton)
   )
@@ -25,13 +26,15 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   private lazy var emailField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
-    placeholder: "signup_email_placeholder".localized
+    placeholder: "signup_email_placeholder".localized,
+    identifier: "EmailTextField"
   )
   
   private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_password_placeholder".localized,
+    identifier: "PasswordTextField",
     isPassword: true
   )
   
@@ -39,6 +42,7 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_confirm_password_placeholder".localized,
+    identifier: "ConfirmPasswordTextField",
     isPassword: true
   )
   

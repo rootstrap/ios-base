@@ -33,7 +33,7 @@ class ios_baseUITests: XCTestCase {
     
     app.buttons["GoToSignUpButton"].forceTap()
     
-    let toolbarDoneButton = app.buttons["Toolbar Done Button"]
+    let toolbarDoneButton = app.buttons["Done"]
     let signUpButton = app.buttons["SignUpButton"]
     waitFor(element: signUpButton, timeOut: 2)
     
@@ -66,32 +66,32 @@ class ios_baseUITests: XCTestCase {
   
   func testAccountCreation() {
     app.launch()
-    
+
     networkMocker.stubSignUp()
-    
+
     app.attemptSignUp(
       in: self,
       email: "automation@test.com",
       password: "holahola"
     )
-    
+
     networkMocker.stubGetProfile()
     let getMyProfile = app.buttons["GetMyProfileButton"]
     waitFor(element: getMyProfile, timeOut: 10)
     getMyProfile.tap()
-    
+
     sleep(1)
     if let alert = app.alerts.allElementsBoundByIndex.first {
       waitFor(element: alert, timeOut: 10)
-      
+
       alert.buttons.allElementsBoundByIndex.first?.tap()
     }
-    
+
     let logOutButton = app.buttons["LogoutButton"]
     waitFor(element: logOutButton, timeOut: 5)
-    
+
     networkMocker.stubLogOut()
-    
+
     logOutButton.tap()
   }
   
@@ -138,7 +138,7 @@ class ios_baseUITests: XCTestCase {
     
     app.buttons["GoToSignInButton"].forceTap()
     
-    let toolbarDoneButton = app.buttons["Toolbar Done Button"]
+    let toolbarDoneButton = app.buttons["Done"]
     let signInButton = app.buttons["SignInButton"]
     
     waitFor(element: signInButton, timeOut: 2)

@@ -18,6 +18,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   )
   private lazy var logInButton = UIButton.primaryButton(
     title: "signin_button_title".localized,
+    accessibilityIdentifier: "SignInButton",
     target: self,
     action: #selector(tapOnSignInButton)
   )
@@ -25,13 +26,15 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   private lazy var emailField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
-    placeholder: "signin_email_placeholder".localized
+    placeholder: "signin_email_placeholder".localized,
+    identifier: "EmailTextField"
   )
   
   private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_password_placeholder".localized,
+    identifier: "PasswordTextField",
     isPassword: true
   )
   

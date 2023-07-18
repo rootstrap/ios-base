@@ -14,6 +14,7 @@ extension UIButton {
   static func primaryButton(
     color: UIColor = .buttonBackground,
     title: String = "",
+    accessibilityIdentifier: String = "",
     titleColor: UIColor = .white,
     cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
@@ -25,6 +26,7 @@ extension UIButton {
     button.setup(
       color: color,
       title: title,
+      identifier: accessibilityIdentifier,
       titleColor: titleColor,
       cornerRadius: cornerRadius,
       height: height,
@@ -39,6 +41,7 @@ extension UIButton {
   private func setup(
     color: UIColor = .buttonBackground,
     title: String = "",
+    identifier: String = "",
     titleColor: UIColor = .white,
     cornerRadius: CGFloat = UI.Button.cornerRadius,
     height: CGFloat = UI.Button.height,
@@ -46,6 +49,7 @@ extension UIButton {
   ) {
     translatesAutoresizingMaskIntoConstraints = false
     setTitle(title, for: .normal)
+    accessibilityIdentifier = identifier
     setTitleColor(titleColor, for: .normal)
     backgroundColor = color
     titleLabel?.font = font
