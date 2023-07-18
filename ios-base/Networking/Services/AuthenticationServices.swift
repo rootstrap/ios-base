@@ -185,7 +185,7 @@ internal class AuthenticationServices {
     }
   }
   
-  @MainActor func saveUserSession(
+  func saveUserSession(
     _ user: User?,
     headers: [AnyHashable: Any]
   ) -> Bool {

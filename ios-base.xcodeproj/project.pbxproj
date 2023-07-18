@@ -23,6 +23,10 @@
 		074D20D9248E993B002A39B4 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20D8248E993B002A39B4 /* AuthenticationServices.swift */; };
 		074D20DB248EA832002A39B4 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DA248EA832002A39B4 /* UserServices.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
+		241E32812A664B4D00B61972 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32802A664B4D00B61972 /* Swifter */; };
+		241E32832A664B7E00B61972 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32822A664B7E00B61972 /* FacebookCore */; };
+		241E32852A664BEA00B61972 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32842A664BEA00B61972 /* FirebaseAnalytics */; };
+		241E32872A664BEA00B61972 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32862A664BEA00B61972 /* FirebaseCrashlytics */; };
 		24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */; };
 		24514AAF2A55C7CC003D686E /* RSSwiftNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AAE2A55C7CC003D686E /* RSSwiftNetworking */; };
 		24514AB12A55C7CC003D686E /* RSSwiftNetworkingAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AB02A55C7CC003D686E /* RSSwiftNetworkingAlamofire */; };
@@ -182,6 +186,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241E32812A664B4D00B61972 /* Swifter in Frameworks */,
+				241E32872A664BEA00B61972 /* FirebaseCrashlytics in Frameworks */,
+				241E32832A664B7E00B61972 /* FacebookCore in Frameworks */,
+				241E32852A664BEA00B61972 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +342,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		241E327F2A664B4D00B61972 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9B0C72511C738C3100BAF3B1 /* ios-base */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +405,7 @@
 				9B5E1436245B2AA00059DF62 /* ios-baseUnitTests */,
 				9B5AFADB1C7205EC002347D6 /* Products */,
 				9B0C72511C738C3100BAF3B1 /* ios-base */,
+				241E327F2A664B4D00B61972 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -583,6 +599,12 @@
 				07276EB623F5CC460089C0AD /* PBXTargetDependency */,
 			);
 			name = "ios-baseUITests";
+			packageProductDependencies = (
+				241E32802A664B4D00B61972 /* Swifter */,
+				241E32822A664B7E00B61972 /* FacebookCore */,
+				241E32842A664BEA00B61972 /* FirebaseAnalytics */,
+				241E32862A664BEA00B61972 /* FirebaseCrashlytics */,
+			);
 			productName = "ios-baseUITests";
 			productReference = 07276EB023F5CC460089C0AD /* ios-baseUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -686,8 +708,8 @@
 			projectRoot = "";
 			targets = (
 				9B5AFAD91C7205EB002347D6 /* ios-base */,
-				07276EAF23F5CC460089C0AD /* ios-baseUITests */,
 				9B5E1434245B2AA00059DF62 /* ios-baseUnitTests */,
+				07276EAF23F5CC460089C0AD /* ios-baseUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1548,6 +1570,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		241E32802A664B4D00B61972 /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
+		241E32822A664B7E00B61972 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		241E32842A664BEA00B61972 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		241E32862A664BEA00B61972 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
 		24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
