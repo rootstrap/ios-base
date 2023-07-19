@@ -66,7 +66,7 @@ internal class AuthenticationServices {
     switch response.result {
     case .success(let user):
       if
-        let user = user,
+        let user,
         await self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
@@ -115,7 +115,7 @@ internal class AuthenticationServices {
     switch response.result {
     case .success(let user):
       if
-        let user = user,
+        let user,
         await self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
@@ -145,7 +145,7 @@ internal class AuthenticationServices {
     switch response.result {
     case .success(let user):
       if
-        let user = user,
+        let user,
         await self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
