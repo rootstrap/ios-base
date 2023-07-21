@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rootstrap/RSSwiftNetworking",
       "state" : {
-        "revision" : "abf45dec27afd68db9d4bf4429c0823ac4c7b5f6",
-        "version" : "1.1.0"
+        "revision" : "0fb25cd68154313e597e68f3f286da46ed9cc4f9",
+        "version" : "1.1.7"
       }
     },
     {

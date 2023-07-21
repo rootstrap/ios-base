@@ -74,8 +74,8 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     }
   }
   
-  @objc func tapOnSignInButton(_ sender: Any) {
-    viewModel.login()
+  @objc func tapOnSignInButton(_ sender: Any) async {
+    await viewModel.login()
   }
   
   func setLoginButton(enabled: Bool) {
