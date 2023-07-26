@@ -8,35 +8,51 @@
 
 import Foundation
 import RSSwiftNetworking
+import RSSwiftNetworkingAlamofire
 
 internal class UserServices {
-
-  private let apiClient: APIClient
-
-  init(apiClient: APIClient = iOSBaseAPIClient.shared) {
-    self.apiClient = apiClient
+  
+  enum UserError: LocalizedError {
+    case getMyProfile
+    case mapping
+    
+    var errorDescription: String? {
+      switch self {
+      case .getMyProfile:
+        return "authError_login".localized
+      case .mapping:
+        return "authError_mapping".localized
+      }
+    }
   }
 
-  func getMyProfile(completion: @escaping (Result<User, Error>) -> Void) {
-    apiClient.request(
+  private let userDataManager: UserDataManager
+  private let apiClient = BaseAPIClient.alamofire
+  
+  init(
+    userDataManager: UserDataManager = .shared
+  ) {
+    self.userDataManager = userDataManager
+  }
+  
+  @discardableResult func getMyProfile() async -> Result<UserData, UserError> {
+    let response: RequestResponse<UserData> = await apiClient.request(
       endpoint: UserEndpoint.profile
-    ) { (result: Result<User?, Error>, _) in
-      switch result {
-      case .success(let user):
-        guard let user = user else {
-          let noUserFoundError = App.error(
-            domain: .parsing,
-            localizedDescription: "Could not parse a valid user".localized
-          )
-          completion(.failure(noUserFoundError))
-          return
-        }
-
-        UserDataManager.currentUser = user
-        completion(.success(user))
-      case .failure(let error):
-        completion(.failure(error))
+    )
+    switch response.result {
+    case .success(let user):
+      if let user = user {
+        userDataManager.currentUser = user.data
+        return .success(user)
+      } else {
+        return .failure(UserError.mapping)
       }
+    case .failure:
+      let noUserFoundError = App.error(
+        domain: .parsing,
+        localizedDescription: "Could not parse a valid user".localized
+      )
+      return .failure(UserError.getMyProfile)
     }
   }
 }

@@ -58,8 +58,11 @@ In order for the project to run, you have to follow these steps:
 See the [Firebase documentation](https://firebase.google.com/docs/ios/setup) for more information.
 
 ## Code Quality Standards
-In order to meet the required code quality standards,  this project runs [SwiftLint](https://github.com/realm/SwiftLint )
+In order to meet the required code quality standards, this project runs [SwiftLint](https://github.com/realm/SwiftLint)
 during the build phase and reports warnings/errors directly through XCode.
+
+**NOTE:** It's needed to install [SwiftLint](https://github.com/realm/SwiftLint) into your local machine to report warnings/errors.
+
 The current SwiftLint rule configuration is based on [Rootstrap's Swift style guides](https://rootstrap.github.io/swift) and is synced with
 the CodeCliemate's configuration file.
 

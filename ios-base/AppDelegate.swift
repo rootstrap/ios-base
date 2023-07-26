@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func unexpectedLogout() {
-    UserDataManager.deleteUser()
+    UserDataManager.shared.deleteUser()
     SessionManager.shared.deleteSession()
     // Clear any local data if needed
     // Take user to onboarding if needed, do NOT redirect the user

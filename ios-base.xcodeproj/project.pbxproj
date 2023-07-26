@@ -1518,7 +1518,7 @@
 			repositoryURL = "https://github.com/rootstrap/RSSwiftNetworking";
 			requirement = {
 				kind = exactVersion;
-				version = 1.1.0;
+				version = 1.1.7;
 			};
 		};
 		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
