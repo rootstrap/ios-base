@@ -66,6 +66,3 @@ report.junit
 
 # Private keys
 secrets.xcconfig
-
-R.generated.swift
-

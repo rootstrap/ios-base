@@ -3,28 +3,24 @@ env:
     - CC_TEST_REPORTER_ID: 8454035bac667725e88752aa44de9ee72dc53982138c3d0c3def3843b9191568
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
   jobs:
-    - IOS=11.4, DEVICE_NAME="iPhone 8"
-    - IOS=12.4, DEVICE_NAME="iPhone 8"
-    - IOS=13.4, DEVICE_NAME="iPhone 8"
-    - IOS=13.4, DEVICE_NAME="iPhone 11 Pro"
-    - IOS=13.4, DEVICE_NAME="iPhone 11 Pro Max"
-osx_image: xcode11.5
+    - IOS=15.5, DEVICE_NAME="iPhone 13"
+    - IOS=16.0, DEVICE_NAME="iPhone 13 Pro"
+    - IOS=16.4, DEVICE_NAME="iPhone 14"
+    - IOS=13.4, DEVICE_NAME="iPhone 14 Pro"
+    - IOS=13.4, DEVICE_NAME="iPhone 14 Pro Max"
+osx_image: xcode14.3
 language: swift
 cache:
   - bundler
-  - cocoapods
-before_install:
-  - pod repo update
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 install:
   - bundle install
-  - pod install
 script:
   - set -o pipefail
-  - xcodebuild -workspace ios-base.xcworkspace -scheme ios-base-develop -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS" build test | xcpretty --test --color
+  - xcodebuild -project ios-base.xcodeproj -scheme ios-base-develop -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS" build test | xcpretty --test --color
 after_script:
   - slather coverage
   - ./cc-test-reporter after-build -t cobertura --exit-code $TRAVIS_TEST_RESULT

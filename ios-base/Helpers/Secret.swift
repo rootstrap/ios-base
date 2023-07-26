@@ -5,7 +5,7 @@ enum Secret {
 
   // All keys for secrets used within the app.
   enum Key: String {
-    case facebookKey = "FacebookKey"
+    case exampleKey = "ExampleKey"
   }
 
   enum Error: Swift.Error {

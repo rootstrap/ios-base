@@ -46,10 +46,6 @@ We have developed other libraries that can be helpful and you could integrate wi
  - [KIF](https://github.com/kif-framework/KIF) for UI testing.
  - [KIF/IdentifierTests](https://github.com/kif-framework/KIF) to have access to accesibility identifiers.
 
-#### Optional
- - [FBSDKCoreKit](https://github.com/facebook/facebook-ios-sdk) facebook pods dependency.
- - [FBSDKLoginKit](https://github.com/facebook/facebook-ios-sdk) for facebook login.
-
 ## Mandatory configuration
 #### Firebase
 
@@ -60,13 +56,6 @@ In order for the project to run, you have to follow these steps:
 4. Done :)
 
 See the [Firebase documentation](https://firebase.google.com/docs/ios/setup) for more information.
-
-## Optional configuration
-#### Facebook
-1. In `info.plist` on the URL types array, find `fbXXXXXXXXXXX` and replace it for the string "fb" + the ID of your app. i.e: `fb435272928934`.
-2. Change the `FacebookAppID` value for the same AppID that you replace above.
-3. Change the `FacebookDisplayName` value for the name of the app on Facebook.
-4. Done :)
 
 ## Code Quality Standards
 In order to meet the required code quality standards, this project runs [SwiftLint](https://github.com/realm/SwiftLint)
@@ -96,7 +85,7 @@ We strongly recommend that all private keys be added to a `secrets.xcconfig` fil
    - `chmod u+x setup-env.sh`
    - `./setup-env.sh`
 4. Add the key to the Info.plist of your app's target.
-   _Example: FacebookKey = ${FACEBOOK_KEY}_
+   _Example: ThirdPartyKey = ${THIRD_PARTY_KEY}_
 5. Add a new case to the `Secret.Key` enum.
    _The rawValue must match the key in the Info.plist file_
 6. Use it wisely :)

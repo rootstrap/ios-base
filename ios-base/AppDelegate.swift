@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FacebookCore
 import Firebase
 import IQKeyboardManagerSwift
 
@@ -29,11 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     // Override point for customization after application launch.
     AnalyticsManager.shared.setup()
-    // -Facebook
-    Settings.shared.appID = try? Secret.value(for: .facebookKey)
-    ApplicationDelegate.shared.application(
-      application, didFinishLaunchingWithOptions: launchOptions
-    )
     
     IQKeyboardManager.shared.enable = true
 
@@ -41,17 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.rootViewController = rootVC
 
     return true
-  }
-  
-  func application(
-    _ application: UIApplication, open url: URL,
-    sourceApplication: String?, annotation: Any
-  ) -> Bool {
-    ApplicationDelegate.shared.application(
-      application, open: url,
-      sourceApplication: sourceApplication,
-      annotation: annotation
-    )
   }
   
   func unexpectedLogout() {
