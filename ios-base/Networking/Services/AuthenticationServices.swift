@@ -46,14 +46,16 @@ internal class AuthenticationServices {
   
   private let sessionManager: SessionManager
   private let userDataManager: UserDataManager
-  private let apiClient = BaseAPIClient.alamofire
+  private let apiClient: BaseAPIClient
   
   init(
     sessionManager: SessionManager = .shared,
-    userDataManager: UserDataManager = .shared
+    userDataManager: UserDataManager = .shared,
+    apiClient: BaseAPIClient = BaseAPIClient.alamofire
   ) {
     self.sessionManager = sessionManager
     self.userDataManager = userDataManager
+    self.apiClient = apiClient
   }
   
   @discardableResult func login(

@@ -10,7 +10,7 @@ import XCTest
 @testable import ios_base_Debug
 
 class ios_baseUITests: XCTestCase {
-
+  
   var app: XCUIApplication!
   
   let networkMocker = NetworkMocker()
@@ -19,7 +19,7 @@ class ios_baseUITests: XCTestCase {
     super.setUp()
     app = XCUIApplication()
     app.launchArguments = ["Automation Test"]
-      
+    
     try? networkMocker.setUp()
   }
   
@@ -101,7 +101,7 @@ class ios_baseUITests: XCTestCase {
     app.type(text: "holahola",
              on: "PasswordTextField",
              isSecure: true)
-              
+    
     XCTAssertFalse(signInButton.isEnabled)
     
     toolbarDoneButton.forceTap()
@@ -115,32 +115,32 @@ class ios_baseUITests: XCTestCase {
   /// https://github.com/httpswift/swifter/pull/500
   func testAccountCreation() {
     app.launch()
-
+    
     networkMocker.stubSignUp()
-
+    
     app.attemptSignUp(
       in: self,
       email: "automation@test.com",
       password: "holahola"
     )
-
+    
     networkMocker.stubGetProfile()
     let getMyProfile = app.buttons["GetMyProfileButton"]
     waitFor(element: getMyProfile, timeOut: 10)
     getMyProfile.tap()
-
+    
     sleep(1)
     if let alert = app.alerts.allElementsBoundByIndex.first {
       waitFor(element: alert, timeOut: 10)
-
+      
       alert.buttons.allElementsBoundByIndex.first?.tap()
     }
-
+    
     let logOutButton = app.buttons["LogoutButton"]
     waitFor(element: logOutButton, timeOut: 5)
-
+    
     networkMocker.stubLogOut()
-
+    
     logOutButton.tap()
   }
   

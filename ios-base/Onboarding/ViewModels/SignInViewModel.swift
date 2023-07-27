@@ -13,6 +13,8 @@ protocol SignInViewModelDelegate: AuthViewModelStateDelegate {
 }
 
 internal class SignInViewModelWithCredentials {
+  
+  private let analyticsManager: AnalyticsManager
 
   private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
@@ -37,11 +39,15 @@ internal class SignInViewModelWithCredentials {
   var hasValidCredentials: Bool {
     email.isEmailFormatted() && !password.isEmpty
   }
-
+  
   private let authServices: AuthenticationServices
-
-  init(authServices: AuthenticationServices = AuthenticationServices()) {
+  
+  init(
+    authServices: AuthenticationServices = AuthenticationServices(),
+    analyticsManager: AnalyticsManager = .shared
+  ) {
     self.authServices = authServices
+    self.analyticsManager = analyticsManager
   }
   
   @MainActor func login() async {
@@ -53,8 +59,8 @@ internal class SignInViewModelWithCredentials {
     switch result {
     case .success:
       self.state = .loggedIn
-      AnalyticsManager.shared.identifyUser(with: self.email)
-      AnalyticsManager.shared.log(event: Event.login)
+      analyticsManager.identifyUser(with: self.email)
+      analyticsManager.log(event: Event.login)
     case .failure(let error):
       self.state = .network(state: .error(error.localizedDescription))
     }

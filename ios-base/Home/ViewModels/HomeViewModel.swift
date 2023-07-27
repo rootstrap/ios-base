@@ -29,10 +29,10 @@ class HomeViewModel {
       delegate?.didUpdateState(to: state)
     }
   }
-
+  
   private let userServices: UserServices
   private let authServices: AuthenticationServices
-
+  
   init(
     userServices: UserServices = UserServices(),
     authServices: AuthenticationServices = AuthenticationServices()
@@ -40,7 +40,7 @@ class HomeViewModel {
     self.userServices = userServices
     self.authServices = authServices
   }
-
+  
   func loadUserProfile() async {
     state = .network(state: .loading)
     
@@ -68,7 +68,7 @@ class HomeViewModel {
   
   func deleteAccount() async {
     state = .network(state: .loading)
-  
+    
     let result = await authServices.deleteAccount()
     switch result {
     case .success:

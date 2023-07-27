@@ -80,7 +80,7 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   
   @objc func tapOnSignInButton(_ sender: Any) {
     Task {
-        await viewModel.login()
+      await viewModel.login()
     }
   }
   

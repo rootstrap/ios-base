@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
     
     return button
   }()
-    
+  
   let activityIndicator = UIActivityIndicatorView()
   
   private var viewModel: HomeViewModel
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   func tapOnGetMyProfile(_ sender: Any) async {
     await viewModel.loadUserProfile()
   }
-
+  
   @objc
   func tapOnLogOutButton(_ sender: Any) async {
     await viewModel.logoutUser()
@@ -115,7 +115,7 @@ private extension HomeViewController {
       )
     ])
   }
-
+  
 }
 
 extension HomeViewController: HomeViewModelDelegate {

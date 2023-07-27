@@ -19,13 +19,18 @@ enum AuthViewModelState {
 }
 
 class SignUpViewModelWithEmail {
-
-  private let authServices: AuthenticationServices
-
-  init(authServices: AuthenticationServices = AuthenticationServices()) {
-    self.authServices = authServices
-  }
   
+  private let analyticsManager: AnalyticsManager
+  private let authServices: AuthenticationServices
+  
+  init(
+    authServices: AuthenticationServices = AuthenticationServices(),
+    analyticsManager: AnalyticsManager = .shared
+  ) {
+    self.authServices = authServices
+    self.analyticsManager = analyticsManager
+  }
+
   private var state: AuthViewModelState = .network(state: .idle) {
     didSet {
       delegate?.didUpdateState(to: state)
@@ -53,7 +58,7 @@ class SignUpViewModelWithEmail {
   }
   
   var hasValidData: Bool {
-      email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
+    email.isEmailFormatted() && !password.isEmpty && password == passwordConfirmation
   }
   
   @MainActor func signup() async {
