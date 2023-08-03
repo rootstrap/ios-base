@@ -1563,8 +1563,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rootstrap/RSFontSizes";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.2;
+				kind = revision;
+				revision = 49893271b3a12b7375b8d04477e9c1906fe64e13;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

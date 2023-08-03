@@ -140,8 +140,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rootstrap/RSFontSizes",
       "state" : {
-        "revision" : "a08a98cc7cbfdb6a07bc037fa382c2199874b274",
-        "version" : "1.3.2"
+        "revision" : "49893271b3a12b7375b8d04477e9c1906fe64e13"
       }
     },
     {
