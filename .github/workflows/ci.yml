@@ -21,6 +21,12 @@ jobs:
    
     - name: Checkout
       uses: actions/checkout@v2
+
+    - uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "5.8.0"
+    - name: Get swift version
+      run: swift --version
         
     - name: Setup Code Climate test reporter
       run: |
