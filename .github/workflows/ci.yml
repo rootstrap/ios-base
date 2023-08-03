@@ -30,7 +30,7 @@ jobs:
         ./cc-test-reporter before-build
 
     - name: Build
-      run: swift build -v
+      run: xcodebuild -scheme ios-base-develop
     - name: Run tests
       run: swift test -v
 
