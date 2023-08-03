@@ -29,11 +29,10 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
 
-    # Executes pod install and runs test against Debug target
+    - name: Build
+      run: swift build -v
     - name: Run tests
-      uses: maierj/fastlane-action@v1.4.0
-      with:
-        lane: debug_develop
+      run: swift test -v
 
     - name: Send test coverage report
       run: ./cc-test-reporter after-build
