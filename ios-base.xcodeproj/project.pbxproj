@@ -673,9 +673,7 @@
 					};
 					9B5AFAD91C7205EB002347D6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = WNU857N39T;
 						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
 					};
 					9B5E1434245B2AA00059DF62 = {
 						CreatedOnToolsVersion = 11.3;
@@ -1227,7 +1225,7 @@
 				BASE_URL = "https://private-dc5596-iosbasemock.apiary-mock.com/api/v1";
 				BUNDLE_DOMAIN = com.rootstrap;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

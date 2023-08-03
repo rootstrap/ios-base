@@ -10,29 +10,6 @@ env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   # Notifications
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
-  FOLDER: ios-base
-  AWS_REGION: us-east-1
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  KEYS_BUCKET: ${{ secrets.AWS_S3_KEYS_BUCKET }}
-  BUILDS_BUCKET: ${{ secrets.AWS_S3_BUILDS_BUCKET }}
-  KEYCHAIN_NAME: 'fastlane_tmp_keychain'
-  KEYCHAIN_PASSWORD: ''
-  # iOS Release - all sensitive values should be stored as repo Secrets
-  APPLE_PROFILE: ${{ secrets.APPLE_PROFILE }}               # Filename for the provisioning profile, eg AppStore_comrootstraiosbasedevelop.mobileprovision
-  APPLE_CERT: ${{ secrets.APPLE_CERT }}                     # Filename for the distribution certificate (.cer) that should be uploaded to S3 bucket
-  APPLE_KEY: ${{ secrets.APPLE_KEY }}                       # Filename for the key (.p12) that should be uploaded to S3 bucket
-  APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}
-  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}                # Organization's team ID in the Developer Portal
-  FASTLANE_ITC_TEAM_ID: ${{ secrets.APPLE_TEAM_ITC_ID}}     # iTunes connect team ID
-  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-                                                            # Apple Application-specific password for uploading to TestFlight
-  APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
-  APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
-  APP_STORE_CONNECT_API_KEY_FILE: ${{ secrets.APP_STORE_CONNECT_API_KEY_FILE }}
-  # Notifications
-  SLACK_URL: ${{ secrets.SLACK_URL }}
-  SLACK_CHANNEL: '#dev-releases'
 
 jobs:
 
@@ -51,13 +28,6 @@ jobs:
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
-
-  # Downloads certificate, private key and Firebase file
-    - name: Download code signing items
-      run: |
-          aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ . --recursive
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          mv ./$APPLE_PROFILE ~/Library/MobileDevice/Provisioning\ Profiles/$APPLE_PROFILE
 
     - name: Build
       run: xcodebuild -scheme ios-base-develop
