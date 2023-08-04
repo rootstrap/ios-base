@@ -110,8 +110,8 @@ class ios_baseUITests: XCTestCase {
     XCTAssert(signInButton.isEnabled)
   }
   
-  // swiftlint:disable line_length
-  /// These tests won't work because we need to mock headers and Swifter currently does not support this
+  /// These tests won't work because we need to mock headers
+  /// and Swifter currently does not support this
   /// https://github.com/httpswift/swifter/pull/500
   //  func testAccountCreation() {
   //    app.launch()

@@ -24,7 +24,6 @@
 		074D20DB248EA832002A39B4 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D20DA248EA832002A39B4 /* UserServices.swift */; };
 		07741D72218CDED600DB3B97 /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07741D71218CDED600DB3B97 /* FirstViewModel.swift */; };
 		241E32812A664B4D00B61972 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32802A664B4D00B61972 /* Swifter */; };
-		241E32832A664B7E00B61972 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32822A664B7E00B61972 /* FacebookCore */; };
 		241E32852A664BEA00B61972 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32842A664BEA00B61972 /* FirebaseAnalytics */; };
 		241E32872A664BEA00B61972 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 241E32862A664BEA00B61972 /* FirebaseCrashlytics */; };
 		24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */; };
@@ -188,7 +187,6 @@
 			files = (
 				241E32812A664B4D00B61972 /* Swifter in Frameworks */,
 				241E32872A664BEA00B61972 /* FirebaseCrashlytics in Frameworks */,
-				241E32832A664B7E00B61972 /* FacebookCore in Frameworks */,
 				241E32852A664BEA00B61972 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,7 +599,6 @@
 			name = "ios-baseUITests";
 			packageProductDependencies = (
 				241E32802A664B4D00B61972 /* Swifter */,
-				241E32822A664B7E00B61972 /* FacebookCore */,
 				241E32842A664BEA00B61972 /* FirebaseAnalytics */,
 				241E32862A664BEA00B61972 /* FirebaseCrashlytics */,
 			);
@@ -695,7 +692,6 @@
 			mainGroup = 9B5AFAD11C7205EB002347D6;
 			packageReferences = (
 				24514A9D2A55BC16003D686E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */,
 				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */,
@@ -1525,14 +1521,6 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.0.0;
-			};
-		};
 		24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rootstrap/RSSwiftNetworking";
@@ -1572,11 +1560,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */;
 			productName = Swifter;
-		};
-		241E32822A664B7E00B61972 /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24514AA02A55BE5A003D686E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
 		};
 		241E32842A664BEA00B61972 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
