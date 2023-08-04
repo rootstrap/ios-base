@@ -19,7 +19,7 @@ jobs:
     - uses: michaelhenry/swifty-code-coverage@v1.0.0
       with:
         build-path: .build
-        target: ios-base-develop.xctest
+        target: AppTests.xctest
         is-spm: true
     - name: Publish to code climate
       uses: paambaati/codeclimate-action@v3.0.0
