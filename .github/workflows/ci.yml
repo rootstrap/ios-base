@@ -3,7 +3,6 @@ name: CI Build
 # Run for any commits to any branch
 on: [push, pull_request]
 
-
 env:
   LANG: en_US.UTF-8
   # CodeClimate
@@ -29,10 +28,8 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
 
-    - name: Build
-      run: xcodebuild -scheme ios-base-develop
-    - name: Run tests
-      run: swift test -v
+    - name: Build & Test
+      run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' | xcpretty && exit ${PIPESTATUS[0]}
 
     - name: Send test coverage report
       run: ./cc-test-reporter after-build
