@@ -1,7 +1,7 @@
 name: CI Build
 
 # Run for any commits to any branch
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   LANG: en_US.UTF-8
@@ -32,7 +32,7 @@ jobs:
       run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
 
     - name: Send test coverage report
-      run: ./cc-test-reporter after-build
+      run: ./cc-test-reporter after-build -t cobertura --exit-code ${PIPESTATUS[0]}
 
     - name: Send notification of build result
       uses: 8398a7/action-slack@v3
