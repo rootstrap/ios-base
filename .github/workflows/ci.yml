@@ -15,7 +15,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    - run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
+    - run: xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
     - uses: michaelhenry/swifty-code-coverage@v1.0.0
       with:
           build-path: DerivedData
