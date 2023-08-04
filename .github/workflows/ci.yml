@@ -19,7 +19,7 @@ jobs:
     - uses: michaelhenry/swifty-code-coverage@v1.0.0
       with:
           build-path: DerivedData
-          target: App.app
+          target: ios-base-develop.app
           is-spm: false
     - name: Publish to code climate
       uses: paambaati/codeclimate-action@v3.0.0
