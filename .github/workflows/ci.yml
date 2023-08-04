@@ -15,12 +15,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    - run: xcodebuild test -project ios-base.xcodeproj -scheme ios-base -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
+    - run: xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
     - uses: michaelhenry/swifty-code-coverage@v1.0.1
       with:
           build-path: DerivedData
           target: ios-base.app
           is-spm: false
+          output: "coverage/lcov.info"
+          output-artifact-name: "codeclimate-artifact"   
     - name: Publish to code climate
       uses: paambaati/codeclimate-action@v3.0.0
       env:
