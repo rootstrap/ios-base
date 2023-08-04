@@ -113,53 +113,53 @@ class ios_baseUITests: XCTestCase {
   // swiftlint:disable line_length
   /// These tests won't work because we need to mock headers and Swifter currently does not support this
   /// https://github.com/httpswift/swifter/pull/500
-  func testAccountCreation() {
-    app.launch()
-    
-    networkMocker.stubSignUp()
-    
-    app.attemptSignUp(
-      in: self,
-      email: "automation@test.com",
-      password: "holahola"
-    )
-    
-    networkMocker.stubGetProfile()
-    let getMyProfile = app.buttons["GetMyProfileButton"]
-    waitFor(element: getMyProfile, timeOut: 10)
-    getMyProfile.tap()
-    
-    sleep(1)
-    if let alert = app.alerts.allElementsBoundByIndex.first {
-      waitFor(element: alert, timeOut: 10)
-      
-      alert.buttons.allElementsBoundByIndex.first?.tap()
-    }
-    
-    let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 5)
-    
-    networkMocker.stubLogOut()
-    
-    logOutButton.tap()
-  }
-  
-  func testSignInSuccess() {
-    app.launch()
-    
-    networkMocker.stubLogIn()
-    
-    app.attemptSignIn(in: self,
-                      with: "automation@test.com",
-                      password: "holahola")
-    
-    let logOutButton = app.buttons["LogoutButton"]
-    waitFor(element: logOutButton, timeOut: 10)
-    
-    networkMocker.stubLogOut()
-    logOutButton.forceTap()
-    
-    let goToSignInButton = app.buttons["GoToSignInButton"]
-    waitFor(element: goToSignInButton, timeOut: 10)
-  }
+  //  func testAccountCreation() {
+  //    app.launch()
+  //
+  //    networkMocker.stubSignUp()
+  //
+  //    app.attemptSignUp(
+  //      in: self,
+  //      email: "automation@test.com",
+  //      password: "holahola"
+  //    )
+  //
+  //    networkMocker.stubGetProfile()
+  //    let getMyProfile = app.buttons["GetMyProfileButton"]
+  //    waitFor(element: getMyProfile, timeOut: 10)
+  //    getMyProfile.tap()
+  //
+  //    sleep(1)
+  //    if let alert = app.alerts.allElementsBoundByIndex.first {
+  //      waitFor(element: alert, timeOut: 10)
+  //
+  //      alert.buttons.allElementsBoundByIndex.first?.tap()
+  //    }
+  //
+  //    let logOutButton = app.buttons["LogoutButton"]
+  //    waitFor(element: logOutButton, timeOut: 5)
+  //
+  //    networkMocker.stubLogOut()
+  //
+  //    logOutButton.tap()
+  //  }
+  //
+  //  func testSignInSuccess() {
+  //    app.launch()
+  //
+  //    networkMocker.stubLogIn()
+  //
+  //    app.attemptSignIn(in: self,
+  //                      with: "automation@test.com",
+  //                      password: "holahola")
+  //
+  //    let logOutButton = app.buttons["LogoutButton"]
+  //    waitFor(element: logOutButton, timeOut: 10)
+  //
+  //    networkMocker.stubLogOut()
+  //    logOutButton.forceTap()
+  //
+  //    let goToSignInButton = app.buttons["GoToSignInButton"]
+  //    waitFor(element: goToSignInButton, timeOut: 10)
+  //  }
 }

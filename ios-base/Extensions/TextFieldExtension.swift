@@ -30,6 +30,8 @@ extension UITextField {
     accessibilityIdentifier = identifier
     heightAnchor.constraint(equalToConstant: height).isActive = true
     isSecureTextEntry = isPassword
+    guard isPassword else { return }
+    textContentType = .oneTimeCode
   }
   
   func setPlaceholder(color: UIColor = .lightGray) {

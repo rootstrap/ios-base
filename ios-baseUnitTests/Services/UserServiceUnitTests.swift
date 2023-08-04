@@ -23,12 +23,15 @@ class UserServiceUnitTests: XCTestCase {
     sessionManager = SessionManager()
     userDataManager = UserDataManager()
   }
-  
+
   override func tearDown() {
+    super.tearDown()
     sessionManager.deleteSession()
     userDataManager.deleteUser()
+    SessionManager.shared.deleteSession()
+    UserDataManager.shared.deleteUser()
   }
-  
+
   func testUserPersistence() {
     let service = AuthenticationServices(
       sessionManager: sessionManager,
