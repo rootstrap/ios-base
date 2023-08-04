@@ -15,12 +15,12 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    - run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
+    - run: swift test --enable-code-coverage
     - uses: michaelhenry/swifty-code-coverage@v1.0.0
       with:
-          build-path: DerivedData
-          target: ios-base-develop.app
-          is-spm: false
+        build-path: .build
+        target: ios-base-develop.xctest
+        is-spm: true
     - name: Publish to code climate
       uses: paambaati/codeclimate-action@v3.0.0
       env:
