@@ -29,7 +29,7 @@ jobs:
         ./cc-test-reporter before-build
 
     - name: Build & Test
-      run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
 
     - name: Send test coverage report
       run: ./cc-test-reporter after-build
