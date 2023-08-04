@@ -11,29 +11,23 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
 
 jobs:
-
-  test:
+  code-coverage-report:
     runs-on: macos-latest
-    timeout-minutes: 45
-
     steps:
-   
-    - name: Checkout
-      uses: actions/checkout@v3
-        
-    - name: Setup Code Climate test reporter
-      run: |
-        pwd
-        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-        chmod +x ./cc-test-reporter
-        ./cc-test-reporter before-build
-
-    - name: Build & Test
-      run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
-
-    - name: Send test coverage report
-      run: ./cc-test-reporter after-build -t cobertura
-
+    - uses: actions/checkout@v1
+    - run: xcodebuild test -scheme ios-base-develop -project ios-base.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
+    - uses: michaelhenry/swifty-code-coverage@v1.0.0
+      with:
+          build-path: DerivedData
+          target: App.app
+          is-spm: false
+    - name: Publish to code climate
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageLocations: |
+          coverage/lcov.info:lcov
     - name: Send notification of build result
       uses: 8398a7/action-slack@v3
       with:
