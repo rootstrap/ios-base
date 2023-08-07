@@ -1,8 +1,7 @@
-name: CI Build
+name: CI on Main
 
-# Run for any commits to any branch
+# Runs for merges on the main branch
 on:
-  pull_request:
   push:
     branches:
       - main

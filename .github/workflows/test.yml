@@ -1,0 +1,18 @@
+name: CI Build
+
+# Run for any commits to any branch
+on: [pull_request]
+
+env:
+  LANG: en_US.UTF-8
+
+jobs:
+  run-test-suite:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Run Test suite
+      run: |
+        xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
