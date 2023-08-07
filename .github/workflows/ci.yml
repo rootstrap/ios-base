@@ -31,7 +31,7 @@ jobs:
         ./cc-test-reporter before-build
     - name: Run Test suite
       run: |
-        xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -derivedDataPath DerivedData
+        xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
     - name: Slather Coverage
       run: bundle exec slather
     - name: Report coverate to Code Climate
