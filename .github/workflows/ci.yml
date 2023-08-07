@@ -15,10 +15,12 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
 
 jobs:
-  test:
+  test-suite-and-report:
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Bundler
       run: bundle install --jobs 4 --retry 3
     - name: Setup Code Climate test reporter
