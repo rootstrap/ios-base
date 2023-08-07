@@ -20,9 +20,7 @@ jobs:
     timeout-minutes: 45
     steps:
     - name: Bundler
-      run: |
-        bundle config path vendor/bundle
-        bundle install --without=documentation --jobs 4 --retry 3
+      run: bundle install --jobs 4 --retry 3
     - name: Setup Code Climate test reporter
       run: |
         pwd
