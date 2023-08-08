@@ -29,10 +29,10 @@
 		24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24514A9E2A55BC16003D686E /* IQKeyboardManagerSwift */; };
 		24514AAF2A55C7CC003D686E /* RSSwiftNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AAE2A55C7CC003D686E /* RSSwiftNetworking */; };
 		24514AB12A55C7CC003D686E /* RSSwiftNetworkingAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 24514AB02A55C7CC003D686E /* RSSwiftNetworkingAlamofire */; };
+		245F60ED2A82B1A800824041 /* RSFontSizes in Frameworks */ = {isa = PBXBuildFile; productRef = 245F60EC2A82B1A800824041 /* RSFontSizes */; };
 		24D6CFB92A5C9D9000D1EFA2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */; };
 		24D6CFBB2A5C9D9000D1EFA2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 24D6CFBA2A5C9D9000D1EFA2 /* FirebaseCrashlytics */; };
 		24D6CFBE2A5C9EAA00D1EFA2 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 24D6CFBD2A5C9EAA00D1EFA2 /* Swifter */; };
-		24D6CFC12A5E074E00D1EFA2 /* RSFontSizes in Frameworks */ = {isa = PBXBuildFile; productRef = 24D6CFC02A5E074E00D1EFA2 /* RSFontSizes */; };
 		9B0C72711C738D3400BAF3B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0C72691C738D3400BAF3B1 /* AppDelegate.swift */; };
 		9B0C72721C738D3400BAF3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0C726A1C738D3400BAF3B1 /* Assets.xcassets */; };
 		9B2D0100278CB1C2000657BE /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D00FF278CB1C2000657BE /* AuthEndpoint.swift */; };
@@ -197,10 +197,10 @@
 			files = (
 				24D6CFBE2A5C9EAA00D1EFA2 /* Swifter in Frameworks */,
 				24D6CFB92A5C9D9000D1EFA2 /* FirebaseAnalytics in Frameworks */,
-				24D6CFC12A5E074E00D1EFA2 /* RSFontSizes in Frameworks */,
 				24514AAF2A55C7CC003D686E /* RSSwiftNetworking in Frameworks */,
 				24514AB12A55C7CC003D686E /* RSSwiftNetworkingAlamofire in Frameworks */,
 				24D6CFBB2A5C9D9000D1EFA2 /* FirebaseCrashlytics in Frameworks */,
+				245F60ED2A82B1A800824041 /* RSFontSizes in Frameworks */,
 				24514A9F2A55BC16003D686E /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,7 +627,7 @@
 				24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */,
 				24D6CFBA2A5C9D9000D1EFA2 /* FirebaseCrashlytics */,
 				24D6CFBD2A5C9EAA00D1EFA2 /* Swifter */,
-				24D6CFC02A5E074E00D1EFA2 /* RSFontSizes */,
+				245F60EC2A82B1A800824041 /* RSFontSizes */,
 			);
 			productName = "delfie-ios";
 			productReference = 9B5AFADA1C7205EC002347D6 /* ios-base-Debug.app */;
@@ -695,7 +695,7 @@
 				24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */,
 				24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */,
-				24D6CFBF2A5E074E00D1EFA2 /* XCRemoteSwiftPackageReference "RSFontSizes" */,
+				245F60EB2A82B1A800824041 /* XCRemoteSwiftPackageReference "RSFontSizes" */,
 			);
 			productRefGroup = 9B5AFADB1C7205EC002347D6 /* Products */;
 			projectDirPath = "";
@@ -1529,6 +1529,14 @@
 				version = 1.1.7;
 			};
 		};
+		245F60EB2A82B1A800824041 /* XCRemoteSwiftPackageReference "RSFontSizes" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rootstrap/RSFontSizes.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.3;
+			};
+		};
 		24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1543,14 +1551,6 @@
 			requirement = {
 				kind = exactVersion;
 				version = 1.5.0;
-			};
-		};
-		24D6CFBF2A5E074E00D1EFA2 /* XCRemoteSwiftPackageReference "RSFontSizes" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rootstrap/RSFontSizes";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1586,6 +1586,11 @@
 			package = 24514AAD2A55C7CC003D686E /* XCRemoteSwiftPackageReference "RSSwiftNetworking" */;
 			productName = RSSwiftNetworkingAlamofire;
 		};
+		245F60EC2A82B1A800824041 /* RSFontSizes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 245F60EB2A82B1A800824041 /* XCRemoteSwiftPackageReference "RSFontSizes" */;
+			productName = RSFontSizes;
+		};
 		24D6CFB82A5C9D9000D1EFA2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24D6CFB72A5C9D9000D1EFA2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1600,11 +1605,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24D6CFBC2A5C9EAA00D1EFA2 /* XCRemoteSwiftPackageReference "swifter" */;
 			productName = Swifter;
-		};
-		24D6CFC02A5E074E00D1EFA2 /* RSFontSizes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24D6CFBF2A5E074E00D1EFA2 /* XCRemoteSwiftPackageReference "RSFontSizes" */;
-			productName = RSFontSizes;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
