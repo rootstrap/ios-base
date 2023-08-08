@@ -121,16 +121,8 @@ private extension SignUpViewController {
     activateConstrains()
   }
   
-  func activateConstrains() {
-    [
-      titleLabel,
-      emailField,
-      passwordField,
-      passwordConfirmationField,
-      signUpButton
-    ].forEach {
-      $0.attachHorizontally(to: view)
-    }
+  private func activateConstrains() {
+    addToViewHorizontally()
     emailField.centerVertically(with: view)
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
@@ -150,6 +142,18 @@ private extension SignUpViewController {
         constant: -UI.ViewController.bottomMargin
       )
     ])
+  }
+  
+  private func addToViewHorizontally() {
+    [
+      titleLabel,
+      emailField,
+      passwordField,
+      passwordConfirmationField,
+      signUpButton
+    ].forEach {
+      $0.attachHorizontally(to: view)
+    }
   }
 }
 

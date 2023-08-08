@@ -17,8 +17,8 @@ struct ButtonProperties {
   var cornerRadius: CGFloat = UI.Button.cornerRadius
   var height: CGFloat = UI.Button.height
   var font: UIFont = .h3Medium
-  var target: Any? = nil
-  var action: Selector? = nil
+  var target: Any?
+  var action: Selector?
 }
 
 extension UIButton {
