@@ -14,6 +14,7 @@ extension UITextField {
     target: Any,
     selector: Selector,
     placeholder: String,
+    identifier: String = "",
     backgroundColor: UIColor = .white,
     height: CGFloat = UI.TextField.height,
     borderStyle: BorderStyle = .line,
@@ -26,8 +27,11 @@ extension UITextField {
     self.placeholder = placeholder
     self.backgroundColor = backgroundColor
     self.borderStyle = borderStyle
+    accessibilityIdentifier = identifier
     heightAnchor.constraint(equalToConstant: height).isActive = true
     isSecureTextEntry = isPassword
+    guard isPassword else { return }
+    textContentType = .oneTimeCode
   }
   
   func setPlaceholder(color: UIColor = .lightGray) {

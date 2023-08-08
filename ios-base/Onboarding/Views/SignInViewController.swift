@@ -17,21 +17,26 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     font: .h1Medium
   )
   private lazy var logInButton = UIButton.primaryButton(
-    title: "signin_button_title".localized,
-    target: self,
-    action: #selector(tapOnSignInButton)
+    properties: ButtonProperties(
+      title: "signin_button_title".localized,
+      accessibilityIdentifier: "SignInButton",
+      target: self,
+      action: #selector(tapOnSignInButton)
+    )
   )
   
   private lazy var emailField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
-    placeholder: "signin_email_placeholder".localized
+    placeholder: "signin_email_placeholder".localized,
+    identifier: "EmailTextField"
   )
   
   private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(credentialsChanged),
     placeholder: "signin_password_placeholder".localized,
+    identifier: "PasswordTextField",
     isPassword: true
   )
   
@@ -54,13 +59,11 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.delegate = self
-    
     configureViews()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.setNavigationBarHidden(false, animated: true)
   }
   
@@ -77,8 +80,10 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     }
   }
   
-  @objc func tapOnSignInButton(_ sender: Any) async {
-    await viewModel.login()
+  @objc func tapOnSignInButton(_ sender: Any) {
+    Task {
+      await viewModel.login()
+    }
   }
   
   func setLoginButton(enabled: Bool) {

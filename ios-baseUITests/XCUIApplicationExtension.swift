@@ -38,7 +38,7 @@ extension XCUIApplication {
     password: String
   ) {
     let goToSignInButton = buttons["GoToSignInButton"]
-    let toolbarDoneButton = buttons["Toolbar Done Button"]
+    let toolbarDoneButton = buttons["Done"]
     
     testCase.waitFor(element: goToSignInButton, timeOut: 2)
     goToSignInButton.forceTap()
@@ -65,7 +65,7 @@ extension XCUIApplication {
   ) {
     buttons["GoToSignUpButton"].forceTap()
     
-    let toolbarDoneButton = buttons["Toolbar Done Button"]
+    let toolbarDoneButton = buttons["Done"]
     let signUpButton = buttons["SignUpButton"]
     testCase.waitFor(element: signUpButton, timeOut: 2)
     

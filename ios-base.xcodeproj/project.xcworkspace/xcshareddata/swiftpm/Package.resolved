@@ -32,17 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Ekhoo/Device.git",
       "state" : {
-        "revision" : "891a47647ea718723d9b0279a0356fe04a616ff8",
-        "version" : "3.4.0"
-      }
-    },
-    {
-      "identity" : "facebook-ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/facebook/facebook-ios-sdk",
-      "state" : {
-        "revision" : "c19607d535864533523d1f437c84035e5fb101cf",
-        "version" : "14.1.0"
+        "revision" : "50054824ed26a6a0deb58c47480903eaaa4ec5dd",
+        "version" : "3.5.0"
       }
     },
     {
@@ -140,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rootstrap/RSFontSizes",
       "state" : {
-        "branch" : "master",
-        "revision" : "337d42be2e1a2953781954e46192cf036e596547"
+        "revision" : "a24d332335264a466b5cbc1387197dbd689a1a80",
+        "version" : "1.3.3"
       }
     },
     {

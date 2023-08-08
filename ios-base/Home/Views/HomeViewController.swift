@@ -17,17 +17,21 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   )
   
   private lazy var logOutButton = UIButton.primaryButton(
-    color: .black,
-    title: "homescreen_logout_button_title".localized,
-    target: self,
-    action: #selector(tapOnLogOutButton)
+    properties: ButtonProperties(
+      color: .black,
+      title: "homescreen_logout_button_title".localized,
+      target: self,
+      action: #selector(tapOnLogOutButton)
+    )
   )
   
   private lazy var deleteAccountButton = UIButton.primaryButton(
-    color: .deleteButton,
-    title: "homescreen_delete_button_title".localized,
-    target: self,
-    action: #selector(tapOnDeleteAccount)
+    properties: ButtonProperties(
+      color: .deleteButton,
+      title: "homescreen_delete_button_title".localized,
+      target: self,
+      action: #selector(tapOnDeleteAccount)
+    )
   )
   
   private lazy var getProfileButton: UIButton = {
@@ -43,7 +47,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
     
     return button
   }()
-    
+  
   let activityIndicator = UIActivityIndicatorView()
   
   private var viewModel: HomeViewModel
@@ -72,7 +76,7 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   func tapOnGetMyProfile(_ sender: Any) async {
     await viewModel.loadUserProfile()
   }
-
+  
   @objc
   func tapOnLogOutButton(_ sender: Any) async {
     await viewModel.logoutUser()
@@ -115,7 +119,7 @@ private extension HomeViewController {
       )
     ])
   }
-
+  
 }
 
 extension HomeViewController: HomeViewModelDelegate {

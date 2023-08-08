@@ -46,14 +46,16 @@ internal class AuthenticationServices {
   
   private let sessionManager: SessionManager
   private let userDataManager: UserDataManager
-  private let apiClient = BaseAPIClient.alamofire
+  private let apiClient: BaseAPIClient
   
   init(
     sessionManager: SessionManager = .shared,
-    userDataManager: UserDataManager = .shared
+    userDataManager: UserDataManager = .shared,
+    apiClient: BaseAPIClient = BaseAPIClient.alamofire
   ) {
     self.sessionManager = sessionManager
     self.userDataManager = userDataManager
+    self.apiClient = apiClient
   }
   
   @discardableResult func login(
@@ -67,7 +69,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -116,7 +118,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -146,7 +148,7 @@ internal class AuthenticationServices {
     case .success(let user):
       if
         let user,
-        await self.saveUserSession(user.data, headers: response.responseHeaders)
+        self.saveUserSession(user.data, headers: response.responseHeaders)
       {
         return .success(user)
       } else {
@@ -185,14 +187,13 @@ internal class AuthenticationServices {
     }
   }
   
-  @MainActor private func saveUserSession(
+  func saveUserSession(
     _ user: User?,
     headers: [AnyHashable: Any]
   ) -> Bool {
     userDataManager.currentUser = user
     guard let session = Session(headers: headers) else { return false }
     sessionManager.saveUser(session: session)
-    
     return userDataManager.currentUser != nil && sessionManager.currentSession?.isValid ?? false
   }
 }

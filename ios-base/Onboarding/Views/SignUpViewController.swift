@@ -17,21 +17,26 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
     font: .h1Medium
   )
   private lazy var signUpButton = UIButton.primaryButton(
-    title: "signup_button_title".localized,
-    target: self,
-    action: #selector(tapOnSignUpButton)
+    properties: ButtonProperties(
+      title: "signup_button_title".localized,
+      accessibilityIdentifier: "SignUpButton",
+      target: self,
+      action: #selector(tapOnSignUpButton)
+    )
   )
   
   private lazy var emailField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
-    placeholder: "signup_email_placeholder".localized
+    placeholder: "signup_email_placeholder".localized,
+    identifier: "EmailTextField"
   )
   
   private lazy var passwordField = UITextField(
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_password_placeholder".localized,
+    identifier: "PasswordTextField",
     isPassword: true
   )
   
@@ -39,6 +44,7 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
     target: self,
     selector: #selector(formEditingChange),
     placeholder: "signup_confirm_password_placeholder".localized,
+    identifier: "ConfirmPasswordTextField",
     isPassword: true
   )
   
@@ -88,8 +94,10 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
   }
   
   @objc
-  func tapOnSignUpButton(_ sender: Any) async {
-    await viewModel.signup()
+  func tapOnSignUpButton(_ sender: Any) {
+    Task {
+      await viewModel.signup()
+    }
   }
   
   func setSignUpButton(enabled: Bool) {
@@ -113,16 +121,8 @@ private extension SignUpViewController {
     activateConstrains()
   }
   
-  func activateConstrains() {
-    [
-      titleLabel,
-      emailField,
-      passwordField,
-      passwordConfirmationField,
-      signUpButton
-    ].forEach {
-      $0.attachHorizontally(to: view)
-    }
+  private func activateConstrains() {
+    addToViewHorizontally()
     emailField.centerVertically(with: view)
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(
@@ -142,6 +142,18 @@ private extension SignUpViewController {
         constant: -UI.ViewController.bottomMargin
       )
     ])
+  }
+  
+  private func addToViewHorizontally() {
+    [
+      titleLabel,
+      emailField,
+      passwordField,
+      passwordConfirmationField,
+      signUpButton
+    ].forEach {
+      $0.attachHorizontally(to: view)
+    }
   }
 }
 

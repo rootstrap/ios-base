@@ -19,20 +19,22 @@ internal class UserServices {
     var errorDescription: String? {
       switch self {
       case .getMyProfile:
-        return "authError_login".localized
+        return "userError_login".localized
       case .mapping:
-        return "authError_mapping".localized
+        return "userError_mapping".localized
       }
     }
   }
 
   private let userDataManager: UserDataManager
-  private let apiClient = BaseAPIClient.alamofire
-  
+  private let apiClient: BaseAPIClient
+
   init(
-    userDataManager: UserDataManager = .shared
+    userDataManager: UserDataManager = .shared,
+    apiClient: BaseAPIClient = BaseAPIClient.alamofire
   ) {
     self.userDataManager = userDataManager
+    self.apiClient = apiClient
   }
   
   @discardableResult func getMyProfile() async -> Result<UserData, UserError> {

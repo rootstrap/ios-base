@@ -20,17 +20,21 @@ class FirstViewController: UIViewController,
   )
   
   private lazy var signInButton = UIButton.primaryButton(
-    title: "firstscreen_login_button_title".localized,
-    target: self,
-    action: #selector(signInTapped)
+    properties: ButtonProperties(
+      title: "firstscreen_login_button_title".localized,
+      target: self,
+      action: #selector(signInTapped)
+    )
   )
   
   private lazy var signUpButton = UIButton.primaryButton(
-    color: .clear,
-    title: "firstscreen_registre_button_title".localized,
-    titleColor: .mainTitle,
-    target: self,
-    action: #selector(signUpTapped)
+    properties: ButtonProperties(
+      color: .clear,
+      title: "firstscreen_registre_button_title".localized,
+      titleColor: .mainTitle,
+      target: self,
+      action: #selector(signUpTapped)
+    )
   )
   
   let activityIndicator = UIActivityIndicatorView()

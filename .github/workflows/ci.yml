@@ -1,8 +1,10 @@
-name: CI Build
+name: CI on Main
 
-# Run for any commits to any branch
-on: [push, pull_request]
-
+# Runs for merges on the main branch
+on:
+  push:
+    branches:
+      - main
 
 env:
   LANG: en_US.UTF-8
@@ -12,36 +14,31 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }}
 
 jobs:
-
-  test:
+  test-suite-and-report:
     runs-on: macos-latest
     timeout-minutes: 45
-
     steps:
-   
     - name: Checkout
-      uses: actions/checkout@v2
-        
+      uses: actions/checkout@v3
+    - name: Bundler
+      run: bundle install --jobs 4 --retry 3
     - name: Setup Code Climate test reporter
       run: |
         pwd
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
-
-    # Executes pod install and runs test against Debug target
-    - name: Run tests
-      uses: maierj/fastlane-action@v1.4.0
-      with:
-        lane: debug_develop
-
-    - name: Send test coverage report
+    - name: Run Test suite
+      run: |
+        xcodebuild test -project ios-base.xcodeproj -scheme ios-base-develop -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' | xcpretty && exit ${PIPESTATUS[0]}
+    - name: Slather Coverage
+      run: bundle exec slather
+    - name: Report coverate to Code Climate
       run: ./cc-test-reporter after-build
-
     - name: Send notification of build result
       uses: 8398a7/action-slack@v3
       with:
         status: ${{ job.status }}
         text: 'ios-base build status is ${{ job.status }}'
         fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-      if: always()  
+      if: always()
