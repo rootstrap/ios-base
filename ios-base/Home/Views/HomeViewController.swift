@@ -17,17 +17,21 @@ class HomeViewController: UIViewController, ActivityIndicatorPresenter {
   )
   
   private lazy var logOutButton = UIButton.primaryButton(
-    color: .black,
-    title: "homescreen_logout_button_title".localized,
-    target: self,
-    action: #selector(tapOnLogOutButton)
+    properties: ButtonProperties(
+      color: .black,
+      title: "homescreen_logout_button_title".localized,
+      target: self,
+      action: #selector(tapOnLogOutButton)
+    )
   )
   
   private lazy var deleteAccountButton = UIButton.primaryButton(
-    color: .deleteButton,
-    title: "homescreen_delete_button_title".localized,
-    target: self,
-    action: #selector(tapOnDeleteAccount)
+    properties: ButtonProperties(
+      color: .deleteButton,
+      title: "homescreen_delete_button_title".localized,
+      target: self,
+      action: #selector(tapOnDeleteAccount)
+    )
   )
   
   private lazy var getProfileButton: UIButton = {

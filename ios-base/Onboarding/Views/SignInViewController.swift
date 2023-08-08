@@ -17,10 +17,12 @@ class SignInViewController: UIViewController, ActivityIndicatorPresenter {
     font: .h1Medium
   )
   private lazy var logInButton = UIButton.primaryButton(
-    title: "signin_button_title".localized,
-    accessibilityIdentifier: "SignInButton",
-    target: self,
-    action: #selector(tapOnSignInButton)
+    properties: ButtonProperties(
+      title: "signin_button_title".localized,
+      accessibilityIdentifier: "SignInButton",
+      target: self,
+      action: #selector(tapOnSignInButton)
+    )
   )
   
   private lazy var emailField = UITextField(

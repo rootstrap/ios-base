@@ -17,10 +17,12 @@ class SignUpViewController: UIViewController, ActivityIndicatorPresenter {
     font: .h1Medium
   )
   private lazy var signUpButton = UIButton.primaryButton(
-    title: "signup_button_title".localized,
-    accessibilityIdentifier: "SignUpButton",
-    target: self,
-    action: #selector(tapOnSignUpButton)
+    properties: ButtonProperties(
+      title: "signup_button_title".localized,
+      accessibilityIdentifier: "SignUpButton",
+      target: self,
+      action: #selector(tapOnSignUpButton)
+    )
   )
   
   private lazy var emailField = UITextField(
