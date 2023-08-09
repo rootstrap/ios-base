@@ -17,11 +17,10 @@ This template comes with:
 - Convenient **helpers** and **extensions** to boost your productivity and improve the general coding experience.
 
 ## How to use
-1. Clone repo.
-2. Install desired extensions from their branches.
-3. Run `./init` from the recently created folder.
-4. Initialize a new git repo and add your remote url.
-5. Done!
+1. Clone the repo.
+2. Run `./init` from the recently created folder.
+3. Initialize a new git repo and add your remote URL.
+4. Done!
 
 To manage user and session persistence after the original sign in/up we store that information in the native UserDefaults. The parameters that we save are due to the usage of [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for authentication on the server side. Suffice to say that this can be modified to be on par with the server authentication of your choice.
 
