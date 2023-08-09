@@ -16,7 +16,7 @@ This template comes with:
 - Convenient **helpers** and **extensions** to boost your productivity and improve the general coding experience.
 
 ## How to use
-1. Clone the repo.
+1. Clone the repo test.
 2. Run `./init` from the recently created folder.
 3. Initialize a new git repo and add your remote URL.
 4. Done!
